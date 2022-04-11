@@ -1,19 +1,19 @@
 [
   {
     "path": "posts/welcome/",
-    "title": "Welcome to guilhermesportfolio",
-    "description": "Welcome to our new blog, guilhermesportfolio. We hope you enjoy \nreading what we have to say!",
+    "title": "Welcome to My Portfolio!",
+    "description": "This is where I am going to post everything I did using R and other programming languages!",
     "author": [
       {
-        "name": "Nora Jones",
-        "url": "https://example.com/norajones"
+        "name": "Guilherme Bastos Gomes",
+        "url": "https://example.com/guilhermesportfolio"
       }
     ],
     "date": "2022-04-11",
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2022-04-11T05:34:47-03:00",
-    "input_file": {}
+    "last_modified": "2022-04-11T05:48:15-03:00",
+    "input_file": "welcome.knit.md"
   }
 ]

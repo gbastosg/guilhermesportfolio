@@ -1,11 +1,10 @@
 ---
 title: "Welcome to My Portfolio!"
-description: |This is where I am going to post everything I did using R and 
-other programming languages!
+description: This is where I am going to post everything I did using R and other programming languages!
 author:
   - name: Guilherme Bastos Gomes 
     url: https://example.com/guilhermesportfolio
-    affiliation: My Porjects
+    affiliation: My Projects
     affiliation_url: https://guilhermesportfolio.com/myprojects
 date: 04-11-2022
 output:
