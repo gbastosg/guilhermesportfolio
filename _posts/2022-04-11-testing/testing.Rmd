@@ -6,7 +6,7 @@ description: |
   let's just keep this a test, sorry.
 author:
   - name: GUilherme Bastos Gomes
-    url: https://guilhermesportfolio.com/guilhermebastosgomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
 date: 2022-04-11
 output:
   distill::distill_article:
