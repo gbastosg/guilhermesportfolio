@@ -6,14 +6,14 @@
     "author": [
       {
         "name": "Guilherme Bastos Gomes",
-        "url": "https://example.com/guilhermesportfolio"
+        "url": "https://gbastosg.github.io/guilhermesportfolio/"
       }
     ],
     "date": "2022-04-11",
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2022-04-11T05:50:14-03:00",
+    "last_modified": "2022-04-11T05:53:57-03:00",
     "input_file": "welcome.knit.md"
   },
   {
@@ -22,7 +22,7 @@
     "description": "This is my first post, it is a test so there's nothing in it besides text and\nstuff. You know what, I am going to write something... Nah, changed my mind,\nlet's just keep this a test, sorry.",
     "author": [
       {
-        "name": "GUilherme Bastos Gomes",
+        "name": "Guilherme Bastos Gomes",
         "url": "https://gbastosg.github.io/guilhermesportfolio/"
       }
     ],
@@ -30,7 +30,7 @@
     "categories": [],
     "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2022-04-11T05:51:39-03:00",
+    "last_modified": "2022-04-11T05:54:41-03:00",
     "input_file": "testing.knit.md"
   }
 ]

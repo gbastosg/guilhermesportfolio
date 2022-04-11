@@ -5,7 +5,7 @@ description: |
   stuff. You know what, I am going to write something... Nah, changed my mind,
   let's just keep this a test, sorry.
 author:
-  - name: GUilherme Bastos Gomes
+  - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
 date: 2022-04-11
 output:
