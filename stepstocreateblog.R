@@ -1,13 +1,17 @@
 ### My portfolio
 ##Here's some of the work I've done in the last days
+
 ###First of all, I am going to create a website to post my portfolio using
 ###Github and Distill, a very interesting package in R, that helps us to create
 ###a very well constructed blog
 
-#Reading libraries
+#To start you should have installed Git and the packages:
+packages2download <- c("tidyverse", "usethis", "distill")
 
+#Loading libraries
 library(tidyverse)
 library(usethis)
+library(distill)
 
 #blog e github
 
