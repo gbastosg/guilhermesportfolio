@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2022-04-13-the-power-of-the-tidyverse-manipulating-data/",
+    "title": "The power of the tidyverse: manipulating data",
+    "description": "In this post I will show you how to use the basic tools from tidyverse. This tools are useful to deal with a whole sort of data.",
+    "author": [
+      {
+        "name": "Guilherme Bastos Gomes",
+        "url": "https://gbastosg.github.io/guilhermesportfolio/"
+      }
+    ],
+    "date": "2022-04-13",
+    "categories": [],
+    "contents": "\r\nHello! In this post I will show you how to use the basic verbs of the tidyverse:\r\nselect()\r\narrange()\r\nfilter()\r\nmutate()\r\nAll these verbs are also great functions to deal with data from the real world, but since gathering this data can be very time useful we will use a built in dataset from R.\r\nLet’s have a look in the Iris dataset which gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, Iris versicolor, and Iris virginica.\r\nAnd of course since we are dealing with the tidyverse we have to call it:\r\nlibrary(tidyverse)\r\nwe can call it and have a look: iris or just a part of it: head(iris) or just a glimpse for those who love stats: glimpse(iris)\r\nFirst of all let’s start with select and since we are using a tidyverse way of thinking, we are going to start using pipes also known as %>% or |>, depends on which you prefer to write.\r\nSo, to select a sort of columns you wish you can:\r\niris %>% #here we are calling the data\r\nselect(Sepal.Length, Species) #here we are calling the function select and choosing two columns\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-04-13T05:28:47-03:00",
+    "input_file": "the-power-of-the-tidyverse-manipulating-data.knit.md"
+  },
+  {
     "path": "posts/welcome/",
     "title": "Welcome to My Portfolio!",
     "description": "This is where I am going to post everything I did using R and other programming languages!",

@@ -1,0 +1,50 @@
+---
+title: "The power of the tidyverse: manipulating data"
+description: |
+  In this post I will show you how to use the basic tools from tidyverse. This tools are useful to deal with a whole sort of data.
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-04-13
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Hello! In this post I will show you how to use the basic verbs of the tidyverse:
+
+* select()
+* arrange()
+* filter()
+* mutate()
+
+All these verbs are also great *functions* to deal with data from the real world, but since gathering this data can be very time useful we will use a built in dataset from R.
+
+Let's have a look in the Iris dataset which gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are *Iris setosa*, *Iris versicolor*, and *Iris virginica*.
+
+And of course since we are dealing with the tidyverse we have to call it:
+
+`library(tidyverse)`
+
+we can call it and have a look:
+`iris`
+or just a part of it:
+`head(iris)`
+or just a glimpse for those who love stats:
+`glimpse(iris)`
+
+First of all let's start with select and since we are using a tidyverse way of thinking, we are going to start using *pipes* also known as *%>%* or *|>*, depends on which you prefer to write.
+
+So, to select a sort of columns you wish you can:
+
+```
+iris %>% #here we are calling the data
+select(Sepal.Length, Species) #here we are calling the function select and choosing two columns
+```
+
+

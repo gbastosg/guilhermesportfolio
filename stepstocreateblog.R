@@ -57,7 +57,7 @@ file.create(".nojekyll")
 #step 8 (using distill to create out blog):
 distill::create_blog(".", "guilhermesportfolio", gh_pages = TRUE)
 
-#step 9 (our first post, will be just a test):
+#step 9 (our first post, it will be just a test):
 distill::create_post("Testing!")
 
 #Great! Now we have a blog, and a first post. If you are working in RStudio
