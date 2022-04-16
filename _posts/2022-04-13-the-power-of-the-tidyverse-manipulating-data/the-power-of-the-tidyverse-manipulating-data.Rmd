@@ -247,4 +247,4 @@ Try using those functions in the other data sets from R, like the `mpg` for exam
 
 
 #### Thank you for your time :)
-#### Follow me on twitter: @gimbgomes
+Follow me on twitter: @gimbgomes

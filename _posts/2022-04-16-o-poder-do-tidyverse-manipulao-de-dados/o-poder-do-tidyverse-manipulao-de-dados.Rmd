@@ -1,11 +1,11 @@
 ---
 title: "O poder do tidyverse: manipulação de dados"
 description: |
-  Vou traduzir alguns posts meus aqui, para poder ajudar outros falantes de português a entenderem e usarem R para manipular dados. O Tidyverse é um pacote bastante importante para manipulação de dados, pois é fácil de usar e aprender.
+  Vou traduzir alguns posts meus aqui, para poder ajudar outros falantes de português a entenderem e usarem R para manipular dados. O Tidyverse é um pacote bastante importante para manipulação de dados, pois é fácil de usar e aprender. Essa é uma tradução feita por mim mesmo do meu post em inglês.
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
-date: 2022-04-13
+date: 2022-04-16
 output:
   distill::distill_article:
     self_contained: false
@@ -244,4 +244,4 @@ Tente usar essas quatro funções em outros data sets do R, como no `mpg`!
 
 
 #### Obrigado por ter chegado até aqui :)
-#### Me segue no twitter: @gimbgomes
+Me segue no twitter: @gimbgomes
