@@ -2102,7 +2102,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <div class="d-article">
-<p>#Hello! In this post I will show you how to use the basic verbs of the tidyverse:</p>
+<h1 id="hello-in-this-post-i-will-show-you-how-to-use-the-basic-verbs-of-the-tidyverse">Hello! In this post I will show you how to use the basic verbs of the tidyverse:</h1>
 <ul>
 <li>select()</li>
 <li>arrange()</li>
@@ -2114,7 +2114,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>And of course since we are dealing with the tidyverse we have to load it:</p>
 <p><code>library(tidyverse)</code></p>
 <p>we can call it and have a look: <code>iris</code> or just a part of it: <code>head(iris)</code> or just a glimpse for those who love stats: <code>glimpse(iris)</code></p>
-<p>#Pipe ‘%&gt;%’ and select()</p>
+<h1 id="pipe-and-select">Pipe ‘%&gt;%’ and select()</h1>
 <p>First of all let’s start with select and since we are using a tidyverse way of thinking, we are going to start using <em>pipes</em> also known as <em>%&gt;%</em> or <em>|&gt;</em>, depending on which you prefer to write.</p>
 <p>So, to select a sort of columns you wish you can:</p>
 <pre><code>iris %&gt;% #here we are calling the dataframe iris and piping to the next function
@@ -2167,7 +2167,7 @@ select(Sepal.Length, Species) #here we are calling the function and  choosing tw
 <pre><code>selected_iris &lt;- iris %&gt;%
   select(Sepal.Length, Species) %&gt;%
   head()</code></pre>
-<p>#arrange()</p>
+<h1 id="arrange">arrange()</h1>
 <p>Suppose you want now to quick check the distribution of Sepal Lengths, we can either call the <code>view()</code> function inside RStudio, or use the <code>arrange()</code> function, like this:</p>
 <pre><code>arrange(selected_iris) %&gt;%
   head()</code></pre>
@@ -2206,8 +2206,8 @@ select(Sepal.Length, Species) #here we are calling the function and  choosing tw
 </tr>
 </tbody>
 </table>
-<p>You will notice that the <code>dataframe</code> is now ordered from the lowest to the highest values of Sepal.Length. But what if we wanted to arrange in a descending order? Then we should just use the function <code>desc()</code> inside of our <code>arrange()</code> calling:</p>
 <h2 id="arrangedesc">arrange(desc())</h2>
+<p>You will notice that the <code>dataframe</code> is now ordered from the lowest to the highest values of Sepal.Length. But what if we wanted to arrange in a descending order? Then we should just use the function <code>desc()</code> inside of our <code>arrange()</code> calling:</p>
 <pre><code>arrange(desc(selected_iris)) %&gt;%
   head()</code></pre>
 <p>Now you will have:</p>
@@ -2245,13 +2245,13 @@ select(Sepal.Length, Species) #here we are calling the function and  choosing tw
 </tr>
 </tbody>
 </table>
-<p>#filter()</p>
+<h1 id="filter">filter()</h1>
 <p>Alright, so now that we already know how to <code>select()</code> and <code>arrange()</code>, let’s learn another two verbs that are great for data manipulation and analysis:</p>
-<p>##First of all, let’s use the <code>filter()</code> function to gather only <em>Iris virginica</em> species from our dataset:</p>
+<h2 id="first-of-all-lets-use-the-filter-function-to-gather-only-iris-virginica-species-from-our-dataset">First of all, let’s use the <code>filter()</code> function to gather only <em>Iris virginica</em> species from our dataset:</h2>
 <pre><code>iris %&gt;%
   filter(Species == &quot;virginica&quot;)</code></pre>
 <p>Note that we are using the <code>==</code> operator, meaning we want to filter everything from the Species column that is equal to our text “virginica”.</p>
-<p>##Suppose you want to filter only the one’s that are not <em>Iris virginica</em>:</p>
+<h2 id="suppose-you-want-to-filter-only-the-ones-that-are-not-iris-virginica">Suppose you want to filter only the one’s that are not <em>Iris virginica</em>:</h2>
 <pre><code>iris %&gt;%
   filter(Species != &quot;virginica&quot;)</code></pre>
 <p>Now we have used the <code>!=</code> which stands for different or not equal, then we will have received a data set with <em>Iris setosa</em> and <em>Iris versicolor</em> species, and to check if this is true, let’s create objects that receives our filtered data sets:</p>
@@ -2264,7 +2264,7 @@ select(Sepal.Length, Species) #here we are calling the function and  choosing tw
 not_iris_virginica &lt;-
   iris %&gt;%
   filter(Species != &quot;virginica&quot;)</code></pre>
-<p>###Checking with conditional operators</p>
+<h3 id="checking-with-conditional-operators">Checking with conditional operators</h3>
 <p>Both of these operators <code>==</code> (equal) and <code>!=</code> (not equal) can be used in different contexts in R, for example to check if everything was okay with our filtering:</p>
 <pre><code>#here I am going to use another form of the select funcion:
 select(iris_virginica, Species) == &quot;virginica&quot;</code></pre>
@@ -2275,7 +2275,7 @@ select(not_iris_virginica, Species) == &quot;virginica&quot;</code></pre>
 <p>And now you should receive <code>FALSE</code> for all the rows inside our <code>not_iris_virginica</code> data set. Meaning our filter worked, cool right?</p>
 <p>I will talk about conditionals and all those boolean things in another post, since there are many other operators (<code>&gt;=</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&amp;</code>, <code>|</code>, and so on…)</p>
 <p>Now I am going to continue with another tidyverb ;)</p>
-<p>#mutate()</p>
+<h1 id="mutate">mutate()</h1>
 <p>The last and, maybe most important, function we are going to learn is <code>mutate()</code></p>
 <p>This is a great function to manipulate data and to transform or create new columns in our data set</p>
 <p><code>mutate()</code> works like this:</p>
@@ -2294,7 +2294,7 @@ select(not_iris_virginica, Species) == &quot;virginica&quot;</code></pre>
 <p>Now we have the object <code>ratio_iris</code> and I can explain how <code>mutate()</code>combined with <code>ifelse()</code> works:</p>
 <pre><code>ratio_iris %&gt;%
   mutate(size  = ifelse(ratio_petal_sepal &lt; 0.5, &quot;small&quot;, &quot;large&quot;))</code></pre>
-<p>###Explaining mutate() combined with ifelse()</p>
+<h3 id="explaining-mutate-combined-with-ifelse">Explaining mutate() combined with ifelse()</h3>
 <p>ratio_iris %&gt;% #putting the data set through our pipe mutate(size = #calling mutate and creating the column “size” ifelse(ratio_petal_sepal &lt; 0.5, #if this statement is <code>TRUE</code> and the number inside of ratio_petal_sepal is lesser than 0.5 “small”, #, then the column “size” will receive that tag “small” “large” #else or otherwise it will receive “large”))</p>
 <p>You will have a complete sorted data set, on the next post I will show you how to count() and to gather some stats from data. Hope you liked.</p>
 <p>Now you can manipulate data and start a data analysis project using the <code>tidyverse</code></p>

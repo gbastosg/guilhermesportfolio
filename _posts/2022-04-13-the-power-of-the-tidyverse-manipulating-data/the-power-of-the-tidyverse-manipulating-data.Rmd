@@ -144,7 +144,7 @@ iris %>%
 
 Note that we are using the `==` operator, meaning we want to filter everything from the Species column that is equal to our text "virginica".
 
-## Suppose you want to filter only the one's that are not *Iris virginica*:
+## Suppose you want to filter only those that are not *Iris virginica*:
 
 ```
 iris %>%
