@@ -243,5 +243,6 @@ Now you can manipulate data and start a data analysis project using the `tidyver
 
 Try using those functions in the other data sets from R, like the `mpg` for example!
 
-Thank you for your time :)
-Follow me on twitter: @gimbgomes
+
+#### Thank you for your time :)
+#### Follow me on twitter: @gimbgomes
