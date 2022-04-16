@@ -92,7 +92,7 @@ selected_iris <- iris %>%
 
 # arrange()
 
-Suppose you want now to quick check the distribution of Sepal Lengths, we can either call the `view()` function inside RStudio, or use the `arrange()` function, like this:
+Suppose you want now to quick check the ordered distribution of Sepal Lengths, we can either call the `view()` function inside RStudio, or use the `arrange()` function, like this:
 
 ```
 arrange(selected_iris) %>%
