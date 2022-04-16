@@ -1,11 +1,11 @@
 ---
-title: "O poder do tidyverse: manipulaÃ§Ã£o de dados"
+title: "O poder do tidyverse: manipulação de dados"
 description: |
-  A short description of the post.
+  Vou traduzir alguns posts meus aqui, para poder ajudar outros falantes de português a entenderem e usarem R para manipular dados. O Tidyverse é um pacote bastante importante para manipulação de dados, pois é fácil de usar e aprender.
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
-date: 2022-04-16
+date: 2022-04-13
 output:
   distill::distill_article:
     self_contained: false
@@ -16,8 +16,232 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
+# Olá! Neste post vou te mostrar como usar alguns verbos básicos do tidyverse:
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+* select()
+* arrange()
+* filter()
+* mutate()
+
+Todos esses verbos também são *funções* para lidar com dados do mundo real, mas como coletar esses dados pode ser bem complicado vamos usar um conjunto de dados (data set) do R.
+
+Vamos dar uma olhada no data set `iris` que nos da medidas em centimetros do tamanho de sepalas e petalas de tres espécies de angiospermas: *Iris setosa*, *Iris versicolor*, e *Iris virginica*.
+
+E claro, já que estamos lidando com o tidyverse, temos que carregar o pacote:
+
+`library(tidyverse)`
+
+Vamos ver o data set:
+`iris`
+ou só uma parte dele:
+`head(iris)`
+ou apenas dar uma olhadinha para aqueles que curtem stats:
+`glimpse(iris)`
+
+# Pipe '%>%' e select()
+
+Antes de tudo, vamos começar com o selecionar e já que estamos usando o tidyverse, também começaremos a usar os *pipes* também conhecido como *%>%* ou *|>*, tudo depende do que você mais gosta de escrever.
+
+Então para selecionar um conjunto de colunas que você queira, você pode escrever:
+
+```
+iris %>% #aqui incluimos o dataframe iris no pipe para a proxima função
+select(Sepal.Length, Species) #selecionando duas colunas do dataframe `Sepal.Length` e `Species`
+```
+
+Note o pipe "%>%", isso significa que a saída de uma função será usada como entrada para a próxima, e o primeiro pipe apenas inclui o data set iris dentro da função `select(Sepal.Length, Species)`
+
+Tranquilo, certo?
+
+Agora você deve ter um data set um pouco menor, se quiser checar, basta chamar o mesmo script de antes, mas com um pipe para a função `head()` que mostra apenas as primeiras 10 linhas:
+
+```
+iris %>%
+  select(Sepal.Length, Species) %>%
+  head()
+```
+
+Apenas uma dica, isso também funcionaria:
+
+```
+head(select(iris, Sepal.Length, Species))
+```
+Você deve ter algo assim:
+
+| Sepal.Length | Species |
+|--------------|---------|
+| 5.1          | setosa  | 
+| 4.9          | setosa  | 
+| 4.7          | setosa  | 
+| 4.6          | setosa  | 
+| 5.0          | setosa  |
+| 5.4          | setosa  |
+
+Para melhorar nosso trabalho, devemos criar um objeto que recebe esse data set menor:
+
+É bom nomear as coisas de acordo com o que elas são, neste caso to usando o seguinte nome: `selected_iris`
 
 
+```
+selected_iris <- iris %>%
+  select(Sepal.Length, Species) %>%
+  head()
+```
+
+# arrange()
+
+Suponha que você queira dar uma rápida olhada na distribuição de tamanhos de sepalas ordenadas, podemos tanto chamar a função `view()` no RStudio, ou usar a função  `arrange()`:
+
+```
+arrange(selected_iris) %>%
+  head()
+```
+
+Voce deve ver algo assim:
+
+| Sepal.Length  | Species |
+|---------------|---------|
+| 4.3           | setosa  |
+| 4.4           | setosa  |
+| 4.4           | setosa  |
+| 4.4           | setosa  |
+| 4.5           | setosa  |
+| 4.6           | setosa  |
+
+## arrange(desc())
+
+Voce notará que o `dataframe` agora está em ordem, dos menores para o maiores valores de tamanho de sepalas (sepalas são aquelas folhas que apoiam as petalas). Mas, e se quisessemos ordenar em ordem descendente? Para isso precisamos usar a função `desc()` dentro da função `arrange()`:
+
+```
+arrange(desc(selected_iris)) %>%
+  head()
+```
+
+Agora temos:
+
+| Sepal.Length | Species    |
+|--------------|------------|
+| 7.9          |  virginica |
+| 7.7          |  virginica |
+| 7.7          |  virginica |
+| 7.7          |  virginica |
+| 7.7          |  virginica |
+| 7.6          |  virginica |
+
+# filter()
+
+Beleza, agora que sabemos `select()` e `arrange()`, bora aprender mais dois outros verbos  que também são ótimos para manipulação e análise de dados:
+
+## Primeiro, vamos usar o filtro ou `filter()` para filtrar apenas a espécie *Iris virginica* do nosso dataset:
+
+```
+iris %>%
+  filter(Species == "virginica")
+```
+
+Note que estamos usando o operador `==`, que significa: queremos filtrar tudo da coluna `Species` que seja igual ao nosso texto (note as aspas) "virginica".
+
+## Suponha que você queira filtrar apenas aqueles que NÃO são *Iris virginica*:
+
+```
+iris %>%
+  filter(Species != "virginica")
+```
+
+Agora usamos o operador `!=` que significa diferente ou desigual, sendo assim recebemos um data set com *Iris setosa* e *Iris versicolor* apenas, para checar a veracidade, vamos criar objetos que recebem nossos data set filtrados:
+
+```
+iris_virginica <- 
+  iris %>%
+  filter(Species == "virginica")
+  
+  #And let's create the other one
+  
+not_iris_virginica <-
+  iris %>%
+  filter(Species != "virginica")
+```
+
+### Checando usando operadores condicionais
+
+Ambos operadores `==` (igual a) e `!=` (diferente de) podem ser usados em multiplas situações no R, por exemplo para checar se nosso filtro deu certo:
+
+```
+#Veja que interessante essa forma da função select:
+select(iris_virginica, Species) == "virginica"
+```
+
+Isso deve retornar `TRUE` para todas as linhas dentro do nosso dado. Quando testamos nossas afirmativas com condicionais, o R pode dizer se é `TRUE` ou `FALSE` (`VERDADEIRO` ou `FALSO`).
+
+Vamos tentar mais uma:
+
+```
+#just calling the data set inside the function again:
+select(not_iris_virginica, Species) == "virginica"
+```
+
+Agora devemos receber apenas `FALSE` para todas as linhas do nosso conjunto de dados `not_iris_virginica`. O que significa que nosso filtro deu certo, legal né?
+
+Vou escrever sobre condicionais e todas essas paradas booleanas em outro post, já que existem muitos outros operadores poderosos  (`>=`, `<=`, `>`, `<`, `&`, `|`, e por ai vai...)
+
+Agora vamos continuar com outros tidyverbo ;)
+
+# mutate()
+
+O último e, talvez mais importante, verbo que vamos aprender é o `mutate()`
+
+Essa é uma ótima função para manipular, transformar e criar colunas em nosso dado
+
+`mutate()` funciona assim:
+
+mutate(coluna_que_quero_criar = equação)
+
+Suponha que queremos saber a razão entre o tamanho de pétalas e sepalas de todas as espécies:
+
+```
+iris %>%
+  mutate(ratio_petal_sepal = Petal.Length/Sepal.Length)
+```
+
+Existem muitos outros usos para o verbo mutate, um deles é classificar dados combinando com a função `ifelse()`, que cria uma condição dentro do mutate():
+
+Queremos classificar nossas flores como "grandes" ou "pequenas", baseado na razão obtida anteriormente, isso significa que "se ratio_petal_sepal < 0.5, então a coluna "size" recebe a tag `small` , caso contrário recebe a tag `large`:
+
+```
+iris %>%
+  mutate(ratio_petal_sepal = Petal.Length/Sepal.Length) %>%
+  mutate(size = ifelse(ratio_petal_sepal < 0.5, "small", "large"))
+```
+
+Perceba que estamos usando um mutate duplo, isso não seria necessário se tivessemos criado um objeto anteriormente:
+
+```
+ratio_iris <- iris %>%
+  mutate(ratio_petal_sepal = Petal.Length/Sepal.Length)
+```
+Agora temos o objeto `ratio_iris` e podemos compreender como `mutate()` funciona combinado com `ifelse()`:
+
+```
+ratio_iris %>%
+  mutate(size  = ifelse(ratio_petal_sepal < 0.5, "small", "large"))
+```
+
+### Explicando mutate() combinado com ifelse()
+
+```
+ratio_iris %>% #botando o dado no cachimbo
+  mutate(size  = #chamando a função mutate e criando uma coluna chamada "size"
+  ifelse(ratio_petal_sepal < 0.5, #se essa afirmação for `TRUE` e o número dentro de ratio_petal_sepal for menor que 0.5
+  "small", #então a coluna "size" receberá a tag "small"
+  "large" #caso contrário receberá "large"))
+```
+
+No fim, teremos um data set completamente marcado com a nossa condição, num próximo post vou mostrar como você pode usar a função count() para obter algumas estatísticas do nosso data set. Espero que você tenha gostado. 
+
+Sabendo que o conteúdo é escasso, vou tentar sempre traduzir alguns posts meus.
+
+Tente usar essas quatro funções em outros data sets do R, como no `mpg`!
+
+
+#### Obrigado por ter chegado até aqui :)
+#### Me segue no twitter: @gimbgomes
