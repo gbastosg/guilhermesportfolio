@@ -231,11 +231,13 @@ ratio_iris %>%
 
 ### Explaining mutate() combined with ifelse()
 
+```
 ratio_iris %>% #putting the data set through our pipe
   mutate(size  = #calling mutate and creating the column "size"
   ifelse(ratio_petal_sepal < 0.5, #if this statement is `TRUE` and the number inside of ratio_petal_sepal is lesser than 0.5
   "small", #, then the column "size" will receive that tag "small"
   "large" #else or otherwise it will receive "large"))
+```
 
 You will have a complete sorted data set, on the next post I will show you how to count() and to gather some stats from data. Hope you liked. 
 
