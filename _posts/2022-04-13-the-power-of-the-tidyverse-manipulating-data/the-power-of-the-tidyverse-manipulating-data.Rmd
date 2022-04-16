@@ -16,16 +16,16 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Hello! In this post I will show you how to use the basic verbs of the tidyverse:
+# Hello! In this post I will show you how to use the basic verbs of the tidyverse:
 
 * select()
 * arrange()
 * filter()
 * mutate()
 
-All these verbs are also great *functions* to deal with data from the real world, but since gathering this data can be very time useful we will use a built in dataset from R.
+All these verbs are also great *functions* to deal with data from the real world, but since gathering this data can be very time useful we will use a built in data set from R.
 
-Let's have a look in the Iris dataset which gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are *Iris setosa*, *Iris versicolor*, and *Iris virginica*.
+Let's have a look in the Iris data set which gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are *Iris setosa*, *Iris versicolor*, and *Iris virginica*.
 
 And of course since we are dealing with the tidyverse we have to load it:
 
@@ -38,7 +38,7 @@ or just a part of it:
 or just a glimpse for those who love stats:
 `glimpse(iris)`
 
-#Pipe and select()
+# Pipe '%>%' and select()
 
 First of all let's start with select and since we are using a tidyverse way of thinking, we are going to start using *pipes* also known as *%>%* or *|>*, depending on which you prefer to write.
 
@@ -57,8 +57,14 @@ Now you should have a smaller data set, only the selected columns from iris to w
 
 ```
 iris %>%
-select(Sepal.Length, Species) %>%
-head()
+  select(Sepal.Length, Species) %>%
+  head()
+```
+
+Just a tip, this would also work (but it's harder to read):
+
+```
+head(select(iris, Sepal.Length, Species))
 ```
 
 Now you should have something like this:
@@ -80,17 +86,17 @@ It's good to name it as it is, in this case I will use the following name: `sele
 
 ```
 selected_iris <- iris %>%
-select(Sepal.Length, Species) %>%
-head()
+  select(Sepal.Length, Species) %>%
+  head()
 ```
 
-#arrange()
+# arrange()
 
 Suppose you want now to quick check the distribution of Sepal Lengths, we can either call the `view()` function inside RStudio, or use the `arrange()` function, like this:
 
 ```
 arrange(selected_iris) %>%
-head()
+  head()
 ```
 
 You should have something like this:
@@ -104,13 +110,14 @@ You should have something like this:
 | 4.5           | setosa  |
 | 4.6           | setosa  |
 
+## arrange(desc())
+
 You will notice that the `dataframe` is now ordered from the lowest to the highest values of Sepal.Length. But what if we wanted to arrange in a descending order? Then we should just use the function `desc()` inside of our `arrange()` calling:
 
-## arrange(desc())
 
 ```
 arrange(desc(selected_iris)) %>%
-head()
+  head()
 ```
 
 Now you will have:
@@ -124,10 +131,117 @@ Now you will have:
 | 7.7          |  virginica |
 | 7.6          |  virginica |
 
-#filter()
+# filter()
 
+Alright, so now that we already know how to `select()` and `arrange()`, let's learn another two verbs that are great for data manipulation and analysis:
 
+## First of all, let's use the `filter()` function to gather only *Iris virginica* species from our dataset:
 
+```
+iris %>%
+  filter(Species == "virginica")
+```
 
+Note that we are using the `==` operator, meaning we want to filter everything from the Species column that is equal to our text "virginica".
 
+## Suppose you want to filter only the one's that are not *Iris virginica*:
 
+```
+iris %>%
+  filter(Species != "virginica")
+```
+
+Now we have used the `!=` which stands for different or not equal, then we will have received a data set with *Iris setosa* and *Iris versicolor* species, and to check if this is true, let's create objects that receives our filtered data sets:
+
+```
+iris_virginica <- 
+  iris %>%
+  filter(Species == "virginica")
+  
+  #And let's create the other one
+  
+not_iris_virginica <-
+  iris %>%
+  filter(Species != "virginica")
+```
+
+### Checking with conditional operators
+
+Both of these operators `==` (equal) and `!=` (not equal) can be used in different contexts in R, for example to check if everything was okay with our filtering:
+
+```
+#here I am going to use another form of the select funcion:
+select(iris_virginica, Species) == "virginica"
+```
+
+And this should return `TRUE` for all the rows inside our data set. When we test our affirmations with conditionals, R can check if that is TRUE or FALSE.
+
+Let's try another one:
+
+```
+#just calling the data set inside the function again:
+select(not_iris_virginica, Species) == "virginica"
+```
+And now you should receive `FALSE` for all the rows inside our `not_iris_virginica` data set. Meaning our filter worked, cool right?
+
+I will talk about conditionals and all those boolean things in another post, since there are many other operators (`>=`, `<=`, `>`, `<`, `&`, `|`, and so on...)
+
+Now I am going to continue with another tidyverb ;)
+
+# mutate()
+
+The last and, maybe most important, function we are going to learn is `mutate()`
+
+This is a great function to manipulate data and to transform or create new columns in our data set
+
+`mutate()` works like this:
+
+mutate(column_you_want_to_create = equation)
+
+Suppose you want to know the ratio between Petal and Sepal length of all the species:
+
+```
+iris %>%
+  mutate(ratio_petal_sepal = Petal.Length/Sepal.Length)
+```
+
+There are many uses for the mutate verb, another one is to sort data combining it with the `ifelse()` function, which creates a condition:
+
+Imagine we want to classify our flowers as being "large" or "small" based on our ratio, that means "if ratio_petal_sepal < 0.5, then it receives a `small` tag, otherwise it receives a `large` tag:
+
+```
+iris %>%
+  mutate(ratio_petal_sepal = Petal.Length/Sepal.Length) %>%
+  mutate(size = ifelse(ratio_petal_sepal < 0.5, "small", "large"))
+```
+
+Check that we are using a double mutate calling, just because we have not created an object, let's tidy it:
+
+```
+ratio_iris <- iris %>%
+  mutate(ratio_petal_sepal = Petal.Length/Sepal.Length)
+```
+
+Now we have the object `ratio_iris` and I can explain how `mutate()`combined with `ifelse()` works:
+
+```
+ratio_iris %>%
+  mutate(size  = ifelse(ratio_petal_sepal < 0.5, "small", "large"))
+```
+
+### Explaining mutate() combined with ifelse()
+
+ratio_iris %>% #putting the data set through our pipe
+  mutate(size  = #calling mutate and creating the column "size"
+  ifelse(ratio_petal_sepal < 0.5, #if this statement is `TRUE` and the number inside of ratio_petal_sepal is lesser than 0.5
+  "small", #, then the column "size" will receive that tag "small"
+  "large" #else or otherwise it will receive "large"))
+
+You will have a complete sorted data set, on the next post I will show you how to count() and to gather some stats from data. Hope you liked. 
+
+Now you can manipulate data and start a data analysis project using the `tidyverse`
+
+Try using those functions in the other data sets from R, like the `mpg` for example!
+
+Thank you for your time :)
+Follow me on twitter: @gimbgomes
