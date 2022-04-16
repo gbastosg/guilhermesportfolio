@@ -1497,8 +1497,129 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>First of all let’s start with select and since we are using a tidyverse way of thinking, we are going to start using <em>pipes</em> also known as <em>%&gt;%</em> or <em>|&gt;</em>, depends on which you prefer to write.</p>
 <p>So, to select a sort of columns you wish you can:</p>
 <pre><code>iris %&gt;% #here we are calling the data
-select(Sepal.Length, Species) #here we are calling the function select and choosing two columns</code></pre>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+select(Sepal.Length, Species) #here we are calling the function and  choosing two columns `Sepal.Length` and `Species`</code></pre>
+<p>Note the pipe “%&gt;%”, that means that the output of one function will be the input of the next one, and the first pipe just includes the iris data set into the next function <code>select(Sepal.Length, Species)</code></p>
+<p>Pretty easy, right?</p>
+<p>Now you should have a smaller data set, only the selected columns from iris to work with, if you want to check it, just call the same script again, but using the <code>head()</code> function to see only the first 10 lines:</p>
+<pre><code>iris %&gt;%
+select(Sepal.Length, Species) %&gt;%
+head()</code></pre>
+<p>Now you should have something like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Sepal.Length</th>
+<th>Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5.1</td>
+<td>setosa</td>
+</tr>
+<tr class="even">
+<td>4.9</td>
+<td>setosa</td>
+</tr>
+<tr class="odd">
+<td>4.7</td>
+<td>setosa</td>
+</tr>
+<tr class="even">
+<td>4.6</td>
+<td>setosa</td>
+</tr>
+<tr class="odd">
+<td>5.0</td>
+<td>setosa</td>
+</tr>
+<tr class="even">
+<td>5.4</td>
+<td>setosa</td>
+</tr>
+</tbody>
+</table>
+<p>To make our work even easier, we should create an object with our smaller iris <code>dataframe</code>:</p>
+<pre><code>selected_iris &lt;- iris %&gt;%
+select(Sepal.Length, Species) %&gt;%
+head()</code></pre>
+<p>Suppose you want now to quick check the distribution of Sepal Lengths, we can either call the <code>view()</code> function inside RStudio, or use the <code>arrange()</code> function, like this:</p>
+<pre><code>arrange(selected_iris) %&gt;%
+head()</code></pre>
+<p>You should see something like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Sepal.Length</th>
+<th>Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4.3</td>
+<td>setosa</td>
+</tr>
+<tr class="even">
+<td>4.4</td>
+<td>setosa</td>
+</tr>
+<tr class="odd">
+<td>4.4</td>
+<td>setosa</td>
+</tr>
+<tr class="even">
+<td>4.4</td>
+<td>setosa</td>
+</tr>
+<tr class="odd">
+<td>4.5</td>
+<td>setosa</td>
+</tr>
+<tr class="even">
+<td>4.6</td>
+<td>setosa</td>
+</tr>
+</tbody>
+</table>
+<p>You will notice that the <code>dataframe</code>is now ordered from the lowest to the highest values of Sepal.Length. But what if we wanted to arrange in a descending order? Then we should just use the function desc() inside of our arrange() calling:</p>
+<pre><code>arrange(desc(selected_iris)) %&gt;%
+head()</code></pre>
+<p>Now you will have:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Sepal.Length</th>
+<th>Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>7.9</td>
+<td>virginica</td>
+</tr>
+<tr class="even">
+<td>7.7</td>
+<td>virginica</td>
+</tr>
+<tr class="odd">
+<td>7.7</td>
+<td>virginica</td>
+</tr>
+<tr class="even">
+<td>7.7</td>
+<td>virginica</td>
+</tr>
+<tr class="odd">
+<td>7.7</td>
+<td>virginica</td>
+</tr>
+<tr class="even">
+<td>7.6</td>
+<td>virginica</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
