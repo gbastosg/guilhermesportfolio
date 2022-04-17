@@ -169,6 +169,10 @@ iris %>%
             media_petala = mean(Petal.Length),
             total_n = n())
 ```
+| min_petala | max_sepala |media_sepala | media_petala |total_n |
+|------------|------------|-------------|--------------|--------|
+|          1 |        7.9 |    5.843333 |       3.758  |    150 |
+
 
 Bastante maneiro!
 
@@ -215,7 +219,7 @@ Agora você tem mais algumas ferramentas para analisar e manipular dados, espero
 ter ajudado!
 
 > Num próximo post falarei sobre essas siglas que aparecem em nossa tabela: 
-> como <dbl>, <fct>, <car>, etc...
+> como \<dbl\>, \<fct\>, \<car\>, etc...
 
 #### Espero que tenham gostado!
 Me segue no twitter: @gimbgomes
