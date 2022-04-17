@@ -31,12 +31,12 @@ And of course since we are dealing with the tidyverse we have to load it:
 
 `library(tidyverse)`
 
-we can call it and have a look:
-`iris`
-or just a part of it:
-`head(iris)`
-or just a glimpse for those who love stats:
-`glimpse(iris)`
+we can call it and have a look:  
+`iris`  
+or just a part of it:  
+`head(iris)`  
+or just a glimpse for those who love stats:  
+`glimpse(iris)`  
 
 # Pipe '%>%' and select()
 
