@@ -2113,7 +2113,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>Vamos dar uma olhada no data set <code>iris</code> que nos da medidas em centimetros do tamanho de sepalas e petalas de tres espécies de angiospermas: <em>Iris setosa</em>, <em>Iris versicolor</em>, e <em>Iris virginica</em>.</p>
 <p>E claro, já que estamos lidando com o tidyverse, temos que carregar o pacote:</p>
 <p><code>library(tidyverse)</code></p>
-<p>Vamos ver o data set: <code>iris</code> ou só uma parte dele: <code>head(iris)</code> ou apenas dar uma olhadinha para aqueles que curtem stats: <code>glimpse(iris)</code></p>
+<p>Vamos ver o data set:<br />
+<code>iris</code><br />
+ou só uma parte dele:<br />
+<code>head(iris)</code><br />
+ou apenas dar uma olhadinha para aqueles que curtem stats:<br />
+<code>glimpse(iris)</code></p>
 <h1 id="pipe-e-select">Pipe ‘%&gt;%’ e select()</h1>
 <p>Antes de tudo, vamos começar com o selecionar e já que estamos usando o tidyverse, também começaremos a usar os <em>pipes</em> também conhecido como <em>%&gt;%</em> ou <em>|&gt;</em>, tudo depende do que você mais gosta de escrever.</p>
 <p>Então para selecionar um conjunto de colunas que você queira, você pode escrever:</p>
@@ -2270,7 +2275,7 @@ not_iris_virginica &lt;-
 select(iris_virginica, Species) == &quot;virginica&quot;</code></pre>
 <p>Isso deve retornar <code>TRUE</code> para todas as linhas dentro do nosso dado. Quando testamos nossas afirmativas com condicionais, o R pode dizer se é <code>TRUE</code> ou <code>FALSE</code> (<code>VERDADEIRO</code> ou <code>FALSO</code>).</p>
 <p>Vamos tentar mais uma:</p>
-<pre><code>#just calling the data set inside the function again:
+<pre><code>#chamando o data set dentro da função de novo:
 select(not_iris_virginica, Species) == &quot;virginica&quot;</code></pre>
 <p>Agora devemos receber apenas <code>FALSE</code> para todas as linhas do nosso conjunto de dados <code>not_iris_virginica</code>. O que significa que nosso filtro deu certo, legal né?</p>
 <p>Vou escrever sobre condicionais e todas essas paradas booleanas em outro post, já que existem muitos outros operadores poderosos (<code>&gt;=</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&amp;</code>, <code>|</code>, e por ai vai…)</p>

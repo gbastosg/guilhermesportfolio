@@ -31,12 +31,12 @@ E claro, já que estamos lidando com o tidyverse, temos que carregar o pacote:
 
 `library(tidyverse)`
 
-Vamos ver o data set:
-`iris`
-ou só uma parte dele:
-`head(iris)`
-ou apenas dar uma olhadinha para aqueles que curtem stats:
-`glimpse(iris)`
+Vamos ver o data set:  
+`iris`  
+ou só uma parte dele:  
+`head(iris)`  
+ou apenas dar uma olhadinha para aqueles que curtem stats:  
+`glimpse(iris)`  
 
 # Pipe '%>%' e select()
 
@@ -162,7 +162,7 @@ not_iris_virginica <-
   filter(Species != "virginica")
 ```
 
-### Checando usando operadores condicionais
+### Checar usando operadores condicionais
 
 Ambos operadores `==` (igual a) e `!=` (diferente de) podem ser usados em multiplas situações no R, por exemplo para checar se nosso filtro deu certo:
 
