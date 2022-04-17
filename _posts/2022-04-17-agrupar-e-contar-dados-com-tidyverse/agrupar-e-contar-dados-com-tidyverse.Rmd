@@ -1,0 +1,223 @@
+---
+title: "Agrupar e contar dados com tidyverse"
+description: |
+  Neste post, vou mostrar como agrupar e contar seus dados para gerar algumas estatísticas. Durante uma análise de dados é bem comum passar um tempo com EDA.
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-04-17
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Olá! Um conceito bastante importante para analisar dados é o de EDA
+
+> EDA significa Exploratory Data Analysis, ou análise de dados exploratória
+
+Isso é feito tanto com funções que te ajudam a compreender seus dados, quanto com gráficos que vamos desenvolver futuramente.
+
+## Neste post vou me ater às funções para manipulação de dados:
+
+* `count()`
+* `summarise()`
+* `group_by()`
+* `top_n()`
+
+> Lembrando que [neste post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-16-o-poder-do-tidyverse-manipulao-de-dados/) escrevi sobre as funções:
+> 
+> * select()
+> * arrange()
+> * filter()
+> * mutate()
+
+Ok, como estamos usando o `tidyverse` não se esqueça de carregá-lo na memória:
+
+```
+library(tidyverse)
+```
+
+Continuaremos usando o dataset `iris` que já está no seu R.
+
+# Planejando a melhor forma para proceder
+
+Vamos usar a função `count()` para encontrar o número total de cada espécie no data set.
+
+```
+head(iris)
+```
+Este comando deve te mostrar algo assim:
+
+| Sepal.Length | Sepal.Width | Petal.Length | Petal.Width  | Species |
+|--------------|-------------|--------------|--------------|---------|
+| 5.1          | 3.5         | 1.4          | 0.2          | setosa  |
+| 4.9          | 3.0         | 1.4          | 0.2          | setosa  |
+| 4.7          | 3.2         | 1.3          | 0.2          | setosa  |
+| 4.6          | 3.1         | 1.5          | 0.2          | setosa  |
+| 5.0          | 3.6         | 1.4          | 0.2          | setosa  |
+| 5.4          | 3.9         | 1.7          | 0.4          | setosa  |
+
+
+Perceba que a coluna `Species` guarda um valor que pode ser usado para agrupar nosso data set.
+
+Para compreender melhor o que há em cada coluna e como traçar uma boa estratégia para trabalhar com os dados, basta usar o comando `glimpse()`
+
+```
+glimpse(iris)
+```
+Isso deve te mostrar algo assim:
+
+```
+Rows: 150  
+Columns: 5  
+$ Sepal.Length <dbl> 5.1, 4.9, 4.7, 4.6, 5.0, 5~  
+$ Sepal.Width  <dbl> 3.5, 3.0, 3.2, 3.1, 3.6, 3~  
+$ Petal.Length <dbl> 1.4, 1.4, 1.3, 1.5, 1.4, 1~  
+$ Petal.Width  <dbl> 0.2, 0.2, 0.2, 0.2, 0.2, 0~  
+$ Species      <fct> setosa, setosa, setosa~    
+```
+
+Parece que temos uma coluna `Species` com nomes que podemos usar para agrupar, mas quais são esses nomes? Existem algumas formas para compreender isso, uma delas é usar a função `count()`
+
+# count()
+
+Faça amizade com essa função, hahaha
+
+Podemos usá-la da seguinte forma:
+
+```
+iris %>%
+  count(Species)
+```
+
+Agora você deve ter algo assim:
+
+| Species    | n  |
+|------------|----|
+| setosa     | 50 |
+| versicolor | 50 |
+| virginica  | 50 |
+
+Uma coluna com os grupos e outra com número de ocorrências de cada no nosso data set.
+
+Perceba que existem 50 amostras de cada espécie: *Iris setosa*, *Iris versicolor* e *Iris virginica*
+
+## Contagem com pesos
+
+Se quisermos entender a frequencia de outra variável dentro da contagem basta colcoarmos uma virgula e chamar o argumento `wt = nome_da_coluna`    
+```
+iris %>%
+  count(Species, wt = Petal.Length)
+```
+
+Argumentos são formas muito úteis de melhorar a análise e usar todo o potencial de uma função, para ler os argumentos associados à funções basta chamar "?" junto com o nome da função dentro do RStudio:
+
+```
+?count()
+```
+
+Toda a documentação relacionada a função deve aparecer numa janela ao lado. Nela é possível ver outro argumento bacana da função count(), o sort (organizar). O padrão é `FALSE`, mas podemos trocar para `TRUE` da seguinte forma:
+
+```
+iris %>%
+count(Species, wt = Petal.Length, sort = TRUE)
+```
+
+| Species    | n     |
+|------------|-------|
+| setosa     | 73.1  |
+| versicolor | 213.0 |
+| virginica  | 277.6 |
+
+As flores da espécies *Iris virginica* são muito maiores do que as da espécie *Iris setosa*. Yey, informação com apenas uma função!
+
+Ok, maneiro. Mas qual será o tamanho médio das pétalas dessas espécies?
+
+# group_by() e summarise()/summarize()
+
+Outras funções muito úteis para compreender o data set são `group_by()` e `summarise()` (ou `summarize()` para aqueles que curtem o mérican english)
+
+# summarise()
+
+Essa função é muito útil para explorar e reduzir o dado ao mesmo tempo, veja como com ela podemos obter diversas informações sobre nosso dataset:
+
+```
+iris %>%
+  # Resumindo para encontrar o minimo, máximo, e a média do tamanho de pétalas
+  summarise(min_sepala = min(Sepal.Length),
+            max_sepala = max(Sepal.Length),
+            media_sepala = mean(Sepal.Length))
+```
+| min_sepala | max_sepala | media_sepala |
+|------------|------------|--------------|
+| 4.3        | 7.9        | 5.84         |
+
+
+Também é possível obter múltiplas informações ao mesmo tempo:
+
+```
+iris %>%
+  # Resumindo para encontrar o minimo, máximo, e a média do tamanho de pétalas
+  summarise(min_petala = min(Petal.Length),
+            max_sepala = max(Sepal.Length),
+            media_sepala = mean(Sepal.Length),
+            media_petala = mean(Petal.Length),
+            total_n = n())
+```
+
+Bastante maneiro!
+
+# group_by()
+
+Agora se quisermos as mesmas estísticas, mas para o grupos, basta adicionar a função `group_by()` antes de `summarise()`:
+
+```
+iris %>%
+  # Resumindo para encontrar o minimo, máximo, e a média do tamanho de pétalas
+  group_by(Species) %>% #agora teremos estatísticas por grupos
+  summarise(min_petala = min(Petal.Length),
+            max_sepala = max(Sepal.Length),
+            media_sepala = mean(Sepal.Length),
+            media_petala = mean(Petal.Length))
+```
+
+E agora temos algo assim:
+
+| Species      | min_petala    | max_sepala | media_sepala | media_petala |
+|--------------|---------------|------------|--------------|--------------|
+| 1 setosa     | 1             | 5.8        | 5.01         | 1.46         | 
+| 2 versicolor | 3             | 7          | 5.94         | 4.26         | 
+| 3 virginica  | 4.5           | 7.9        | 6.59         | 5.55         |
+
+
+# top_n()
+
+Essa função nos ajuda a encontrar os maiores valores dentro do nosso data set:
+
+```
+iris %>%
+  group_by(Species) %>%
+  top_n(1, Sepal.Length)
+```
+| Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species    |
+|--------------|-------------|--------------|-------------|------------|
+| <dbl>        |  <dbl>      |  <dbl>       | <dbl>       | <fct>      |
+| 5.8          | 4           | 1.2          | 0.2         | setosa     |
+| 7            | 3.2         | 4.7          | 1.4         | versicolor |
+| 7.9          | 3.8         | 6.4          | 2           | virginica  |
+
+Agora você tem mais algumas ferramentas para analisar e manipular dados, espero
+ter ajudado!
+
+> Num próximo post falarei sobre essas siglas que aparecem em nossa tabela: 
+> como <dbl>, <fct>, <car>, etc...
+
+#### Espero que tenham gostado!
+Me segue no twitter: @gimbgomes
+
+
