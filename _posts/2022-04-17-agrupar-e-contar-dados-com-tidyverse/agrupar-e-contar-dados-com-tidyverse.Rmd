@@ -75,11 +75,11 @@ Isso deve te mostrar algo assim:
 ```
 Rows: 150  
 Columns: 5  
-$ Sepal.Length <dbl> 5.1, 4.9, 4.7, 4.6, 5.0, 5~  
-$ Sepal.Width  <dbl> 3.5, 3.0, 3.2, 3.1, 3.6, 3~  
-$ Petal.Length <dbl> 1.4, 1.4, 1.3, 1.5, 1.4, 1~  
-$ Petal.Width  <dbl> 0.2, 0.2, 0.2, 0.2, 0.2, 0~  
-$ Species      <fct> setosa, setosa, setosa~    
+$ Sepal.Length \<dbl\> 5.1, 4.9, 4.7, 4.6, 5.0, 5~  
+$ Sepal.Width  \<dbl\> 3.5, 3.0, 3.2, 3.1, 3.6, 3~  
+$ Petal.Length \<dbl\> 1.4, 1.4, 1.3, 1.5, 1.4, 1~  
+$ Petal.Width  \<dbl\> 0.2, 0.2, 0.2, 0.2, 0.2, 0~  
+$ Species      \<fct\> setosa, setosa, setosa~    
 ```
 
 Parece que temos uma coluna `Species` com nomes que podemos usar para agrupar, mas quais são esses nomes? Existem algumas formas para compreender isso, uma delas é usar a função `count()`
@@ -109,7 +109,7 @@ Perceba que existem 50 amostras de cada espécie: *Iris setosa*, *Iris versicolo
 
 ## Contagem com pesos
 
-Se quisermos entender a frequencia de outra variável dentro da contagem basta colcoarmos uma virgula e chamar o argumento `wt = nome_da_coluna`    
+Se quisermos entender a frequencia de outra variável dentro da contagem basta colocarmos uma virgula e chamar o argumento `wt = nome_da_coluna`    
 ```
 iris %>%
   count(Species, wt = Petal.Length)
@@ -190,7 +190,7 @@ iris %>%
             media_petala = mean(Petal.Length))
 ```
 
-E agora temos algo assim:
+Temos algo assim:
 
 | Species      | min_petala    | max_sepala | media_sepala | media_petala |
 |--------------|---------------|------------|--------------|--------------|
@@ -201,16 +201,17 @@ E agora temos algo assim:
 
 # top_n()
 
-Essa função nos ajuda a encontrar os maiores valores dentro do nosso data set:
+Essa função nos ajuda a encontrar os maiores valores do data set:
 
 ```
 iris %>%
   group_by(Species) %>%
   top_n(1, Sepal.Length)
 ```
+
 | Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species    |
 |--------------|-------------|--------------|-------------|------------|
-| <dbl>        |  <dbl>      |  <dbl>       | <dbl>       | <fct>      |
+| \<dbl\>      |  \<dbl\>    |  \<dbl\>     | \<dbl\>     | \<fct\>    |
 | 5.8          | 4           | 1.2          | 0.2         | setosa     |
 | 7            | 3.2         | 4.7          | 1.4         | versicolor |
 | 7.9          | 3.8         | 6.4          | 2           | virginica  |
@@ -222,6 +223,7 @@ ter ajudado!
 > como \<dbl\>, \<fct\>, \<car\>, etc...
 
 #### Espero que tenham gostado!
+
 Me segue no twitter: @gimbgomes
 
 

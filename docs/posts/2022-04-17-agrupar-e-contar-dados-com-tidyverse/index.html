@@ -2191,11 +2191,11 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>Isso deve te mostrar algo assim:</p>
 <pre><code>Rows: 150  
 Columns: 5  
-$ Sepal.Length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5~  
-$ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3~  
-$ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1~  
-$ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0~  
-$ Species      &lt;fct&gt; setosa, setosa, setosa~    </code></pre>
+$ Sepal.Length \&lt;dbl\&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5~  
+$ Sepal.Width  \&lt;dbl\&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3~  
+$ Petal.Length \&lt;dbl\&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1~  
+$ Petal.Width  \&lt;dbl\&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0~  
+$ Species      \&lt;fct\&gt; setosa, setosa, setosa~    </code></pre>
 <p>Parece que temos uma coluna <code>Species</code> com nomes que podemos usar para agrupar, mas quais são esses nomes? Existem algumas formas para compreender isso, uma delas é usar a função <code>count()</code></p>
 <h1 id="count">count()</h1>
 <p>Faça amizade com essa função, hahaha</p>
@@ -2228,7 +2228,7 @@ $ Species      &lt;fct&gt; setosa, setosa, setosa~    </code></pre>
 <p>Uma coluna com os grupos e outra com número de ocorrências de cada no nosso data set.</p>
 <p>Perceba que existem 50 amostras de cada espécie: <em>Iris setosa</em>, <em>Iris versicolor</em> e <em>Iris virginica</em></p>
 <h2 id="contagem-com-pesos">Contagem com pesos</h2>
-<p>Se quisermos entender a frequencia de outra variável dentro da contagem basta colcoarmos uma virgula e chamar o argumento <code>wt = nome_da_coluna</code></p>
+<p>Se quisermos entender a frequencia de outra variável dentro da contagem basta colocarmos uma virgula e chamar o argumento <code>wt = nome_da_coluna</code></p>
 <pre><code>iris %&gt;%
   count(Species, wt = Petal.Length)</code></pre>
 <p>Argumentos são formas muito úteis de melhorar a análise e usar todo o potencial de uma função, para ler os argumentos associados à funções basta chamar “?” junto com o nome da função dentro do RStudio:</p>
@@ -2323,7 +2323,7 @@ count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
             max_sepala = max(Sepal.Length),
             media_sepala = mean(Sepal.Length),
             media_petala = mean(Petal.Length))</code></pre>
-<p>E agora temos algo assim:</p>
+<p>Temos algo assim:</p>
 <table>
 <thead>
 <tr class="header">
@@ -2359,7 +2359,7 @@ count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
 </tbody>
 </table>
 <h1 id="top_n">top_n()</h1>
-<p>Essa função nos ajuda a encontrar os maiores valores dentro do nosso data set:</p>
+<p>Essa função nos ajuda a encontrar os maiores valores do data set:</p>
 <pre><code>iris %&gt;%
   group_by(Species) %&gt;%
   top_n(1, Sepal.Length)</code></pre>
@@ -2375,11 +2375,11 @@ count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td><dbl></td>
-<td><dbl></td>
-<td><dbl></td>
-<td><dbl></td>
-<td><fct></td>
+<td>&lt;dbl&gt;</td>
+<td>&lt;dbl&gt;</td>
+<td>&lt;dbl&gt;</td>
+<td>&lt;dbl&gt;</td>
+<td>&lt;fct&gt;</td>
 </tr>
 <tr class="even">
 <td>5.8</td>
@@ -2406,7 +2406,7 @@ count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
 </table>
 <p>Agora você tem mais algumas ferramentas para analisar e manipular dados, espero ter ajudado!</p>
 <blockquote>
-<p>Num próximo post falarei sobre essas siglas que aparecem em nossa tabela: como <dbl>, <fct>, <car>, etc…</p>
+<p>Num próximo post falarei sobre essas siglas que aparecem em nossa tabela: como &lt;dbl&gt;, &lt;fct&gt;, &lt;car&gt;, etc…</p>
 </blockquote>
 <h4 id="espero-que-tenham-gostado">Espero que tenham gostado!</h4>
 <p>Me segue no twitter: <span class="citation" data-cites="gimbgomes">@gimbgomes</span></p>
