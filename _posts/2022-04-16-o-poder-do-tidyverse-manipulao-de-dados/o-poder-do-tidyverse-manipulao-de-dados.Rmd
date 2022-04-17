@@ -176,7 +176,7 @@ Isso deve retornar `TRUE` para todas as linhas dentro do nosso dado. Quando test
 Vamos tentar mais uma:
 
 ```
-#just calling the data set inside the function again:
+#chamando o data set dentro da função de novo:
 select(not_iris_virginica, Species) == "virginica"
 ```
 
