@@ -1,0 +1,106 @@
+---
+title: "About the structure of variables"
+description: |
+  Variables are everywhere, let's understand a bit more about their structures in the R programming language.
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-04-19
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Hello! In this post I am going to briefly write about the structure of variables
+
+>Variable is everything that varies, or can vary.
+
+But what is it in practice?
+
+Everytime we create an object, we are also creating a kind of variable
+
+In fact, it's good to remember that:
+
+> $\color{blue}{\text{"Everything that exists in R is an object."}}$
+~John M. Chambers
+
+So basically we will be dealing with variables all the time!
+
+To understand the 4 main types of variables, you should create the following objects in your  workspace:
+
+* logical <- `TRUE`
+* character <- `"text"`
+* numeric <- `1`
+* factor <- as.factor(c("I", "Am", "a", "factor"))
+
+Each object is interpreted in a different way by the language, let's use the function `class()` to understand how each variable behaves:
+
+# class()
+
+Type in the following after creating the objects:
+
+```
+class(logical)
+class(character)
+class(numeric)
+class(factor)
+```
+You should have the following answers:
+
+```
+[1] "logical"
+[1] "character"
+[1] "numeric"
+[1] "factor"
+```
+
+Each object belongs to a different class, therefore should be treated as such.
+
+# What each of these structures means?
+
+## logical
+
+* **logical (ou lógica)**: Boolean/binary , it's always `TRUE` or `FALSE`
+
+## character
+
+* **character (or string)**: simple text, including symbols and numbers inside of quotation marks `"text"`, `"this is a text"`, `"th1s 1s 4ls0 a t3xt"`.
+
+## numeric
+
+* **numeric (numérico)**: Literally numbers. Mathematic operators can be used here.
+
+Remembering that in truth programming languages are just *fancy calculators*:
+
+* `+` add
+* `-` subtract
+* `*` multiply
+* `/` divide
+* `^` exponentiation
+
+## factor
+
+* **factor**: Numbers or strings (text) ORDERED somehow:
+
+This is a factor:
+```
+as.factor(c("I", "am", "a", "factor"))
+```
+This is also a factor:
+```
+as.factor(c(1, 2, 3, 4))
+```
+
+The word ORDER is the most important one here to define factors
+
+These are the main 4 structures that will appear in your analyses!
+
+#### Thank you for your time!
+Follow me on twitter: @gimbgomes
+
+

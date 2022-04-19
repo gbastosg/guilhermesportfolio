@@ -17,6 +17,23 @@
     "input_file": "sobre-a-estrutura-das-variveis.knit.md"
   },
   {
+    "path": "posts/2022-04-19-about-the-structure-of-variables/",
+    "title": "About the structure of variables",
+    "description": "Variables are everywhere, let's understand a bit more about their structures in the R programming language.",
+    "author": [
+      {
+        "name": "Guilherme Bastos Gomes",
+        "url": "https://gbastosg.github.io/guilhermesportfolio/"
+      }
+    ],
+    "date": "2022-04-19",
+    "categories": [],
+    "contents": "\r\nHello! In this post I am going to briefly write about the structure of variables\r\n\r\nVariable is everything that varies, or can vary.\r\n\r\nBut what is it in practice?\r\nEverytime we create an object, we are also creating a kind of variable\r\nIn fact, it’s good to remember that:\r\n\r\n\\(\\color{blue}{\\text{\"Everything that exists in R is an object.\"}}\\) ~John M. Chambers\r\n\r\nSo basically we will be dealing with variables all the time!\r\nTo understand the 4 main types of variables, you should create the following objects in your workspace:\r\nlogical <- TRUE\r\ncharacter <- \"text\"\r\nnumeric <- 1\r\nfactor <- as.factor(c(“I”, “Am”, “a”, “factor”))\r\nEach object is interpreted in a different way by the language, let’s use the function class() to understand how each variable behaves:\r\nclass()\r\nType in the following after creating the objects:\r\nclass(logical)\r\nclass(character)\r\nclass(numeric)\r\nclass(factor)\r\nYou should have the following answers:\r\n[1] \"logical\"\r\n[1] \"character\"\r\n[1] \"numeric\"\r\n[1] \"factor\"\r\nEach object belongs to a different class, therefore should be treated as such.\r\nWhat each of these structures means?\r\nlogical\r\nlogical (ou lógica): Boolean/binary , it’s always TRUE or FALSE\r\ncharacter\r\ncharacter (or string): simple text, including symbols and numbers inside of quotation marks \"text\", \"this is a text\", \"th1s 1s 4ls0 a t3xt\".\r\nnumeric\r\nnumeric (numérico): Literally numbers. Mathematic operators can be used here.\r\nRemembering that in truth programming languages are just fancy calculators:\r\n+ add\r\n- subtract\r\n* multiply\r\n/ divide\r\n^ exponentiation\r\nfactor\r\nfactor: Numbers or strings (text) ORDERED somehow:\r\nThis is a factor:\r\nas.factor(c(\"I\", \"am\", \"a\", \"factor\"))\r\nThis is also a factor:\r\nas.factor(c(1, 2, 3, 4))\r\nThe word ORDER is the most important one here to define factors\r\nThese are the main 4 structures that will appear in your analyses!\r\nThank you for your time!\r\nFollow me on twitter: @gimbgomes\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-04-19T07:52:38-03:00",
+    "input_file": "about-the-structure-of-variables.knit.md"
+  },
+  {
     "path": "posts/2022-04-18-grouping-and-counting-in-the-tidyverse/",
     "title": "Grouping and counting in the tidyverse",
     "description": "In this post, I will show you how to group and count your data to generate\nsome stats. During an analysis it's pretty common to spend some time with EDA.",
