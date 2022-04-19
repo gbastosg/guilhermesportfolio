@@ -76,7 +76,7 @@ Cada objeto pertence à uma classe diferente, portanto deve ser tratado como tal
 
 * **numeric (numérico)**: Literalmente números. Operadores matemáticos podem ser usados aqui.
 
-Lembrando que: A verdade é que as linguagens de programação não passam de *calculadoras chiques* que podem:
+Lembrando que na verdade as linguagens de programação não passam de *calculadoras chiques* que podem:
 
 * `+` adicionar
 * `-` subtrair
@@ -96,6 +96,8 @@ Isso também é um fator:
 ```
 as.factor(c(1, 2, 3, 4))
 ```
+A palavra ORDEM é a mais importante para definir fatores.
+
 
 Essas são as 4 principais estruturas que aparecerão em suas análises!
 
