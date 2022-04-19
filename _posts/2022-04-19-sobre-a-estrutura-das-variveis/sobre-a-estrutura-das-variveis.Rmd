@@ -1,0 +1,103 @@
+---
+title: "Sobre a estrutura das variáveis"
+description: |
+  Variáveis estão em todos os lugares, vamos entender um pouco mais sobre suas estruturas em R.
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-04-19
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Olá! Neste post irei brevemente escrever sobre a estrutura de variáveis
+
+>variável é aquilo que varia, ou pode variar.
+
+Mas o que é uma variável na prática?
+
+Toda vez que criamos um objeto, estamos criando um tipo de variável
+
+De fato, é bom lembrar que:
+
+> $\color{blue}{\text{"Tudo o que existe em R é um objeto."}}$
+~John M. Chambers
+
+Então praticamente estaremos lidando com variáveis o tempo inteiro!
+
+Para entender os 4 principais tipos de variáveis crie os seguintes objetos no seu workspace:
+
+* logica <- `TRUE`
+* texto <- `"texto"`
+* numerico <- `1`
+* fator <- as.factor(c("Eu", "Sou", "um", "fator"))
+
+Cada objeto é interpretado de uma forma diferente pela linguagem, vamos usar a função `class()` para entender como cada variável se comporta:
+
+# class()
+
+Digite o seguinte após criar os objetos:
+
+```
+class(logica)
+class(texto)
+class(numerico)
+class(fator)
+```
+
+Você deve obter as seguintes respostas:
+
+```
+[1] "logical"
+[1] "character"
+[1] "numeric"
+[1] "factor"
+```
+
+Cada objeto pertence à uma classe diferente, portanto deve ser tratado como tal.
+
+# O que cada estrutura dessas significa?
+
+## logical
+
+* **logical (ou lógica)**: Boolean/binary (Booleana ou Binária), é sempre `TRUE` ou `FALSE`
+
+## character
+
+* **character (or string) (texto)**: texto simples, incluindo simbolos e números dentro de aspas `"texto"`, `"isso é um texto"`, `"1ss0 também é um t3xt0"`.
+
+## numeric
+
+* **numeric (numérico)**: Literalmente números. Operadores matemáticos podem ser usados aqui.
+
+Lembrando que: A verdade é que as linguagens de programação não passam de *calculadoras chiques* que podem:
+
+* `+` adicionar
+* `-` subtrair
+* `*` multiplicar
+* `/` dividir
+* `^` exponenciar
+
+## factor
+
+* **factor (fator)**: Números ou strings (texto) ORDENADOS de alguma forma
+
+Isso é um fator:
+```
+as.factor(c("Eu", "sou", "um", "fator"))
+```
+Isso também é um fator:
+```
+as.factor(c(1, 2, 3, 4))
+```
+
+Essas são as 4 principais estruturas que aparecerão em suas análises!
+
+#### Espero ter ajudado!
+Me segue no twitter: @gimbgomes

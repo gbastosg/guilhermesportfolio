@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2022-04-19-sobre-a-estrutura-das-variveis/",
+    "title": "Sobre a estrutura das variáveis",
+    "description": "Variáveis estão em todos os lugares, vamos entender um pouco mais sobre suas estruturas em R.",
+    "author": [
+      {
+        "name": "Guilherme Bastos Gomes",
+        "url": "https://gbastosg.github.io/guilhermesportfolio/"
+      }
+    ],
+    "date": "2022-04-19",
+    "categories": [],
+    "contents": "\r\nOlá! Neste post irei brevemente escrever sobre a estrutura de variáveis\r\n\r\nvariável é aquilo que varia, ou pode variar.\r\n\r\nMas o que é uma variável na prática?\r\nToda vez que criamos um objeto, estamos criando um tipo de variável\r\nDe fato, é bom lembrar que:\r\n\r\n\\(\\color{blue}{\\text{\"Tudo o que existe em R é um objeto.\"}}\\) ~John M. Chambers\r\n\r\nEntão praticamente estaremos lidando com variáveis o tempo inteiro!\r\nPara entender os 4 principais tipos de variáveis crie os seguintes objetos no seu workspace:\r\nlogica <- TRUE\r\ntexto <- \"texto\"\r\nnumerico <- 1\r\nfator <- as.factor(c(“Eu”, “Sou”, “um”, “fator”))\r\nCada objeto é interpretado de uma forma diferente pela linguagem, vamos usar a função class() para entender como cada variável se comporta:\r\nclass()\r\nDigite o seguinte após criar os objetos:\r\nclass(logica)\r\nclass(texto)\r\nclass(numerico)\r\nclass(fator)\r\nVocê deve obter as seguintes respostas:\r\n[1] \"logical\"\r\n[1] \"character\"\r\n[1] \"numeric\"\r\n[1] \"factor\"\r\nCada objeto pertence à uma classe diferente, portanto deve ser tratado como tal.\r\nO que cada estrutura dessas significa?\r\nlogical\r\nlogical (ou lógica): Boolean/binary (Booleana ou Binária), é sempre TRUE ou FALSE\r\ncharacter\r\ncharacter (or string) (texto): texto simples, incluindo simbolos e números dentro de aspas \"texto\", \"isso é um texto\", \"1ss0 também é um t3xt0\".\r\nnumeric\r\nnumeric (numérico): Literalmente números. Operadores matemáticos podem ser usados aqui.\r\nLembrando que: A verdade é que as linguagens de programação não passam de calculadoras chiques que podem:\r\n+ adicionar\r\n- subtrair\r\n* multiplicar\r\n/ dividir\r\n^ exponenciar\r\nfactor\r\nfactor (fator): Números ou strings (texto) ORDENADOS de alguma forma\r\nIsso é um fator:\r\nas.factor(c(\"Eu\", \"sou\", \"um\", \"fator\"))\r\nIsso também é um fator:\r\nas.factor(c(1, 2, 3, 4))\r\nEssas são as 4 principais estruturas que aparecerão em suas análises!\r\nEspero ter ajudado!\r\nMe segue no twitter: @gimbgomes\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-04-19T05:25:50-03:00",
+    "input_file": "sobre-a-estrutura-das-variveis.knit.md"
+  },
+  {
     "path": "posts/2022-04-18-grouping-and-counting-in-the-tidyverse/",
     "title": "Grouping and counting in the tidyverse",
     "description": "In this post, I will show you how to group and count your data to generate\nsome stats. During an analysis it's pretty common to spend some time with EDA.",
