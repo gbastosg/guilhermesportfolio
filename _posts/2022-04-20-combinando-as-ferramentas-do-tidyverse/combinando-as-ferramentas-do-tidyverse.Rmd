@@ -1,0 +1,208 @@
+---
+title: "Combinando as ferramentas do tidyverse"
+description: |
+  Neste post combino as funções do tidyverse para obter estatísticas interessantes sobre os dados. A ideia principal é trabalhar com as ferramentas já explicadas em outros posts. Caso uma ferramenta nova apareça, explicarei, mas lembre que é possível ler sobre as funções do R digitando "?nomedafunção" no console!
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-04-20
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Olá! Neste post usarei diversas funções do tidyverse para manipular dados que já estão presentes no R
+
+Lembrando que [neste post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-16-o-poder-do-tidyverse-manipulao-de-dados/) expliquei sobre cada uma dessas funções!
+
+Hoje vamos combinar todas elas para manipular os dados e melhorar as análises.
+
+Para isso, usaremos o dataset `mpg` embutido no tidyverse, então começamos carregando o pacote:
+
+```
+library(tidyverse)
+```
+
+Dê uma checada no que existe no data.frame, usando a função `glimpse()`:
+
+```
+glimpse(mpg)
+
+Rows: 234
+Columns: 11
+$ manufacturer <chr> "audi", "audi", "audi", "audi", "audi", "audi", "audi", "audi", "audi"~
+$ model        <chr> "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro", "a4 quattro", ~
+$ displ        <dbl> 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, ~
+$ year         <int> 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 2008, 2008, 1999~
+$ cyl          <int> 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, 8, 8, 8, 8, 8~
+$ trans        <chr> "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "auto(l5)", "manua~
+$ drv          <chr> "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4", "4", "4", "4", ~
+$ cty          <int> 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 15, 15, 17, 16~
+$ hwy          <int> 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 25, 24, 25, 23~
+$ fl           <chr> "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", ~
+$ class        <chr> "compact", "compact", "compact", "compact", "compact", "compact", "com~
+```
+
+Vemos que existem 11 colunas e 234 linhas, é um data set bem interessante! Para saber mais a respeito desses dados, basta digitar `?mpg` no console, mas aqui vai uma breve explicação:
+
+# mpg
+
+Dados sobre a economia de combustível de carros populares de 1999 até 2008. 
+
+É possível usar a função `colnames()` para observar as colunas do df:
+
+```
+colnames(mpg)
+
+[1] "manufacturer" "model"        "displ"        "year"         "cyl"         
+[6] "trans"        "drv"          "cty"          "hwy"          "fl"          
+[11] "class"
+```
+
+Uma forma bem interessante de receber algumas estatísticas é usar a função `summary()`
+
+# summary()
+
+Essa é uma função bem generica do R base, e serve principalmente para obter um resumo com estatisticas de um objeto:
+
+```
+summary(mpg)
+
+ manufacturer          model               displ            year           cyl       
+ Length:234         Length:234         Min.   :1.600   Min.   :1999   Min.   :4.000  
+ Class :character   Class :character   1st Qu.:2.400   1st Qu.:1999   1st Qu.:4.000  
+ Mode  :character   Mode  :character   Median :3.300   Median :2004   Median :6.000  
+                                       Mean   :3.472   Mean   :2004   Mean   :5.889  
+                                       3rd Qu.:4.600   3rd Qu.:2008   3rd Qu.:8.000  
+                                       Max.   :7.000   Max.   :2008   Max.   :8.000  
+    trans               drv                 cty             hwy             fl           
+ Length:234         Length:234         Min.   : 9.00   Min.   :12.00   Length:234        
+ Class :character   Class :character   1st Qu.:14.00   1st Qu.:18.00   Class :character  
+ Mode  :character   Mode  :character   Median :17.00   Median :24.00   Mode  :character  
+                                       Mean   :16.86   Mean   :23.44                     
+                                       3rd Qu.:19.00   3rd Qu.:27.00                     
+                                       Max.   :35.00   Max.   :44.00                     
+    class          
+ Length:234        
+ Class :character  
+ Mode  :character
+ 
+ ```
+ 
+ Perceba quanta informação recebemos com apenas uma função!
+ 
+>Vamos misturar algumas funções do tidyverse para obter ainda mais stats!
+ 
+# misturando as funções com o pipe "%>%"
+
+```
+mpg %>%
+  select(tipo_de_motor = displ,
+  ano = year, 
+  galao_milhas_cidade = cty, 
+  galao_milhas_estrada = hwy) %>%
+  group_by(ano) %>%
+  summarise(media_milhas_por_galao_cidade = mean(galao_milhas_cidade), 
+  media_milhas_por_galao_estrada = mean(galao_milhas_estrada))
+```
+
+Veja que interessante, parece que em média os motores passaram a percorrer menos milhas (0.3 a menos) por galão nas cidades, enquanto na estrada esse valor aumentou em 0.1:
+
+| ano  | media_gasto_galao_cidade | media_gasto_galao_estrada |
+|------|--------------------------|---------------------------|
+| 1999 | 17.0                     | 23.4                      |
+| 2008 | 16.7                     | 23.5                      |
+
+Perceba como dentro da função `select()` pudemos criar o nome das colunas que apareceram no subset selecionado.
+
+Sendo assim, dentro da função `summarise()` temos que trabalhar com os novos nomes.
+
+>Será que existe uma relação entre o tipo do motor daquele ano e o gasto de gasolina?
+
+```
+mpg %>%
+  select(tipo_de_motor = displ,
+  ano = year, 
+  galao_milhas_cidade = cty, 
+  galao_milhas_estrada = hwy) %>%
+  group_by(tipo_de_motor, ano) %>%
+  summarise(media_milhas_por_galao_cidade = mean(galao_milhas_cidade), 
+  media_milhas_por_galao_estrada = mean(galao_milhas_estrada))
+```
+
+Agora agrupamos por duas colunas, primeiro por tipo do motor, segundo pelo ano:
+
+| tipo_de_motor | ano  | media_gasto_galao_cidade | media_gasto_galao_estrada |
+|---------------|------|--------------------------|---------------------------|
+| 1.6           | 1999 | 24.8                     | 31.6                      |
+| 1.8           | 1999 | 20.7                     | 29.4                      |
+| 1.8           | 2008 | 25.8                     | 35.6                      |
+| 1.9           | 1999 | 32.3                     | 43                        |
+| 2             | 1999 | 19.8                     | 27.5                      |
+| 2             | 2008 | 20.5                     | 28.7                      |
+| 2.2           | 1999 | 20.7                     | 27.3                      |
+| 2.4           | 1999 | 18.8                     | 26.7                      |
+| 2.4           | 2008 | 21.3                     | 30.7                      |
+| 2.5           | 1999 | 18.3                     | 25.5                      |
+| 2.5           | 1999 | 18.3                     | 25.5                      |
+
+Mas nossa tabela ainda está bagunçada, vamos arrumar com um `arrange()`:
+
+```
+mpg %>%
+  select(tipo_de_motor = displ,
+  ano = year, 
+  galao_milhas_cidade = cty, 
+  galao_milhas_estrada = hwy) %>%
+  group_by(tipo_de_motor, ano) %>%
+  summarise(media_milhas_por_galao_cidade = mean(galao_milhas_cidade), 
+  media_milhas_por_galao_estrada = mean(galao_milhas_estrada)) %>%
+  arrange((ano))
+```
+
+Maneiro, agora que temos nosso dado bem organizado podemos separar os carros de 1999 daqueles de 2008 usando um filtro e salvar esse resultado num novo objeto:
+
+```
+mpg_1999 <- mpg %>%
+  select(tipo_de_motor = displ,
+  ano = year, 
+  galao_milhas_cidade = cty, 
+  galao_milhas_estrada = hwy) %>%
+  group_by(tipo_de_motor, ano) %>%
+  summarise(media_milhas_por_galao_cidade = mean(galao_milhas_cidade), 
+  media_milhas_por_galao_estrada = mean(galao_milhas_estrada)) %>%
+  arrange((ano)) %>%
+  filter(ano == 1999)
+```
+
+```
+mpg_2008 <- mpg %>%
+  select(tipo_de_motor = displ,
+  ano = year, 
+  galao_milhas_cidade = cty, 
+  galao_milhas_estrada = hwy) %>%
+  group_by(tipo_de_motor, ano) %>%
+  summarise(media_milhas_por_galao_cidade = mean(galao_milhas_cidade), 
+  media_milhas_por_galao_estrada = mean(galao_milhas_estrada)) %>%
+  arrange((ano)) %>%
+  filter(ano == 2008)
+```
+
+Agora construímos sub sets do nosso conjunto original, o que é muito útil quando estamos realizando análises.
+
+
+Dê uma olhada em ambos sub data sets e pense em maneiras de comparar esses valores.
+
+
+>No próximo post:
+>Uma das formas mais fáceis de se comparar grupos de dados é usar gráficos. No próximo post usarei gráficos do ggplot para mostrar como fazer tais comparações.
+
+#### Obrigado por chegar até aqui!
+
+Me segue no twitter: @gimbgomes
+
