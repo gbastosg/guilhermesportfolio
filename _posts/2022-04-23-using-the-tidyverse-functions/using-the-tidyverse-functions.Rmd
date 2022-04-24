@@ -190,14 +190,14 @@ mpg_2008 <- mpg %>%
   filter(year == 2008)
 ```
 
-This is pretty useful when we are dealing with a lot of data and to organise our analyses.
+This is pretty useful when we are dealing with a lot of data and to improve our analyses.
 
 Have a look in both sub sets and find out ways of comparing those values.
 
 Did the cars became more or less efficient in time?
 
 >In the next post:
->One of the easiest ways of comparing data is by using graphs. On the next post I'm going to use ggplot to create some graphs and compare results.
+>One of the easiest ways of comparing data is by using plots. Next post I'm going to use ggplot to create some of them and compare results.
 
 #### Thank you for your time!
 
