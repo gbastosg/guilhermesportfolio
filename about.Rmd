@@ -1,7 +1,8 @@
 ---
-title: "About this blog"
+title: "About this blog/Sobre esse blog"
 description: |
-  Some additional details about the blog
+  Neste blog mostro como usar algumas ferramentas para análise de dados.
+  In this blog, I will show how to use some tools to analise data.
 ---
 
 ```{r setup, include=FALSE}
