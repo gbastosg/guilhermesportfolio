@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2022-04-26-another-test/",
+    "title": "Another test",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Guilherme Bastos Gomes",
+        "url": "https://gbastosg.github.io/guilhermesportfolio/"
+      }
+    ],
+    "date": "2022-04-26",
+    "categories": [],
+    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\nTesting!\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-04-26T05:44:41-03:00",
+    "input_file": "another-test.knit.md"
+  },
+  {
     "path": "posts/2022-04-24-plotando-com-ggplot2/",
     "title": "Histogramas com ggplot2",
     "description": "Neste post usaremos histogramas para compreender melhor os dados.",

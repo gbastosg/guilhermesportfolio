@@ -65,3 +65,4 @@ distill::create_post("Testing!")
 #That's a MarkDown document where you can write your stuff and publish on your
 #blog hosted on github.
 
+
