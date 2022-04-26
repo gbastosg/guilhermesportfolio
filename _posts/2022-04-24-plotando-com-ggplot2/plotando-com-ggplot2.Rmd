@@ -42,6 +42,7 @@ mpg %>%
   geom_histogram(binwidth = 1)
 ```
 
+![plot1](images/plot1.png)
 
 Perceba que no eixo Y está a contagem de quantas vezes aquele valor aparece, enquanto no eixo X podemos ver os valores de `cty` (a quantidade de milhas que um carro percorre por galão de combustível)
 

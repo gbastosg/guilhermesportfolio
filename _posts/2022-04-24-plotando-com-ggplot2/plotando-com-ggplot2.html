@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -1264,6 +1265,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1438,7 +1445,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="plotando-com-ggplot2_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="plotando-com-ggplot2_files/header-attrs-2.14/header-attrs.js"></script>
   <script src="plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="plotando-com-ggplot2_files/popper-2.6.0/popper.min.js"></script>
   <link href="plotando-com-ggplot2_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1494,6 +1501,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre><code>mpg %&gt;%
   ggplot(aes(x = cty)) +
   geom_histogram(binwidth = 1)</code></pre>
+<figure>
+<img src="images/plot1.png" alt="plot1" /><figcaption aria-hidden="true">plot1</figcaption>
+</figure>
 <p>Perceba que no eixo Y está a contagem de quantas vezes aquele valor aparece, enquanto no eixo X podemos ver os valores de <code>cty</code> (a quantidade de milhas que um carro percorre por galão de combustível)</p>
 <p>Podemos contruir outros histogramas e compará-los:</p>
 <pre><code>mpg %&gt;%
