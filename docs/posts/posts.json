@@ -13,8 +13,8 @@
     "categories": [],
     "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\nTesting!\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2022-04-26T05:44:41-03:00",
-    "input_file": "another-test.knit.md"
+    "last_modified": "2022-04-26T05:44:42-03:00",
+    "input_file": {}
   },
   {
     "path": "posts/2022-04-24-plotando-com-ggplot2/",
