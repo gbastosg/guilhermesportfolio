@@ -12,7 +12,7 @@ packages2download <- c("tidyverse", "usethis", "distill")
 library(tidyverse)
 library(usethis)
 library(distill)
-
+library(knitr)
 #blog e github
 
 

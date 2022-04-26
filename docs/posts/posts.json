@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2022-04-24-plotando-com-ggplot2/",
+    "title": "Histogramas com ggplot2",
+    "description": "Neste post usaremos histogramas para compreender melhor os dados.",
+    "author": [
+      {
+        "name": "Guilherme Bastos Gomes",
+        "url": "https://gbastosg.github.io/guilhermesportfolio/"
+      }
+    ],
+    "date": "2022-04-24",
+    "categories": [],
+    "contents": "\r\nOlá! Agora vamos trabalhar com alguns gráficos para análisar nossos dados\r\nNeste post fizemos algumas manipulações para formar grupos e entender os dados. Hoje faremos alguns gráficos para ajudar na interpretação.\r\nContinuaremos usando os dados mpg (miles per gallon) incluso no pacote ggplot, por isso vamos carregar o tidyverse:\r\nlibrary(tidyverse)\r\nPara compreender mais sobre os dados, clique no link do post anterior\r\nSerá que os motores ficaram mais eficientes ao longo do tempo?\r\nPara responder essa pergunta, podemos plotar a eficiencia dos motores (aqui medida pelo gasto de galões por milhas percorridas), para plotar usamos as funções embutidas no pacote ggplot2.\r\nHistogramas\r\nHistogramas são também conhecidos como gráficos de frequência e nos mostram quantas vezes um valor aparece em nosso data set:\r\nmpg %>%\r\n  ggplot(aes(x = cty)) +\r\n  geom_histogram(binwidth = 1)\r\nmpg %>% ggplot(aes(x = cty)) + geom_histogram(binwidth = 1)\r\nPerceba que no eixo Y está a contagem de quantas vezes aquele valor aparece, enquanto no eixo X podemos ver os valores de cty (a quantidade de milhas que um carro percorre por galão de combustível)\r\nPodemos contruir outros histogramas e compará-los:\r\nmpg %>%\r\n  filter(year == 1999) %>%\r\n  ggplot(aes(x = cty)) +\r\n  geom_histogram()\r\nmpg %>%\r\n  filter(year == 2008) %>%\r\n  ggplot(aes(x = cty)) +\r\n  geom_histogram()\r\nAgora podemos usar o pacote Patchwork para visualizar os dois gráficos no mesmo quadro:\r\nlibrary(patchwork)\r\n\r\nhist1999 <- mpg %>%\r\n  filter(year == 1999) %>%\r\n  ggplot(aes(x = cty)) +\r\n  geom_histogram() +\r\n  xlab(\"1999\")\r\n  \r\nhist2008 <- mpg %>%\r\n  filter(year == 2008) %>%\r\n  ggplot(aes(x = cty)) +\r\n  geom_histogram() +\r\n  xlab(\"2008\")\r\n  \r\nhist1999  + hist2008\r\nInteressante, não?\r\nPodemos também mudar a cor dos nossos plots para melhorar a comparação:\r\n\r\nhist1999 <- mpg %>%\r\n  filter(year == 1999) %>%\r\n  ggplot(aes(x = cty)) +\r\n  geom_histogram(color = \"Blue\") +\r\n  xlab(\"1999\")\r\n  \r\nhist2008 <- mpg %>%\r\n  filter(year == 2008) %>%\r\n  ggplot(aes(x = cty)) +\r\n  geom_histogram(color = \"Red\") +\r\n  xlab(\"2008\")\r\n  \r\nhist1999  + hist2008\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-04-25T06:38:07-03:00",
+    "input_file": "plotando-com-ggplot2.knit.md"
+  },
+  {
     "path": "posts/2022-04-23-using-the-tidyverse-functions/",
     "title": "Using the tidyverse functions",
     "description": "In this post I combine some of the tidyverse functions to obtain interesting stats from the data. The main idea is to work with the tools we've already used. In the case of a new tool showing up, I will explain it, but always remeber that you can read about R functions by tiping \"?nameofthefunction\" in the console!",

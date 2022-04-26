@@ -36,25 +36,25 @@ Para responder essa pergunta, podemos plotar a eficiencia dos motores (aqui medi
 
 Histogramas são também conhecidos como gráficos de frequência e nos mostram quantas vezes um valor aparece em nosso data set:
 
-```{r, fig.width= 5}
-
+```
 mpg %>%
   ggplot(aes(x = cty)) +
-  geom_histogram()
+  geom_histogram(binwidth = 1)
 ```
+
+
 Perceba que no eixo Y está a contagem de quantas vezes aquele valor aparece, enquanto no eixo X podemos ver os valores de `cty` (a quantidade de milhas que um carro percorre por galão de combustível)
 
 Podemos contruir outros histogramas e compará-los:
 
-```{r, fig.width= 3}
+```
 mpg %>%
   filter(year == 1999) %>%
   ggplot(aes(x = cty)) +
   geom_histogram()
 ```
 
-
-```{r, fig.width= 3}
+```
 mpg %>%
   filter(year == 2008) %>%
   ggplot(aes(x = cty)) +
@@ -63,7 +63,7 @@ mpg %>%
 
 Agora podemos usar o pacote `Patchwork` para visualizar os dois gráficos no mesmo quadro:
 
-```{r}
+```
 library(patchwork)
 
 hist1999 <- mpg %>%
@@ -85,7 +85,7 @@ Interessante, não?
 
 Podemos também mudar a cor dos nossos plots para melhorar a comparação:
 
-```{r}
+```
 
 hist1999 <- mpg %>%
   filter(year == 1999) %>%
