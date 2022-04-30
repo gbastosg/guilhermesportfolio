@@ -12,7 +12,7 @@ packages2download <- c("tidyverse", "usethis", "distill")
 library(tidyverse)
 library(usethis)
 library(distill)
-
+library(here)
 #blog e github
 
 
@@ -24,7 +24,7 @@ install.packages(c("usethis", "distill"))
 #2 step:
 #usethis::create_package("blog")
 
-#This is going to lead us to another RStudio Page, that branches inside de blog
+#This is going to lead us to another RStudio Page, that branches inside the blog
 #I will not do this because we already are in a project!
 
 #3 step:

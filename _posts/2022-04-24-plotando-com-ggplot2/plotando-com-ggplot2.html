@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["plotando-com-ggplot2_files/anchor-4.2.2/anchor.min.js","plotando-com-ggplot2_files/bowser-1.9.3/bowser.min.js","plotando-com-ggplot2_files/distill-2.2.21/template.v2.js","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-1-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-2-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-3-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-4-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-5-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-6-1.png","plotando-com-ggplot2_files/header-attrs-2.11/header-attrs.js","plotando-com-ggplot2_files/header-attrs-2.14/header-attrs.js","plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.js","plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.min.js","plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.min.map","plotando-com-ggplot2_files/popper-2.6.0/popper.min.js","plotando-com-ggplot2_files/tippy-6.2.7/tippy-bundle.umd.min.js","plotando-com-ggplot2_files/tippy-6.2.7/tippy-light-border.css","plotando-com-ggplot2_files/tippy-6.2.7/tippy.css","plotando-com-ggplot2_files/tippy-6.2.7/tippy.umd.min.js","plotando-com-ggplot2_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["plotando-com-ggplot2_files/anchor-4.2.2/anchor.min.js","plotando-com-ggplot2_files/bowser-1.9.3/bowser.min.js","plotando-com-ggplot2_files/distill-2.2.21/template.v2.js","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-1-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-2-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-3-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-4-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-5-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-6-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-7-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-8-1.png","plotando-com-ggplot2_files/header-attrs-2.11/header-attrs.js","plotando-com-ggplot2_files/header-attrs-2.14/header-attrs.js","plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.js","plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.min.js","plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.min.map","plotando-com-ggplot2_files/popper-2.6.0/popper.min.js","plotando-com-ggplot2_files/tippy-6.2.7/tippy-bundle.umd.min.js","plotando-com-ggplot2_files/tippy-6.2.7/tippy-light-border.css","plotando-com-ggplot2_files/tippy-6.2.7/tippy.css","plotando-com-ggplot2_files/tippy-6.2.7/tippy.umd.min.js","plotando-com-ggplot2_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1577,7 +1577,39 @@ hist1999  + hist2008</code></pre>
 </div>
 <p>Observando dessa maneira parece até fácil concluir que os carros se
 tornaram mais eficientes ao longo dos anos.</p>
-<div class="sourceCode" id="cb7"><pre
+<p>Existem formas interessantes de aumentar a qualidade dos nossos
+histogramas. Veja como ficam com cores:</p>
+<pre><code>color_hist1999 &lt;- mpg %&gt;%
+  filter(year == 1999) %&gt;%
+  ggplot(aes(x = cty)) +
+  geom_histogram(color = &quot;Firebrick&quot;, binwidth = 1, fill = &quot;MidnightBlue&quot;) +
+  xlab(&quot;1999&quot;)
+  
+color_hist2008 &lt;- mpg %&gt;%
+  filter(year == 2008) %&gt;%
+  ggplot(aes(x = cty)) +
+  geom_histogram(color = &quot;dodgerblue&quot;, binwidth = 1, fill = &quot;Firebrick&quot;) +
+  xlab(&quot;2008&quot;)
+  
+color_hist1999  + color_hist2008</code></pre>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="plotando-com-ggplot2_files/figure-html5/unnamed-chunk-7-1.png" width="624" data-distill-preview=1 /></p>
+</div>
+<p>Um tipo de gráfico similar e que também nos entrega informações de
+frequências e grupos, é o plot de densidade.</p>
+<h1 id="plots-de-densidade">Plots de densidade</h1>
+<p>Com o ggplot podemos fazer um gráfico de densidade de forma bem
+simples:</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="plotando-com-ggplot2_files/figure-html5/unnamed-chunk-8-1.png" width="624" data-distill-preview=1 /></p>
+</div>
+<p>Nesse tipo de plot podemos ver a presença de múltiplos subgrupos, a
+área embaixo da curva para cada sub-grupo soma até 1. Isso nos permite
+comparar subgrupos de diferentes tamanhos.</p>
+<p>Também é possível otimizar a visualização desse tipo de gráfico, mexa
+nos argumentos da função <code>geom_density()</code> e explore o que ela
+é capaz de fazer!</p>
+<div class="sourceCode" id="cb8"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
