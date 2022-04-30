@@ -1,7 +1,7 @@
 ---
 title: "Histogramas com ggplot2"
 description: |
-  Neste post usaremos histogramas para compreender melhor os dados.
+  Neste post usaremos histogramas para compreender grupos nos dados.
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
