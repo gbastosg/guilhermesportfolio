@@ -42,7 +42,7 @@ mpg %>%
   geom_histogram(binwidth = 1)
 ```
 
-![plot1](../../images/plot1.png)
+![](../../plot1.png)
 
 Perceba que no eixo Y está a contagem de quantas vezes aquele valor aparece, enquanto no eixo X podemos ver os valores de `cty` (a quantidade de milhas que um carro percorre por galão de combustível)
 
@@ -105,6 +105,7 @@ hist2008 <- mpg %>%
   
 hist1999  + hist2008
 ```
+
 ![plot5](../../images/plot5.png)
 
 Observando dessa maneira parece até fácil concluir que os carros se tornaram mais eficientes ao longo dos anos.
