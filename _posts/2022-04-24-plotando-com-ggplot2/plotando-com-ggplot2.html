@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["plotando-com-ggplot2_files/anchor-4.2.2/anchor.min.js","plotando-com-ggplot2_files/bowser-1.9.3/bowser.min.js","plotando-com-ggplot2_files/distill-2.2.21/template.v2.js","plotando-com-ggplot2_files/header-attrs-2.11/header-attrs.js","plotando-com-ggplot2_files/header-attrs-2.14/header-attrs.js","plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.js","plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.min.js","plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.min.map","plotando-com-ggplot2_files/popper-2.6.0/popper.min.js","plotando-com-ggplot2_files/tippy-6.2.7/tippy-bundle.umd.min.js","plotando-com-ggplot2_files/tippy-6.2.7/tippy-light-border.css","plotando-com-ggplot2_files/tippy-6.2.7/tippy.css","plotando-com-ggplot2_files/tippy-6.2.7/tippy.umd.min.js","plotando-com-ggplot2_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["plotando-com-ggplot2_files/anchor-4.2.2/anchor.min.js","plotando-com-ggplot2_files/bowser-1.9.3/bowser.min.js","plotando-com-ggplot2_files/distill-2.2.21/template.v2.js","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-1-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-2-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-3-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-4-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-5-1.png","plotando-com-ggplot2_files/figure-html5/unnamed-chunk-6-1.png","plotando-com-ggplot2_files/header-attrs-2.11/header-attrs.js","plotando-com-ggplot2_files/header-attrs-2.14/header-attrs.js","plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.js","plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.min.js","plotando-com-ggplot2_files/jquery-3.6.0/jquery-3.6.0.min.map","plotando-com-ggplot2_files/popper-2.6.0/popper.min.js","plotando-com-ggplot2_files/tippy-6.2.7/tippy-bundle.umd.min.js","plotando-com-ggplot2_files/tippy-6.2.7/tippy-light-border.css","plotando-com-ggplot2_files/tippy-6.2.7/tippy.css","plotando-com-ggplot2_files/tippy-6.2.7/tippy.umd.min.js","plotando-com-ggplot2_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1510,30 +1510,31 @@ mostram quantas vezes um valor aparece em nosso data set:</p>
 <pre><code>mpg %&gt;%
   ggplot(aes(x = cty)) +
   geom_histogram(binwidth = 1)</code></pre>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="../../plot1.png" width="50%" style="display: block; margin: auto;" /></p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="plotando-com-ggplot2_files/figure-html5/unnamed-chunk-1-1.png" width="624" data-distill-preview=1 /></p>
 </div>
 <p>Perceba que no eixo Y está a contagem de quantas vezes aquele valor
 aparece, enquanto no eixo X podemos ver os valores de <code>cty</code>
 (a quantidade de milhas que um carro percorre por galão de
 combustível)</p>
 <p>Podemos contruir outros histogramas e compará-los:</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="plotando-com-ggplot2_files/figure-html5/unnamed-chunk-2-1.png" width="624" data-distill-preview=1 /></p>
+</div>
 <pre><code>mpg %&gt;%
   filter(year == 1999) %&gt;%
   ggplot(aes(x = cty)) +
   geom_histogram()</code></pre>
-<figure>
-<img src="here(plot2.png)" alt="plot2" />
-<figcaption aria-hidden="true">plot2</figcaption>
-</figure>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="plotando-com-ggplot2_files/figure-html5/unnamed-chunk-3-1.png" width="624" data-distill-preview=1 /></p>
+</div>
 <pre><code>mpg %&gt;%
   filter(year == 2008) %&gt;%
   ggplot(aes(x = cty)) +
   geom_histogram()</code></pre>
-<figure>
-<img src="../../images/plot3.png" alt="plot3" />
-<figcaption aria-hidden="true">plot3</figcaption>
-</figure>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="plotando-com-ggplot2_files/figure-html5/unnamed-chunk-4-1.png" width="624" data-distill-preview=1 /></p>
+</div>
 <p>Agora podemos usar o pacote <code>Patchwork</code> para visualizar os
 dois gráficos no mesmo quadro:</p>
 <pre><code>library(patchwork)
@@ -1551,10 +1552,9 @@ hist2008 &lt;- mpg %&gt;%
   xlab(&quot;2008&quot;)
   
 hist1999  + hist2008</code></pre>
-<figure>
-<img src="../../images/plot4.png" alt="plot4" />
-<figcaption aria-hidden="true">plot4</figcaption>
-</figure>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="plotando-com-ggplot2_files/figure-html5/unnamed-chunk-5-1.png" width="624" data-distill-preview=1 /></p>
+</div>
 <p>Interessante, não?</p>
 <p>Podemos também mudar a cor dos nossos plots para melhorar a
 comparação:</p>
@@ -1572,10 +1572,9 @@ hist2008 &lt;- mpg %&gt;%
   xlab(&quot;2008&quot;)
   
 hist1999  + hist2008</code></pre>
-<figure>
-<img src="../../images/plot5.png" alt="plot5" />
-<figcaption aria-hidden="true">plot5</figcaption>
-</figure>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="plotando-com-ggplot2_files/figure-html5/unnamed-chunk-6-1.png" width="624" data-distill-preview=1 /></p>
+</div>
 <p>Observando dessa maneira parece até fácil concluir que os carros se
 tornaram mais eficientes ao longo dos anos.</p>
 <div class="sourceCode" id="cb7"><pre
