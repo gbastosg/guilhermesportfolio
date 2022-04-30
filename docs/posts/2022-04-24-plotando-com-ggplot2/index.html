@@ -2130,7 +2130,9 @@ mostram quantas vezes um valor aparece em nosso data set:</p>
 <pre><code>mpg %&gt;%
   ggplot(aes(x = cty)) +
   geom_histogram(binwidth = 1)</code></pre>
-<p><img src="../../plot1.png" /></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../plot1.png" width="50%" style="display: block; margin: auto;" /></p>
+</div>
 <p>Perceba que no eixo Y está a contagem de quantas vezes aquele valor
 aparece, enquanto no eixo X podemos ver os valores de <code>cty</code>
 (a quantidade de milhas que um carro percorre por galão de
@@ -2141,7 +2143,7 @@ combustível)</p>
   ggplot(aes(x = cty)) +
   geom_histogram()</code></pre>
 <figure>
-<img src="../../images/plot2.png" alt="plot2" />
+<img src="here(plot2.png)" alt="plot2" />
 <figcaption aria-hidden="true">plot2</figcaption>
 </figure>
 <pre><code>mpg %&gt;%
