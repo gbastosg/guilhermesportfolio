@@ -50,17 +50,16 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { color: #00769e; background-color: #f1f3f5; }
+  {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #657422; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #00769e; } /* ControlFlow */
+code span.cf { color: #007ba5; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -74,9 +73,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #00769e; } /* Keyword */
+code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #00769e; } /* Other */
+code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -1265,12 +1264,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
-          $(this).html(fn.shadowRoot.querySelector("sup"))
-          $(this).id = fn.id
-          fn.remove()
-        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1479,46 +1472,68 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Histogramas com ggplot2</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Neste post usaremos histogramas para compreender melhor os dados.</p></p>
+<p><p>Neste post usaremos histogramas para compreender melhor os
+dados.</p></p>
 </div>
 
 <div class="d-byline">
-  Guilherme Bastos Gomes <a href="https://gbastosg.github.io/guilhermesportfolio/" class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
+  Guilherme Bastos Gomes <a
+href="https://gbastosg.github.io/guilhermesportfolio/"
+class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
   
 <br/>2022-04-24
 </div>
 
 <div class="d-article">
-<h1 id="olá-agora-vamos-trabalhar-com-alguns-gráficos-para-análisar-nossos-dados">Olá! Agora vamos trabalhar com alguns gráficos para análisar nossos dados</h1>
-<p><a href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-20-combinando-as-ferramentas-do-tidyverse/">Neste post</a> fizemos algumas manipulações para formar grupos e entender os dados. Hoje faremos alguns gráficos para ajudar na interpretação.</p>
-<p>Continuaremos usando os dados <code>mpg</code> (miles per gallon) incluso no pacote ggplot, por isso vamos carregar o tidyverse:</p>
+<h1
+id="olá-agora-vamos-trabalhar-com-alguns-gráficos-para-análisar-nossos-dados">Olá!
+Agora vamos trabalhar com alguns gráficos para análisar nossos
+dados</h1>
+<p><a
+href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-20-combinando-as-ferramentas-do-tidyverse/">Neste
+post</a> fizemos algumas manipulações para formar grupos e entender os
+dados. Hoje faremos alguns gráficos para ajudar na interpretação.</p>
+<p>Continuaremos usando os dados <code>mpg</code> (miles per gallon)
+incluso no pacote ggplot, por isso vamos carregar o tidyverse:</p>
 <pre><code>library(tidyverse)</code></pre>
-<p>Para compreender mais sobre os dados, clique no link do post anterior</p>
-<h1 id="será-que-os-motores-ficaram-mais-eficientes-ao-longo-do-tempo">Será que os motores ficaram mais eficientes ao longo do tempo?</h1>
-<p>Para responder essa pergunta, podemos plotar a eficiencia dos motores (aqui medida pelo gasto de galões por milhas percorridas), para plotar usamos as funções embutidas no pacote <code>ggplot2</code>.</p>
+<p>Para compreender mais sobre os dados, clique no link do post
+anterior</p>
+<h1
+id="será-que-os-motores-ficaram-mais-eficientes-ao-longo-do-tempo">Será
+que os motores ficaram mais eficientes ao longo do tempo?</h1>
+<p>Para responder essa pergunta, podemos plotar a eficiencia dos motores
+(aqui medida pelo gasto de galões por milhas percorridas), para plotar
+usamos as funções embutidas no pacote <code>ggplot2</code>.</p>
 <h1 id="histogramas">Histogramas</h1>
-<p>Histogramas são também conhecidos como gráficos de frequência e nos mostram quantas vezes um valor aparece em nosso data set:</p>
+<p>Histogramas são também conhecidos como gráficos de frequência e nos
+mostram quantas vezes um valor aparece em nosso data set:</p>
 <pre><code>mpg %&gt;%
   ggplot(aes(x = cty)) +
   geom_histogram(binwidth = 1)</code></pre>
 <p><img src="../../plot1.png" /></p>
-<p>Perceba que no eixo Y está a contagem de quantas vezes aquele valor aparece, enquanto no eixo X podemos ver os valores de <code>cty</code> (a quantidade de milhas que um carro percorre por galão de combustível)</p>
+<p>Perceba que no eixo Y está a contagem de quantas vezes aquele valor
+aparece, enquanto no eixo X podemos ver os valores de <code>cty</code>
+(a quantidade de milhas que um carro percorre por galão de
+combustível)</p>
 <p>Podemos contruir outros histogramas e compará-los:</p>
 <pre><code>mpg %&gt;%
   filter(year == 1999) %&gt;%
   ggplot(aes(x = cty)) +
   geom_histogram()</code></pre>
 <figure>
-<img src="../../images/plot2.png" alt="plot2" /><figcaption aria-hidden="true">plot2</figcaption>
+<img src="../../images/plot2.png" alt="plot2" />
+<figcaption aria-hidden="true">plot2</figcaption>
 </figure>
 <pre><code>mpg %&gt;%
   filter(year == 2008) %&gt;%
   ggplot(aes(x = cty)) +
   geom_histogram()</code></pre>
 <figure>
-<img src="../../images/plot3.png" alt="plot3" /><figcaption aria-hidden="true">plot3</figcaption>
+<img src="../../images/plot3.png" alt="plot3" />
+<figcaption aria-hidden="true">plot3</figcaption>
 </figure>
-<p>Agora podemos usar o pacote <code>Patchwork</code> para visualizar os dois gráficos no mesmo quadro:</p>
+<p>Agora podemos usar o pacote <code>Patchwork</code> para visualizar os
+dois gráficos no mesmo quadro:</p>
 <pre><code>library(patchwork)
 
 hist1999 &lt;- mpg %&gt;%
@@ -1535,10 +1550,12 @@ hist2008 &lt;- mpg %&gt;%
   
 hist1999  + hist2008</code></pre>
 <figure>
-<img src="../../images/plot4.png" alt="plot4" /><figcaption aria-hidden="true">plot4</figcaption>
+<img src="../../images/plot4.png" alt="plot4" />
+<figcaption aria-hidden="true">plot4</figcaption>
 </figure>
 <p>Interessante, não?</p>
-<p>Podemos também mudar a cor dos nossos plots para melhorar a comparação:</p>
+<p>Podemos também mudar a cor dos nossos plots para melhorar a
+comparação:</p>
 <pre><code>
 hist1999 &lt;- mpg %&gt;%
   filter(year == 1999) %&gt;%
@@ -1554,10 +1571,13 @@ hist2008 &lt;- mpg %&gt;%
   
 hist1999  + hist2008</code></pre>
 <figure>
-<img src="../../images/plot5.png" alt="plot5" /><figcaption aria-hidden="true">plot5</figcaption>
+<img src="../../images/plot5.png" alt="plot5" />
+<figcaption aria-hidden="true">plot5</figcaption>
 </figure>
-<p>Observando dessa maneira parece até fácil concluir que os carros se tornaram mais eficientes ao longo dos anos.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Observando dessa maneira parece até fácil concluir que os carros se
+tornaram mais eficientes ao longo dos anos.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
