@@ -217,6 +217,14 @@ mpg %>%
   
 ```
 
+```
+library(tidyverse)
+mpg %>%
+  ggplot(aes(x = cty)) +
+  geom_density(aes(colour = as.factor(year))) +
+  xlab("Density Plot")
+```
+
 Nesse tipo de plot podemos ver a presença de múltiplos subgrupos, a área embaixo da curva para cada sub-grupo soma até 1. Isso nos permite comparar subgrupos de diferentes tamanhos.
 
 Também é possível otimizar a visualização desse tipo de gráfico, mexa nos argumentos da função `geom_density()` e explore o que ela é capaz de fazer!

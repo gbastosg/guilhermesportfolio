@@ -1,7 +1,7 @@
 ---
-title: "Another test"
+title: "Plotting with ggplot2"
 description: |
-  A short description of the post.
+  In this post we will use histograms to find groups in our data.
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
@@ -16,8 +16,215 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
+# Hello! Now we are going to analyse some data using plots
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+[In this post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-20-combinando-as-ferramentas-do-tidyverse/) we have done some wrangling to form groups and analyse them in a numerical way. Today we are going to create some plots that helps us with the interpretation of data
 
-Testing!
+We will remain using the data from `mpg` data set included in the `ggplot` package, so let's load the `tidyverse`:
+
+```
+library(tidyverse)
+```
+
+To a better understandment of the data, click on the link to read about it in the previous post.
+
+# "How motors improved during these years?" 
+
+To answer this question, we can plot the efficiency of the motors (measured by city miles per gallons), let's use `ggplot2` to do that.
+
+# Histograms
+
+Histograms are also known as frequency plots, and they show us how many times a value appears in our data set:
+
+```
+mpg %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram(binwidth = 1)
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+library(tidyverse)
+mpg %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram(binwidth = 1)
+```
+
+Notice that in the Y axis is the count of how many times that value appears, while in the X axis we can check the values of `cty` (city miles per gallons)
+
+We can built more histogram and also compare them:
+
+```{r, layout="l-body-outset", preview=TRUE}
+mpg %>%
+  filter(year == 1999) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram()
+```
+
+```
+mpg %>%
+  filter(year == 1999) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram()
+```
+
+
+```{r, layout="l-body-outset", preview=TRUE}
+mpg %>%
+  filter(year == 1999) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram()
+```
+
+
+```
+mpg %>%
+  filter(year == 2008) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram()
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+mpg %>%
+  filter(year == 2008) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram()
+```
+
+Now we can use the `Patchwork` package to combine the visualisation of both plots:
+
+```
+library(patchwork)
+
+hist1999 <- mpg %>%
+  filter(year == 1999) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram() +
+  xlab("1999")
+  
+hist2008 <- mpg %>%
+  filter(year == 2008) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram() +
+  xlab("2008")
+  
+hist1999  + hist2008
+```
+```{r, layout="l-body-outset", preview=TRUE}
+library(patchwork)
+
+hist1999 <- mpg %>%
+  filter(year == 1999) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram() +
+  xlab("1999")
+  
+hist2008 <- mpg %>%
+  filter(year == 2008) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram() +
+  xlab("2008")
+  
+hist1999  + hist2008
+```
+
+Interesting, right?
+
+We can also change the colour of our plots to improve comparison:
+
+```
+
+hist1999 <- mpg %>%
+  filter(year == 1999) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram(color = "Blue", binwidth = 1) +
+  xlab("1999")
+  
+hist2008 <- mpg %>%
+  filter(year == 2008) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram(color = "Red", binwidth = 1) +
+  xlab("2008")
+  
+hist1999  + hist2008
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+hist1999 <- mpg %>%
+  filter(year == 1999) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram(color = "Firebrick", binwidth = 1) +
+  xlab("1999")
+  
+hist2008 <- mpg %>%
+  filter(year == 2008) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram(color = "dodgerblue", binwidth = 1) +
+  xlab("2008")
+  
+hist1999  + hist2008
+```
+
+Watching it like this makes it easier to conclude that cars have become more efficient during years.
+
+There are other interesting ways of improving the quality of our histograms, check how they come out with colours:
+
+```
+colour_hist1999 <- mpg %>%
+  filter(year == 1999) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram(colour = "Firebrick", binwidth = 1, fill = "MidnightBlue") +
+  xlab("1999")
+  
+colour_hist2008 <- mpg %>%
+  filter(year == 2008) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram(colour = "dodgerblue", binwidth = 1, fill = "Firebrick") +
+  xlab("2008")
+  
+color_hist1999  + color_hist2008
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+library(tidyverse)
+color_hist1999 <- mpg %>%
+  filter(year == 1999) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram(color = "Firebrick", binwidth = 1, fill = "Firebrick") +
+  xlab("1999")
+  
+color_hist2008 <- mpg %>%
+  filter(year == 2008) %>%
+  ggplot(aes(x = cty)) +
+  geom_histogram(color = "dodgerblue", binwidth = 1, fill = "MidnightBlue") +
+  xlab("2008")
+  
+color_hist1999  + color_hist2008
+```
+
+
+A similar type of plot that also has plenty of information about groups is the density plot.
+
+# Density plots
+
+With `ggplot` we can plot density of out data in a simple way:
+
+```{r, layout="l-body-outset", preview=TRUE}
+library(tidyverse)
+mpg %>%
+  ggplot(aes(x = cty)) +
+  geom_density(aes(colour = as.factor(year))) +
+  xlab("Density Plot")
+  
+```
+
+```
+library(tidyverse)
+mpg %>%
+  ggplot(aes(x = cty)) +
+  geom_density(aes(colour = as.factor(year))) +
+  xlab("Density Plot")
+```
+
+In this kind of plot we can see the presence of many subgroups, the area under the curves of each subgroups sums to 1. This allows us to compare subgroups of diferent sizes.
+
+It's also possible to optimise visualisation of this plot, check the argumentsof the funtion `geom_density()` and explore what it is capable of doing!
