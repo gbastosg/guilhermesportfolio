@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"NULL"}
+  {"type":"character","attributes":{},"value":["about-the-structure-of-variables_files/anchor-4.2.2/anchor.min.js","about-the-structure-of-variables_files/bowser-1.9.3/bowser.min.js","about-the-structure-of-variables_files/distill-2.2.21/template.v2.js","about-the-structure-of-variables_files/header-attrs-2.11/header-attrs.js","about-the-structure-of-variables_files/jquery-3.6.0/jquery-3.6.0.js","about-the-structure-of-variables_files/jquery-3.6.0/jquery-3.6.0.min.js","about-the-structure-of-variables_files/jquery-3.6.0/jquery-3.6.0.min.map","about-the-structure-of-variables_files/popper-2.6.0/popper.min.js","about-the-structure-of-variables_files/tippy-6.2.7/tippy-bundle.umd.min.js","about-the-structure-of-variables_files/tippy-6.2.7/tippy-light-border.css","about-the-structure-of-variables_files/tippy-6.2.7/tippy.css","about-the-structure-of-variables_files/tippy-6.2.7/tippy.umd.min.js","about-the-structure-of-variables_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1438,7 +1438,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="about-the-structure-of-variables_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="about-the-structure-of-variables_files/header-attrs-2.14/header-attrs.js"></script>
   <script src="about-the-structure-of-variables_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="about-the-structure-of-variables_files/popper-2.6.0/popper.min.js"></script>
   <link href="about-the-structure-of-variables_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1472,35 +1472,46 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>About the structure of variables</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Variables are everywhere, let’s understand a bit more about their structures in the R programming language.</p></p>
+<p><p>Variables are everywhere, let’s understand a bit more about their
+structures in the R programming language.</p></p>
 </div>
 
 <div class="d-byline">
-  Guilherme Bastos Gomes <a href="https://gbastosg.github.io/guilhermesportfolio/" class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
+  Guilherme Bastos Gomes <a
+href="https://gbastosg.github.io/guilhermesportfolio/"
+class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
   
 <br/>2022-04-19
 </div>
 
 <div class="d-article">
-<h1 id="hello-in-this-post-i-am-going-to-briefly-write-about-the-structure-of-variables">Hello! In this post I am going to briefly write about the structure of variables</h1>
+<h1
+id="hello-in-this-post-i-am-going-to-briefly-write-about-the-structure-of-variables">Hello!
+In this post I am going to briefly write about the structure of
+variables</h1>
 <blockquote>
 <p>Variable is everything that varies, or can vary.</p>
 </blockquote>
 <p>But what is it in practice?</p>
-<p>Everytime we create an object, we are also creating a kind of variable</p>
+<p>Everytime we create an object, we are also creating a kind of
+variable</p>
 <p>In fact, it’s good to remember that:</p>
 <blockquote>
-<p><span class="math inline">\(\color{blue}{\text{&quot;Everything that exists in R is an object.&quot;}}\)</span> ~John M. Chambers</p>
+<p><span class="math inline">\(\color{blue}{\text{&quot;Everything that
+exists in R is an object.&quot;}}\)</span> ~John M. Chambers</p>
 </blockquote>
 <p>So basically we will be dealing with variables all the time!</p>
-<p>To understand the 4 main types of variables, you should create the following objects in your workspace:</p>
+<p>To understand the 4 main types of variables, you should create the
+following objects in your workspace:</p>
 <ul>
 <li>logical &lt;- <code>TRUE</code></li>
 <li>character &lt;- <code>"text"</code></li>
 <li>numeric &lt;- <code>1</code></li>
 <li>factor &lt;- as.factor(c(“I”, “Am”, “a”, “factor”))</li>
 </ul>
-<p>Each object is interpreted in a different way by the language, let’s use the function <code>class()</code> to understand how each variable behaves:</p>
+<p>Each object is interpreted in a different way by the language, let’s
+use the function <code>class()</code> to understand how each variable
+behaves:</p>
 <h1 id="class">class()</h1>
 <p>Type in the following after creating the objects:</p>
 <pre><code>class(logical)
@@ -1512,21 +1523,28 @@ class(factor)</code></pre>
 [1] &quot;character&quot;
 [1] &quot;numeric&quot;
 [1] &quot;factor&quot;</code></pre>
-<p>Each object belongs to a different class, therefore should be treated as such.</p>
-<h1 id="what-each-of-these-structures-means">What each of these structures means?</h1>
+<p>Each object belongs to a different class, therefore should be treated
+as such.</p>
+<h1 id="what-each-of-these-structures-means">What each of these
+structures means?</h1>
 <h2 id="logical">logical</h2>
 <ul>
-<li><strong>logical (ou lógica)</strong>: Boolean/binary , it’s always <code>TRUE</code> or <code>FALSE</code></li>
+<li><strong>logical (ou lógica)</strong>: Boolean/binary , it’s always
+<code>TRUE</code> or <code>FALSE</code></li>
 </ul>
 <h2 id="character">character</h2>
 <ul>
-<li><strong>character (or string)</strong>: simple text, including symbols and numbers inside of quotation marks <code>"text"</code>, <code>"this is a text"</code>, <code>"th1s 1s 4ls0 a t3xt"</code>.</li>
+<li><strong>character (or string)</strong>: simple text, including
+symbols and numbers inside of quotation marks <code>"text"</code>,
+<code>"this is a text"</code>, <code>"th1s 1s 4ls0 a t3xt"</code>.</li>
 </ul>
 <h2 id="numeric">numeric</h2>
 <ul>
-<li><strong>numeric (numérico)</strong>: Literally numbers. Mathematic operators can be used here.</li>
+<li><strong>numeric (numérico)</strong>: Literally numbers. Mathematic
+operators can be used here.</li>
 </ul>
-<p>Remembering that in truth programming languages are just <em>fancy calculators</em>:</p>
+<p>Remembering that in truth programming languages are just <em>fancy
+calculators</em>:</p>
 <ul>
 <li><code>+</code> add</li>
 <li><code>-</code> subtract</li>
@@ -1536,17 +1554,21 @@ class(factor)</code></pre>
 </ul>
 <h2 id="factor">factor</h2>
 <ul>
-<li><strong>factor</strong>: Numbers or strings (text) ORDERED somehow:</li>
+<li><strong>factor</strong>: Numbers or strings (text) ORDERED
+somehow:</li>
 </ul>
 <p>This is a factor:</p>
 <pre><code>as.factor(c(&quot;I&quot;, &quot;am&quot;, &quot;a&quot;, &quot;factor&quot;))</code></pre>
 <p>This is also a factor:</p>
 <pre><code>as.factor(c(1, 2, 3, 4))</code></pre>
 <p>The word ORDER is the most important one here to define factors</p>
-<p>These are the main 4 structures that will appear in your analyses!</p>
+<p>These are the main 4 structures that will appear in your
+analyses!</p>
 <h4 id="thank-you-for-your-time">Thank you for your time!</h4>
-<p>Follow me on twitter: <span class="citation" data-cites="gimbgomes">@gimbgomes</span></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Follow me on twitter: <span class="citation"
+data-cites="gimbgomes">@gimbgomes</span></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
