@@ -87,7 +87,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-<title>guilhermesportfolio: Using the tidyverse functions</title>
+<title>guilhermesportfolio: Using tidyverse functions</title>
 
 <meta property="description" itemprop="description" content="In this post I combine some of the tidyverse functions to obtain interesting stats from the data. The main idea is to work with the tools we&#39;ve already used. In the case of a new tool showing up, I will explain it, but always remeber that you can read about R functions by tiping &quot;?nameofthefunction&quot; in the console!"/>
 
@@ -98,7 +98,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta name="article:author" content="Guilherme Bastos Gomes"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="guilhermesportfolio: Using the tidyverse functions"/>
+<meta property="og:title" content="guilhermesportfolio: Using tidyverse functions"/>
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="In this post I combine some of the tidyverse functions to obtain interesting stats from the data. The main idea is to work with the tools we&#39;ve already used. In the case of a new tool showing up, I will explain it, but always remeber that you can read about R functions by tiping &quot;?nameofthefunction&quot; in the console!"/>
 <meta property="og:locale" content="en_US"/>
@@ -106,14 +106,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="guilhermesportfolio: Using the tidyverse functions"/>
+<meta property="twitter:title" content="guilhermesportfolio: Using tidyverse functions"/>
 <meta property="twitter:description" content="In this post I combine some of the tidyverse functions to obtain interesting stats from the data. The main idea is to work with the tools we&#39;ve already used. In the case of a new tool showing up, I will explain it, but always remeber that you can read about R functions by tiping &quot;?nameofthefunction&quot; in the console!"/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Using the tidyverse functions"]},{"type":"character","attributes":{},"value":["In this post I combine some of the tidyverse functions to obtain interesting stats from the data. The main idea is to work with the tools we've already used. In the case of a new tool showing up, I will explain it, but always remeber that you can read about R functions by tiping \"?nameofthefunction\" in the console!"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Guilherme Bastos Gomes"]},{"type":"character","attributes":{},"value":["https://gbastosg.github.io/guilhermesportfolio/"]}]}]},{"type":"character","attributes":{},"value":["2022-04-23"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Using tidyverse functions"]},{"type":"character","attributes":{},"value":["In this post I combine some of the tidyverse functions to obtain interesting stats from the data. The main idea is to work with the tools we've already used. In the case of a new tool showing up, I will explain it, but always remeber that you can read about R functions by tiping \"?nameofthefunction\" in the console!"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Guilherme Bastos Gomes"]},{"type":"character","attributes":{},"value":["https://gbastosg.github.io/guilhermesportfolio/"]}]}]},{"type":"character","attributes":{},"value":["2022-04-23"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1871,12 +1871,6 @@ function init_distill() {
 
     // hoverable references
     $('span.citation[data-cites]').each(function() {
-      if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-        var fn = $(this).children()[0]
-        $(this).html(fn.shadowRoot.querySelector("sup"))
-        $(this).id = fn.id
-        fn.remove()
-      }
       var refs = $(this).attr('data-cites').split(" ");
       var refHtml = refs.map(function(ref) {
         return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -2051,7 +2045,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2072,7 +2066,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Using the tidyverse functions","description":"In this post I combine some of the tidyverse functions to obtain interesting stats from the data. The main idea is to work with the tools we've already used. In the case of a new tool showing up, I will explain it, but always remeber that you can read about R functions by tiping \"?nameofthefunction\" in the console!","authors":[{"author":"Guilherme Bastos Gomes","authorURL":"https://gbastosg.github.io/guilhermesportfolio/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-04-23T00:00:00.000-03:00","citationText":"Gomes, 2022"}
+{"title":"Using tidyverse functions","description":"In this post I combine some of the tidyverse functions to obtain interesting stats from the data. The main idea is to work with the tools we've already used. In the case of a new tool showing up, I will explain it, but always remeber that you can read about R functions by tiping \"?nameofthefunction\" in the console!","authors":[{"author":"Guilherme Bastos Gomes","authorURL":"https://gbastosg.github.io/guilhermesportfolio/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-04-23T00:00:00.000-03:00","citationText":"Gomes, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2095,24 +2089,37 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Using the tidyverse functions</h1>
+<h1>Using tidyverse functions</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>In this post I combine some of the tidyverse functions to obtain interesting stats from the data. The main idea is to work with the tools we’ve already used. In the case of a new tool showing up, I will explain it, but always remeber that you can read about R functions by tiping “?nameofthefunction” in the console!</p></p>
+<p><p>In this post I combine some of the tidyverse functions to obtain
+interesting stats from the data. The main idea is to work with the tools
+we’ve already used. In the case of a new tool showing up, I will explain
+it, but always remeber that you can read about R functions by tiping
+“?nameofthefunction” in the console!</p></p>
 </div>
 
 <div class="d-byline">
-  Guilherme Bastos Gomes <a href="https://gbastosg.github.io/guilhermesportfolio/" class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
+  Guilherme Bastos Gomes <a
+href="https://gbastosg.github.io/guilhermesportfolio/"
+class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
   
 <br/>2022-04-23
 </div>
 
 <div class="d-article">
-<h1 id="hello-in-this-post-i-will-use-some-of-the-functions-from-tidyverse-to-wrangle-built-in-r-data">Hello! In this post I will use some of the functions from tidyverse to wrangle built-in R data</h1>
-<p>Remembering that <a href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-13-the-power-of-the-tidyverse-manipulating-data/">in this post</a> I’ve explained about each of these functions!</p>
-<p>Today we will use the dataset <code>mpg</code> from tidyverse, so let’s start loading the package:</p>
+<h1
+id="hello-in-this-post-i-will-use-some-of-the-functions-from-tidyverse-to-wrangle-built-in-r-data">Hello!
+In this post I will use some of the functions from tidyverse to wrangle
+built-in R data</h1>
+<p>Remembering that <a
+href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-13-the-power-of-the-tidyverse-manipulating-data/">in
+this post</a> I’ve explained about each of these functions!</p>
+<p>Today we will use the dataset <code>mpg</code> from tidyverse, so
+let’s start loading the package:</p>
 <pre><code>library(tidyverse)</code></pre>
-<p>Let’s check what exists in the <code>data.frame</code>, or have a <code>glimpse()</code> on it:</p>
+<p>Let’s check what exists in the <code>data.frame</code>, or have a
+<code>glimpse()</code> on it:</p>
 <pre><code>glimpse(mpg)
 
 Rows: 234
@@ -2128,18 +2135,25 @@ $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 1
 $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 25, 24, 25, 23~
 $ fl           &lt;chr&gt; &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, ~
 $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;com~</code></pre>
-<p>Interesting, huh? It’s possible to see that in this <code>data.frame</code> we can find 11 columns and 234 rows. To understand even more about this data you can type <code>?mpg</code> in the console, but here is a brief explanation:</p>
+<p>Interesting, huh? It’s possible to see that in this
+<code>data.frame</code> we can find 11 columns and 234 rows. To
+understand even more about this data you can type <code>?mpg</code> in
+the console, but here is a brief explanation:</p>
 <h1 id="mpg">mpg</h1>
-<p>Fuel economy data from 1999 to 2008 for 38 popular models of cars.</p>
-<p>It is possible to use the function <code>colnames()</code> to check what is in it:</p>
+<p>Fuel economy data from 1999 to 2008 for 38 popular models of
+cars.</p>
+<p>It is possible to use the function <code>colnames()</code> to check
+what is in it:</p>
 <pre><code>colnames(mpg)
 
 [1] &quot;manufacturer&quot; &quot;model&quot;        &quot;displ&quot;        &quot;year&quot;         &quot;cyl&quot;         
 [6] &quot;trans&quot;        &quot;drv&quot;          &quot;cty&quot;          &quot;hwy&quot;          &quot;fl&quot;          
 [11] &quot;class&quot;</code></pre>
-<p>Another pretty interesting way of receiving some stats happens by using the function <code>summary()</code></p>
+<p>Another pretty interesting way of receiving some stats happens by
+using the function <code>summary()</code></p>
 <h1 id="summary">summary()</h1>
-<p>This is a very generic functio from R base, and serves mainly to obtain a summary (yeah) with statistics of an object:</p>
+<p>This is a very generic functio from R base, and serves mainly to
+obtain a summary (yeah) with statistics of an object:</p>
 <pre><code>summary(mpg)
 
  manufacturer          model               displ            year           cyl       
@@ -2161,11 +2175,14 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
  Class :character  
  Mode  :character
  </code></pre>
-<p>Wow! This is a lot of information our data with only one function!</p>
+<p>Wow! This is a lot of information our data with only one
+function!</p>
 <blockquote>
-<p>Let’s now combine some of the functions from tidyverse to obtain even more stats!</p>
+<p>Let’s now combine some of the functions from tidyverse to obtain even
+more stats!</p>
 </blockquote>
-<h1 id="combining-functions-using-a-pipe">combining functions using a pipe “%&gt;%”</h1>
+<h1 id="combining-functions-using-a-pipe">combining functions using a
+pipe “%&gt;%”</h1>
 <pre><code>mpg %&gt;%
   select(motor_type = displ,
   year, 
@@ -2174,7 +2191,9 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
   group_by(year) %&gt;%
   summarise(mean_cty_miles_per_gallon = mean(city_miles_per_gallon), 
   mean_hwy_miles_per_gallon = mean(highway_miles_per_gallon))</code></pre>
-<p>Here we see that in average, cars from 1999 used to run 0.3 more miles per gallon in the city than in 2008, although the average does not changes much from the average on the hailway:</p>
+<p>Here we see that in average, cars from 1999 used to run 0.3 more
+miles per gallon in the city than in 2008, although the average does not
+changes much from the average on the hailway:</p>
 <table>
 <thead>
 <tr class="header">
@@ -2196,8 +2215,10 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
 </tr>
 </tbody>
 </table>
-<p>Notice how inside the <code>select()</code> function we could add the name of columns that would appear in our sub set.</p>
-<p>So inside the <code>summarise()</code> we should include those new names</p>
+<p>Notice how inside the <code>select()</code> function we could add the
+name of columns that would appear in our sub set.</p>
+<p>So inside the <code>summarise()</code> we should include those new
+names</p>
 <blockquote>
 <p>But how about the many types of motors?</p>
 </blockquote>
@@ -2209,8 +2230,15 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
   group_by(motor_type, year) %&gt;%
   summarise(mean_cty_miles_per_gallon = mean(city_miles_per_gallon), 
   mean_hwy_miles_per_gallon = mean(highway_miles_per_gallon))</code></pre>
-<p>Agora agrupamos por duas colunas, primeiro por tipo do motor, segundo pelo ano:</p>
+<p>Agora agrupamos por duas colunas, primeiro por tipo do motor, segundo
+pelo ano:</p>
 <table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 8%" />
+<col style="width: 35%" />
+<col style="width: 36%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>motor_type</th>
@@ -2288,7 +2316,8 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
 </tr>
 </tbody>
 </table>
-<p>Great, now we have comparisons about motor types! We can also <code>arrange()</code> our table:</p>
+<p>Great, now we have comparisons about motor types! We can also
+<code>arrange()</code> our table:</p>
 <pre><code>mpg %&gt;%
   select(motor_type = displ,
   year, 
@@ -2298,7 +2327,9 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
   summarise(mean_cty_miles_per_gallon = mean(city_miles_per_gallon), 
   mean_hwy_miles_per_gallon = mean(highway_miles_per_gallon)) %&gt;%
   arrange(year)</code></pre>
-<p>Cool, now that we have our organized data we can split two more data sets from this one, by using a filter we can include only those cars from 1999 and 2008 in two separate data sets:</p>
+<p>Cool, now that we have our organized data we can split two more data
+sets from this one, by using a filter we can include only those cars
+from 1999 and 2008 in two separate data sets:</p>
 <pre><code>mpg_1999 &lt;- mpg %&gt;%
   select(motor_type = displ,
   year, 
@@ -2319,15 +2350,21 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
   mean_hwy_miles_per_gallon = mean(highway_miles_per_gallon)) %&gt;%
   arrange(year) %&gt;%
   filter(year == 2008)</code></pre>
-<p>This is pretty useful when we are dealing with a lot of data and to improve our analyses.</p>
-<p>Have a look in both sub sets and find out ways of comparing those values.</p>
+<p>This is pretty useful when we are dealing with a lot of data and to
+improve our analyses.</p>
+<p>Have a look in both sub sets and find out ways of comparing those
+values.</p>
 <p>Did the cars became more or less efficient in time?</p>
 <blockquote>
-<p>In the next post: One of the easiest ways of comparing data is by using plots. Next post I’m going to use ggplot to create some of them and compare results.</p>
+<p>In the next post: One of the easiest ways of comparing data is by
+using plots. Next post I’m going to use ggplot to create some of them
+and compare results.</p>
 </blockquote>
 <h4 id="thank-you-for-your-time">Thank you for your time!</h4>
-<p>Follow me on twitter: <span class="citation" data-cites="gimbgomes">@gimbgomes</span></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Follow me on twitter: <span class="citation"
+data-cites="gimbgomes">@gimbgomes</span></p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
