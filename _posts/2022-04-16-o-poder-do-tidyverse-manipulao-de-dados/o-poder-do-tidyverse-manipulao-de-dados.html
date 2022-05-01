@@ -1438,7 +1438,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="o-poder-do-tidyverse-manipulao-de-dados_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="o-poder-do-tidyverse-manipulao-de-dados_files/header-attrs-2.14/header-attrs.js"></script>
   <script src="o-poder-do-tidyverse-manipulao-de-dados_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="o-poder-do-tidyverse-manipulao-de-dados_files/popper-2.6.0/popper.min.js"></script>
   <link href="o-poder-do-tidyverse-manipulao-de-dados_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1472,26 +1472,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>O poder do tidyverse: manipulação de dados</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Vou traduzir alguns posts meus aqui, para poder ajudar outros falantes de português a entenderem e usarem R para manipular dados. O Tidyverse é um pacote bastante importante para manipulação de dados, pois é fácil de usar e aprender.</p></p>
+<p><p>Vou traduzir alguns posts meus aqui, para poder ajudar outros
+falantes de português a entenderem e usarem R para manipular dados. O
+Tidyverse é um pacote bastante importante para manipulação de dados,
+pois é fácil de usar e aprender.</p></p>
 </div>
 
 <div class="d-byline">
-  Guilherme Bastos Gomes <a href="https://gbastosg.github.io/guilhermesportfolio/" class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
+  Guilherme Bastos Gomes <a
+href="https://gbastosg.github.io/guilhermesportfolio/"
+class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
   
 <br/>2022-04-16
 </div>
 
 <div class="d-article">
-<h1 id="olá-neste-post-vou-te-mostrar-como-usar-alguns-verbos-básicos-do-tidyverse">Olá! Neste post vou te mostrar como usar alguns verbos básicos do tidyverse:</h1>
+<h1
+id="olá-neste-post-vou-te-mostrar-como-usar-alguns-verbos-básicos-do-tidyverse">Olá!
+Neste post vou te mostrar como usar alguns verbos básicos do
+tidyverse:</h1>
 <ul>
 <li>select()</li>
 <li>arrange()</li>
 <li>filter()</li>
 <li>mutate()</li>
 </ul>
-<p>Todos esses verbos também são <em>funções</em> para lidar com dados do mundo real, mas como coletar esses dados pode ser bem complicado vamos usar um conjunto de dados (data set) do R.</p>
-<p>Vamos dar uma olhada no data set <code>iris</code> que nos da medidas em centimetros do tamanho de sepalas e petalas de tres espécies de angiospermas: <em>Iris setosa</em>, <em>Iris versicolor</em>, e <em>Iris virginica</em>.</p>
-<p>E claro, já que estamos lidando com o tidyverse, temos que carregar o pacote:</p>
+<p>Todos esses verbos também são <em>funções</em> para lidar com dados
+do mundo real, mas como coletar esses dados pode ser bem complicado
+vamos usar um conjunto de dados (data set) do R.</p>
+<p>Vamos dar uma olhada no data set <code>iris</code> que nos da medidas
+em centimetros do tamanho de sepalas e petalas de tres espécies de
+angiospermas: <em>Iris setosa</em>, <em>Iris versicolor</em>, e <em>Iris
+virginica</em>.</p>
+<p>E claro, já que estamos lidando com o tidyverse, temos que carregar o
+pacote:</p>
 <p><code>library(tidyverse)</code></p>
 <p>Vamos ver o data set:<br />
 <code>iris</code><br />
@@ -1500,13 +1514,22 @@ ou só uma parte dele:<br />
 ou apenas dar uma olhadinha para aqueles que curtem stats:<br />
 <code>glimpse(iris)</code></p>
 <h1 id="pipe-e-select">Pipe ‘%&gt;%’ e select()</h1>
-<p>Antes de tudo, vamos começar com o selecionar e já que estamos usando o tidyverse, também começaremos a usar os <em>pipes</em> também conhecido como <em>%&gt;%</em> ou <em>|&gt;</em>, tudo depende do que você mais gosta de escrever.</p>
-<p>Então para selecionar um conjunto de colunas que você queira, você pode escrever:</p>
+<p>Antes de tudo, vamos começar com o selecionar e já que estamos usando
+o tidyverse, também começaremos a usar os <em>pipes</em> também
+conhecido como <em>%&gt;%</em> ou <em>|&gt;</em>, tudo depende do que
+você mais gosta de escrever.</p>
+<p>Então para selecionar um conjunto de colunas que você queira, você
+pode escrever:</p>
 <pre><code>iris %&gt;% #aqui incluimos o dataframe iris no pipe para a proxima função
 select(Sepal.Length, Species) #selecionando duas colunas do dataframe `Sepal.Length` e `Species`</code></pre>
-<p>Note o pipe “%&gt;%”, isso significa que a saída de uma função será usada como entrada para a próxima, e o primeiro pipe apenas inclui o data set iris dentro da função <code>select(Sepal.Length, Species)</code></p>
+<p>Note o pipe “%&gt;%”, isso significa que a saída de uma função será
+usada como entrada para a próxima, e o primeiro pipe apenas inclui o
+data set iris dentro da função
+<code>select(Sepal.Length, Species)</code></p>
 <p>Tranquilo, certo?</p>
-<p>Agora você deve ter um data set um pouco menor, se quiser checar, basta chamar o mesmo script de antes, mas com um pipe para a função <code>head()</code> que mostra apenas as primeiras 10 linhas:</p>
+<p>Agora você deve ter um data set um pouco menor, se quiser checar,
+basta chamar o mesmo script de antes, mas com um pipe para a função
+<code>head()</code> que mostra apenas as primeiras 10 linhas:</p>
 <pre><code>iris %&gt;%
   select(Sepal.Length, Species) %&gt;%
   head()</code></pre>
@@ -1547,13 +1570,18 @@ select(Sepal.Length, Species) #selecionando duas colunas do dataframe `Sepal.Len
 </tr>
 </tbody>
 </table>
-<p>Para melhorar nosso trabalho, devemos criar um objeto que recebe esse data set menor:</p>
-<p>É bom nomear as coisas de acordo com o que elas são, neste caso to usando o seguinte nome: <code>selected_iris</code></p>
+<p>Para melhorar nosso trabalho, devemos criar um objeto que recebe esse
+data set menor:</p>
+<p>É bom nomear as coisas de acordo com o que elas são, neste caso to
+usando o seguinte nome: <code>selected_iris</code></p>
 <pre><code>selected_iris &lt;- iris %&gt;%
   select(Sepal.Length, Species) %&gt;%
   head()</code></pre>
 <h1 id="arrange">arrange()</h1>
-<p>Suponha que você queira dar uma rápida olhada na distribuição de tamanhos de sepalas ordenadas, podemos tanto chamar a função <code>view()</code> no RStudio, ou usar a função <code>arrange()</code>:</p>
+<p>Suponha que você queira dar uma rápida olhada na distribuição de
+tamanhos de sepalas ordenadas, podemos tanto chamar a função
+<code>view()</code> no RStudio, ou usar a função
+<code>arrange()</code>:</p>
 <pre><code>arrange(selected_iris) %&gt;%
   head()</code></pre>
 <p>Voce deve ver algo assim:</p>
@@ -1592,7 +1620,11 @@ select(Sepal.Length, Species) #selecionando duas colunas do dataframe `Sepal.Len
 </tbody>
 </table>
 <h2 id="arrangedesc">arrange(desc())</h2>
-<p>Voce notará que o <code>dataframe</code> agora está em ordem, dos menores para o maiores valores de tamanho de sepalas (sepalas são aquelas folhas que apoiam as petalas). Mas, e se quisessemos ordenar em ordem descendente? Para isso precisamos usar a função <code>desc()</code> dentro da função <code>arrange()</code>:</p>
+<p>Voce notará que o <code>dataframe</code> agora está em ordem, dos
+menores para o maiores valores de tamanho de sepalas (sepalas são
+aquelas folhas que apoiam as petalas). Mas, e se quisessemos ordenar em
+ordem descendente? Para isso precisamos usar a função
+<code>desc()</code> dentro da função <code>arrange()</code>:</p>
 <pre><code>arrange(desc(selected_iris)) %&gt;%
   head()</code></pre>
 <p>Agora temos:</p>
@@ -1631,15 +1663,28 @@ select(Sepal.Length, Species) #selecionando duas colunas do dataframe `Sepal.Len
 </tbody>
 </table>
 <h1 id="filter">filter()</h1>
-<p>Beleza, agora que sabemos <code>select()</code> e <code>arrange()</code>, bora aprender mais dois outros verbos que também são ótimos para manipulação e análise de dados:</p>
-<h2 id="primeiro-vamos-usar-o-filtro-ou-filter-para-filtrar-apenas-a-espécie-iris-virginica-do-nosso-dataset">Primeiro, vamos usar o filtro ou <code>filter()</code> para filtrar apenas a espécie <em>Iris virginica</em> do nosso dataset:</h2>
+<p>Beleza, agora que sabemos <code>select()</code> e
+<code>arrange()</code>, bora aprender mais dois outros verbos que também
+são ótimos para manipulação e análise de dados:</p>
+<h2
+id="primeiro-vamos-usar-o-filtro-ou-filter-para-filtrar-apenas-a-espécie-iris-virginica-do-nosso-dataset">Primeiro,
+vamos usar o filtro ou <code>filter()</code> para filtrar apenas a
+espécie <em>Iris virginica</em> do nosso dataset:</h2>
 <pre><code>iris %&gt;%
   filter(Species == &quot;virginica&quot;)</code></pre>
-<p>Note que estamos usando o operador <code>==</code>, que significa: queremos filtrar tudo da coluna <code>Species</code> que seja igual ao nosso texto (note as aspas) “virginica”.</p>
-<h2 id="suponha-que-você-queira-filtrar-apenas-aqueles-que-não-são-iris-virginica">Suponha que você queira filtrar apenas aqueles que NÃO são <em>Iris virginica</em>:</h2>
+<p>Note que estamos usando o operador <code>==</code>, que significa:
+queremos filtrar tudo da coluna <code>Species</code> que seja igual ao
+nosso texto (note as aspas) “virginica”.</p>
+<h2
+id="suponha-que-você-queira-filtrar-apenas-aqueles-que-não-são-iris-virginica">Suponha
+que você queira filtrar apenas aqueles que NÃO são <em>Iris
+virginica</em>:</h2>
 <pre><code>iris %&gt;%
   filter(Species != &quot;virginica&quot;)</code></pre>
-<p>Agora usamos o operador <code>!=</code> que significa diferente ou desigual, sendo assim recebemos um data set com <em>Iris setosa</em> e <em>Iris versicolor</em> apenas, para checar a veracidade, vamos criar objetos que recebem nossos data set filtrados:</p>
+<p>Agora usamos o operador <code>!=</code> que significa diferente ou
+desigual, sendo assim recebemos um data set com <em>Iris setosa</em> e
+<em>Iris versicolor</em> apenas, para checar a veracidade, vamos criar
+objetos que recebem nossos data set filtrados:</p>
 <pre><code>iris_virginica &lt;- 
   iris %&gt;%
   filter(Species == &quot;virginica&quot;)
@@ -1649,48 +1694,80 @@ select(Sepal.Length, Species) #selecionando duas colunas do dataframe `Sepal.Len
 not_iris_virginica &lt;-
   iris %&gt;%
   filter(Species != &quot;virginica&quot;)</code></pre>
-<h3 id="checando-usando-operadores-condicionais">Checando usando operadores condicionais</h3>
-<p>Ambos operadores <code>==</code> (igual a) e <code>!=</code> (diferente de) podem ser usados em multiplas situações no R, por exemplo para checar se nosso filtro deu certo:</p>
+<h3 id="checar-usando-operadores-condicionais">Checar usando operadores
+condicionais</h3>
+<p>Ambos operadores <code>==</code> (igual a) e <code>!=</code>
+(diferente de) podem ser usados em multiplas situações no R, por exemplo
+para checar se nosso filtro deu certo:</p>
 <pre><code>#Veja que interessante essa forma da função select:
 select(iris_virginica, Species) == &quot;virginica&quot;</code></pre>
-<p>Isso deve retornar <code>TRUE</code> para todas as linhas dentro do nosso dado. Quando testamos nossas afirmativas com condicionais, o R pode dizer se é <code>TRUE</code> ou <code>FALSE</code> (<code>VERDADEIRO</code> ou <code>FALSO</code>).</p>
+<p>Isso deve retornar <code>TRUE</code> para todas as linhas dentro do
+nosso dado. Quando testamos nossas afirmativas com condicionais, o R
+pode dizer se é <code>TRUE</code> ou <code>FALSE</code>
+(<code>VERDADEIRO</code> ou <code>FALSO</code>).</p>
 <p>Vamos tentar mais uma:</p>
 <pre><code>#chamando o data set dentro da função de novo:
 select(not_iris_virginica, Species) == &quot;virginica&quot;</code></pre>
-<p>Agora devemos receber apenas <code>FALSE</code> para todas as linhas do nosso conjunto de dados <code>not_iris_virginica</code>. O que significa que nosso filtro deu certo, legal né?</p>
-<p>Vou escrever sobre condicionais e todas essas paradas booleanas em outro post, já que existem muitos outros operadores poderosos (<code>&gt;=</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&amp;</code>, <code>|</code>, e por ai vai…)</p>
+<p>Agora devemos receber apenas <code>FALSE</code> para todas as linhas
+do nosso conjunto de dados <code>not_iris_virginica</code>. O que
+significa que nosso filtro deu certo, legal né?</p>
+<p>Vou escrever sobre condicionais e todas essas paradas booleanas em
+outro post, já que existem muitos outros operadores poderosos
+(<code>&gt;=</code>, <code>&lt;=</code>, <code>&gt;</code>,
+<code>&lt;</code>, <code>&amp;</code>, <code>|</code>, e por ai
+vai…)</p>
 <p>Agora vamos continuar com outros tidyverbo ;)</p>
 <h1 id="mutate">mutate()</h1>
-<p>O último e, talvez mais importante, verbo que vamos aprender é o <code>mutate()</code></p>
-<p>Essa é uma ótima função para manipular, transformar e criar colunas em nosso dado</p>
+<p>O último e, talvez mais importante, verbo que vamos aprender é o
+<code>mutate()</code></p>
+<p>Essa é uma ótima função para manipular, transformar e criar colunas
+em nosso dado</p>
 <p><code>mutate()</code> funciona assim:</p>
 <p>mutate(coluna_que_quero_criar = equação)</p>
-<p>Suponha que queremos saber a razão entre o tamanho de pétalas e sepalas de todas as espécies:</p>
+<p>Suponha que queremos saber a razão entre o tamanho de pétalas e
+sepalas de todas as espécies:</p>
 <pre><code>iris %&gt;%
   mutate(ratio_petal_sepal = Petal.Length/Sepal.Length)</code></pre>
-<p>Existem muitos outros usos para o verbo mutate, um deles é classificar dados combinando com a função <code>ifelse()</code>, que cria uma condição dentro do mutate():</p>
-<p>Queremos classificar nossas flores como “grandes” ou “pequenas”, baseado na razão obtida anteriormente, isso significa que “se ratio_petal_sepal &lt; 0.5, então a coluna”size” recebe a tag <code>small</code> , caso contrário recebe a tag <code>large</code>:</p>
+<p>Existem muitos outros usos para o verbo mutate, um deles é
+classificar dados combinando com a função <code>ifelse()</code>, que
+cria uma condição dentro do mutate():</p>
+<p>Queremos classificar nossas flores como “grandes” ou “pequenas”,
+baseado na razão obtida anteriormente, isso significa que “se
+ratio_petal_sepal &lt; 0.5, então a coluna”size” recebe a tag
+<code>small</code> , caso contrário recebe a tag <code>large</code>:</p>
 <pre><code>iris %&gt;%
   mutate(ratio_petal_sepal = Petal.Length/Sepal.Length) %&gt;%
   mutate(size = ifelse(ratio_petal_sepal &lt; 0.5, &quot;small&quot;, &quot;large&quot;))</code></pre>
-<p>Perceba que estamos usando um mutate duplo, isso não seria necessário se tivessemos criado um objeto anteriormente:</p>
+<p>Perceba que estamos usando um mutate duplo, isso não seria necessário
+se tivessemos criado um objeto anteriormente:</p>
 <pre><code>ratio_iris &lt;- iris %&gt;%
   mutate(ratio_petal_sepal = Petal.Length/Sepal.Length)</code></pre>
-<p>Agora temos o objeto <code>ratio_iris</code> e podemos compreender como <code>mutate()</code> funciona combinado com <code>ifelse()</code>:</p>
+<p>Agora temos o objeto <code>ratio_iris</code> e podemos compreender
+como <code>mutate()</code> funciona combinado com
+<code>ifelse()</code>:</p>
 <pre><code>ratio_iris %&gt;%
   mutate(size  = ifelse(ratio_petal_sepal &lt; 0.5, &quot;small&quot;, &quot;large&quot;))</code></pre>
-<h3 id="explicando-mutate-combinado-com-ifelse">Explicando mutate() combinado com ifelse()</h3>
+<h3 id="explicando-mutate-combinado-com-ifelse">Explicando mutate()
+combinado com ifelse()</h3>
 <pre><code>ratio_iris %&gt;% #botando o dado no cachimbo
   mutate(size  = #chamando a função mutate e criando uma coluna chamada &quot;size&quot;
   ifelse(ratio_petal_sepal &lt; 0.5, #se essa afirmação for `TRUE` e o número dentro de ratio_petal_sepal for menor que 0.5
   &quot;small&quot;, #então a coluna &quot;size&quot; receberá a tag &quot;small&quot;
   &quot;large&quot; #caso contrário receberá &quot;large&quot;))</code></pre>
-<p>No fim, teremos um data set completamente marcado com a nossa condição, num próximo post vou mostrar como você pode usar a função count() para obter algumas estatísticas do nosso data set. Espero que você tenha gostado.</p>
-<p>Sabendo que o conteúdo é escasso, vou tentar sempre traduzir alguns posts meus.</p>
-<p>Tente usar essas quatro funções em outros data sets do R, como no <code>mpg</code>!</p>
-<h4 id="obrigado-por-ter-chegado-até-aqui">Obrigado por ter chegado até aqui :)</h4>
-<p>Me segue no twitter: <span class="citation" data-cites="gimbgomes">@gimbgomes</span></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>No fim, teremos um data set completamente marcado com a nossa
+condição, num próximo post vou mostrar como você pode usar a função
+count() para obter algumas estatísticas do nosso data set. Espero que
+você tenha gostado.</p>
+<p>Sabendo que o conteúdo é escasso, vou tentar sempre traduzir alguns
+posts meus.</p>
+<p>Tente usar essas quatro funções em outros data sets do R, como no
+<code>mpg</code>!</p>
+<h4 id="obrigado-por-ter-chegado-até-aqui">Obrigado por ter chegado até
+aqui :)</h4>
+<p>Me segue no twitter: <span class="citation"
+data-cites="gimbgomes">@gimbgomes</span></p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
