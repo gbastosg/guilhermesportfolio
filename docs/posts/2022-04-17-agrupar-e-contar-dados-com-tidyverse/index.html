@@ -1871,12 +1871,6 @@ function init_distill() {
 
     // hoverable references
     $('span.citation[data-cites]').each(function() {
-      if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-        var fn = $(this).children()[0]
-        $(this).html(fn.shadowRoot.querySelector("sup"))
-        $(this).id = fn.id
-        fn.remove()
-      }
       var refs = $(this).attr('data-cites').split(" ");
       var refHtml = refs.map(function(ref) {
         return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -2051,7 +2045,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2098,22 +2092,32 @@ document.addEventListener('DOMContentLoaded', function() {
 <h1>Agrupar e contar dados com tidyverse</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Neste post, vou mostrar como agrupar e contar seus dados para gerar algumas estatísticas. Durante uma análise de dados é bem comum passar um tempo com EDA.</p></p>
+<p><p>Neste post, vou mostrar como agrupar e contar seus dados para
+gerar algumas estatísticas. Durante uma análise de dados é bem comum
+passar um tempo com EDA.</p></p>
 </div>
 
 <div class="d-byline">
-  Guilherme Bastos Gomes <a href="https://gbastosg.github.io/guilhermesportfolio/" class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
+  Guilherme Bastos Gomes <a
+href="https://gbastosg.github.io/guilhermesportfolio/"
+class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
   
 <br/>2022-04-17
 </div>
 
 <div class="d-article">
-<h1 id="olá-um-conceito-bastante-importante-para-analisar-dados-é-o-de-eda">Olá! Um conceito bastante importante para analisar dados é o de EDA</h1>
+<h1
+id="olá-um-conceito-bastante-importante-para-analisar-dados-é-o-de-eda">Olá!
+Um conceito bastante importante para analisar dados é o de EDA</h1>
 <blockquote>
-<p>EDA significa Exploratory Data Analysis, ou análise de dados exploratória</p>
+<p>EDA significa Exploratory Data Analysis, ou análise de dados
+exploratória</p>
 </blockquote>
-<p>Isso é feito tanto com funções que te ajudam a compreender seus dados, quanto com gráficos que vamos desenvolver futuramente.</p>
-<h2 id="neste-post-vou-me-ater-às-funções-para-manipulação-de-dados">Neste post vou me ater às funções para manipulação de dados:</h2>
+<p>Isso é feito tanto com funções que te ajudam a compreender seus
+dados, quanto com gráficos que vamos desenvolver futuramente.</p>
+<h2
+id="neste-post-vou-me-ater-às-funções-para-manipulação-de-dados">Neste
+post vou me ater às funções para manipulação de dados:</h2>
 <ul>
 <li><code>count()</code></li>
 <li><code>summarise()</code></li>
@@ -2121,7 +2125,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <li><code>top_n()</code></li>
 </ul>
 <blockquote>
-<p>Lembrando que <a href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-16-o-poder-do-tidyverse-manipulao-de-dados/">neste post</a> escrevi sobre as funções:</p>
+<p>Lembrando que <a
+href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-16-o-poder-do-tidyverse-manipulao-de-dados/">neste
+post</a> escrevi sobre as funções:</p>
 <ul>
 <li>select()</li>
 <li>arrange()</li>
@@ -2129,11 +2135,15 @@ document.addEventListener('DOMContentLoaded', function() {
 <li>mutate()</li>
 </ul>
 </blockquote>
-<p>Ok, como estamos usando o <code>tidyverse</code> não se esqueça de carregá-lo na memória:</p>
+<p>Ok, como estamos usando o <code>tidyverse</code> não se esqueça de
+carregá-lo na memória:</p>
 <pre><code>library(tidyverse)</code></pre>
-<p>Continuaremos usando o dataset <code>iris</code> que já está no seu R.</p>
-<h1 id="planejando-a-melhor-forma-para-proceder">Planejando a melhor forma para proceder</h1>
-<p>Vamos usar a função <code>count()</code> para encontrar o número total de cada espécie no data set.</p>
+<p>Continuaremos usando o dataset <code>iris</code> que já está no seu
+R.</p>
+<h1 id="planejando-a-melhor-forma-para-proceder">Planejando a melhor
+forma para proceder</h1>
+<p>Vamos usar a função <code>count()</code> para encontrar o número
+total de cada espécie no data set.</p>
 <pre><code>head(iris)</code></pre>
 <p>Este comando deve te mostrar algo assim:</p>
 <table>
@@ -2191,18 +2201,24 @@ document.addEventListener('DOMContentLoaded', function() {
 </tr>
 </tbody>
 </table>
-<p>Perceba que a coluna <code>Species</code> guarda um valor que pode ser usado para agrupar nosso data set.</p>
-<p>Para compreender melhor o que há em cada coluna e como traçar uma boa estratégia para trabalhar com os dados, basta usar o comando <code>glimpse()</code></p>
+<p>Perceba que a coluna <code>Species</code> guarda um valor que pode
+ser usado para agrupar nosso data set.</p>
+<p>Para compreender melhor o que há em cada coluna e como traçar uma boa
+estratégia para trabalhar com os dados, basta usar o comando
+<code>glimpse()</code></p>
 <pre><code>glimpse(iris)</code></pre>
 <p>Isso deve te mostrar algo assim:</p>
 <pre><code>Rows: 150  
 Columns: 5  
-$ Sepal.Length \&lt;dbl\&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5~  
-$ Sepal.Width  \&lt;dbl\&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3~  
-$ Petal.Length \&lt;dbl\&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1~  
-$ Petal.Width  \&lt;dbl\&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0~  
-$ Species      \&lt;fct\&gt; setosa, setosa, setosa~    </code></pre>
-<p>Parece que temos uma coluna <code>Species</code> com nomes que podemos usar para agrupar, mas quais são esses nomes? Existem algumas formas para compreender isso, uma delas é usar a função <code>count()</code></p>
+$ Sepal.Length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5~  
+$ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3~  
+$ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1~  
+$ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0~  
+$ Species      &lt;fct&gt; setosa, setosa, setosa~    </code></pre>
+<p>Parece que temos uma coluna <code>Species</code> com nomes que
+podemos usar para agrupar, mas quais são esses nomes? Existem algumas
+formas para compreender isso, uma delas é usar a função
+<code>count()</code></p>
 <h1 id="count">count()</h1>
 <p>Faça amizade com essa função, hahaha</p>
 <p>Podemos usá-la da seguinte forma:</p>
@@ -2231,15 +2247,24 @@ $ Species      \&lt;fct\&gt; setosa, setosa, setosa~    </code></pre>
 </tr>
 </tbody>
 </table>
-<p>Uma coluna com os grupos e outra com número de ocorrências de cada no nosso data set.</p>
-<p>Perceba que existem 50 amostras de cada espécie: <em>Iris setosa</em>, <em>Iris versicolor</em> e <em>Iris virginica</em></p>
+<p>Uma coluna com os grupos e outra com número de ocorrências de cada no
+nosso data set.</p>
+<p>Perceba que existem 50 amostras de cada espécie: <em>Iris
+setosa</em>, <em>Iris versicolor</em> e <em>Iris virginica</em></p>
 <h2 id="contagem-com-pesos">Contagem com pesos</h2>
-<p>Se quisermos entender a frequencia de outra variável dentro da contagem basta colocarmos uma virgula e chamar o argumento <code>wt = nome_da_coluna</code></p>
+<p>Se quisermos entender a frequencia de outra variável dentro da
+contagem basta colocarmos uma virgula e chamar o argumento
+<code>wt = nome_da_coluna</code></p>
 <pre><code>iris %&gt;%
   count(Species, wt = Petal.Length)</code></pre>
-<p>Argumentos são formas muito úteis de melhorar a análise e usar todo o potencial de uma função, para ler os argumentos associados à funções basta chamar “?” junto com o nome da função dentro do RStudio:</p>
+<p>Argumentos são formas muito úteis de melhorar a análise e usar todo o
+potencial de uma função, para ler os argumentos associados à funções
+basta chamar “?” junto com o nome da função dentro do RStudio:</p>
 <pre><code>?count()</code></pre>
-<p>Toda a documentação relacionada a função deve aparecer numa janela ao lado. Nela é possível ver outro argumento bacana da função count(), o sort (organizar). O padrão é <code>FALSE</code>, mas podemos trocar para <code>TRUE</code> da seguinte forma:</p>
+<p>Toda a documentação relacionada a função deve aparecer numa janela ao
+lado. Nela é possível ver outro argumento bacana da função count(), o
+sort (organizar). O padrão é <code>FALSE</code>, mas podemos trocar para
+<code>TRUE</code> da seguinte forma:</p>
 <pre><code>iris %&gt;%
 count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
 <table>
@@ -2264,12 +2289,20 @@ count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
 </tr>
 </tbody>
 </table>
-<p>As flores da espécies <em>Iris virginica</em> são muito maiores do que as da espécie <em>Iris setosa</em>. Yey, informação com apenas uma função!</p>
-<p>Ok, maneiro. Mas qual será o tamanho médio das pétalas dessas espécies?</p>
-<h1 id="group_by-e-summarisesummarize">group_by() e summarise()/summarize()</h1>
-<p>Outras funções muito úteis para compreender o data set são <code>group_by()</code> e <code>summarise()</code> (ou <code>summarize()</code> para aqueles que curtem o mérican english)</p>
+<p>As flores da espécies <em>Iris virginica</em> são muito maiores do
+que as da espécie <em>Iris setosa</em>. Yey, informação com apenas uma
+função!</p>
+<p>Ok, maneiro. Mas qual será o tamanho médio das pétalas dessas
+espécies?</p>
+<h1 id="group_by-e-summarisesummarize">group_by() e
+summarise()/summarize()</h1>
+<p>Outras funções muito úteis para compreender o data set são
+<code>group_by()</code> e <code>summarise()</code> (ou
+<code>summarize()</code> para aqueles que curtem o mérican english)</p>
 <h1 id="summarise">summarise()</h1>
-<p>Essa função é muito útil para explorar e reduzir o dado ao mesmo tempo, veja como com ela podemos obter diversas informações sobre nosso dataset:</p>
+<p>Essa função é muito útil para explorar e reduzir o dado ao mesmo
+tempo, veja como com ela podemos obter diversas informações sobre nosso
+dataset:</p>
 <pre><code>iris %&gt;%
   # Resumindo para encontrar o minimo, máximo, e a média do tamanho de pétalas
   summarise(min_sepala = min(Sepal.Length),
@@ -2321,7 +2354,9 @@ count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
 </table>
 <p>Bastante maneiro!</p>
 <h1 id="group_by">group_by()</h1>
-<p>Agora se quisermos as mesmas estísticas, mas para o grupos, basta adicionar a função <code>group_by()</code> antes de <code>summarise()</code>:</p>
+<p>Agora se quisermos as mesmas estísticas, mas para o grupos, basta
+adicionar a função <code>group_by()</code> antes de
+<code>summarise()</code>:</p>
 <pre><code>iris %&gt;%
   # Resumindo para encontrar o minimo, máximo, e a média do tamanho de pétalas
   group_by(Species) %&gt;% #agora teremos estatísticas por grupos
@@ -2331,6 +2366,13 @@ count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
             media_petala = mean(Petal.Length))</code></pre>
 <p>Temos algo assim:</p>
 <table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 21%" />
+<col style="width: 17%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Species</th>
@@ -2410,13 +2452,17 @@ count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Agora você tem mais algumas ferramentas para analisar e manipular dados, espero ter ajudado!</p>
+<p>Agora você tem mais algumas ferramentas para analisar e manipular
+dados, espero ter ajudado!</p>
 <blockquote>
-<p>Num próximo post falarei sobre essas siglas que aparecem em nossa tabela: como &lt;dbl&gt;, &lt;fct&gt;, &lt;car&gt;, etc…</p>
+<p>Num próximo post falarei sobre essas siglas que aparecem em nossa
+tabela: como &lt;dbl&gt;, &lt;fct&gt;, &lt;car&gt;, etc…</p>
 </blockquote>
 <h4 id="espero-que-tenham-gostado">Espero que tenham gostado!</h4>
-<p>Me segue no twitter: <span class="citation" data-cites="gimbgomes">@gimbgomes</span></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Me segue no twitter: <span class="citation"
+data-cites="gimbgomes">@gimbgomes</span></p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
