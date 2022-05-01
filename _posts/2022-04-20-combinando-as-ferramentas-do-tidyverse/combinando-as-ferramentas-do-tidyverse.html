@@ -1438,7 +1438,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="combinando-as-ferramentas-do-tidyverse_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="combinando-as-ferramentas-do-tidyverse_files/header-attrs-2.14/header-attrs.js"></script>
   <script src="combinando-as-ferramentas-do-tidyverse_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="combinando-as-ferramentas-do-tidyverse_files/popper-2.6.0/popper.min.js"></script>
   <link href="combinando-as-ferramentas-do-tidyverse_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1472,22 +1472,36 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Combinando as ferramentas do tidyverse</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Neste post combino as funções do tidyverse para obter estatísticas interessantes sobre os dados. A ideia principal é trabalhar com as ferramentas já explicadas em outros posts. Caso uma ferramenta nova apareça, explicarei, mas lembre que é possível ler sobre as funções do R digitando “?nomedafunção” no console!</p></p>
+<p><p>Neste post combino as funções do tidyverse para obter estatísticas
+interessantes sobre os dados. A ideia principal é trabalhar com as
+ferramentas já explicadas em outros posts. Caso uma ferramenta nova
+apareça, explicarei, mas lembre que é possível ler sobre as funções do R
+digitando “?nomedafunção” no console!</p></p>
 </div>
 
 <div class="d-byline">
-  Guilherme Bastos Gomes <a href="https://gbastosg.github.io/guilhermesportfolio/" class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
+  Guilherme Bastos Gomes <a
+href="https://gbastosg.github.io/guilhermesportfolio/"
+class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
   
 <br/>2022-04-20
 </div>
 
 <div class="d-article">
-<h1 id="olá-neste-post-usarei-diversas-funções-do-tidyverse-para-manipular-dados-que-já-estão-presentes-no-r">Olá! Neste post usarei diversas funções do tidyverse para manipular dados que já estão presentes no R</h1>
-<p>Lembrando que <a href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-16-o-poder-do-tidyverse-manipulao-de-dados/">neste post</a> expliquei sobre cada uma dessas funções!</p>
-<p>Hoje vamos combinar todas elas para manipular os dados e melhorar as análises.</p>
-<p>Para isso, usaremos o dataset <code>mpg</code> embutido no tidyverse, então começamos carregando o pacote:</p>
+<h1
+id="olá-neste-post-usarei-diversas-funções-do-tidyverse-para-manipular-dados-que-já-estão-presentes-no-r">Olá!
+Neste post usarei diversas funções do tidyverse para manipular dados que
+já estão presentes no R</h1>
+<p>Lembrando que <a
+href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-16-o-poder-do-tidyverse-manipulao-de-dados/">neste
+post</a> expliquei sobre cada uma dessas funções!</p>
+<p>Hoje vamos combinar todas elas para manipular os dados e melhorar as
+análises.</p>
+<p>Para isso, usaremos o dataset <code>mpg</code> embutido no tidyverse,
+então começamos carregando o pacote:</p>
 <pre><code>library(tidyverse)</code></pre>
-<p>Dê uma checada no que existe no data.frame, usando a função <code>glimpse()</code>:</p>
+<p>Dê uma checada no que existe no data.frame, usando a função
+<code>glimpse()</code>:</p>
 <pre><code>glimpse(mpg)
 
 Rows: 234
@@ -1503,18 +1517,24 @@ $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 1
 $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 25, 24, 25, 23~
 $ fl           &lt;chr&gt; &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, ~
 $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;com~</code></pre>
-<p>Vemos que existem 11 colunas e 234 linhas, é um data set bem interessante! Para saber mais a respeito desses dados, basta digitar <code>?mpg</code> no console, mas aqui vai uma breve explicação:</p>
+<p>Vemos que existem 11 colunas e 234 linhas, é um data set bem
+interessante! Para saber mais a respeito desses dados, basta digitar
+<code>?mpg</code> no console, mas aqui vai uma breve explicação:</p>
 <h1 id="mpg">mpg</h1>
-<p>Dados sobre a economia de combustível de carros populares de 1999 até 2008.</p>
-<p>É possível usar a função <code>colnames()</code> para observar as colunas do df:</p>
+<p>Dados sobre a economia de combustível de carros populares de 1999 até
+2008.</p>
+<p>É possível usar a função <code>colnames()</code> para observar as
+colunas do df:</p>
 <pre><code>colnames(mpg)
 
 [1] &quot;manufacturer&quot; &quot;model&quot;        &quot;displ&quot;        &quot;year&quot;         &quot;cyl&quot;         
 [6] &quot;trans&quot;        &quot;drv&quot;          &quot;cty&quot;          &quot;hwy&quot;          &quot;fl&quot;          
 [11] &quot;class&quot;</code></pre>
-<p>Uma forma bem interessante de receber algumas estatísticas é usar a função <code>summary()</code></p>
+<p>Uma forma bem interessante de receber algumas estatísticas é usar a
+função <code>summary()</code></p>
 <h1 id="summary">summary()</h1>
-<p>Essa é uma função bem generica do R base, e serve principalmente para obter um resumo com estatisticas de um objeto:</p>
+<p>Essa é uma função bem generica do R base, e serve principalmente para
+obter um resumo com estatisticas de um objeto:</p>
 <pre><code>summary(mpg)
 
  manufacturer          model               displ            year           cyl       
@@ -1538,9 +1558,11 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
  </code></pre>
 <p>Perceba quanta informação recebemos com apenas uma função!</p>
 <blockquote>
-<p>Vamos misturar algumas funções do tidyverse para obter ainda mais stats!</p>
+<p>Vamos misturar algumas funções do tidyverse para obter ainda mais
+stats!</p>
 </blockquote>
-<h1 id="misturando-as-funções-com-o-pipe">misturando as funções com o pipe “%&gt;%”</h1>
+<h1 id="misturando-as-funções-com-o-pipe">misturando as funções com o
+pipe “%&gt;%”</h1>
 <pre><code>mpg %&gt;%
   select(tipo_de_motor = displ,
   ano = year, 
@@ -1549,7 +1571,9 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
   group_by(ano) %&gt;%
   summarise(media_milhas_por_galao_cidade = mean(galao_milhas_cidade), 
   media_milhas_por_galao_estrada = mean(galao_milhas_estrada))</code></pre>
-<p>Veja que interessante, parece que em média os motores passaram a percorrer menos milhas (0.3 a menos) por galão nas cidades, enquanto na estrada esse valor aumentou em 0.1:</p>
+<p>Veja que interessante, parece que em média os motores passaram a
+percorrer menos milhas (0.3 a menos) por galão nas cidades, enquanto na
+estrada esse valor aumentou em 0.1:</p>
 <table>
 <thead>
 <tr class="header">
@@ -1571,10 +1595,13 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
 </tr>
 </tbody>
 </table>
-<p>Perceba como dentro da função <code>select()</code> pudemos criar o nome das colunas que apareceram no subset selecionado.</p>
-<p>Sendo assim, dentro da função <code>summarise()</code> temos que trabalhar com os novos nomes.</p>
+<p>Perceba como dentro da função <code>select()</code> pudemos criar o
+nome das colunas que apareceram no subset selecionado.</p>
+<p>Sendo assim, dentro da função <code>summarise()</code> temos que
+trabalhar com os novos nomes.</p>
 <blockquote>
-<p>Será que existe uma relação entre o tipo do motor daquele ano e o gasto de gasolina?</p>
+<p>Será que existe uma relação entre o tipo do motor daquele ano e o
+gasto de gasolina?</p>
 </blockquote>
 <pre><code>mpg %&gt;%
   select(tipo_de_motor = displ,
@@ -1584,8 +1611,15 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
   group_by(tipo_de_motor, ano) %&gt;%
   summarise(media_milhas_por_galao_cidade = mean(galao_milhas_cidade), 
   media_milhas_por_galao_estrada = mean(galao_milhas_estrada))</code></pre>
-<p>Agora agrupamos por duas colunas, primeiro por tipo do motor, segundo pelo ano:</p>
+<p>Agora agrupamos por duas colunas, primeiro por tipo do motor, segundo
+pelo ano:</p>
 <table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 8%" />
+<col style="width: 35%" />
+<col style="width: 36%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>tipo_de_motor</th>
@@ -1663,7 +1697,8 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
 </tr>
 </tbody>
 </table>
-<p>Mas nossa tabela ainda está bagunçada, vamos arrumar com um <code>arrange()</code>:</p>
+<p>Mas nossa tabela ainda está bagunçada, vamos arrumar com um
+<code>arrange()</code>:</p>
 <pre><code>mpg %&gt;%
   select(tipo_de_motor = displ,
   ano = year, 
@@ -1673,7 +1708,9 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
   summarise(media_milhas_por_galao_cidade = mean(galao_milhas_cidade), 
   media_milhas_por_galao_estrada = mean(galao_milhas_estrada)) %&gt;%
   arrange((ano))</code></pre>
-<p>Maneiro, agora que temos nosso dado bem organizado podemos separar os carros de 1999 daqueles de 2008 usando um filtro e salvar esse resultado num novo objeto:</p>
+<p>Maneiro, agora que temos nosso dado bem organizado podemos separar os
+carros de 1999 daqueles de 2008 usando um filtro e salvar esse resultado
+num novo objeto:</p>
 <pre><code>mpg_1999 &lt;- mpg %&gt;%
   select(tipo_de_motor = displ,
   ano = year, 
@@ -1694,14 +1731,20 @@ $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compa
   media_milhas_por_galao_estrada = mean(galao_milhas_estrada)) %&gt;%
   arrange((ano)) %&gt;%
   filter(ano == 2008)</code></pre>
-<p>Agora construímos sub sets do nosso conjunto original, o que é muito útil quando estamos realizando análises.</p>
-<p>Dê uma olhada em ambos sub data sets e pense em maneiras de comparar esses valores.</p>
+<p>Agora construímos sub sets do nosso conjunto original, o que é muito
+útil quando estamos realizando análises.</p>
+<p>Dê uma olhada em ambos sub data sets e pense em maneiras de comparar
+esses valores.</p>
 <blockquote>
-<p>No próximo post: Uma das formas mais fáceis de se comparar grupos de dados é usar gráficos. No próximo post usarei gráficos do ggplot para mostrar como fazer tais comparações.</p>
+<p>No próximo post: Uma das formas mais fáceis de se comparar grupos de
+dados é usar gráficos. No próximo post usarei gráficos do ggplot para
+mostrar como fazer tais comparações.</p>
 </blockquote>
 <h4 id="obrigado-por-chegar-até-aqui">Obrigado por chegar até aqui!</h4>
-<p>Me segue no twitter: <span class="citation" data-cites="gimbgomes">@gimbgomes</span></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Me segue no twitter: <span class="citation"
+data-cites="gimbgomes">@gimbgomes</span></p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
