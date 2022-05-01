@@ -1438,7 +1438,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="grouping-and-counting-in-the-tidyverse_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="grouping-and-counting-in-the-tidyverse_files/header-attrs-2.14/header-attrs.js"></script>
   <script src="grouping-and-counting-in-the-tidyverse_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="grouping-and-counting-in-the-tidyverse_files/popper-2.6.0/popper.min.js"></script>
   <link href="grouping-and-counting-in-the-tidyverse_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1472,22 +1472,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Grouping and counting in the tidyverse</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>In this post, I will show you how to group and count your data to generate some stats. During an analysis it’s pretty common to spend some time with EDA.</p></p>
+<p><p>In this post, I will show you how to group and count your data to
+generate some stats. During an analysis it’s pretty common to spend some
+time with EDA.</p></p>
 </div>
 
 <div class="d-byline">
-  Guilherme Bastos Gomes <a href="https://gbastosg.github.io/guilhermesportfolio/" class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
+  Guilherme Bastos Gomes <a
+href="https://gbastosg.github.io/guilhermesportfolio/"
+class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
   
 <br/>2022-04-18
 </div>
 
 <div class="d-article">
-<h1 id="hello-a-pretty-important-concept-to-analise-data-its-the-eda">Hello! A pretty important concept to analise data it’s the EDA</h1>
+<h1
+id="hello-a-pretty-important-concept-to-analise-data-its-the-eda">Hello!
+A pretty important concept to analise data it’s the EDA</h1>
 <blockquote>
 <p>EDA stands for Exploratory Data Analysis</p>
 </blockquote>
-<p>We do an EDA by using functions that helps us understand our data, and also with graphs that we are going to develop in future time.</p>
-<h2 id="in-this-post-im-going-to-show-you-how-to-use-the-following-functions-for-data-analysis-and-manipulation">In this post I’m going to show you how to use the following functions for data analysis and manipulation:</h2>
+<p>We do an EDA by using functions that helps us understand our data,
+and also with graphs that we are going to develop in future time.</p>
+<h2
+id="in-this-post-im-going-to-show-you-how-to-use-the-following-functions-for-data-analysis-and-manipulation">In
+this post I’m going to show you how to use the following functions for
+data analysis and manipulation:</h2>
 <ul>
 <li><code>count()</code></li>
 <li><code>summarise()</code></li>
@@ -1495,7 +1505,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><code>top_n()</code></li>
 </ul>
 <blockquote>
-<p>Just a reminder that <a href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-13-the-power-of-the-tidyverse-manipulating-data/">in this post</a> I’ve wrote about the following functions:</p>
+<p>Just a reminder that <a
+href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-13-the-power-of-the-tidyverse-manipulating-data/">in
+this post</a> I’ve wrote about the following functions:</p>
 <ul>
 <li>select()</li>
 <li>arrange()</li>
@@ -1503,11 +1515,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li>mutate()</li>
 </ul>
 </blockquote>
-<p>Ok, since we are dealling with the <code>tidyverse</code> don’t forget to load it in your space:</p>
+<p>Ok, since we are dealling with the <code>tidyverse</code> don’t
+forget to load it in your space:</p>
 <pre><code>library(tidyverse)</code></pre>
-<p>we will continue to use the <code>iris</code> data set that is already built in R.</p>
-<h1 id="planning-the-best-way-to-proceed">Planning the best way to proceed</h1>
-<p>Let’s use the function <code>count()</code> to find the total number of each species in our data set.</p>
+<p>we will continue to use the <code>iris</code> data set that is
+already built in R.</p>
+<h1 id="planning-the-best-way-to-proceed">Planning the best way to
+proceed</h1>
+<p>Let’s use the function <code>count()</code> to find the total number
+of each species in our data set.</p>
 <pre><code>head(iris)</code></pre>
 <p>This should give you something like this:</p>
 <table>
@@ -1565,8 +1581,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </tr>
 </tbody>
 </table>
-<p>Notice that the column <code>Species</code> holds a value that can be used to form groups in our data set.</p>
-<p>Well, to a better understandment of the values from each column, and also to create a strategy to deal with the data, just use the command <code>glimpse()</code></p>
+<p>Notice that the column <code>Species</code> holds a value that can be
+used to form groups in our data set.</p>
+<p>Well, to a better understandment of the values from each column, and
+also to create a strategy to deal with the data, just use the command
+<code>glimpse()</code></p>
 <pre><code>glimpse(iris)</code></pre>
 <p>This should give you something like this:</p>
 <pre><code>Rows: 150  
@@ -1576,7 +1595,9 @@ $ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3~
 $ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1~  
 $ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0~  
 $ Species      &lt;fct&gt; setosa, setosa, setosa~    </code></pre>
-<p>Seems that we have a column <code>Species</code> with names that we can group, but what are those names? There are some ways to obtain this answer, one of them is by using <code>count()</code></p>
+<p>Seems that we have a column <code>Species</code> with names that we
+can group, but what are those names? There are some ways to obtain this
+answer, one of them is by using <code>count()</code></p>
 <h1 id="count">count()</h1>
 <p>Be a friend of this function, hahaha</p>
 <p>We can use it as:</p>
@@ -1605,18 +1626,29 @@ $ Species      &lt;fct&gt; setosa, setosa, setosa~    </code></pre>
 </tr>
 </tbody>
 </table>
-<p>A column with the groups and another with the number of ocurrencies of each one in our data set.</p>
-<p>There are 50 samples of each species: <em>Iris setosa</em>, <em>Iris versicolor</em> and <em>Iris virginica</em></p>
+<p>A column with the groups and another with the number of ocurrencies
+of each one in our data set.</p>
+<p>There are 50 samples of each species: <em>Iris setosa</em>, <em>Iris
+versicolor</em> and <em>Iris virginica</em></p>
 <h2 id="counting-with-weights">Counting with weights</h2>
-<p>If we want to understand the frequency of another variable inside our counting, we just put a comma in the function and call the argument <code>wt = column_name</code></p>
+<p>If we want to understand the frequency of another variable inside our
+counting, we just put a comma in the function and call the argument
+<code>wt = column_name</code></p>
 <pre><code>iris %&gt;%
   count(Species, wt = Petal.Length)</code></pre>
-<p>Arguments are useful ways of improving our analysis by using the full potential of a function. To read the arguments associated to a function, just call “?” with the name of the function inside of RStudio:</p>
+<p>Arguments are useful ways of improving our analysis by using the full
+potential of a function. To read the arguments associated to a function,
+just call “?” with the name of the function inside of RStudio:</p>
 <pre><code>?count()</code></pre>
-<p>All the docummentation related to the function should appear in a side window. It’s possible to see another cool argument of the <code>count()</code> function, that is, sort (organize). The default is <code>FALSE</code>, but we can switch it to <code>TRUE</code> in the following way:</p>
+<p>All the docummentation related to the function should appear in a
+side window. It’s possible to see another cool argument of the
+<code>count()</code> function, that is, sort (organize). The default is
+<code>FALSE</code>, but we can switch it to <code>TRUE</code> in the
+following way:</p>
 <pre><code>iris %&gt;%
 count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
-<p>In this way, we don’t need to use the <code>arrange()</code>function:</p>
+<p>In this way, we don’t need to use the
+<code>arrange()</code>function:</p>
 <table>
 <thead>
 <tr class="header">
@@ -1639,13 +1671,21 @@ count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Flowers from the <em>Iris virginica</em> specie are much larger than those from <em>Iris setosa</em>. Yey, information with only one function!</p>
-<p>Ok, cool. But what could be the mean size of petals of these species?</p>
+<p>Flowers from the <em>Iris virginica</em> specie are much larger than
+those from <em>Iris setosa</em>. Yey, information with only one
+function!</p>
+<p>Ok, cool. But what could be the mean size of petals of these
+species?</p>
 <p>Now let’s gather some stats.</p>
-<h1 id="group_by-e-summarisesummarize">group_by() e summarise()/summarize()</h1>
-<p>Some other functions that are really useful to understand our data set are <code>group_by()</code> and <code>summarise()</code> (or <code>summarize()</code> for those who preffer the merican english)</p>
+<h1 id="group_by-e-summarisesummarize">group_by() e
+summarise()/summarize()</h1>
+<p>Some other functions that are really useful to understand our data
+set are <code>group_by()</code> and <code>summarise()</code> (or
+<code>summarize()</code> for those who preffer the merican english)</p>
 <h1 id="summarise">summarise()</h1>
-<p>This function is really useful to explore and reduce data at the same time, you will see that with it we can obtain different information from our data set:</p>
+<p>This function is really useful to explore and reduce data at the same
+time, you will see that with it we can obtain different information from
+our data set:</p>
 <pre><code>iris %&gt;%
   # Summarising to find the minimum, maximum, and the mean Petal size in the whole data set
   summarise(min_sepal = min(Sepal.Length),
@@ -1697,7 +1737,9 @@ count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
 </table>
 <p>Pretty nice!</p>
 <h1 id="group_by">group_by()</h1>
-<p>Now if we want the same stats, but for groups, we can simply add the function <code>group_by()</code> to our pipe before <code>summarise()</code>:</p>
+<p>Now if we want the same stats, but for groups, we can simply add the
+function <code>group_by()</code> to our pipe before
+<code>summarise()</code>:</p>
 <pre><code>iris %&gt;%
   # Using summarise combined with gorup_by
   group_by(Species) %&gt;% #now we will have stats for each group
@@ -1707,6 +1749,13 @@ count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
             mean_petal = mean(Petal.Length))</code></pre>
 <p>We will have this table:</p>
 <table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 21%" />
+<col style="width: 17%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Species</th>
@@ -1786,13 +1835,17 @@ count(Species, wt = Petal.Length, sort = TRUE)</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Now you have even more tools to analyse and manipulate data, hope this was useful!</p>
+<p>Now you have even more tools to analyse and manipulate data, hope
+this was useful!</p>
 <blockquote>
-<p>In a future post, I will write about these initials that appeared in our table: &lt;dbl&gt;, &lt;fct&gt;, &lt;car&gt;, etc…</p>
+<p>In a future post, I will write about these initials that appeared in
+our table: &lt;dbl&gt;, &lt;fct&gt;, &lt;car&gt;, etc…</p>
 </blockquote>
 <h4 id="thank-you-for-your-time">Thank you for your time!</h4>
-<p>Follow me on twitter: <span class="citation" data-cites="gimbgomes">@gimbgomes</span></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Follow me on twitter: <span class="citation"
+data-cites="gimbgomes">@gimbgomes</span></p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
