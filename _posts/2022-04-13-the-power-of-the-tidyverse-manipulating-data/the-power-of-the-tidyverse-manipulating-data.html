@@ -1438,7 +1438,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="the-power-of-the-tidyverse-manipulating-data_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="the-power-of-the-tidyverse-manipulating-data_files/header-attrs-2.14/header-attrs.js"></script>
   <script src="the-power-of-the-tidyverse-manipulating-data_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="the-power-of-the-tidyverse-manipulating-data_files/popper-2.6.0/popper.min.js"></script>
   <link href="the-power-of-the-tidyverse-manipulating-data_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1472,26 +1472,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>The power of the tidyverse: manipulating data</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>In this post I will show you how to use the basic tools from tidyverse. This tools are useful to deal with a whole sort of data.</p></p>
+<p><p>In this post I will show you how to use the basic tools from
+tidyverse. This tools are useful to deal with a whole sort of
+data.</p></p>
 </div>
 
 <div class="d-byline">
-  Guilherme Bastos Gomes <a href="https://gbastosg.github.io/guilhermesportfolio/" class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
+  Guilherme Bastos Gomes <a
+href="https://gbastosg.github.io/guilhermesportfolio/"
+class="uri">https://gbastosg.github.io/guilhermesportfolio/</a> 
   
 <br/>2022-04-13
 </div>
 
 <div class="d-article">
-<h1 id="hello-in-this-post-i-will-show-you-how-to-use-the-basic-verbs-of-the-tidyverse">Hello! In this post I will show you how to use the basic verbs of the tidyverse:</h1>
+<h1
+id="hello-in-this-post-i-will-show-you-how-to-use-the-basic-verbs-of-the-tidyverse">Hello!
+In this post I will show you how to use the basic verbs of the
+tidyverse:</h1>
 <ul>
 <li>select()</li>
 <li>arrange()</li>
 <li>filter()</li>
 <li>mutate()</li>
 </ul>
-<p>All these verbs are also great <em>functions</em> to deal with data from the real world, but since gathering this data can be very time useful we will use a built in data set from R.</p>
-<p>Let’s have a look in the Iris data set which gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are <em>Iris setosa</em>, <em>Iris versicolor</em>, and <em>Iris virginica</em>.</p>
-<p>And of course since we are dealing with the tidyverse we have to load it:</p>
+<p>All these verbs are also great <em>functions</em> to deal with data
+from the real world, but since gathering this data can be very time
+useful we will use a built in data set from R.</p>
+<p>Let’s have a look in the Iris data set which gives the measurements
+in centimeters of the variables sepal length, sepal width, petal length
+and petal width, respectively, for 50 flowers from each of 3 species of
+iris. The species are <em>Iris setosa</em>, <em>Iris versicolor</em>,
+and <em>Iris virginica</em>.</p>
+<p>And of course since we are dealing with the tidyverse we have to load
+it:</p>
 <p><code>library(tidyverse)</code></p>
 <p>we can call it and have a look:<br />
 <code>iris</code><br />
@@ -1500,13 +1514,22 @@ or just a part of it:<br />
 or just a glimpse for those who love stats:<br />
 <code>glimpse(iris)</code></p>
 <h1 id="pipe-and-select">Pipe ‘%&gt;%’ and select()</h1>
-<p>First of all let’s start with select and since we are using a tidyverse way of thinking, we are going to start using <em>pipes</em> also known as <em>%&gt;%</em> or <em>|&gt;</em>, depending on which you prefer to write.</p>
+<p>First of all let’s start with select and since we are using a
+tidyverse way of thinking, we are going to start using <em>pipes</em>
+also known as <em>%&gt;%</em> or <em>|&gt;</em>, depending on which you
+prefer to write.</p>
 <p>So, to select a sort of columns you wish you can:</p>
 <pre><code>iris %&gt;% #here we are calling the dataframe iris and piping to the next function
 select(Sepal.Length, Species) #here we are calling the function and  choosing two columns `Sepal.Length` and `Species`</code></pre>
-<p>Note the pipe “%&gt;%”, that means that the output of one function will be the input of the next one, and the first pipe just includes the iris data set into the next function <code>select(Sepal.Length, Species)</code></p>
+<p>Note the pipe “%&gt;%”, that means that the output of one function
+will be the input of the next one, and the first pipe just includes the
+iris data set into the next function
+<code>select(Sepal.Length, Species)</code></p>
 <p>Pretty easy, right?</p>
-<p>Now you should have a smaller data set, only the selected columns from iris to work with, if you want to check it, just call the same script again, but using the <code>head()</code> function to see only the first 10 lines:</p>
+<p>Now you should have a smaller data set, only the selected columns
+from iris to work with, if you want to check it, just call the same
+script again, but using the <code>head()</code> function to see only the
+first 10 lines:</p>
 <pre><code>iris %&gt;%
   select(Sepal.Length, Species) %&gt;%
   head()</code></pre>
@@ -1547,13 +1570,17 @@ select(Sepal.Length, Species) #here we are calling the function and  choosing tw
 </tr>
 </tbody>
 </table>
-<p>To make our work even easier, we should create an object with our smaller iris <code>dataframe</code>:</p>
-<p>It’s good to name it as it is, in this case I will use the following name: <code>selected_iris</code></p>
+<p>To make our work even easier, we should create an object with our
+smaller iris <code>dataframe</code>:</p>
+<p>It’s good to name it as it is, in this case I will use the following
+name: <code>selected_iris</code></p>
 <pre><code>selected_iris &lt;- iris %&gt;%
   select(Sepal.Length, Species) %&gt;%
   head()</code></pre>
 <h1 id="arrange">arrange()</h1>
-<p>Suppose you want now to quick check the ordered distribution of Sepal Lengths, we can either call the <code>view()</code> function inside RStudio, or use the <code>arrange()</code> function, like this:</p>
+<p>Suppose you want now to quick check the ordered distribution of Sepal
+Lengths, we can either call the <code>view()</code> function inside
+RStudio, or use the <code>arrange()</code> function, like this:</p>
 <pre><code>arrange(selected_iris) %&gt;%
   head()</code></pre>
 <p>You should have something like this:</p>
@@ -1592,7 +1619,10 @@ select(Sepal.Length, Species) #here we are calling the function and  choosing tw
 </tbody>
 </table>
 <h2 id="arrangedesc">arrange(desc())</h2>
-<p>You will notice that the <code>dataframe</code> is now ordered from the lowest to the highest values of Sepal.Length. But what if we wanted to arrange in a descending order? Then we should just use the function <code>desc()</code> inside of our <code>arrange()</code> calling:</p>
+<p>You will notice that the <code>dataframe</code> is now ordered from
+the lowest to the highest values of Sepal.Length. But what if we wanted
+to arrange in a descending order? Then we should just use the function
+<code>desc()</code> inside of our <code>arrange()</code> calling:</p>
 <pre><code>arrange(desc(selected_iris)) %&gt;%
   head()</code></pre>
 <p>Now you will have:</p>
@@ -1631,15 +1661,27 @@ select(Sepal.Length, Species) #here we are calling the function and  choosing tw
 </tbody>
 </table>
 <h1 id="filter">filter()</h1>
-<p>Alright, so now that we already know how to <code>select()</code> and <code>arrange()</code>, let’s learn another two verbs that are great for data manipulation and analysis:</p>
-<h2 id="first-of-all-lets-use-the-filter-function-to-gather-only-iris-virginica-species-from-our-dataset">First of all, let’s use the <code>filter()</code> function to gather only <em>Iris virginica</em> species from our dataset:</h2>
+<p>Alright, so now that we already know how to <code>select()</code> and
+<code>arrange()</code>, let’s learn another two verbs that are great for
+data manipulation and analysis:</p>
+<h2
+id="first-of-all-lets-use-the-filter-function-to-gather-only-iris-virginica-species-from-our-dataset">First
+of all, let’s use the <code>filter()</code> function to gather only
+<em>Iris virginica</em> species from our dataset:</h2>
 <pre><code>iris %&gt;%
   filter(Species == &quot;virginica&quot;)</code></pre>
-<p>Note that we are using the <code>==</code> operator, meaning we want to filter everything from the Species column that is equal to our text “virginica”.</p>
-<h2 id="suppose-you-want-to-filter-only-those-that-are-not-iris-virginica">Suppose you want to filter only those that are not <em>Iris virginica</em>:</h2>
+<p>Note that we are using the <code>==</code> operator, meaning we want
+to filter everything from the Species column that is equal to our text
+“virginica”.</p>
+<h2
+id="suppose-you-want-to-filter-only-those-that-are-not-iris-virginica">Suppose
+you want to filter only those that are not <em>Iris virginica</em>:</h2>
 <pre><code>iris %&gt;%
   filter(Species != &quot;virginica&quot;)</code></pre>
-<p>Now we have used the <code>!=</code> which stands for different or not equal, then we will have received a data set with <em>Iris setosa</em> and <em>Iris versicolor</em> species, and to check if this is true, let’s create objects that receives our filtered data sets:</p>
+<p>Now we have used the <code>!=</code> which stands for different or
+not equal, then we will have received a data set with <em>Iris
+setosa</em> and <em>Iris versicolor</em> species, and to check if this
+is true, let’s create objects that receives our filtered data sets:</p>
 <pre><code>iris_virginica &lt;- 
   iris %&gt;%
   filter(Species == &quot;virginica&quot;)
@@ -1649,48 +1691,75 @@ select(Sepal.Length, Species) #here we are calling the function and  choosing tw
 not_iris_virginica &lt;-
   iris %&gt;%
   filter(Species != &quot;virginica&quot;)</code></pre>
-<h3 id="checking-with-conditional-operators">Checking with conditional operators</h3>
-<p>Both of these operators <code>==</code> (equal) and <code>!=</code> (not equal) can be used in different contexts in R, for example to check if everything was okay with our filtering:</p>
+<h3 id="checking-with-conditional-operators">Checking with conditional
+operators</h3>
+<p>Both of these operators <code>==</code> (equal) and <code>!=</code>
+(not equal) can be used in different contexts in R, for example to check
+if everything was okay with our filtering:</p>
 <pre><code>#here I am going to use another form of the select funcion:
 select(iris_virginica, Species) == &quot;virginica&quot;</code></pre>
-<p>And this should return <code>TRUE</code> for all the rows inside our data set. When we test our affirmations with conditionals, R can check if that is TRUE or FALSE.</p>
+<p>And this should return <code>TRUE</code> for all the rows inside our
+data set. When we test our affirmations with conditionals, R can check
+if that is TRUE or FALSE.</p>
 <p>Let’s try another one:</p>
 <pre><code>#just calling the data set inside the function again:
 select(not_iris_virginica, Species) == &quot;virginica&quot;</code></pre>
-<p>And now you should receive <code>FALSE</code> for all the rows inside our <code>not_iris_virginica</code> data set. Meaning our filter worked, cool right?</p>
-<p>I will talk about conditionals and all those boolean things in another post, since there are many other operators (<code>&gt;=</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&amp;</code>, <code>|</code>, and so on…)</p>
+<p>And now you should receive <code>FALSE</code> for all the rows inside
+our <code>not_iris_virginica</code> data set. Meaning our filter worked,
+cool right?</p>
+<p>I will talk about conditionals and all those boolean things in
+another post, since there are many other operators (<code>&gt;=</code>,
+<code>&lt;=</code>, <code>&gt;</code>, <code>&lt;</code>,
+<code>&amp;</code>, <code>|</code>, and so on…)</p>
 <p>Now I am going to continue with another tidyverb ;)</p>
 <h1 id="mutate">mutate()</h1>
-<p>The last and, maybe most important, function we are going to learn is <code>mutate()</code></p>
-<p>This is a great function to manipulate data and to transform or create new columns in our data set</p>
+<p>The last and, maybe most important, function we are going to learn is
+<code>mutate()</code></p>
+<p>This is a great function to manipulate data and to transform or
+create new columns in our data set</p>
 <p><code>mutate()</code> works like this:</p>
 <p>mutate(column_you_want_to_create = equation)</p>
-<p>Suppose you want to know the ratio between Petal and Sepal length of all the species:</p>
+<p>Suppose you want to know the ratio between Petal and Sepal length of
+all the species:</p>
 <pre><code>iris %&gt;%
   mutate(ratio_petal_sepal = Petal.Length/Sepal.Length)</code></pre>
-<p>There are many uses for the mutate verb, another one is to sort data combining it with the <code>ifelse()</code> function, which creates a condition:</p>
-<p>Imagine we want to classify our flowers as being “large” or “small” based on our ratio, that means “if ratio_petal_sepal &lt; 0.5, then it receives a <code>small</code> tag, otherwise it receives a <code>large</code> tag:</p>
+<p>There are many uses for the mutate verb, another one is to sort data
+combining it with the <code>ifelse()</code> function, which creates a
+condition:</p>
+<p>Imagine we want to classify our flowers as being “large” or “small”
+based on our ratio, that means “if ratio_petal_sepal &lt; 0.5, then it
+receives a <code>small</code> tag, otherwise it receives a
+<code>large</code> tag:</p>
 <pre><code>iris %&gt;%
   mutate(ratio_petal_sepal = Petal.Length/Sepal.Length) %&gt;%
   mutate(size = ifelse(ratio_petal_sepal &lt; 0.5, &quot;small&quot;, &quot;large&quot;))</code></pre>
-<p>Check that we are using a double mutate calling, just because we have not created an object, let’s tidy it:</p>
+<p>Check that we are using a double mutate calling, just because we have
+not created an object, let’s tidy it:</p>
 <pre><code>ratio_iris &lt;- iris %&gt;%
   mutate(ratio_petal_sepal = Petal.Length/Sepal.Length)</code></pre>
-<p>Now we have the object <code>ratio_iris</code> and I can explain how <code>mutate()</code>combined with <code>ifelse()</code> works:</p>
+<p>Now we have the object <code>ratio_iris</code> and I can explain how
+<code>mutate()</code>combined with <code>ifelse()</code> works:</p>
 <pre><code>ratio_iris %&gt;%
   mutate(size  = ifelse(ratio_petal_sepal &lt; 0.5, &quot;small&quot;, &quot;large&quot;))</code></pre>
-<h3 id="explaining-mutate-combined-with-ifelse">Explaining mutate() combined with ifelse()</h3>
+<h3 id="explaining-mutate-combined-with-ifelse">Explaining mutate()
+combined with ifelse()</h3>
 <pre><code>ratio_iris %&gt;% #putting the data set through our pipe
   mutate(size  = #calling mutate and creating the column &quot;size&quot;
   ifelse(ratio_petal_sepal &lt; 0.5, #if this statement is `TRUE` and the number inside of ratio_petal_sepal is lesser than 0.5
   &quot;small&quot;, #then the column &quot;size&quot; will receive that tag &quot;small&quot;
   &quot;large&quot; #else or otherwise it will receive &quot;large&quot;))</code></pre>
-<p>You will have a complete sorted data set, on the next post I will show you how to count() and to gather some stats from data. Hope you liked.</p>
-<p>Now you can manipulate data and start a data analysis project using the <code>tidyverse</code></p>
-<p>Try using those functions in the other data sets from R, like the <code>mpg</code> for example!</p>
+<p>You will have a complete sorted data set, on the next post I will
+show you how to count() and to gather some stats from data. Hope you
+liked.</p>
+<p>Now you can manipulate data and start a data analysis project using
+the <code>tidyverse</code></p>
+<p>Try using those functions in the other data sets from R, like the
+<code>mpg</code> for example!</p>
 <h4 id="thank-you-for-your-time">Thank you for your time :)</h4>
-<p>Follow me on twitter: <span class="citation" data-cites="gimbgomes">@gimbgomes</span></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Follow me on twitter: <span class="citation"
+data-cites="gimbgomes">@gimbgomes</span></p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
