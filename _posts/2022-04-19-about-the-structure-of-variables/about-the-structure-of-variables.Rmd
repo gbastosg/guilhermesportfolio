@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Hello! In this post I am going to briefly write about the structure of variables
 
->Variable is everything that varies, or can vary.
+>A variable is a quantity, quality or property that you can measure. 
 
 But what is it in practice?
 
