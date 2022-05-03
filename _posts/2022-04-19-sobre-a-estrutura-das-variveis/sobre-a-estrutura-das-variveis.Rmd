@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Olá! Neste post irei brevemente escrever sobre a estrutura de variáveis
 
->variável é aquilo que varia, ou pode variar.
+>variável é uma quantidade, qualidade, ou propriedade que podemos medir.
 
 Mas o que é uma variável na prática?
 
