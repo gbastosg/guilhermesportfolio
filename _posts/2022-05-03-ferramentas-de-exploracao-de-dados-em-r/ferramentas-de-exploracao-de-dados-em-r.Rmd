@@ -1,0 +1,206 @@
+---
+title: "Ferramentas de exploração de dados em R"
+description: |
+  Neste post pretendo mostrar quais as principais ferramentas que usamos ao analisar dados usando a linguagem R e o tidyverse.
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-05-03
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+[
+Neste post vou falar sobre EDA.
+
+-Visualizando distribuições.
+-Boxplot.
+]
+
+# Olá! 
+
+No último post, falamos sobre histogramas e da importância de compreender a frequência nos seus dados. Hoje vamos fazer mais algumas análises exploratórias dos dados de um data set do `tidyverse`, portanto devemos carregar o pacote:
+
+```
+library(tidyverse)
+```
+
+# Exploratory Data Analysis (EDA)
+
+Durante a etapa de análise exploratória, devemos desenvolver um melhor entendimento dos nossos dados.
+
+A melhor forma de entender um dado é questionar o que existe nele.
+
+As perguntas são ferramentas que te ajudam muito, pois guiam a exploração. E como temos  sempre melhorar nossas ferramentas, ao longo da exploração vamos transformando nossas perguntas para que elas sejam mais precisas e nos ajudem a desenvolver maior entendimento dos dados. Essa parte é realmente sobre curiosidade e criatividade.
+
+Embora não exista forma certa para se explorar os dados, [Hadley Wickham coloca desta forma](https://r4ds.had.co.nz/exploratory-data-analysis.html):
+
+>"Existem dois tipos de questões que certamente te farão descobrir ainda mais seus dados:
+>1.Quais tipos de variação ocorrem dentro das minhas variáveis?
+>2.Quais tipos de covariação ocorrem entre minhas variáveis?
+
+Compreender esses conceitos pode ser um pouco complicado no começo, no mais o objetivo é fazer várias perguntas e ir melhorando-as com o tempo.
+
+# Variação
+
+Tomei a liberdade de traduzir as palavras do livro ["R para ciência de dados"](https://r4ds.had.co.nz/) para explicar o que é variação e co-variação neste post.
+
+>Variação é a tendência dos valores de uma variável mudar a cada medida.
+>É possível observar variação na vida real, se medirmos qualquer variável continua mais de uma vez, teremos dois resultados diferentes.
+>Como a altura das pessoas, por exemplo. A cada medida que tomamos de uma pessoa ao longo de sua vida, obteremos uma resposta diferente.
+>Cada variável possui seu próprio padrão de variação, o que pode revelar muitas informações para a análise.
+
+Uma das melhores formas de analisar essas variações é por meio do uso de ferramentas gráficas!
+
+# Visualizando as distribuições
+
+Uma boa maneira de visualizar a distribuição de variáveis categóricas (que classificam) é por meio do gráfico de barras:
+
+## Gráfico de barras (Bar chart)
+
+Vamos usar o ggplot para analisar o conjunto de dados `mpg` que possui a coluna `manufacturer`:
+
+```
+ggplot(data = mpg) +
+geom_bar(mapping = aes(x = manufacturer))
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+library(tidyverse)
+
+ggplot(data = mpg) +
+geom_bar(mapping = aes(x = manufacturer))
+```
+
+Esse tipo de gráfico nos mostra algo similar à:
+
+```
+mpg %>% count(manufacturer)
+```
+
+| manufacturer  | n     |
+|---------------|-------|
+| \<chr\>       |\<num\>|
+| audi          | 18    |
+| chevrolet     | 19    |
+| dodge         | 37    |
+| ford          | 25    |
+| honda         | 9     |
+| hyundai       | 14    |
+| jeep          | 8     |
+| land rover    | 4     |
+| lincoln       | 3     |
+| mercury       | 4     |
+| nissan        | 13    |
+| pontiac       | 5     |
+
+### Reordenando barras da função geom_bar() pela contagem
+
+Porém nosso gráfico ainda tem problemas em sua visualização, primeiro porque está desordenado e isso dificulta as comparações, segundo pois os nomes se sobrepõem, podemos arrumar isso usando a função `fct_infreq` do pacote `forcats` (um ótimo pacote para lidar com fatores no R, já embutido no `tidyverse`, e também um anagrama para `factors` ;D):
+
+```
+mpg %>%
+ggplot() +
+geom_bar(mapping = aes(x = fct_infreq(manufacturer))) +
+labs(x = "Fabricante")
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+mpg %>%
+ggplot() +
+geom_bar(mapping = aes(x = fct_infreq(manufacturer))) +
+labs(x = "Fabricante")
+```
+
+Muito bacana, se quisermos reverter a ordem do menor para o maior:
+
+```
+mpg %>%
+ggplot() +
+geom_bar(mapping = aes(x = fct_rev(fct_infreq(manufacturer)))) +
+labs(x = "Fabricante")
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+mpg %>%
+ggplot() +
+geom_bar(mapping = aes(x = fct_rev(fct_infreq(manufacturer)))) +
+labs(x = "Fabricante")
+```
+
+Os nomes ainda se sobrepõem, para mudar isso podemos inverter os eixos do gráfico:
+
+```
+mpg %>%
+ggplot() +
+geom_bar(mapping = aes(x = fct_rev(fct_infreq(manufacturer)))) +
+labs(x = "Fabricante") +
+coord_flip()
+```
+```{r, layout="l-body-outset", preview=TRUE}
+mpg %>%
+ggplot() +
+geom_bar(mapping = aes(x = fct_rev(fct_infreq(manufacturer)))) +
+labs(x = "Fabricante") +
+coord_flip()
+```
+
+Para o reverso:
+
+```
+mpg %>%
+ggplot() +
+geom_bar(mapping = aes(x = fct_infreq(manufacturer))) +
+labs(x = "Fabricante") +
+coord_flip()
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+mpg %>%
+ggplot() +
+geom_bar(mapping = aes(x = fct_infreq(manufacturer))) +
+labs(x = "Fabricante") +
+coord_flip()
+```
+
+Parece que nessa amostragem de carros existem muitos dodges e poucos lincolns, o que será que aconteceu com essas empresas ao longo do tempo? Bem, isso é uma pergunta para um outro momento. Por enquanto seguimos analisando as variações!
+
+[No último post fizemos alguns histogramas](https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-24-plotando-com-ggplot2/) para analisar variáveis contínuas, ou seja variáveis que possuem números, datas e horários.
+
+Outra função bastante interessante para analisar esse tipo de variável é a `geom_freqpoly()`
+
+```
+ggplot(data = mpg, mapping = aes(x = cty, color = as.factor(year))) +
+  geom_freqpoly(binwidth = 1)
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+ggplot(data = mpg, mapping = aes(x = cty, color = as.factor(year))) +
+  geom_freqpoly(binwidth = 1)
+```
+
+
+Note como essa função compara os dois histogramas ao mesmo tempo, nos mostrando onde os dados estão acumulados, ou aparecem com mais frequência.
+
+O cálculo é o seguinte:
+
+> Este tipo de gráfico divide o eixo x em `bins` ou caixas igualmente espaçadas, e então usa a altura da barra (ou o pico da linha) para mostrar o número de observações que estão em cada uma das `bins` ou caixas.
+
+Esse gráfico é ainda mais útil quando temos mais de um tipo de variável categórica
+
+A partir desse momento podemos continuar para qualquer lado da análise:
+
+- O que mais te chama a atenção? 
+- O que você gostaria de investigar? 
+- Quais são os valores mais comuns? Por quê? 
+- Quais valores são raros? O que poderia explicar isso?
+
+São tantas opções! Continuarei a desenvolver essas ideias num próximo post!
+
+#### Obrigado! Me segue no twitter: @gimbgomes
