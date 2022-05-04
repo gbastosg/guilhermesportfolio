@@ -16,12 +16,6 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-[
-Neste post vou falar sobre EDA.
-
--Visualizando distribuições.
--Boxplot.
-]
 
 # Olá! 
 
@@ -42,19 +36,18 @@ As perguntas são ferramentas que te ajudam muito, pois guiam a exploração. E 
 Embora não exista forma certa para se explorar os dados, [Hadley Wickham coloca desta forma](https://r4ds.had.co.nz/exploratory-data-analysis.html):
 
 >"Existem dois tipos de questões que certamente te farão descobrir ainda mais seus dados:
->1.Quais tipos de variação ocorrem dentro das minhas variáveis?
->2.Quais tipos de covariação ocorrem entre minhas variáveis?
+>1.Quais tipos de variações ocorrem dentro das minhas variáveis?
+>2.Quais tipos de covariações ocorrem entre minhas variáveis?
 
-Compreender esses conceitos pode ser um pouco complicado no começo, no mais o objetivo é fazer várias perguntas e ir melhorando-as com o tempo.
+Compreender esses conceitos pode ser um pouco complicado no começo, no mais o objetivo é fazer várias perguntas e ir melhorando com o tempo.
 
 # Variação
 
 Tomei a liberdade de traduzir as palavras do livro ["R para ciência de dados"](https://r4ds.had.co.nz/) para explicar o que é variação e co-variação neste post.
 
->Variação é a tendência dos valores de uma variável mudar a cada medida.
+>Variação é uma tendência, aquela que os valores tem de mudar a cada medida. Ou seja:
 >É possível observar variação na vida real, se medirmos qualquer variável continua mais de uma vez, teremos dois resultados diferentes.
->Como a altura das pessoas, por exemplo. A cada medida que tomamos de uma pessoa ao longo de sua vida, obteremos uma resposta diferente.
->Cada variável possui seu próprio padrão de variação, o que pode revelar muitas informações para a análise.
+>Cada variável possui seu próprio padrão de variação, o que pode revelar muitas informações para sua análise.
 
 Uma das melhores formas de analisar essas variações é por meio do uso de ferramentas gráficas!
 
@@ -102,7 +95,8 @@ mpg %>% count(manufacturer)
 
 ### Reordenando barras da função geom_bar() pela contagem
 
-Porém nosso gráfico ainda tem problemas em sua visualização, primeiro porque está desordenado e isso dificulta as comparações, segundo pois os nomes se sobrepõem, podemos arrumar isso usando a função `fct_infreq` do pacote `forcats` (um ótimo pacote para lidar com fatores no R, já embutido no `tidyverse`, e também um anagrama para `factors` ;D):
+Porém nosso gráfico ainda tem problemas de visualização, primeiro porque está desordenado e isso dificulta as comparações, segundo, pois os nomes se sobrepõem, podemos arrumar o primeiro problema usando a função `fct_infreq` do pacote `forcats` (um ótimo pacote para lidar com fatores no R, já embutido no `tidyverse`, e também um anagrama para `factors` ;D):
+
 
 ```
 mpg %>%

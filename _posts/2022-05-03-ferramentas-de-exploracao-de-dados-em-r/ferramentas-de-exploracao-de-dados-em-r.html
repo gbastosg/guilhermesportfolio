@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["ferramentas-de-exploracao-de-dados-em-r_files/figure-html5/unnamed-chunk-1-1.png","ferramentas-de-exploracao-de-dados-em-r_files/figure-html5/unnamed-chunk-2-1.png","ferramentas-de-exploracao-de-dados-em-r_files/figure-html5/unnamed-chunk-3-1.png","ferramentas-de-exploracao-de-dados-em-r_files/figure-html5/unnamed-chunk-4-1.png","ferramentas-de-exploracao-de-dados-em-r_files/figure-html5/unnamed-chunk-5-1.png","ferramentas-de-exploracao-de-dados-em-r_files/figure-html5/unnamed-chunk-6-1.png"]}
+  {"type":"character","attributes":{},"value":["ferramentas-de-exploracao-de-dados-em-r_files/anchor-4.2.2/anchor.min.js","ferramentas-de-exploracao-de-dados-em-r_files/bowser-1.9.3/bowser.min.js","ferramentas-de-exploracao-de-dados-em-r_files/distill-2.2.21/template.v2.js","ferramentas-de-exploracao-de-dados-em-r_files/figure-html5/unnamed-chunk-1-1.png","ferramentas-de-exploracao-de-dados-em-r_files/figure-html5/unnamed-chunk-2-1.png","ferramentas-de-exploracao-de-dados-em-r_files/figure-html5/unnamed-chunk-3-1.png","ferramentas-de-exploracao-de-dados-em-r_files/figure-html5/unnamed-chunk-4-1.png","ferramentas-de-exploracao-de-dados-em-r_files/figure-html5/unnamed-chunk-5-1.png","ferramentas-de-exploracao-de-dados-em-r_files/figure-html5/unnamed-chunk-6-1.png","ferramentas-de-exploracao-de-dados-em-r_files/header-attrs-2.14/header-attrs.js","ferramentas-de-exploracao-de-dados-em-r_files/jquery-3.6.0/jquery-3.6.0.js","ferramentas-de-exploracao-de-dados-em-r_files/jquery-3.6.0/jquery-3.6.0.min.js","ferramentas-de-exploracao-de-dados-em-r_files/jquery-3.6.0/jquery-3.6.0.min.map","ferramentas-de-exploracao-de-dados-em-r_files/popper-2.6.0/popper.min.js","ferramentas-de-exploracao-de-dados-em-r_files/tippy-6.2.7/tippy-bundle.umd.min.js","ferramentas-de-exploracao-de-dados-em-r_files/tippy-6.2.7/tippy-light-border.css","ferramentas-de-exploracao-de-dados-em-r_files/tippy-6.2.7/tippy.css","ferramentas-de-exploracao-de-dados-em-r_files/tippy-6.2.7/tippy.umd.min.js","ferramentas-de-exploracao-de-dados-em-r_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1485,7 +1485,6 @@ class="uri">https://gbastosg.github.io/guilhermesportfolio/</a>
 </div>
 
 <div class="d-article">
-<p>[ Neste post vou falar sobre EDA.]</p>
 <h1 id="olá">Olá!</h1>
 <p>No último post, falamos sobre histogramas e da importância de
 compreender a frequência nos seus dados. Hoje vamos fazer mais algumas
@@ -1508,25 +1507,23 @@ href="https://r4ds.had.co.nz/exploratory-data-analysis.html">Hadley
 Wickham coloca desta forma</a>:</p>
 <blockquote>
 <p>“Existem dois tipos de questões que certamente te farão descobrir
-ainda mais seus dados: 1.Quais tipos de variação ocorrem dentro das
-minhas variáveis? 2.Quais tipos de covariação ocorrem entre minhas
+ainda mais seus dados: 1.Quais tipos de variações ocorrem dentro das
+minhas variáveis? 2.Quais tipos de covariações ocorrem entre minhas
 variáveis?</p>
 </blockquote>
 <p>Compreender esses conceitos pode ser um pouco complicado no começo,
-no mais o objetivo é fazer várias perguntas e ir melhorando-as com o
+no mais o objetivo é fazer várias perguntas e ir melhorando com o
 tempo.</p>
 <h1 id="variação">Variação</h1>
 <p>Tomei a liberdade de traduzir as palavras do livro <a
 href="https://r4ds.had.co.nz/">“R para ciência de dados”</a> para
 explicar o que é variação e co-variação neste post.</p>
 <blockquote>
-<p>Variação é a tendência dos valores de uma variável mudar a cada
-medida. É possível observar variação na vida real, se medirmos qualquer
-variável continua mais de uma vez, teremos dois resultados diferentes.
-Como a altura das pessoas, por exemplo. A cada medida que tomamos de uma
-pessoa ao longo de sua vida, obteremos uma resposta diferente. Cada
-variável possui seu próprio padrão de variação, o que pode revelar
-muitas informações para a análise.</p>
+<p>Variação é uma tendência, aquela que os valores tem de mudar a cada
+medida. Ou seja: É possível observar variação na vida real, se medirmos
+qualquer variável continua mais de uma vez, teremos dois resultados
+diferentes. Cada variável possui seu próprio padrão de variação, o que
+pode revelar muitas informações para sua análise.</p>
 </blockquote>
 <p>Uma das melhores formas de analisar essas variações é por meio do uso
 de ferramentas gráficas!</p>
@@ -1608,12 +1605,13 @@ geom_bar(mapping = aes(x = manufacturer))</code></pre>
 </table>
 <h3 id="reordenando-barras-da-função-geom_bar-pela-contagem">Reordenando
 barras da função geom_bar() pela contagem</h3>
-<p>Porém nosso gráfico ainda tem problemas em sua visualização, primeiro
-porque está desordenado e isso dificulta as comparações, segundo pois os
-nomes se sobrepõem, podemos arrumar isso usando a função
-<code>fct_infreq</code> do pacote <code>forcats</code> (um ótimo pacote
-para lidar com fatores no R, já embutido no <code>tidyverse</code>, e
-também um anagrama para <code>factors</code> ;D):</p>
+<p>Porém nosso gráfico ainda tem problemas de visualização, primeiro
+porque está desordenado e isso dificulta as comparações, segundo, pois
+os nomes se sobrepõem, podemos arrumar o primeiro problema usando a
+função <code>fct_infreq</code> do pacote <code>forcats</code> (um ótimo
+pacote para lidar com fatores no R, já embutido no
+<code>tidyverse</code>, e também um anagrama para <code>factors</code>
+;D):</p>
 <pre><code>mpg %&gt;%
 ggplot() +
 geom_bar(mapping = aes(x = fct_infreq(manufacturer))) +
