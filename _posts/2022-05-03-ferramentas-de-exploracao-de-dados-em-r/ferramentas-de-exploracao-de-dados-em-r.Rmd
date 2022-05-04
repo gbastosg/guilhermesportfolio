@@ -1,7 +1,7 @@
 ---
 title: "Ferramentas de exploração de dados em R"
 description: |
-  Neste post pretendo mostrar quais as principais ferramentas que usamos ao analisar dados usando a linguagem R e o tidyverse.
+  Neste post pretendo mostrar quais as principais ferramentas que usamos ao analisar dados, usando a linguagem R e o tidyverse.
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
@@ -39,7 +39,7 @@ Embora não exista forma certa para se explorar os dados, [Hadley Wickham coloca
 >1.Quais tipos de variações ocorrem dentro das minhas variáveis?
 >2.Quais tipos de covariações ocorrem entre minhas variáveis?
 
-Compreender esses conceitos pode ser um pouco complicado no começo, no mais o objetivo é fazer várias perguntas e ir melhorando com o tempo.
+Compreender esses conceitos pode ser um pouco complicado no começo, no fundo o objetivo é fazer várias perguntas e ir melhorando com o tempo.
 
 # Variação
 
@@ -53,11 +53,11 @@ Uma das melhores formas de analisar essas variações é por meio do uso de ferr
 
 # Visualizando as distribuições
 
-Uma boa maneira de visualizar a distribuição de variáveis categóricas (que classificam) é por meio do gráfico de barras:
+Uma boa maneira de visualizar a distribuição de variáveis categóricas (que classificam, ou criam categorias) é por meio do gráfico de barras:
 
 ## Gráfico de barras (Bar chart)
 
-Vamos usar o ggplot para analisar o conjunto de dados `mpg` que possui a coluna `manufacturer`:
+Vamos usar o `ggplot` para analisar o conjunto de dados `mpg` que possui a coluna `manufacturer`:
 
 ```
 ggplot(data = mpg) +
