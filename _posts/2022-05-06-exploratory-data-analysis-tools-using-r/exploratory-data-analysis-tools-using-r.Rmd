@@ -1,7 +1,7 @@
 ---
 title: "Exploratory Data Analysis tools using R"
 description: |
-  A short description of the post.
+  In this post I'm showing the main tools that we use to analyse data in R with the tidyverse package. Also a little about variation, categorical and continuous variables.
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
