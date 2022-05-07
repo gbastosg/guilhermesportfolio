@@ -12,7 +12,9 @@ packages2download <- c("tidyverse", "usethis", "distill")
 library(tidyverse)
 library(usethis)
 library(distill)
+library(ggthemes)
 library(here)
+
 #blog e github
 
 
