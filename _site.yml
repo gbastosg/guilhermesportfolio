@@ -1,7 +1,7 @@
 name: "."
 title: "guilhermesportfolio"
 description: |
-  guilhermesportfolio
+  Aqui posto sobre análise de dados com R. I am posting about data analysis in R.
 output_dir: "docs"
 navbar:
   right:
