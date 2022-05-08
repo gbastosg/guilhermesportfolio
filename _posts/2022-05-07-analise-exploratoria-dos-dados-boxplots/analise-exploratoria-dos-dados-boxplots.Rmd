@@ -38,7 +38,7 @@ ToothGrowth %>% #lendo o data set
   ggplot(aes(x = supp, y = len, fill = supp)) + #criando a estética do plot 
     geom_boxplot() + #plote um gráfico de caixa, por favor
     labs( #função para ajustar os títulos
-      title = "O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia", #título do gráfico
+      title = "O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia", #título do gráfico
       subtitle = "por: Guilherme Bastos Gomes", #subtítulo
       caption = "Source: ToothGrowth data set", #descrição
       x = "Tipo de suplemento", #O que vai escrito no eixo X
@@ -53,7 +53,7 @@ ToothGrowth %>%
   ggplot(aes(x = supp, y = len, fill = supp)) + 
     geom_boxplot() +
     labs(
-      title = "O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia",
+      title = "O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia",
       subtitle = "por: Guilherme Bastos Gomes",
       caption = "Source: ToothGrowth data set",
       x = "Tipo de suplemento",
@@ -103,7 +103,7 @@ ToothGrowth %>%
   ggplot(aes(x = dose, y = len, fill = supp)) + 
     geom_boxplot() +
     labs(
-      title = "O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia",
+      title = "O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia",
       subtitle = "por: Guilherme Bastos Gomes",
       caption = "Source: ToothGrowth data set",
       x = "Dose do suplemento",
@@ -117,7 +117,7 @@ ToothGrowth %>%
   ggplot(aes(x = dose, y = len, fill = supp)) + 
     geom_boxplot() +
     labs(
-      title = "O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia",
+      title = "O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia",
       subtitle = "por: Guilherme Bastos Gomes",
       caption = "Source: ToothGrowth data set",
       x = "Dose do suplemento",
@@ -138,7 +138,7 @@ ToothGrowth %>%
     geom_boxplot() +
     geom_dotplot(binaxis='y', stackdir='center', dotsize=1, group = 1) +
     labs(
-      title = "O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia",
+      title = "O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia",
       subtitle = "por: Guilherme Bastos Gomes",
       caption = "Source: ToothGrowth data set",
       x = "Dose do suplemento",
@@ -160,7 +160,7 @@ ToothGrowth %>%
   ggplot(aes(x = dose, y = len)) + 
     geom_violin(trim = FALSE) +
     labs(
-      title = "ViolinPlot: O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia",
+      title = "ViolinPlot: O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia",
       subtitle = "por: Guilherme Bastos Gomes",
       caption = "Source: ToothGrowth data set",
       x = "Dose do suplemento",
@@ -175,7 +175,7 @@ ToothGrowth %>%
   ggplot(aes(x = dose, y = len)) + 
     geom_violin(trim = FALSE) +
     labs(
-      title = "ViolinPlot: O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia",
+      title = "ViolinPlot: O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia",
       subtitle = "por: Guilherme Bastos Gomes",
       caption = "Source: ToothGrowth data set",
       x = "Dose do suplemento",
@@ -201,7 +201,7 @@ ToothGrowth %>%
     geom_violin(trim = FALSE) +
     stat_summary(fun=mean, geom="point", size=2, color="FireBrick") +
     labs(
-      title = "ViolinPlot: O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia",
+      title = "ViolinPlot: O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia",
       subtitle = "por: Guilherme Bastos Gomes",
       caption = "Source: ToothGrowth data set",
       x = "Dose do suplemento",
@@ -216,7 +216,7 @@ ToothGrowth %>%
     geom_violin(trim = FALSE) +
     stat_summary(fun=mean, geom="point", size=2, color="FireBrick") +
     labs(
-      title = "ViolinPlot: O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia",
+      title = "ViolinPlot: O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia",
       subtitle = "por: Guilherme Bastos Gomes",
       caption = "Source: ToothGrowth data set",
       x = "Dose do suplemento",
@@ -234,7 +234,7 @@ ToothGrowth %>%
     geom_violin(trim = FALSE) +
     stat_summary(fun=median, geom="point", size=2, color="FireBrick") +
     labs(
-      title = "ViolinPlot: O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia",
+      title = "ViolinPlot: O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia",
       subtitle = "por: Guilherme Bastos Gomes",
       caption = "Source: ToothGrowth data set",
       x = "Dose do suplemento",
@@ -249,7 +249,7 @@ ToothGrowth %>%
     geom_violin(trim = FALSE) +
     stat_summary(fun=median, geom="point", size=2, color="MidnightBlue") +
     labs(
-      title = "ViolinPlot: O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia",
+      title = "ViolinPlot: O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia",
       subtitle = "por: Guilherme Bastos Gomes",
       caption = "Source: ToothGrowth data set",
       x = "Dose do suplemento",
@@ -267,7 +267,7 @@ ToothGrowth %>%
     stat_summary(fun=median, geom="point", size=2, color="MidnightBlue") +
     geom_boxplot(width=0.1) +
     labs(
-      title = "ViolinPlot: O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia",
+      title = "ViolinPlot: O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia",
       subtitle = "por: Guilherme Bastos Gomes",
       caption = "Source: ToothGrowth data set",
       x = "Dose do suplemento",
