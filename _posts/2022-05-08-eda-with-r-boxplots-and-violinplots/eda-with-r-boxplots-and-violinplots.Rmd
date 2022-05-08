@@ -20,15 +20,16 @@ knitr::opts_chunk$set(echo = FALSE)
 
 The main idea here is to tackle boxplots, what are they, how to built one in R and how to interpret them.
 
-# Boxplots
+# Box plots
 
-A pretty popular manner (between statisticians) of analising data is by using boxplots
+A pretty popular manner (between statisticians) of analising data is by using box plots
 
-A boxplot shows a *continuous variable*, divided into groups by a *categorical cariable*.  [For more information about thos types of variables, please visit this link](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-06-exploratory-data-analysis-tools-using-r/)
+A box plot shows a *continuous variable*, divided into groups by a *categorical cariable*.  [For more information about thos types of variables, please visit this link](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-06-exploratory-data-analysis-tools-using-r/)
 
-The following is a boxplot made out of the `ToothGrowth` data set, that compares the efect of vitamin C over the growth of tooth cells in Guinea pigs, in the x axis we put the categorical variable `supp`, or supplement type which could be OJ for orange juice and VC for ascorbic acid) and in the Y axis is the continuous variable `len` or the size of odntoblasts (the cells) of each animal::
+The following is a boxplot made out of the `ToothGrowth` data set, that compares the effect of vitamin C over the growth of tooth cells in Guinea pigs, in the x axis we put the categorical variable `supp`, or supplement type which could be OJ for orange juice and VC for ascorbic acid) and in the Y axis is the continuous variable `len` or the size of odontoblasts (the cells) of each animal::
 
 ```{r, layout="l-body-outset", preview=TRUE}
+
 library(tidyverse)
 library(ggthemes)
 
@@ -38,14 +39,15 @@ ToothGrowth %>%
   ggplot(aes(x = supp, y = len, fill = supp)) +  
     geom_boxplot() + 
     labs( 
-      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
-      subtitle = "by: Guilherme Bastos Gomes", #subtitle
-      caption = "Source: ToothGrowth data set", #description
+      title = "The effect of vitamin C in tooth growth of Guinea pigs",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: ToothGrowth data set", 
       x = "Supplement",
       y = "Length" 
     ) +
-    theme_classic() #picking a theme from the ggthemes package
- ```
+    theme_classic()
+```
+
 The code: 
 
 ```
@@ -95,7 +97,7 @@ Let's transform this variable from numeric into factors to plot a boxplot even m
 ToothGrowth$dose <- as.factor(ToothGrowth$dose)
 ```
 
-Now we can call a boxplot with both variable::
+Now we can call a box plot with both variable:
 
 ```{r, layout="l-body-outset", preview=TRUE}
 ToothGrowth %>% 
