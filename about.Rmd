@@ -14,4 +14,6 @@ output:
   postcards::jolla
 ---
 
-Sou Biólogo e possuo um mestrado onde trabalhei com análise de dados e aprendi a programar com a linguagem R.  Pretendo continuar postando mais sobre Análise de dados com R por aqui!
+Sou Biólogo e possuo um mestrado onde trabalhei com análise de dados e aprendi a programar com a linguagem R.  Pretendo continuar postando mais sobre Análise de dados com R por aqui! 
+
+I am a Biologist and during my master's degree I've learned how to program with the R language. I intend to post about data analysis with R around here!

@@ -1871,12 +1871,6 @@ function init_distill() {
 
     // hoverable references
     $('span.citation[data-cites]').each(function() {
-      if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-        var fn = $(this).children()[0]
-        $(this).html(fn.shadowRoot.querySelector("sup"))
-        $(this).id = fn.id
-        fn.remove()
-      }
       var refs = $(this).attr('data-cites').split(" ");
       var refHtml = refs.map(function(ref) {
         return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -2072,7 +2066,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Testing!","description":"This is my first post, it is a test so there's nothing in it besides text and\nstuff. You know what, I am going to write something... Nah, changed my mind,\nlet's just keep this a test, sorry.","authors":[{"author":"Guilherme Bastos Gomes","authorURL":"https://gbastosg.github.io/guilhermesportfolio/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-04-11T00:00:00.000-03:00","citationText":"Gomes, 2022"}
+{"title":"Testing!","description":"This is my first post, it is a test so there's nothing in it besides text and\nstuff. You know what, I am going to write something... Nah, changed my mind,\nlet's just keep this a test, sorry.","authors":[{"author":"Guilherme Bastos Gomes","authorURL":"https://gbastosg.github.io/guilhermesportfolio/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-04-11T00:00:00.000+10:00","citationText":"Gomes, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
