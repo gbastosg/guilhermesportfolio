@@ -1,0 +1,303 @@
+---
+title: "EDA with R: Boxplots and ViolinPlots"
+description: |
+  In this post I will describe and show how to do a Boxplot using the ggplot2 package of the R programming language.
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-05-08
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Hello!
+
+The main idea here is to tackle boxplots, what are they, how to built one in R and how to interpret them.
+
+# Boxplots
+
+A pretty popular manner (between statisticians) of analising data is by using boxplots
+
+A boxplot shows a *continuous variable*, divided into groups by a *categorical cariable*.  [For more information about thos types of variables, please visit this link](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-06-exploratory-data-analysis-tools-using-r/)
+
+The following is a boxplot made out of the `ToothGrowth` data set, that compares the efect of vitamin C over the growth of tooth cells in Guinea pigs, in the x axis we put the categorical variable `supp`, or supplement type which could be OJ for orange juice and VC for ascorbic acid) and in the Y axis is the continuous variable `len` or the size of odntoblasts (the cells) of each animal::
+
+```{r, layout="l-body-outset", preview=TRUE}
+library(tidyverse)
+library(ggthemes)
+
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+
+ToothGrowth %>% 
+  ggplot(aes(x = supp, y = len, fill = supp)) +  
+    geom_boxplot() + 
+    labs( 
+      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
+      subtitle = "by: Guilherme Bastos Gomes", #subtitle
+      caption = "Source: ToothGrowth data set", #description
+      x = "Supplement",
+      y = "Length" 
+    ) +
+    theme_classic() #picking a theme from the ggthemes package
+ ```
+The code: 
+
+```
+ToothGrowth %>% #lendo o data set
+  ggplot(aes(x = supp, y = len, fill = supp)) +  
+    geom_boxplot() + 
+    labs(
+      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
+      subtitle = "by: Guilherme Bastos Gomes", #subtitle
+      caption = "Source: ToothGrowth data set", #description
+      x = "Supplement",
+      y = "Length" 
+    ) +
+    theme_classic() #picking a theme from the ggthemes package
+```
+
+## How to interpret
+
+Boxplot has two main parts: the box and the whiskers (two lines that extends outside the box)
+
+* First, we divide our distribution into 4 parts, each part is known as a `quartile`
+
+* The box holds the data between the 25 and 75 quartiles, distance known as IQR or interquartile range. In the middle of the box it's possible to see a line that represents the median, a.k.a. 50 quartile of our distribution. These three lines gives us information about the distribution of numbers and also tell us if these distributions could be considered symmetric or skimmed.
+
+* There are two whiskers, a line towards the top, and another one towards the bottom. These lines extends until the point 1.5 times away of each edge of the box.
+
+* Dots that are far away are called `outliers`, the famous dots out of the curve, those that doen't appear very often in our data set.
+
+## ToothGrowth
+
+
+> The response is the length of odontoblasts (cells responsible for tooth growth) in 60 guinea pigs. Each animal received one of three dose levels of vitamin C (0.5, 1, and 2 mg/day) by one of two delivery methods, orange juice or ascorbic acid (a form of vitamin C and coded as VC).
+
+we should have two categorical variables, then: `supp` e `dose`
+
+Although, the variable `dose` isn't yet considered a categorical by R.
+
+```
+str(ToothGrowth$dose)
+```
+
+`num [1:60] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...`
+
+Let's transform this variable from numeric into factors to plot a boxplot even more informative:
+
+```
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+```
+
+Now we can call a boxplot with both variable::
+
+```{r, layout="l-body-outset", preview=TRUE}
+ToothGrowth %>% 
+  ggplot(aes(x = dose, y = len, fill = supp)) + 
+    geom_boxplot() +
+    labs( 
+      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
+      subtitle = "by: Guilherme Bastos Gomes", #subtitle
+      caption = "Source: ToothGrowth data set", #description
+      x = "Supplement",
+      y = "Length" 
+    ) +
+    theme_classic()
+```
+
+```
+ToothGrowth %>% 
+  ggplot(aes(x = dose, y = len, fill = supp)) + 
+    geom_boxplot() +
+    labs( 
+      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
+      subtitle = "by: Guilherme Bastos Gomes", #subtitle
+      caption = "Source: ToothGrowth data set", #description
+      x = "Supplement",
+      y = "Length" 
+    ) +
+    theme_classic()
+```
+
+This graph is even more interesting, we can compare 3 variables at the same time.
+
+## Boxplot comprehension with Dotplot
+
+Let's do a Boxplot with a Dotplot within, that is a graph of points that represents where the data accumulates in our variable:
+
+```{r, layout="l-body-outset", preview=TRUE}
+ToothGrowth %>% 
+  ggplot(aes(x = dose, y = len, fill = supp)) + 
+    geom_boxplot() +
+    geom_dotplot(binaxis='y', stackdir='center', dotsize=1, group = 1) +
+    labs( 
+      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
+      subtitle = "by: Guilherme Bastos Gomes", #subtitle
+      caption = "Source: ToothGrowth data set", #description
+      x = "Supplement",
+      y = "Length" 
+    ) +
+    theme_classic()
+```
+
+Easier to pick up, right?
+
+Now we can visualise how an aplication of dose of each supplements has something to do in the measure of cell length.
+
+Another pretty interesting graph to show this information is the ViolinPlot
+
+# ViolinPlot
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+ToothGrowth %>% 
+  ggplot(aes(x = dose, y = len)) + 
+    geom_violin(trim = FALSE) +
+    labs( 
+      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
+      subtitle = "by: Guilherme Bastos Gomes", #subtitle
+      caption = "Source: ToothGrowth data set", #description
+      x = "Supplement",
+      y = "Length" 
+    ) +
+    theme_classic()
+```
+The code: 
+
+```
+ToothGrowth %>% 
+  ggplot(aes(x = dose, y = len)) + 
+    geom_violin(trim = FALSE) +
+    labs( 
+      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
+      subtitle = "by: Guilherme Bastos Gomes", #subtitle
+      caption = "Source: ToothGrowth data set", #description
+      x = "Supplement",
+      y = "Length" 
+    ) +
+    theme_classic()
+```
+
+The most interesting part of the violin plot is that it also shows us the probability of kernel density of all the values from our data, a concept to explore in future analyses.
+
+Generally ViolinPlots includes a mark with the median information, and also a box that indicates the IQR, just like boxplots.
+
+To build a ViolinPlot, instead of `geom_boxplot()` we use `geom_violin()`
+
+## Mean and Median inside the Violin
+
+This time, let's mark the mean of our data in our `geom_violin`:
+
+
+```
+ToothGrowth %>% 
+  ggplot(aes(x = dose, y = len)) + 
+    geom_violin(trim = FALSE) +
+    stat_summary(fun=mean, geom="point", size=2, color="FireBrick") +
+    labs( 
+      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
+      subtitle = "by: Guilherme Bastos Gomes", #subtitle
+      caption = "Source: ToothGrowth data set", #description
+      x = "Supplement",
+      y = "Length" 
+    ) +
+    theme_classic()
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+ToothGrowth %>% 
+  ggplot(aes(x = dose, y = len)) + 
+    geom_violin(trim = FALSE) +
+    stat_summary(fun=mean, geom="point", size=2, color="FireBrick") +
+    labs( 
+      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
+      subtitle = "by: Guilherme Bastos Gomes", #subtitle
+      caption = "Source: ToothGrowth data set", #description
+      x = "Supplement",
+      y = "Length" 
+    ) +
+    theme_classic()
+```
+
+Median:
+
+
+```
+ToothGrowth %>% 
+  ggplot(aes(x = dose, y = len)) + 
+    geom_violin(trim = FALSE) +
+    stat_summary(fun=median, geom="point", size=2, color="FireBrick") +
+    labs( 
+      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
+      subtitle = "by: Guilherme Bastos Gomes", #subtitle
+      caption = "Source: ToothGrowth data set", #description
+      x = "Supplement",
+      y = "Length" 
+    ) +
+    theme_classic()
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+ToothGrowth %>% 
+  ggplot(aes(x = dose, y = len)) + 
+    geom_violin(trim = FALSE) +
+    stat_summary(fun=median, geom="point", size=2, color="MidnightBlue") +
+    labs( 
+      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
+      subtitle = "by: Guilherme Bastos Gomes", #subtitle
+      caption = "Source: ToothGrowth data set", #description
+      x = "Supplement",
+      y = "Length" 
+    ) +
+    theme_classic()
+```
+
+## Add median and the quartile (a boxplot!)
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+ToothGrowth %>% 
+  ggplot(aes(x = dose, y = len)) + 
+    geom_violin(trim = FALSE) +
+    stat_summary(fun=median, geom="point", size=2, color="MidnightBlue") +
+    geom_boxplot(width=0.1) +
+    labs( 
+      title = "The effect of vitamin C in tooth growth of Guinea pigs", #plot title
+      subtitle = "by: Guilherme Bastos Gomes", #subtitle
+      caption = "Source: ToothGrowth data set", #description
+      x = "Supplement",
+      y = "Length" 
+    ) +
+    theme_classic()
+
+```
+To wrap up, let's add some colours:
+
+```{r,layout="l-body-outset", preview=TRUE}
+ToothGrowth %>% 
+  ggplot(aes(x = dose, y = len, fill = dose)) + 
+    geom_violin(trim = FALSE) +
+    stat_summary(fun=median, geom="point", size=2, color="MidnightBlue") +
+    geom_boxplot(width=0.1) +
+    theme_wsj()
+```
+
+```
+ToothGrowth %>% 
+  ggplot(aes(x = dose, y = len, fill = dose)) + 
+    geom_violin(trim = FALSE) +
+    stat_summary(fun=median, geom="point", size=2, color="MidnightBlue") +
+    geom_boxplot(width=0.1) +
+    theme_wsj()
+```
+Realise the power with this kind of visualisation to comprehend the distribution of our data!
+
+What would explain the great concentration of data in each part of the graph? Let's explore even more of these ideas in future posts!
+
+Thank you! See you soon!!!
