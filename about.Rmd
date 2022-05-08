@@ -8,8 +8,6 @@ links:
     url: "https://twitter.com/gimbgomes"
   - label: GitHub
     url: "https://github.com/gbastosg"
-  - label: Email
-    url: "professor.guilhermebastos@gmail.com"
 output:
   postcards::jolla
 ---
