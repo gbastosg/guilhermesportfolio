@@ -1498,7 +1498,7 @@ href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-03-ferramenta
 mais sobre o tema, veja esse post</a></p>
 <p>Isso é um boxplot dos dados <code>ToothGrowth</code> de dentro do R,
 comparando o efeito da vitamina C sobre o crescimento dentário em
-Porquinhos da Índia, no eixo X estamos colocando a variável categorica
+Porquinhos da Índia, no eixo X colocamos a variável categorica
 <code>supp</code>, ou tipo de suplemento (OJ = suco de laranja e VC =
 ácido ascórbico) e no eixo Y está a variável continua <code>len</code>
 ou o tamanho dos odontoblastos (células responsáveis pelo crescimento
@@ -1522,10 +1522,12 @@ dentário) a cada medida:</p>
 <p>O boxplot tem duas partes principais: a caixa e os whiskers (as
 linhas que se extendem pra fora da caixa).</p>
 <ul>
-<li><p>A caixa abriga os dados que estão entre o 25º e 75º quartis,
+<li><p>Primeiro, dividimos a distribuição em 4 partes. Cada quarto é
+conhecido como <code>quartil</code> ou <code>quartile</code></p></li>
+<li><p>A caixa abriga os dados que estão entre o 25 e 75 quartis,
 distancia conhecida como IQR (interquartile range), ou distancia entre
 quartis. No meio da caixa, é possível ver uma linha que representa a
-mediana, também conhecida como o 50º quartil da distribuição. Essas três
+mediana, também conhecida como o 50 quartil da distribuição. Essas três
 linhas nos dão informações sobre a distribuição dos números e também nos
 dizem se essa distribuição pode ser considerada simétrica ou tende para
 algum lado.</p></li>
@@ -1569,6 +1571,8 @@ boxplot ainda mais robusto em informação:</p>
       y = &quot;Tamanho dos odontoblastos&quot;
     ) +
     theme_classic()</code></pre>
+<p>Esse gráfico é ainda mais interessante, pois além da comparação entre
+os tipos de suplemento, também comparamos as doses dos suplementos!</p>
 <h2 id="compreendendo-boxplots-com-os-pontos-plotados">Compreendendo
 Boxplots com os pontos plotados</h2>
 <p>Vamos fazer um Boxplot com um Dotplot, ou seja, um gráfico de pontos
