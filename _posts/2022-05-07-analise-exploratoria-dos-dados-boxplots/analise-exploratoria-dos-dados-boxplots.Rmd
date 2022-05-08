@@ -26,7 +26,7 @@ Uma forma bem popular (entre os estatísticos) de se analisar dados é por meio 
 
 Um boxplot mostra uma *variável contínua*, dividida em grupos por uma *variável categórica*. [Para mais sobre o tema, veja esse post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-03-ferramentas-de-exploracao-de-dados-em-r/)
 
-Isso é um boxplot dos dados `ToothGrowth` de dentro do R, comparando o efeito da vitamina C sobre o crescimento dentário em Porquinhos da Índia, no eixo X estamos colocando a variável categorica `supp`, ou tipo de suplemento (OJ = suco de laranja e VC = ácido ascórbico) e no eixo Y está a variável continua `len` ou o tamanho dos odontoblastos (células responsáveis pelo crescimento dentário) a cada medida:
+Isso é um boxplot dos dados `ToothGrowth` de dentro do R, comparando o efeito da vitamina C sobre o crescimento dentário em Porquinhos da Índia, no eixo X colocamos a variável categorica `supp`, ou tipo de suplemento (OJ = suco de laranja e VC = ácido ascórbico) e no eixo Y está a variável continua `len` ou o tamanho dos odontoblastos (células responsáveis pelo crescimento dentário) a cada medida:
 
 ```{r, layout="l-body-outset", preview=TRUE}
 library(tidyverse)
@@ -34,17 +34,17 @@ library(ggthemes)
 
 ToothGrowth$dose <- as.factor(ToothGrowth$dose)
 
-ToothGrowth %>% 
-  ggplot(aes(x = supp, y = len, fill = supp)) + 
-    geom_boxplot() +
-    labs(
-      title = "O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia",
-      subtitle = "por: Guilherme Bastos Gomes",
-      caption = "Source: ToothGrowth data set",
-      x = "Tipo de suplemento",
-      y = "Tamanho dos odontoblastos"
+ToothGrowth %>% #lendo o data set
+  ggplot(aes(x = supp, y = len, fill = supp)) + #criando a estética do plot 
+    geom_boxplot() + #plote um gráfico de caixa, por favor
+    labs( #função para ajustar os títulos
+      title = "O efeito da Vitamina C no crescimento dentário de Porquinhos da Índia", #título do gráfico
+      subtitle = "por: Guilherme Bastos Gomes", #subtítulo
+      caption = "Source: ToothGrowth data set", #descrição
+      x = "Tipo de suplemento", #O que vai escrito no eixo X
+      y = "Tamanho dos odontoblastos" #O que vai escrito no eixo Y
     ) +
-    theme_classic()
+    theme_classic() #escolhendo um tema do pacote ggthemes
 ```
 O código: 
 
@@ -66,7 +66,9 @@ ToothGrowth %>%
 
 O boxplot tem duas partes principais: a caixa e os whiskers (as linhas que se extendem pra fora da caixa).
 
-* A caixa abriga os dados que estão entre o 25º e 75º quartis, distancia conhecida como IQR (interquartile range), ou distancia entre quartis. No meio da caixa, é possível ver uma linha que representa a mediana, também conhecida como o 50º quartil da distribuição. Essas três linhas nos dão informações sobre a distribuição dos números e também nos dizem se essa distribuição pode ser considerada simétrica ou tende para algum lado.
+* Primeiro, dividimos a distribuição em 4 partes. Cada quarto é conhecido como `quartil` ou `quartile`
+
+* A caixa abriga os dados que estão entre o 25 e 75 quartis, distancia conhecida como IQR (interquartile range), ou distancia entre quartis. No meio da caixa, é possível ver uma linha que representa a mediana, também conhecida como o 50 quartil da distribuição. Essas três linhas nos dão informações sobre a distribuição dos números e também nos dizem se essa distribuição pode ser considerada simétrica ou tende para algum lado.
 
 * Existem dois whiskers, uma linha para cima, e uma para baixo. Essas linhas se extendem até o último ponto 1.5 vezes distante de cada ponta da caixa
 
@@ -123,6 +125,8 @@ ToothGrowth %>%
     ) +
     theme_classic()
 ```
+
+Esse gráfico é ainda mais interessante, pois além da comparação entre os tipos de suplemento, também comparamos as doses dos suplementos!
 
 ## Compreendendo Boxplots com os pontos plotados
 
