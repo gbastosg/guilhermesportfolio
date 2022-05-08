@@ -1,9 +1,17 @@
 ---
-title: "About this blog"
-description: |
-  Some additional details about the blog
+title: "Guilherme Bastos Gomes"
+image: "photo.jpg"
+links:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/guilherme-bastos-gomes-729826170/"
+  - label: Twitter
+    url: "https://twitter.com/gimbgomes"
+  - label: GitHub
+    url: "https://github.com/gbastosg"
+  - label: Email
+    url: "professor.guilhermebastos@gmail.com"
+output:
+  postcards::jolla
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+Sou Biólogo e possuo um mestrado onde trabalhei com análise de dados e aprendi a programar com a linguagem R.  Pretendo continuar postando mais sobre Análise de dados com R por aqui!
