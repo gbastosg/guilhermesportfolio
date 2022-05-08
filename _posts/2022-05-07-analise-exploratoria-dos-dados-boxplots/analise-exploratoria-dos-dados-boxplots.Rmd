@@ -298,6 +298,6 @@ ToothGrowth %>%
 
 Perceba o poder deste tipo de gráfico para compreender a distribuição dos dados!
 
-O que explicaria a grande concentração de dados em cada parte do gráfico? Vamos explorar ainda mais essas idéias em posts futuros!
+O que explicaria a grande concentração de dados em cada parte do gráfico? Vamos explorar ainda mais essas ideias em posts futuros!
 
 Obrigado! Até mais!!!
