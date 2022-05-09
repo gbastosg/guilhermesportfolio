@@ -1,0 +1,209 @@
+---
+title: "Covariation and Scatter Plots"
+description: |
+  In this post I intend to use the concept of covariation and show you how to do a scatter plot in R.
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-05-09
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Hello!
+
+In this post we will analyse two continuous variables in the same plot, this is a very interesting way to understand the relationship between variables.
+
+[In the last post, we talked about variation](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-08-eda-with-r-boxplots-and-violinplots/) and in this one we are going to talk about covariation!
+
+# Covariation
+
+> If the variation described the behaviour of a variable, covariation describes the behaviour *between* the variables.
+
+
+**Covariation** is the tendency of values of two or more variables, to vary together.
+
+# A good way of understanding these relations is by using Scatter Plots
+
+A Scatter Plot shows the relationship between two continuous variables. We can build one in R, using the function `geom_point()` from the `ggplot2()` package.
+
+Since you have to load `tidyverse` to make it work in your R:
+
+```
+library(tidyverse)
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+library(tidyverse)
+library(ggthemes)
+
+
+iris %>% 
+  ggplot(aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +  
+    geom_point() + 
+    labs( 
+      title = "Mesuments in centimeters of flowers from 3 species",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: Edgar Anderson's Iris Data set", 
+      x = "Sepal Length",
+      y = "Sepal Width" 
+    ) +
+    theme_classic()
+```
+
+The code:
+
+```
+library(tidyverse)
+library(ggthemes)
+
+
+iris %>% 
+  ggplot(aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +  
+    geom_point() + 
+    labs( 
+      title = "Mesuments in centimeters of flowers from 3 species",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: Edgar Anderson's Iris Data set", 
+      x = "Sepal Length",
+      y = "Sepal Width" 
+    ) +
+    theme_classic()
+```
+
+Check how this plot gives us information about the two variables together, again with the categorical variable (`Species`):
+
+* The *Iris setosa* group tends to have a lesser sepal length, though has greater widths. This numbers can form a group.
+* The other groups possesses a much more intimous relation as than *Iris setosa*. Still, *Iris virginica* seems to have bigger lengths, which sepparates than from the others.
+
+Therefore we can start to understand how these numbers behaves inside their groups, from this point the next step would be to model, but let's continue working with Scatter Plots for now, though they are really powerful, mainly when we are dealing with pattern.
+
+# Patterns can bring us to models
+
+Patterns in data provides us evidence regarding variable relationship, facing a pattern we should think like it was written in the "R For Data Science" book:
+
+* Could this pattern be happening by coincidence (randomly)?
+* How is it possible to describe the relationship evidenced by the pattern?
+* How strong is the relationship shown by the pattern?
+* Which other variables can afect this relationship?
+* Does this relationship changes if we look to subgroups in the data?
+
+In this kind of data there are groups defined by a categorical variable: `Species`, then we are able to do the following to proceed with the analysis of the relationship between length and width of the Petals:
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+iris %>% 
+  ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +  
+    geom_point() + 
+    labs( 
+      title = "Medidas em centímetros do tamanho das sépalas de flores de 3 espécies",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: Edgar Anderson's Iris Data set", 
+      x = "Comprimento da Pétala",
+      y = "Largura da Pétala" 
+    ) +
+    theme_classic() +
+  facet_grid(~Species)
+```
+
+```
+iris %>% 
+   ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +  
+     geom_point() + 
+     labs( 
+       title = "Mesuments in centimeters of flowers from 3 species",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: Edgar Anderson's Iris Data set", 
+      x = "Petal Length",
+      y = "Petal Width" 
+    ) +
+     theme_classic() +
+   facet_grid(~Species)
+```
+Here we are using the function `facet_grid()` to divide our graph into the groups defined by the variable  `Species`.
+
+```{r, layout="l-body-outset", out.width="50%", preview=TRUE}
+library(hexbin)
+
+iris %>% 
+  ggplot(aes(x = Petal.Length, y = Petal.Width)) +  
+    geom_hex() + 
+    labs( 
+      title = "Mesuments in centimeters of flowers from 3 species",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: Edgar Anderson's Iris Data set", 
+      x = "Petal Length",
+      y = "Petal Width" 
+    ) +
+  facet_grid(~Species) +
+  theme_clean()
+```
+
+Here we are analyzing the distribution between the relationship of the variables from each group. Could we somehow model these relationship? In the future!
+
+For now, I needed to install the package `hexbin` to do next plot:
+
+```
+install.packages("hexbin")
+```
+
+Then:
+
+
+```
+
+library(hexbin)
+iris %>% 
+  ggplot(aes(x = Petal.Length, y = Petal.Width)) +  
+    geom_hex() + 
+    labs( 
+      title = "Medidas em centímetros do tamanho das sépalas de flores de 3 espécies",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: Edgar Anderson's Iris Data set", 
+      x = "Comprimento da Pétala",
+      y = "Largura da Pétala" 
+    ) +
+  facet_grid(~Species)
+```
+
+Observing several Scatter Plots of your data can be a very powerfull toll to understand and explain data relationships.
+
+# Using R base to plot several scatter plots
+
+Function `pairs()` helps us plotting several plots at the same time:
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+pairs(iris[,1:4], pch = 19, lower.panel = NULL)
+
+```
+
+To add groups in this kind of plot, we should first define a vector with the desired colours:
+
+```
+colours <- c("#0000FF","#00FF00","#FF0000")
+pairs(iris[,1:4], pch = 19,  cex = 0.5,
+      col = colours[iris$Species],
+      lower.panel=NULL)
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+cores <- c("#0000FF","#00FF00","#FF0000")
+
+pairs(iris[,1:4], pch = 19,  cex = 0.5,
+      col = cores[iris$Species],
+      lower.panel=NULL)
+
+```
+
+From this moment on we can start to talk about the concept of correlation, but this one I am going to continue on the next post!
+
+Thank you!
+
