@@ -5,7 +5,7 @@ description: |
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
-date: 2022-05-08
+date: 2022-05-09
 output:
   distill::distill_article:
     self_contained: false
@@ -129,7 +129,7 @@ iris %>%
   ggplot(aes(x = Petal.Length, y = Petal.Width)) +  
     geom_hex() + 
     labs( 
-      title = "Medidas em centímetros do tamanho das sépalas de flores de 3 espécies",
+      title = "Medidas em centímetros do tamanho das sépalas",
       subtitle = "by: Guilherme Bastos Gomes", 
       caption = "Source: Edgar Anderson's Iris Data set", 
       x = "Comprimento da Pétala",
