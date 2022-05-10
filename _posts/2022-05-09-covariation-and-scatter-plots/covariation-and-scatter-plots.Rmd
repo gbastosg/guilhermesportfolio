@@ -103,12 +103,12 @@ iris %>%
   ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +  
     geom_point() + 
     labs( 
-      title = "Medidas em centímetros do tamanho das sépalas de flores de 3 espécies",
+      title = "The effect of vitamin C in tooth growth of Guinea pigs",
       subtitle = "by: Guilherme Bastos Gomes", 
-      caption = "Source: Edgar Anderson's Iris Data set", 
-      x = "Comprimento da Pétala",
-      y = "Largura da Pétala" 
-    ) +
+      caption = "Source: ToothGrowth data set", 
+      x = "Supplement",
+      y = "Length" 
+    )  +
     theme_classic() +
   facet_grid(~Species)
 ```
@@ -164,12 +164,12 @@ iris %>%
   ggplot(aes(x = Petal.Length, y = Petal.Width)) +  
     geom_hex() + 
     labs( 
-      title = "Medidas em centímetros do tamanho das sépalas de flores de 3 espécies",
+      title = "The effect of vitamin C in tooth growth of Guinea pigs",
       subtitle = "by: Guilherme Bastos Gomes", 
-      caption = "Source: Edgar Anderson's Iris Data set", 
-      x = "Comprimento da Pétala",
-      y = "Largura da Pétala" 
-    ) +
+      caption = "Source: ToothGrowth data set", 
+      x = "Supplement",
+      y = "Length" 
+    )  +
   facet_grid(~Species)
 ```
 
