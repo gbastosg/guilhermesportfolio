@@ -27,7 +27,7 @@ In this post we will analyse two continuous variables in the same plot, this is 
 > If the variation described the behaviour of a variable, covariation describes the behaviour *between* the variables.
 
 
-**Covariation** is the tendency of values of two or more variables, to vary together.
+**Covariation** is the tendency of values of two or more variables vary together.
 
 # A good way of understanding these relations is by using Scatter Plots
 
@@ -146,9 +146,9 @@ iris %>%
   theme_clean()
 ```
 
-Here we are analyzing the distribution between the relationship of the variables from each group. Could we somehow model these relationship? In the future!
+Here we are analyzing the distribution between the relationship of the variables from each group. Could we somehow model these relationships? We will in the future!
 
-For now, I needed to install the package `hexbin` to do next plot:
+For now, I needed to install the package `hexbin` to do the next plot:
 
 ```
 install.packages("hexbin")
@@ -173,11 +173,11 @@ iris %>%
   facet_grid(~Species)
 ```
 
-Observing several Scatter Plots of your data can be a very powerfull toll to understand and explain data relationships.
+Observing several Scatter Plots of your data can be a very powerful tool to understand and explain relationships.
 
 # Using R base to plot several scatter plots
 
-Function `pairs()` helps us plotting several plots at the same time:
+Function `pairs()` helps us plotting several relations at the same time:
 
 ```{r, layout="l-body-outset", preview=TRUE}
 
@@ -203,7 +203,7 @@ pairs(iris[,1:4], pch = 19,  cex = 0.5,
 
 ```
 
-From this moment on we can start to talk about the concept of correlation, but this one I am going to continue on the next post!
+From this moment on we can start talking about correlation, but this one concept I am going to leave for a future post!
 
 Thank you!
 
