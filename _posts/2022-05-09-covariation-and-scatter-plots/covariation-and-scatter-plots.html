@@ -1499,7 +1499,7 @@ going to talk about covariation!</p>
 describes the behaviour <em>between</em> the variables.</p>
 </blockquote>
 <p><strong>Covariation</strong> is the tendency of values of two or more
-variables, to vary together.</p>
+variables vary together.</p>
 <h1
 id="a-good-way-of-understanding-these-relations-is-by-using-scatter-plots">A
 good way of understanding these relations is by using Scatter Plots</h1>
@@ -1583,9 +1583,9 @@ our graph into the groups defined by the variable
 </div>
 <p>Here we are analyzing the distribution between the relationship of
 the variables from each group. Could we somehow model these
-relationship? In the future!</p>
+relationships? We will in the future!</p>
 <p>For now, I needed to install the package <code>hexbin</code> to do
-next plot:</p>
+the next plot:</p>
 <pre><code>install.packages(&quot;hexbin&quot;)</code></pre>
 <p>Then:</p>
 <pre><code>
@@ -1601,12 +1601,12 @@ iris %&gt;%
       y = &quot;Length&quot; 
     )  +
   facet_grid(~Species)</code></pre>
-<p>Observing several Scatter Plots of your data can be a very powerfull
-toll to understand and explain data relationships.</p>
+<p>Observing several Scatter Plots of your data can be a very powerful
+tool to understand and explain relationships.</p>
 <h1 id="using-r-base-to-plot-several-scatter-plots">Using R base to plot
 several scatter plots</h1>
-<p>Function <code>pairs()</code> helps us plotting several plots at the
-same time:</p>
+<p>Function <code>pairs()</code> helps us plotting several relations at
+the same time:</p>
 <div class="layout-chunk" data-layout="l-body-outset">
 <p><img src="covariation-and-scatter-plots_files/figure-html5/unnamed-chunk-4-1.png" width="624" data-distill-preview=1 /></p>
 </div>
@@ -1619,8 +1619,8 @@ pairs(iris[,1:4], pch = 19,  cex = 0.5,
 <div class="layout-chunk" data-layout="l-body-outset">
 <p><img src="covariation-and-scatter-plots_files/figure-html5/unnamed-chunk-5-1.png" width="624" data-distill-preview=1 /></p>
 </div>
-<p>From this moment on we can start to talk about the concept of
-correlation, but this one I am going to continue on the next post!</p>
+<p>From this moment on we can start talking about correlation, but this
+one concept I am going to leave for a future post!</p>
 <p>Thank you!</p>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
