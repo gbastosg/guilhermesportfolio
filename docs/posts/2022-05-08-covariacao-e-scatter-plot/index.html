@@ -87,7 +87,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-<title>Guilherme's Portfolio: Covariacao e Scatter Plot</title>
+<title>Guilherme's Portfolio: Covariação e Scatter Plot</title>
 
 <meta property="description" itemprop="description" content="Neste post pretendo discutir o conceito de covariação e mostrar como fazer um scatter plot para visualizar a relação entre duas variáveis."/>
 
@@ -98,7 +98,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta name="article:author" content="Guilherme Bastos Gomes"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Guilherme&#39;s Portfolio: Covariacao e Scatter Plot"/>
+<meta property="og:title" content="Guilherme&#39;s Portfolio: Covariação e Scatter Plot"/>
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="Neste post pretendo discutir o conceito de covariação e mostrar como fazer um scatter plot para visualizar a relação entre duas variáveis."/>
 <meta property="og:locale" content="en_US"/>
@@ -106,14 +106,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="Guilherme&#39;s Portfolio: Covariacao e Scatter Plot"/>
+<meta property="twitter:title" content="Guilherme&#39;s Portfolio: Covariação e Scatter Plot"/>
 <meta property="twitter:description" content="Neste post pretendo discutir o conceito de covariação e mostrar como fazer um scatter plot para visualizar a relação entre duas variáveis."/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Covariacao e Scatter Plot"]},{"type":"character","attributes":{},"value":["Neste post pretendo discutir o conceito de covariação e mostrar como fazer um scatter plot para visualizar a relação entre duas variáveis."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Guilherme Bastos Gomes"]},{"type":"character","attributes":{},"value":["https://gbastosg.github.io/guilhermesportfolio/"]}]}]},{"type":"character","attributes":{},"value":["2022-05-09"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Covariação e Scatter Plot"]},{"type":"character","attributes":{},"value":["Neste post pretendo discutir o conceito de covariação e mostrar como fazer um scatter plot para visualizar a relação entre duas variáveis."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Guilherme Bastos Gomes"]},{"type":"character","attributes":{},"value":["https://gbastosg.github.io/guilhermesportfolio/"]}]}]},{"type":"character","attributes":{},"value":["2022-05-09"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2066,7 +2066,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Covariacao e Scatter Plot","description":"Neste post pretendo discutir o conceito de covariação e mostrar como fazer um scatter plot para visualizar a relação entre duas variáveis.","authors":[{"author":"Guilherme Bastos Gomes","authorURL":"https://gbastosg.github.io/guilhermesportfolio/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-05-09T00:00:00.000+10:00","citationText":"Gomes, 2022"}
+{"title":"Covariação e Scatter Plot","description":"Neste post pretendo discutir o conceito de covariação e mostrar como fazer um scatter plot para visualizar a relação entre duas variáveis.","authors":[{"author":"Guilherme Bastos Gomes","authorURL":"https://gbastosg.github.io/guilhermesportfolio/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-05-09T00:00:00.000+10:00","citationText":"Gomes, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2089,7 +2089,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Covariacao e Scatter Plot</h1>
+<h1>Covariação e Scatter Plot</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 <p><p>Neste post pretendo discutir o conceito de covariação e mostrar
@@ -2149,9 +2149,10 @@ contínuas, junto com uma variável categórica:</p>
 <ul>
 <li>O grupo <em>Iris setosa</em> tende a ter menor comprimento de
 sépala, porém grandes larguras.</li>
-<li>Os outros grupos possuem uma relação muito mais intíma do que
-<em>Iris setosa</em>. Ainda assim, <em>Iris virginica</em> parece ter os
-maiores comprimentos, separando-as das outras.</li>
+<li>Os outros grupos possuem uma relação muito mais intíma (ou seja,
+estão distribuidos de forma parecida) do que o grupo <em>Iris
+setosa</em>. Ainda assim, <em>Iris virginica</em> parece ter os maiores
+comprimentos, separando-as das outras.</li>
 </ul>
 <p>Assim podemos começar a entender melhor como os números se comportam
 dentro dos grupos, a partir daqui o próximo passo seria modelar, mas

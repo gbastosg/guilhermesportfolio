@@ -1,5 +1,5 @@
 ---
-title: "Covariacao e Scatter Plot"
+title: "Covariação e Scatter Plot"
 description: |
   Neste post pretendo discutir o conceito de covariação e mostrar como fazer um scatter plot para visualizar a relação entre duas variáveis.
 author:
@@ -73,7 +73,7 @@ iris %>%
 Perceba como este gráfico nos dá informações sobre duas variáveis contínuas, junto com uma variável categórica:
 
 * O grupo *Iris setosa* tende a ter menor comprimento de sépala, porém grandes larguras.
-* Os outros grupos possuem uma relação muito mais intíma do que *Iris setosa*. Ainda assim, *Iris virginica* parece ter os maiores comprimentos, separando-as das outras.
+* Os outros grupos possuem uma relação muito mais intíma (ou seja, estão distribuidos de forma parecida) do que o grupo *Iris setosa*. Ainda assim, *Iris virginica* parece ter os maiores comprimentos, separando-as das outras.
 
 Assim podemos começar a entender melhor como os números se comportam dentro dos grupos, a partir daqui o próximo passo seria modelar, mas vamos continuar trabalhando com scatter plots, pois eles são realmente poderosos, principalmente quando estamos buscando por padrões.
 
