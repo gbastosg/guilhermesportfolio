@@ -1,0 +1,286 @@
+---
+title: "Correlation in R"
+description: |
+  In this post I am writing about the correlation between two variables, how to find and interpret this concept.
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-05-15
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+library(tidyverse)
+library(ggthemes)
+
+
+mpg %>% 
+  ggplot(aes(x = displ, y = cty, color = class)) +  
+    geom_point() + 
+    labs( 
+      title = "Motor efficiency of different cars",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: mpg data set", 
+      x = "Motor Display",
+      y = "City miles per gallon",
+    ) +
+    facet_wrap(~class) +
+    theme_classic() 
+```
+
+# Hello!
+
+In this post we will work with correlations.
+
+# Correlation
+
+Correlation is a statistical measure that takes in consideration the degree of separation (or union) betweeen two variables. It's important to say that correlation measures the association level of our numbers, and doesn't show us if one CAUSES the other, or vice-versa. Also doesn't show us if the association is happening because of another variable from our data.
+
+# What can correlation show us?
+
+From two variables we can obtain a numeric value known as the *correlation coefficient*, which varies from -1 to 1.
+
+This coefficient shows us the relation between two distributions, if it is positive, than it's closer to 1, otherwise it will show that one variable causes de inverse effect on the other and the coefficient proximates -1. If a variation doesn't affect the other, then there's no linear correlation, and the value approximates 0.
+
+There are some methods to obtain the *correlation coefficient* in R, let's test of them in the `mpg` data set
+
+```
+library(tidyverse)
+```
+
+# Correlation in R
+
+The correlation coefficient can be calculated using the functions `cor()` or `cor.test()`, where:
+
+> * cor() gives us the correlation coefficient
+> * cor.test() gives us an association test between two samples of our variables, besides the correlation coefficient, this function also gives us the level of significance of the test, that is the  `p-value` or `p-valor`, we will talk more about  them in the future!
+
+We can use the function, together with the tests in the following way:
+
+Is there a correlation between the variables `displ` and `cty`?
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+mpg %>% 
+  ggplot(aes(x = displ, y = cty, color = class)) +  
+    geom_point() + 
+    labs( 
+      title = "Motor efficiency of different cars",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: mpg data set", 
+      x = "Motor Display",
+      y = "City miles per gallon",
+    ) + 
+    theme_classic() 
+```
+
+The code:
+
+```
+mpg %>% 
+  ggplot(aes(x = displ, y = cty, color = class)) +  
+    geom_point() + 
+    labs( 
+      title = "Motor efficiency of different cars",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: mpg data set", 
+      x = "Motor Display",
+      y = "City miles per gallon",
+    ) + 
+    theme_classic() 
+```
+
+Notice that there is a tendency in out plot, that can be modeled with a line using the function `geom_smooth`:
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+mpg %>% 
+  ggplot(aes(x = displ, y = cty)) +  
+    geom_point() + 
+    labs( 
+      title = "Motor efficiency of different cars",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: mpg data set", 
+      x = "Motor Display",
+      y = "City miles per gallon",
+    ) +
+    geom_smooth(method = "lm") +
+    theme_classic() 
+```
+
+Check how the line can explain (in it's own way) the relation between variables:
+
+```
+mpg %>% 
+  ggplot(aes(x = displ, y = cty, color = class)) +  
+    geom_point() + 
+    labs( 
+      title = "Motor efficiency of different cars",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: mpg data set", 
+      x = "Motor Display",
+      y = "City miles per gallon",
+    ) + 
+    theme_classic() 
+```
+
+Line points to the correlation sense, here we have:
+
+> As the value of `displ` increases, the value of `cty` decreases
+
+Now let's use correlation tests to obtain the correlation coefficient:
+
+
+```
+cor(mpg$displ, mpg$cty, method = c("pearson"))
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+cor(mpg$displ, mpg$cty, method = c("pearson"))
+
+```
+
+Notice how the correlation coefficient is close to -1, evidencing a negative correlation.
+
+There are 3 most used methods to obtain a correlation coefficient: "Pearson", "Spearman" or "Kendall".
+
+To obtain even more evidences on the correlations we can obtain the correlation coefficient for all methods:
+
+```
+cor(mpg$displ, mpg$cty, method = c("spearman"))
+
+cor(mpg$displ, mpg$cty, method = c("kendall"))
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+cor(mpg$displ, mpg$cty, method = c("spearman"))
+
+cor(mpg$displ, mpg$cty, method = c("kendall"))
+```
+
+Notice how the Spearman test gave us a correlation coefficient even closer to -1! It's important to say that correlation show us a pattern between variables, but it doesn't tell us that one is CAUSING the other.
+
+In our data we are showing the negative relationship between `displ` and `cty`, and as bigger the motor, more gallons are necessary to run a mile. The explanation for this kind of correlation may seem obvious, but it shows us that considered potent motors tend to spend more fuel, what can directly affect who pays for the product.
+
+# Pearson's correlation test
+
+[In the last post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-09-covariation-and-scatter-plots/) we have investigated the correlation between the variables `Petal.Length` and `Petal.Width`, of each species of the data set `iris`:
+
+```
+iris %>% 
+   ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +  
+     geom_point() + 
+     labs( 
+       title = "Comparison between sizes of Sepals in 3 species of the Iris gender",
+       subtitle = "by: Guilherme Bastos Gomes", 
+       caption = "Source: Edgar Anderson's Iris Data set", 
+       x = "Petal.Length",
+       y = "Petal.Width" 
+     ) +
+     theme_classic() +
+   facet_grid(~Species) +
+   geom_smooth(method = "lm")
+```
+
+```{r, layout="l-body-outset",  preview = TRUE}
+iris %>% 
+   ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +  
+     geom_point() + 
+     labs( 
+       title = "Comparison between sizes of Sepals in 3 species of the Iris gender",
+       subtitle = "by: Guilherme Bastos Gomes", 
+       caption = "Source: Edgar Anderson's Iris Data set", 
+       x = "Petal.Length",
+       y = "Petal.Width" 
+     ) +
+     theme_classic() +
+   facet_grid(~Species) +
+   geom_smooth(method = "lm")
+```
+
+Now let's do a correlation test between variables `Petal.Length`e `Petal.Width`:
+
+```
+cor.test(iris$Petal.Length, iris$Petal.Width, 
+                    method = "pearson")
+```
+
+Pearson's product-moment correlation
+
+data:  iris\$Petal.Length and iris\$Petal.Width
+t = 43.387, df = 148, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.9490525 0.9729853
+sample estimates:
+      cor 
+0.9628654 
+
+In the results we obtained from the test we can see:
+
+> t is the statistical t-test (43.387)
+> df represents the degrees of freedom (df = 148)
+> p-value is the significance level gathered from the t-test (p-value = 2.2e-16)
+> conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = [0.9490525, 0.9729853])
+> sample estimates gives us the correlation coefficient (Cor.coeff = 0.9628654)
+
+Here we have a strong positive correlation, with strong evidences that suggests that one measure affects the other, allowing us to generate ideas about the petal sizes of these three species we can find in nature.
+
+## Interpreting results
+
+Going back to the `mpg` data set where we have a negative correlation between of variables:
+```
+ct <- cor.test(mpg$displ, mpg$cty, 
+                    method = "pearson")
+                    
+ct
+```
+
+Pearson's product-moment correlation
+
+data:  mpg\$displ and mpg\$cty
+t = -20.205, df = 232, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.8406782 -0.7467508
+sample estimates:
+      cor 
+-0.798524
+
+Function `cor.test()` returns us a list that contains:
+
+* *p.value*
+* *estimate*
+
+```
+ct$p.value
+
+ct$estimate
+```
+
+In statiscs, p-value is the probability of obtaining results as extreme as the observed results in a hypothesis test, assuming that the *null hypothesis* is true.
+
+* P-value is a statistical measure to validate a hypothesis over an observation.
+* P-value measures the probability of obtaining observed results assuming the null hypothesis is true.
+* As lower is the p-value number, higher is the statistical significance of the observed difference.
+
+I won't be in details of all these right now, I will write about p-value in another post!
+
+
+How to perform a correlation test:
+
+```
+cor.test(dataframe\$coluna1, dataframe\$coluna2, 
+                    method = "pearson")
+```
+
+#### Hope it was helpful! Thank you for your time! Next post I will talk about p-values and the null hypothesis.
