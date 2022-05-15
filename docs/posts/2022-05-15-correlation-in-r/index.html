@@ -118,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["correlation-in-r_files/figure-html5/unnamed-chunk-1-1.png","correlation-in-r_files/figure-html5/unnamed-chunk-2-1.png","correlation-in-r_files/figure-html5/unnamed-chunk-3-1.png","correlation-in-r_files/figure-html5/unnamed-chunk-6-1.png"]}
+  {"type":"character","attributes":{},"value":["correlation-in-r_files/anchor-4.2.2/anchor.min.js","correlation-in-r_files/bowser-1.9.3/bowser.min.js","correlation-in-r_files/distill-2.2.21/template.v2.js","correlation-in-r_files/figure-html5/unnamed-chunk-1-1.png","correlation-in-r_files/figure-html5/unnamed-chunk-2-1.png","correlation-in-r_files/figure-html5/unnamed-chunk-3-1.png","correlation-in-r_files/figure-html5/unnamed-chunk-6-1.png","correlation-in-r_files/header-attrs-2.14/header-attrs.js","correlation-in-r_files/jquery-3.6.0/jquery-3.6.0.js","correlation-in-r_files/jquery-3.6.0/jquery-3.6.0.min.js","correlation-in-r_files/jquery-3.6.0/jquery-3.6.0.min.map","correlation-in-r_files/popper-2.6.0/popper.min.js","correlation-in-r_files/tippy-6.2.7/tippy-bundle.umd.min.js","correlation-in-r_files/tippy-6.2.7/tippy-light-border.css","correlation-in-r_files/tippy-6.2.7/tippy.css","correlation-in-r_files/tippy-6.2.7/tippy.umd.min.js","correlation-in-r_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2245,12 +2245,16 @@ equal to 0 95 percent confidence interval: 0.9490525 0.9729853 sample
 estimates: cor 0.9628654</p>
 <p>In the results we obtained from the test we can see:</p>
 <blockquote>
-<p>t is the statistical t-test (43.387) df represents the degrees of
-freedom (df = 148) p-value is the significance level gathered from the
-t-test (p-value = 2.2e-16) conf.int is the confidence interval of the
-correlation coefficient at 95% (conf.int = [0.9490525, 0.9729853])
-sample estimates gives us the correlation coefficient (Cor.coeff =
-0.9628654)</p>
+<ul>
+<li>t is the statistical t-test (43.387)</li>
+<li>df represents the degrees of freedom (df = 148)</li>
+<li>p-value is the significance level gathered from the t-test (p-value
+= 2.2e-16)</li>
+<li>conf.int is the confidence interval of the correlation coefficient
+at 95% (conf.int = [0.9490525, 0.9729853])</li>
+<li>sample estimates gives us the correlation coefficient (Cor.coeff =
+0.9628654)</li>
+</ul>
 </blockquote>
 <p>Here we have a strong positive correlation, with strong evidences
 that suggests that one measure affects the other, allowing us to
@@ -2289,7 +2293,8 @@ significance of the observed difference.</li>
 </ul>
 <p>I won’t be in details of all these right now, I will write about
 p-value in another post!</p>
-<p>How to perform a correlation test:</p>
+<h3 id="how-to-perform-a-correlation-test">How to perform a correlation
+test:</h3>
 <pre><code>cor.test(dataframe\$coluna1, dataframe\$coluna2, 
                     method = &quot;pearson&quot;)</code></pre>
 <h4

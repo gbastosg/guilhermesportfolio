@@ -2249,12 +2249,16 @@ estimates: cor 0.9628654</p>
 <p>Nos resultados que obtivemos a partir do teste podemos
 interpretar:</p>
 <blockquote>
-<p>t é o teste estatístico t ou t-test (43.387) df são os graus de
-liberdade, degrees of freedom (df = 148) p-value é o nível de
-significancia obtido a partir do t-test (p-value = 2.2e-16) conf.int é o
-intervalo de confiança do coeficiente de correlação em 95% (conf.int =
-[0.9490525, 0.9729853]) sample estimates nos dá o coeficiente de
-correlação (Cor.coeff = 0.9628654)</p>
+<ul>
+<li>t é o teste estatístico t ou t-test (43.387)</li>
+<li>df são os graus de liberdade, degrees of freedom (df = 148)</li>
+<li>p-value é o nível de significancia obtido a partir do t-test
+(p-value = 2.2e-16)</li>
+<li>conf.int é o intervalo de confiança do coeficiente de correlação em
+95% (conf.int = [0.9490525, 0.9729853])</li>
+<li>sample estimates nos dá o coeficiente de correlação (Cor.coeff =
+0.9628654)</li>
+</ul>
 </blockquote>
 <p>Temos uma correlação positiva forte, com fortes evidências de que as
 medidas influenciam uma a outra positivamente, nos permitindo ter ideias
@@ -2293,7 +2297,7 @@ assumindo que a hipótese nula é verdadeira.</li>
 observada.</li>
 </ul>
 <p>Não entrarei em muitos detalhes sobre p-value agora, escreverei mais
-sobre isso futuramente! Como fazer o teste de correlação:</p>
+sobre isso futuramente! ### Como fazer o teste de correlação:</p>
 <pre><code>cor.test(dataframe\$coluna1, dataframe\$coluna2, 
                     method = &quot;pearson&quot;)</code></pre>
 <h4
