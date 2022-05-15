@@ -227,17 +227,18 @@ sample estimates:
 
 In the results we obtained from the test we can see:
 
-> t is the statistical t-test (43.387)
-> df represents the degrees of freedom (df = 148)
-> p-value is the significance level gathered from the t-test (p-value = 2.2e-16)
-> conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = [0.9490525, 0.9729853])
-> sample estimates gives us the correlation coefficient (Cor.coeff = 0.9628654)
+> * t is the statistical t-test (43.387)
+> * df represents the degrees of freedom (df = 148)
+> * p-value is the significance level gathered from the t-test (p-value = 2.2e-16)
+> * conf.int is the confidence interval of the correlation coefficient at 95% (conf.int = [0.9490525, 0.9729853])
+> * sample estimates gives us the correlation coefficient (Cor.coeff = 0.9628654)
 
 Here we have a strong positive correlation, with strong evidences that suggests that one measure affects the other, allowing us to generate ideas about the petal sizes of these three species we can find in nature.
 
 ## Interpreting results
 
 Going back to the `mpg` data set where we have a negative correlation between of variables:
+
 ```
 ct <- cor.test(mpg$displ, mpg$cty, 
                     method = "pearson")
@@ -256,6 +257,7 @@ sample estimates:
       cor 
 -0.798524
 
+
 Function `cor.test()` returns us a list that contains:
 
 * *p.value*
@@ -267,6 +269,7 @@ ct$p.value
 ct$estimate
 ```
 
+
 In statiscs, p-value is the probability of obtaining results as extreme as the observed results in a hypothesis test, assuming that the *null hypothesis* is true.
 
 * P-value is a statistical measure to validate a hypothesis over an observation.
@@ -276,7 +279,8 @@ In statiscs, p-value is the probability of obtaining results as extreme as the o
 I won't be in details of all these right now, I will write about p-value in another post!
 
 
-How to perform a correlation test:
+
+### How to perform a correlation test:
 
 ```
 cor.test(dataframe\$coluna1, dataframe\$coluna2, 

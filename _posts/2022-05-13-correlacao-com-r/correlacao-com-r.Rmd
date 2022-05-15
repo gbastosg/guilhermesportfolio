@@ -223,11 +223,11 @@ sample estimates:
 
 Nos resultados que obtivemos a partir do teste podemos interpretar:
 
-> t é o teste estatístico t ou t-test (43.387)
-> df são os graus de liberdade, degrees of freedom (df = 148)
-> p-value é o nível de significancia obtido a partir do t-test (p-value = 2.2e-16)
-> conf.int é o intervalo de confiança do coeficiente de correlação em 95% (conf.int = [0.9490525, 0.9729853])
-> sample estimates nos dá o coeficiente de correlação (Cor.coeff = 0.9628654)
+> * t é o teste estatístico t ou t-test (43.387)
+> * df são os graus de liberdade, degrees of freedom (df = 148)
+> * p-value é o nível de significancia obtido a partir do t-test (p-value = 2.2e-16)
+> * conf.int é o intervalo de confiança do coeficiente de correlação em 95% (conf.int = [0.9490525, 0.9729853])
+> * sample estimates nos dá o coeficiente de correlação (Cor.coeff = 0.9628654)
 
 Temos uma correlação positiva forte, com fortes evidências de que as medidas influenciam uma a outra positivamente, nos permitindo ter ideias a respeito do tipo de folha que podemos encontrar de cada uma dessas três espécies na natureza.
 
@@ -271,7 +271,7 @@ Em estatística, o p-value é a probabilidade de se obter resultados tão extrem
 * Quanto menor o p-value, maior a significancia estística da diferença observada.
 
 Não entrarei em muitos detalhes sobre p-value agora, escreverei mais sobre isso futuramente! 
-Como fazer o teste de correlação:
+### Como fazer o teste de correlação:
 
 ```
 cor.test(dataframe\$coluna1, dataframe\$coluna2, 
