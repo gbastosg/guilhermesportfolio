@@ -1,0 +1,281 @@
+---
+title: "Correlação com R"
+description: |
+  Neste post escrevo sobre correlação entre duas variáveis, como encontrar e interpretar esse conceito.
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-05-15
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+library(tidyverse)
+library(ggthemes)
+
+
+mpg %>% 
+  ggplot(aes(x = displ, y = cty, color = class)) +  
+    geom_point() + 
+    labs( 
+      title = "Comparando a eficiência entre diferentes tipos de motores",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: mpg data set", 
+      x = "Tipo de motor (deslocamento)",
+      y = "Milhas por galão (na cidade)",
+    ) +
+    facet_wrap(~class) +
+    theme_classic() 
+```
+
+# Olá!
+
+Neste post irei trabalhar com correlações.
+
+# Correlação
+
+Correlação é uma medida estatística que leva em consideração o grau de separação (ou união) de duas variáveis. É importante dizer que a correlação mede a associação entre duas variáveis, e não nos mostra se uma CAUSA a outra, ou vice-versa. Também não mostra se a associação está sendo causada por outro fator em nossos dados. 
+
+# O que a correlação pode nos mostrar?
+
+A partir de duas variáveis podemos obter um valor numérico conhecido como *coeficiente de correlação*, que varia de -1 até 1.
+
+Esse coeficiente nos mostra a relação entre as duas distribuições, se for positivo estará perto de 1, se negativo, ou seja o incremento de uma variável causa efeito inverso na outra, então o valor do coeficiente se aproxima de -1. Se uma variação não afetar a outra, então não há correlação *linear* clara e o valor se aproxima de 0.
+
+Existem várias formas e métodos de se obter o *coeficiente de correlação* em R, vamos testar algumas com o data set `mpg`
+
+```
+library(tidyverse)
+```
+
+# Correlação no R
+
+O coeficiente de correlação pode ser calculado usando as funções `cor()` ou `cor.test()`, onde:
+
+> * cor() nos entrega o coeficiente de correlação
+> * cor.test() nos entrega um teste de associação, entre duas amostras de variáveis, além do coeficiente de correlação, essa função também nos retorna o nível de significancia do teste, ou seja o `p-value` ou `p-valor`, falaremos mais sobre p-valor em um post futuro dedicado apenas ao tema!
+
+Podemos usar as funções, juntamente com os diversos testes da seguinte forma:
+
+Será que existe correlação entre a variável `displ` (deslocamento do motor) e `cty` (milhas por galão na cidade)?
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+mpg %>% 
+  ggplot(aes(x = displ, y = cty, color = class)) +  
+    geom_point() + 
+    labs( 
+      title = "Relação entre as variáveis: tipo de motor e milhas por galão",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: mpg data set", 
+      x = "Tipo de motor (deslocamento)",
+      y = "Milhas por galão (na cidade)" 
+    ) + 
+    theme_classic() 
+```
+
+O código:
+
+```
+mpg %>% 
+  ggplot(aes(x = displ, y = cty, color = class)) +  
+    geom_point() + 
+    labs( 
+      title = "Relação entre as variáveis tipo de motor e milhas por galão",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: mpg data set", 
+      x = "Tipo de motor (deslocamento)",
+      y = "Milhas por galão (na cidade)" 
+    ) + 
+    theme_classic() 
+```
+
+Perceba que existe uma tendência em nosso gráfico, que pode ser modelada como uma linha usando a função `geom_smooth`:
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+mpg %>% 
+  ggplot(aes(x = displ, y = cty)) +  
+    geom_point() + 
+    labs( 
+      title = "Relação entre as variáveis: tipo de motor e milhas por galão",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: mpg data set", 
+      x = "Tipo de motor (deslocamento)",
+      y = "Milhas por galão (na cidade)" 
+    ) +
+    geom_smooth(method = "lm") +
+    theme_classic() 
+```
+
+Observe como a linha explica (de certa forma) a relação entre as variáveis:
+
+```
+mpg %>% 
+  ggplot(aes(x = displ, y = cty, color = class)) +  
+    geom_point() + 
+    labs( 
+      title = "Relação entre as variáveis: tipo de motor e milhas por galão",
+      subtitle = "by: Guilherme Bastos Gomes", 
+      caption = "Source: mpg data set", 
+      x = "Tipo de motor (deslocamento)",
+      y = "Milhas por galão (na cidade)" 
+    ) + 
+    theme_classic() 
+```
+
+A linha aponta para o sentido da correlação, aqui temos:
+
+> Quanto maior o valor em `tipo de motor`, menor o valor em `cty` (milhas por galão na cidade)
+
+Agora vamos usar testes de correlação para obter o coeficiente de correlação:
+
+```
+cor(mpg$displ, mpg$cty, method = c("pearson"))
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+
+cor(mpg$displ, mpg$cty, method = c("pearson"))
+
+```
+Perceba como o coeficiente de correlação está bem próximo de -1, evidenciando uma correlação negativa.
+
+Existem 3 formas principais de se obter o coeficiente de correlação: "Pearson", "Spearman" ou "Kendall".
+
+Para obtermos ainda mais evidencias sobre correlações podemos obter o coeficiente de correlação pelos outros métodos:
+
+```
+cor(mpg$displ, mpg$cty, method = c("spearman"))
+
+cor(mpg$displ, mpg$cty, method = c("kendall"))
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+cor(mpg$displ, mpg$cty, method = c("spearman"))
+
+cor(mpg$displ, mpg$cty, method = c("kendall"))
+```
+
+Perceba como o teste de Spearman dos deu um coeficiente de correlação ainda mais próximo de -1! É importante dizer que correlação nos mostra um padrão na relação entre as variáveis, mas não indica que uma causa a outra. Nos nossos dados estamos mostrando uma relação negativa entre tamanho do motor (1.4, 1.6, 3.5...) e as milhas percorridas por galão de combustível numa cidade, ou seja, quanto maior o tamanho do motor, menos milhas por galão um carro tende a percorrer. A explicação para este tipo de correlação pode parecer óbvia, mas ela nos mostra que motores potentes tendem a gastar mais combustível, o que pode afetar diretamente quem paga por esse produto.
+
+# Teste de correlação de Pearson
+
+[No último post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-08-covariacao-e-scatter-plot/) investigamos a correlação entre as variáveis `Largura da Sépala` e `Comprimento da Sépala`, de cada espécie  do data set `iris`:
+
+```
+iris %>% 
+   ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +  
+     geom_point() + 
+     labs( 
+       title = "Medidas em centímetros do tamanho das sépalas de flores de 3 espécies",
+       subtitle = "by: Guilherme Bastos Gomes", 
+       caption = "Source: Edgar Anderson's Iris Data set", 
+       x = "Comprimento da Pétala",
+       y = "Largura da Pétala" 
+     ) +
+     theme_classic() +
+   facet_grid(~Species) +
+   geom_smooth(method = "lm")
+```
+
+```{r, layout="l-body-outset",  preview = TRUE}
+iris %>% 
+   ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +  
+     geom_point() + 
+     labs( 
+       title = "Medidas em centímetros do tamanho das sépalas de flores de 3 espécies",
+       subtitle = "by: Guilherme Bastos Gomes", 
+       caption = "Source: Edgar Anderson's Iris Data set", 
+       x = "Comprimento da Pétala",
+       y = "Largura da Pétala" 
+     ) +
+     theme_classic() +
+   facet_grid(~Species) +
+   geom_smooth(method = "lm")
+```
+
+Vamos agora fazer um teste de correlação entre as variáveis `Petal.Length`e `Petal.Width`:
+
+```
+cor.test(iris$Petal.Length, iris$Petal.Width, 
+                    method = "pearson")
+```
+
+Pearson's product-moment correlation
+
+data:  iris\$Petal.Length and iris\$Petal.Width
+t = 43.387, df = 148, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.9490525 0.9729853
+sample estimates:
+      cor 
+0.9628654 
+
+Nos resultados que obtivemos a partir do teste podemos interpretar:
+
+> t é o teste estatístico t ou t-test (43.387)
+> df são os graus de liberdade, degrees of freedom (df = 148)
+> p-value é o nível de significancia obtido a partir do t-test (p-value = 2.2e-16)
+> conf.int é o intervalo de confiança do coeficiente de correlação em 95% (conf.int = [0.9490525, 0.9729853])
+> sample estimates nos dá o coeficiente de correlação (Cor.coeff = 0.9628654)
+
+Temos uma correlação positiva forte, com fortes evidências de que as medidas influenciam uma a outra positivamente, nos permitindo ter ideias a respeito do tipo de folha que podemos encontrar de cada uma dessas três espécies na natureza.
+
+## Interpretando os resultados
+
+Voltando ao data set `mpg` onde temos uma correlação negativa entre duas variáveis:
+
+```
+ct <- cor.test(mpg$displ, mpg$cty, 
+                    method = "pearson")
+                    
+ct
+```
+
+Pearson's product-moment correlation
+
+data:  mpg\$displ and mpg\$cty
+t = -20.205, df = 232, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.8406782 -0.7467508
+sample estimates:
+      cor 
+-0.798524
+
+A função `cor.test()` nos retorna uma lista contendo:
+
+* p.value: o p-valor do teste
+* estimate: o coeficiente de correlação
+
+```
+ct$p.value
+
+ct$estimate
+```
+
+Em estatística, o p-value é a probabilidade de se obter resultados tão extremos quanto os resultados observados como resultado de um teste de hipótese, assumindo que a *hipótese nula* está correta. Sendo assim:
+
+* O p-value é uma medida estística usada para validar uma hipótese sobre uma observação.
+* O p-value mede a probabilidade de se obter os resultados observados assumindo que a hipótese nula é verdadeira.
+* Quanto menor o p-value, maior a significancia estística da diferença observada.
+
+Não entrarei em muitos detalhes sobre p-value agora, escreverei mais sobre isso futuramente! 
+Como fazer o teste de correlação:
+
+```
+cor.test(dataframe\$coluna1, dataframe\$coluna2, 
+                    method = "pearson")
+```
+
+#### Espero ter ajudado! Obrigado por ter chegado até aqui! No próximo post falarei sobre p-value e hipótese nula.
