@@ -6,7 +6,7 @@
 ###a very well constructed blog
 
 #To start you should have installed Git and the packages:
-packages2download <- c("tidyverse", "usethis", "distill")
+packages2download <- c("tidyverse", "usethis", "distill", "ggthemes", "here")
 
 #Loading libraries
 library(tidyverse)
