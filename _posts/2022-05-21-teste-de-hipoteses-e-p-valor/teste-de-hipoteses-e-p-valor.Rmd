@@ -1,0 +1,346 @@
+---
+title: "Teste de hipoteses e p-valor"
+description: |
+  Neste post iremos testar hipóteses a partir da observação de diferenças e no impacto de uma variável categórica.
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-05-21
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, layout="body-outset", preview=TRUE}
+library(tidyverse)
+
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+
+dose_05 <- ToothGrowth %>%
+              filter(dose == 0.5)
+
+dose_1 <- ToothGrowth %>%
+              filter(dose == 1)
+
+diferenca_observavel1 <- 19.735 - 10.605
+diferenca_observavel2 <- 26.100	- 19.735
+diferenca_observavel3 <- 26.100	- 10.605
+
+n <- 10000
+null <- vector("numeric",n)
+for (i in 1:n) {
+media_controle <- ToothGrowth$len %>% sample(12) %>% mean()
+media_tratamento <- ToothGrowth$len %>% sample(12) %>% mean()
+null[i] <- mean(media_tratamento) - mean(media_controle)
+}
+
+hist(null, freq=TRUE)
+
+abline(v=diferenca_observavel1, col="red", lwd=2)
+
+abline(v=diferenca_observavel2, col="blue", lwd=2)
+
+```
+
+# Olá!
+
+Neste post pretendo explicar como realizar um teste de hipóteses usando o R, e ainda também falar a respeito do que é o p-valor que tanto aparece em artigos científicos.
+
+# ToothGrowth Data set
+
+Neste data set imbutido na linguagem (lembre-se de carregar o `tidyverse`) chamado `ToothGrowth` encontramos 60 observações dividas em três variáveis:
+
+- len
+- supp
+- dose
+
+```{r, layout="l-body-outset"}
+library(rmarkdown)
+paged_table(ToothGrowth)
+```
+
+Esses dados foram obtidos a partir de uma pesquisa, bem melhor explicada [neste post](), mas que no geral demonstra o efeito da vitamina C no crescimento de odontoblastos (células responsáveis pelo crescimento dentário) em diversos camundongos, com diferentes doses.
+
+```
+ggplot(ToothGrowth) +
+  geom_freqpoly(aes(x = len, color = dose), binwidth = 1) +
+  facet_wrap(~dose) +
+  theme_classic()
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+ggplot(ToothGrowth) +
+  geom_freqpoly(aes(x = len, color = dose), binwidth = 1) +
+  facet_wrap(~dose) +
+  theme_classic()
+```
+
+Parece que existe uma clara influência da dose de vitamina aplicada nos camundongos no crescimento de seus odontoblastos, porém precisamos ser céticos e obter algumas evidências a respeito do que estamos clamando.
+
+# Primeiro observamos as médias
+
+Para começar a compreender a relação da dose de vitamina com o crescimento dentário, podemos observar as médias usando a função `summarise()` do pacote `dplyr`.
+
+```
+ToothGrowth %>%
+  group_by(dose) %>%
+  summarise(media = mean(len))
+```
+```{r, layout="body-outset", preview=TRUE}
+library(tidyverse)
+ToothGrowth %>%
+  group_by(dose) %>%
+  summarise(media = mean(len))
+```
+
+Parece que existe uma diferença entre as médias de cada dose de vitamina aplicada, vamos analisar as diferenças observáveis entre as médias:
+
+```
+diferenca_observavel1 <- 19.735 - 10.605
+diferenca_observavel2 <- 26.100	- 19.735
+diferenca_observavel3 <- 26.100	- 10.605
+```
+
+Chegando até aqui já respondemos algumas perguntas:
+
+- Seriam os dentes dos camundongos que receberam uma dose maior de vitamina C, geralmente maiores?
+
+```
+#uma outra forma de se obter a variação por dose
+
+dose_05 <- ToothGrowth %>%
+              filter(dose == 0.5)
+
+dose_1 <- ToothGrowth %>%
+              filter(dose == 1)
+              
+dose_2 <- ToothGrowth %>%
+              filter(dose == 2)
+```
+
+Podemos checar se isso é verdade da seguinte forma:
+
+```
+#Dentro de diferenca_observavel1 temos a diferença entre a média das doses 0.5 e 1
+
+mean(dose_1$len) - mean(dose_05$len) == diferenca_observavel1
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+mean(dose_1$len) - mean(dose_05$len) == diferenca_observavel1
+```
+
+- Quais os maiores odontoblastos de cada grupos? E os menores?
+
+```
+ToothGrowth %>%
+  group_by(dose) %>%
+  summarise(minimo = min(len), maximo = max(len))
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+ToothGrowth %>%
+  group_by(dose) %>%
+  summarise(minimo = min(len), maximo = max(len))
+```
+
+Então é isso, parece que a dose da vitamina C tem efeito direto sobre o crescimento do dente dos ratos, mas o que realmente acontece é que se repetíssemos o experimento com diferentes grupos de ratos, provavelmente obteríamos uma resposta diferente daquela que observamos previamente.
+
+Por essa razão essas variáveis são conhecidas como `variáveis aleatórias`, elas podem conter diversos valores.
+
+Ou seja, todas as vezes que repetirmos o experimento, obteríamos diferentes médias para os grupos que possuimos (dose), sendo assim a variável `len` é considerada `aleatória`.
+
+Vamos entender melhor como funcionam as `variáveis aleatórias`
+
+# Variáveis aleatórias
+
+Para entender as variáveis aleatórias, vamos compreender como as médias mudam quando pegamos amostras do nosso data set:
+
+```
+controle <- ToothGrowth$len %>% sample(12)
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+controle <- ToothGrowth$len %>% sample(12)
+```
+
+Podemos fazer isso para construir uma distribuição completamente aleatória a partir dos nossos dados gerais
+
+Perceba como a média muda a cada amostragem, repita o comando de amostragem em seu R usando a função `sample()`.
+
+```
+media_controle <- ToothGrowth$len %>% sample(12) %>% mean()
+
+print(media_controle)
+
+media_controle <- ToothGrowth$len %>% sample(12) %>% mean()
+
+print(media_controle)
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+media_controle <- ToothGrowth$len %>% sample(12) %>% mean()
+
+print(media_controle)
+
+media_controle <- ToothGrowth$len %>% sample(12) %>% mean()
+
+print(media_controle)
+```
+
+Perceba como a média varia, podemos fazer isso várias vezes para compreender mais sobre a distribuição dessa variável aleatória.
+
+Conforme dito anteriormente precisamos nos manter céticos, para isso partimos do pressuposto de que aleatoriamente a diferença que você observou poderia não significar muito, ou seja, poderia ser algo observado ao acaso. 
+
+Para obter evidências e minimizar essa incerteza, usamos a `hipótese nula`.
+
+# Hipótese Nula
+
+Vamos voltar a analisar as diferenças observáveis de antes. Como precisamos ser céticos temos de nos perguntar: 
+
+- Como podemos afirmar que as diferenças observáveis acontecem por causa da dose aplicada? 
+- O que aconteceria se dessemos a todos os ratos a mesma dose? 
+- Veríamos diferenças tão grande quanto essas? 
+
+Neste momento estamos trabalhando com a `Hipótese Nula`, cujo nome vem para nos lembrar de que estamos agindo como céticos: damos crédito a possibilidade de que pode não existir nenhuma diferença verdadeira, e ela pode ter acontecido ao acaso.
+
+## Construindo um grupo controle para testar a hipótese nula
+
+Podemos observar quantas vezes quisermos o quanto as diferenças entre os tamanhos quando não estamos comparando as doses. Podemos fazer isso ao amostrar um número aleatório de ratos, com a "mesma dose", e dai gravar o valor da diferença entre a média de dois grupos aleatoriamente divididos de números arbitrários. O processo escrito em R, aprendi com o prof. Rafa, no livro "Data analysis for the life sciences":
+
+```
+media_controle <- ToothGrowth$len %>% sample(12) %>% mean()
+
+media_tratamento <- ToothGrowth$len %>% sample(12) %>% mean()
+
+print(media_tratamento - media_controle)
+```
+
+Inclusive é possível fazer isso diversas vezes usando loops no R:
+
+```
+n <- 10000
+null <- vector("numeric",n)
+for (i in 1:n) {
+media_controle <- ToothGrowth$len %>% sample(12) %>% mean()
+media_tratamento <- ToothGrowth$len %>% sample(12) %>% mean()
+null[i] <- mean(media_tratamento) - mean(media_controle)
+}
+
+print(null)
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+n <- 10000
+null <- vector("numeric",n)
+for (i in 1:n) {
+media_controle <- ToothGrowth$len %>% sample(12) %>% mean()
+media_tratamento <- ToothGrowth$len %>% sample(12) %>% mean()
+null[i] <- mean(media_tratamento) - mean(media_controle)
+}
+
+print(null)
+```
+
+Os valores em `null` são o que chamamos de distribuição nula.
+
+Então, qual a porcentagem de `null` é maior ou igual do que as diferenças observáveis?
+
+```
+mean(null >= diferenca_observavel1)
+
+mean(null >= diferenca_observavel2)
+
+mean(null >= diferenca_observavel3)
+```
+
+```{r, layout="body-outset", preview=TRUE}
+mean(null >= diferenca_observavel1)
+
+mean(null >= diferenca_observavel2)
+
+mean(null >= diferenca_observavel3)
+```
+
+### Interpretando os resultados
+
+Parece que apenas uma pequena porcentagem dentre as nossas 10.000 simulações. Como céticos o que concluimos? Quando não existe efeito de doses, podemos observar uma diferença tão grande quanto observamos antes apenas 0,0001% das vezes (no máximo com a `diferenca_observavel1`). Esse valor é conhecido como p-value ou p-valor.
+
+# P-value ou P-valor
+
+Fizemos uma simulação para contruir o data set `null`, vamos observar as diferenças observaveis caso não houvessem doses aplicadas:
+
+```
+hist(null, freq=TRUE)
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+hist(null, freq=TRUE)
+```
+
+Podemos observar também quais valores são tão maiores quanto as nossas diferenças observadas:
+
+
+```
+hist(null, freq=TRUE)
+
+abline(v=diferenca_observavel1, col="red", lwd=2)
+
+abline(v=diferenca_observavel2, col="blue", lwd=2)
+
+abline(v=diferenca_observavel3, col="yellow", lwd=2)
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+hist(null, freq=TRUE)
+
+abline(v=diferenca_observavel1, col="red", lwd=2)
+
+abline(v=diferenca_observavel2, col="blue", lwd=2)
+
+abline(v=diferenca_observavel3, col="yellow", lwd=2)
+```
+
+Os valores maiores ou iguais as diferenças observáveis são relativamente raros. O que nos garante maior evidência a respeito da nossa hipótese de que a quantidade de vitamina C afeta o crescimento dos odontoblastos.
+
+# Usando o pacote infer()
+
+Instale e carregue o pacote:
+
+```
+install.packages("infer")
+
+library(infer)
+```
+
+Para calcular a estatística da diferença observada:
+
+```
+F_hat <- ToothGrowth %>% 
+  specify(len ~ dose) %>%
+  calculate(stat = "F")
+```
+
+Gerando a distribuição nula:
+
+```
+null_dist <- ToothGrowth %>% 
+   specify(len ~ dose) %>%
+   hypothesize(null = "independence") %>%
+   generate(reps = 1000, type = "permute") %>%
+   calculate(stat = "F")
+```
+
+Visualizando a diferença observada com a distribuição nula:
+
+```
+visualize(null_dist) +
+  shade_p_value(obs_stat = F_hat, direction = "greater")
+```
+
+Falaremos ainda mais sobre isso em outros posts quando usaremos todo esse conhecimento aplicado a um projeto! Até mais!

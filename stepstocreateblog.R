@@ -6,13 +6,14 @@
 ###a very well constructed blog
 
 #To start you should have installed Git and the packages:
-packages2download <- c("tidyverse", "usethis", "distill", "ggthemes", "here")
+packages2download <- c("tidyverse", "usethis", "distill", "ggthemes", "here", "infer")
 
 #Loading libraries
 library(tidyverse)
 library(usethis)
 library(distill)
 library(ggthemes)
+library(infer)
 library(here)
 
 #blog e github
