@@ -205,9 +205,9 @@ Vamos voltar a analisar as diferenças observáveis de antes. Como precisamos se
 
 - Como podemos afirmar que as diferenças observáveis acontecem por causa da dose aplicada? 
 - O que aconteceria se dessemos a todos os ratos a mesma dose? 
-- Veríamos diferenças tão grande quanto essas? 
+- Veríamos diferenças tão grandes quanto essas? 
 
-Neste momento estamos trabalhando com a `Hipótese Nula`, cujo nome vem para nos lembrar de que estamos agindo como céticos: damos crédito a possibilidade de que pode não existir nenhuma diferença verdadeira, e ela pode ter acontecido ao acaso.
+Neste momento estamos trabalhando com a `Hipótese Nula`, cujo nome vem para nos lembrar de que estamos agindo como céticos: damos crédito a possibilidade de que pode não existir nenhuma diferença verdadeira em nossas observações, e que elas podem ter acontecido ao acaso.
 
 ## Construindo um grupo controle para testar a hipótese nula
 
@@ -224,9 +224,9 @@ print(media_tratamento - media_controle)
 Inclusive é possível fazer isso diversas vezes usando loops no R:
 
 ```
-n <- 10000
-null <- vector("numeric",n)
-for (i in 1:n) {
+n <- 10000 
+null <- vector("numeric",n) #primeiro criamos um vetor com 10000 espaços
+for (i in 1:n) { #looping para criar um vetor nulo
 media_controle <- ToothGrowth$len %>% sample(12) %>% mean()
 media_tratamento <- ToothGrowth$len %>% sample(12) %>% mean()
 null[i] <- mean(media_tratamento) - mean(media_controle)
