@@ -1518,6 +1518,8 @@ crescimento dentário) em diversos camundongos, com diferentes doses.</p>
   geom_freqpoly(aes(x = len, color = dose), binwidth = 1) +
   facet_wrap(~dose) +
   theme_classic()</code></pre>
+<p>ggplot(ToothGrowth) + geom_freqpoly(aes(x = len, color = dose),
+binwidth = 1) + theme_classic()</p>
 <div class="layout-chunk" data-layout="l-body-outset">
 <p><img src="teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-3-1.png" width="624" data-distill-preview=1 /></p>
 </div>
@@ -1615,8 +1617,8 @@ media_controle &lt;- ToothGrowth$len %&gt;% sample(12) %&gt;% mean()
 
 print(media_controle)</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
-<pre><code>[1] 21.86667</code></pre>
-<pre><code>[1] 19.86667</code></pre>
+<pre><code>[1] 18.95</code></pre>
+<pre><code>[1] 17.3</code></pre>
 </div>
 <p>Perceba como a média varia a cada medida, podemos fazer isso várias
 vezes para aprender ainda mais sobre a distribuição dessa variável
@@ -1678,8 +1680,8 @@ mean(null &gt;= diferenca_observavel2)
 
 mean(null &gt;= diferenca_observavel3)</code></pre>
 <div class="layout-chunk" data-layout="body-outset">
-<pre><code>[1] 5e-04</code></pre>
-<pre><code>[1] 0.0101</code></pre>
+<pre><code>[1] 3e-04</code></pre>
+<pre><code>[1] 0.0104</code></pre>
 <pre><code>[1] 0</code></pre>
 </div>
 <h3 id="interpretando-os-resultados">Interpretando os resultados</h3>

@@ -72,12 +72,16 @@ ggplot(ToothGrowth) +
   facet_wrap(~dose) +
   theme_classic()
 ```
-
-```{r, layout="l-body-outset", preview=TRUE}
 ggplot(ToothGrowth) +
   geom_freqpoly(aes(x = len, color = dose), binwidth = 1) +
-  facet_wrap(~dose) +
   theme_classic()
+
+
+```{r, layout="l-body-outset", preview=TRUE}
+library(ggthemes)
+ggplot(ToothGrowth) +
+  geom_freqpoly(aes(x = len, color = dose), binwidth = 1) +
+  theme_economist()
 ```
 
 Parece que existe uma clara influência da dose de vitamina aplicada nos camundongos no crescimento de seus odontoblastos, porém precisamos ser céticos e obter algumas evidências a respeito do que estamos clamando.
