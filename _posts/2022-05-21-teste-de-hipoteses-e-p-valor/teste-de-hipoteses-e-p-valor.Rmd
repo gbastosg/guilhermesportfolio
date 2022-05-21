@@ -311,6 +311,10 @@ abline(v=diferenca_observavel3, col="yellow", lwd=2)
 
 Os valores maiores ou iguais as diferenças observáveis são relativamente raros. O que nos garante maior evidência a respeito da nossa hipótese de que a quantidade de vitamina C afeta o crescimento dos odontoblastos.
 
+Foi possível perceber que a maior diferença, entre as doses 0.5 e 2, nem aparecem em nossa distribuição nula, mostrando que essa diferença observável não ocorreu ao acaso e que a hipótese nula pode ser refutada.
+
+Mas ainda assim devemos tomar cuidado!
+
 # Grupo controle a partir de outras doses
 
 Para criar um grupo controle com apenas uma dose, podemos filtrar o data set original
@@ -366,7 +370,7 @@ null_dose[i] <- mean(tratamento_ToothGrowth_dot5) - mean(controle_ToothGrowth_do
 }
 ```
 
-Analisando a diferença observada em relação a esse data set:
+Analisando a diferença observada em relação a esse data set, usando a cor amarela para marcar a primeira diferença observável, entre as médias das dose 0.5 e 1, e vermelho para usar a segunda, entre as médias de 1 e 2:
 
 ```
 hist(null_dose, freq=TRUE)
