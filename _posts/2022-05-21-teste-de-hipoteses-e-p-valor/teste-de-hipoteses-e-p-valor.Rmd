@@ -1,5 +1,5 @@
 ---
-title: "Teste de hipoteses e p-valor"
+title: "Teste de hipótese e p-valor"
 description: |
   Neste post iremos testar hipóteses a partir da observação de diferenças e no impacto de uma variável categórica.
 author:
@@ -169,7 +169,7 @@ controle <- ToothGrowth$len %>% sample(12)
 controle <- ToothGrowth$len %>% sample(12)
 ```
 
-Podemos fazer isso para construir uma distribuição completamente aleatória a partir dos nossos dados gerais
+Podemos fazer isso para construir uma distribuição completamente aleatória a partir dos nossos dados
 
 Perceba como a média muda a cada amostragem, repita o comando de amostragem em seu R usando a função `sample()`.
 
@@ -193,9 +193,9 @@ media_controle <- ToothGrowth$len %>% sample(12) %>% mean()
 print(media_controle)
 ```
 
-Perceba como a média varia, podemos fazer isso várias vezes para compreender mais sobre a distribuição dessa variável aleatória.
+Perceba como a média varia a cada medida, podemos fazer isso várias vezes para aprender ainda mais sobre a distribuição dessa variável aleatória.
 
-Conforme dito anteriormente precisamos nos manter céticos, para isso partimos do pressuposto de que aleatoriamente a diferença que você observou poderia não significar muito, ou seja, poderia ser algo observado ao acaso. 
+Conforme dito anteriormente precisamos nos manter céticos, para isso partimos do pressuposto de que aleatoriamente a diferença que observada poderia não significar muito, ou seja, poderia ser algo observado ao acaso. 
 
 Para obter evidências e minimizar essa incerteza, usamos a `hipótese nula`.
 
@@ -243,8 +243,6 @@ media_controle <- ToothGrowth$len %>% sample(12) %>% mean()
 media_tratamento <- ToothGrowth$len %>% sample(12) %>% mean()
 null[i] <- mean(media_tratamento) - mean(media_controle)
 }
-
-print(null)
 ```
 
 Os valores em `null` são o que chamamos de distribuição nula.
