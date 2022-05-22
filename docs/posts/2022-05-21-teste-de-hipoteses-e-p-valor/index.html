@@ -118,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["teste-de-hipoteses-e-p-valor_files/anchor-4.2.2/anchor.min.js","teste-de-hipoteses-e-p-valor_files/bowser-1.9.3/bowser.min.js","teste-de-hipoteses-e-p-valor_files/distill-2.2.21/template.v2.js","teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-1-1.png","teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-11-1.png","teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-12-1.png","teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-3-1.png","teste-de-hipoteses-e-p-valor_files/header-attrs-2.14/header-attrs.js","teste-de-hipoteses-e-p-valor_files/jquery-3.6.0/jquery-3.6.0.js","teste-de-hipoteses-e-p-valor_files/jquery-3.6.0/jquery-3.6.0.min.js","teste-de-hipoteses-e-p-valor_files/jquery-3.6.0/jquery-3.6.0.min.map","teste-de-hipoteses-e-p-valor_files/pagedtable-1.1/css/pagedtable.css","teste-de-hipoteses-e-p-valor_files/pagedtable-1.1/js/pagedtable.js","teste-de-hipoteses-e-p-valor_files/popper-2.6.0/popper.min.js","teste-de-hipoteses-e-p-valor_files/tippy-6.2.7/tippy-bundle.umd.min.js","teste-de-hipoteses-e-p-valor_files/tippy-6.2.7/tippy-light-border.css","teste-de-hipoteses-e-p-valor_files/tippy-6.2.7/tippy.css","teste-de-hipoteses-e-p-valor_files/tippy-6.2.7/tippy.umd.min.js","teste-de-hipoteses-e-p-valor_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["teste-de-hipoteses-e-p-valor_files/anchor-4.2.2/anchor.min.js","teste-de-hipoteses-e-p-valor_files/bowser-1.9.3/bowser.min.js","teste-de-hipoteses-e-p-valor_files/distill-2.2.21/template.v2.js","teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-1-1.png","teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-11-1.png","teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-12-1.png","teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-16-1.png","teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-19-1.png","teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-3-1.png","teste-de-hipoteses-e-p-valor_files/header-attrs-2.14/header-attrs.js","teste-de-hipoteses-e-p-valor_files/jquery-3.6.0/jquery-3.6.0.js","teste-de-hipoteses-e-p-valor_files/jquery-3.6.0/jquery-3.6.0.min.js","teste-de-hipoteses-e-p-valor_files/jquery-3.6.0/jquery-3.6.0.min.map","teste-de-hipoteses-e-p-valor_files/pagedtable-1.1/css/pagedtable.css","teste-de-hipoteses-e-p-valor_files/pagedtable-1.1/js/pagedtable.js","teste-de-hipoteses-e-p-valor_files/popper-2.6.0/popper.min.js","teste-de-hipoteses-e-p-valor_files/tippy-6.2.7/tippy-bundle.umd.min.js","teste-de-hipoteses-e-p-valor_files/tippy-6.2.7/tippy-light-border.css","teste-de-hipoteses-e-p-valor_files/tippy-6.2.7/tippy.css","teste-de-hipoteses-e-p-valor_files/tippy-6.2.7/tippy.umd.min.js","teste-de-hipoteses-e-p-valor_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2131,12 +2131,13 @@ observações dividas em três variáveis:</p>
 </div>
 </div>
 <p>Esses dados foram obtidos a partir de uma pesquisa, bem melhor
-explicada <a href="">neste post</a>, mas que no geral demonstra o efeito
-da vitamina C no crescimento de odontoblastos (células responsáveis pelo
-crescimento dentário) em diversos camundongos, com diferentes doses.</p>
+explicada <a
+href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-07-analise-exploratoria-dos-dados-boxplots/">neste
+post</a>, mas que no geral demonstra o efeito da vitamina C no
+crescimento de odontoblastos (células responsáveis pelo crescimento
+dentário) em diversos camundongos, com diferentes doses.</p>
 <pre><code>ggplot(ToothGrowth) +
   geom_freqpoly(aes(x = len, color = dose), binwidth = 1) +
-  facet_wrap(~dose) +
   theme_classic()</code></pre>
 <p>ggplot(ToothGrowth) + geom_freqpoly(aes(x = len, color = dose),
 binwidth = 1) + theme_classic()</p>
@@ -2206,27 +2207,29 @@ mean(dose_1$len) - mean(dose_05$len) == diferenca_observavel1</code></pre>
 3 2       18.5   33.9</code></pre>
 </div>
 <p>Então é isso, parece que a dose da vitamina C tem efeito direto sobre
-o crescimento do dente dos ratos, mas o que realmente acontece é que se
-repetíssemos o experimento com diferentes grupos de ratos, provavelmente
-obteríamos uma resposta diferente daquela que observamos
-previamente.</p>
-<p>Por essa razão essas variáveis são conhecidas como
-<code>variáveis aleatórias</code>, elas podem conter diversos
-valores.</p>
+o crescimento do dente dos ratos, na verdade não… o que realmente
+acontece é que se repetíssemos o experimento com diferentes grupos de
+ratos, provavelmente obteríamos uma resposta diferente daquela que
+observamos previamente.</p>
+<p>Por essa razão, essas variáveis são conhecidas como
+<code>variáveis aleatórias</code>, elas podem conter diversos valores
+diferentes.</p>
 <p>Ou seja, todas as vezes que repetirmos o experimento, obteríamos
 diferentes médias para os grupos que possuimos (dose), sendo assim a
 variável <code>len</code> é considerada <code>aleatória</code>.</p>
 <p>Vamos entender melhor como funcionam as
-<code>variáveis aleatórias</code></p>
+<code>variáveis aleatórias</code>.</p>
 <h1 id="variáveis-aleatórias">Variáveis aleatórias</h1>
-<p>Para entender as variáveis aleatórias, vamos compreender como as
-médias mudam quando pegamos amostras do nosso data set:</p>
+<p>Vamos compreender como as médias mudam quando pegamos amostras do
+nosso data set:</p>
 <pre><code>controle &lt;- ToothGrowth$len %&gt;% sample(12)</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
 
 </div>
 <p>Podemos fazer isso para construir uma distribuição completamente
-aleatória a partir dos nossos dados</p>
+aleatória a partir dos nossos dados (pois não temos como repetir o
+experimento, de fato, então modelamos como seria a população caso não
+houvesse aplicação de dose alguma).</p>
 <p>Perceba como a média muda a cada amostragem, repita o comando de
 amostragem em seu R usando a função <code>sample()</code>.</p>
 <pre><code>media_controle &lt;- ToothGrowth$len %&gt;% sample(12) %&gt;% mean()
@@ -2237,15 +2240,15 @@ media_controle &lt;- ToothGrowth$len %&gt;% sample(12) %&gt;% mean()
 
 print(media_controle)</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
-<pre><code>[1] 18.95</code></pre>
-<pre><code>[1] 17.3</code></pre>
+<pre><code>[1] 16.98333</code></pre>
+<pre><code>[1] 19.75</code></pre>
 </div>
 <p>Perceba como a média varia a cada medida, podemos fazer isso várias
 vezes para aprender ainda mais sobre a distribuição dessa variável
 aleatória.</p>
 <p>Conforme dito anteriormente precisamos nos manter céticos, para isso
-partimos do pressuposto de que aleatoriamente a diferença que observada
-poderia não significar muito, ou seja, poderia ser algo observado ao
+partimos do pressuposto de que aleatoriamente a diferença observada
+poderia não significar muito, ou seja, poderia ser algo que aconteceu ao
 acaso.</p>
 <p>Para obter evidências e minimizar essa incerteza, usamos a
 <code>hipótese nula</code>.</p>
@@ -2263,15 +2266,19 @@ cujo nome vem para nos lembrar de que estamos agindo como céticos: damos
 crédito a possibilidade de que pode não existir nenhuma diferença
 verdadeira em nossas observações, e que elas podem ter acontecido ao
 acaso.</p>
+<p>Nula, pois nos perguntamos o que aconteceria com a diferença
+observável caso não houvesse nenhum tipo de aplicação acontecendo no
+experimento, caso nada tivesse acontecido, o que aconteceria?</p>
 <h2
 id="construindo-um-grupo-controle-para-testar-a-hipótese-nula">Construindo
 um grupo controle para testar a hipótese nula</h2>
-<p>Podemos observar quantas vezes quisermos o quanto as diferenças entre
-os tamanhos quando não estamos comparando as doses. Podemos fazer isso
-ao amostrar um número aleatório de ratos, com a “mesma dose”, e dai
-gravar o valor da diferença entre a média de dois grupos aleatoriamente
-divididos de números arbitrários. O processo escrito em R, aprendi com o
-prof. Rafa, no livro “Data analysis for the life sciences”:</p>
+<p>Podemos observar, quantas vezes quisermos, as diferenças entre os
+tamanhos quando não estamos comparando as doses. Podemos fazer isso ao
+amostrar um número aleatório de ratos, com nenhuma dose aplicada, a
+partir de uma população aleatória que contenha quaisquer 12 ratos da
+população original, e dai gravar o valor da diferença entre a média de
+dois grupos aleatoriamente. O processo escrito em R, aprendi com o prof.
+Rafa, no livro “Data analysis for the life sciences”:</p>
 <pre><code>media_controle &lt;- ToothGrowth$len %&gt;% sample(12) %&gt;% mean()
 
 media_tratamento &lt;- ToothGrowth$len %&gt;% sample(12) %&gt;% mean()
@@ -2301,16 +2308,16 @@ mean(null &gt;= diferenca_observavel2)
 mean(null &gt;= diferenca_observavel3)</code></pre>
 <div class="layout-chunk" data-layout="body-outset">
 <pre><code>[1] 3e-04</code></pre>
-<pre><code>[1] 0.0104</code></pre>
+<pre><code>[1] 0.0123</code></pre>
 <pre><code>[1] 0</code></pre>
 </div>
 <h3 id="interpretando-os-resultados">Interpretando os resultados</h3>
 <p>Parece que apenas uma pequena porcentagem dentre as nossas 10.000
-simulações. Como céticos o que concluimos? Quando não existe efeito de
-doses, podemos observar uma diferença tão grande quanto observamos antes
-apenas 0,0001% das vezes (no máximo com a
-<code>diferenca_observavel1</code>). Esse valor é conhecido como p-value
-ou p-valor.</p>
+simulações é igual ou maior as diferenças observadas na hipótese nula.
+Como céticos o que concluimos? Quando não existe efeito de doses,
+podemos observar uma diferença tão grande quanto observamos antes apenas
+0,0001% das vezes (no máximo com a <code>diferenca_observavel1</code>).
+Esse valor é conhecido como p-value ou p-valor.</p>
 <h1 id="p-value-ou-p-valor">P-value ou P-valor</h1>
 <p>Fizemos uma simulação para contruir o data set <code>null</code>,
 vamos observar as diferenças observaveis caso não houvessem doses
@@ -2335,8 +2342,56 @@ abline(v=diferenca_observavel3, col=&quot;yellow&quot;, lwd=2)</code></pre>
 relativamente raros. O que nos garante maior evidência a respeito da
 nossa hipótese de que a quantidade de vitamina C afeta o crescimento dos
 odontoblastos.</p>
+<p>Foi possível perceber que a maior diferença, entre as doses 0.5 e 2,
+nem aparecem em nossa distribuição nula, mostrando que essa diferença
+observável não ocorreu ao acaso e que a hipótese nula pode ser
+refutada.</p>
+<p>Mas ainda assim devemos tomar cuidado!</p>
+<h1 id="grupo-controle-a-partir-de-outras-doses">Grupo controle a partir
+de outras doses</h1>
+<p>Para criar um grupo controle com apenas uma dose, podemos filtrar o
+data set original</p>
+<pre><code>ToothGrowth_dot5 &lt;- ToothGrowth %&gt;%
+  filter(dose == 0.5)</code></pre>
+<div class="layout-chunk" data-layout="l-body-outset">
+
+</div>
+<p>Agora podemos criar nossos data sets para construir a hipótese
+nula:</p>
+<pre><code>controle_ToothGrowth_dot5 &lt;- ToothGrowth_dot5$len %&gt;% sample(12) %&gt;% mean()
+
+tratamento_ToothGrowth_dot5 &lt;- ToothGrowth_dot5$len %&gt;% sample(12) %&gt;% mean()
+
+print(tratamento_ToothGrowth_dot5 - controle_ToothGrowth_dot5)</code></pre>
+<div class="layout-chunk" data-layout="l-body-outset">
+<pre><code>[1] 1.116667</code></pre>
+</div>
+<p>Aqui repetimos 10.000 vezes a diferença entre as médias para criar
+uma distribuição nula:</p>
+<pre><code>n &lt;- 10000 
+null_dose &lt;- vector(&quot;numeric&quot;,n) #primeiro criamos um vetor com 10000 espaços
+for (i in 1:n) { #looping para criar um vetor nulo
+controle_ToothGrowth_dot5 &lt;- ToothGrowth_dot5$len %&gt;% sample(12) %&gt;% mean()
+tratamento_ToothGrowth_dot5 &lt;- ToothGrowth_dot5$len %&gt;% sample(12) %&gt;% mean()
+null_dose[i] &lt;- mean(tratamento_ToothGrowth_dot5) - mean(controle_ToothGrowth_dot5)
+}
+
+print(null)</code></pre>
+<div class="layout-chunk" data-layout="l-body-outset">
+
+</div>
+<p>Analisando a diferença observada em relação a esse data set, usando a
+cor amarela para marcar a primeira diferença observável, entre as médias
+das dose 0.5 e 1, e vermelho para usar a segunda, entre as médias de 1 e
+2:</p>
+<pre><code>hist(null_dose, freq=TRUE)
+</code></pre>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-16-1.png" width="624" data-distill-preview=1 /></p>
+</div>
 <h1 id="usando-o-pacote-infer">Usando o pacote infer()</h1>
-<p>Instale e carregue o pacote:</p>
+<p>O pacote infer nos ajuda a testar hipóteses de uma forma bem fácil e
+direta Instale e carregue o pacote:</p>
 <pre><code>install.packages(&quot;infer&quot;)
 
 library(infer)</code></pre>
@@ -2344,18 +2399,27 @@ library(infer)</code></pre>
 <pre><code>F_hat &lt;- ToothGrowth %&gt;% 
   specify(len ~ dose) %&gt;%
   calculate(stat = &quot;F&quot;)</code></pre>
+<div class="layout-chunk" data-layout="l-body-outset">
+
+</div>
 <p>Gerando a distribuição nula:</p>
 <pre><code>null_dist &lt;- ToothGrowth %&gt;% 
    specify(len ~ dose) %&gt;%
    hypothesize(null = &quot;independence&quot;) %&gt;%
    generate(reps = 1000, type = &quot;permute&quot;) %&gt;%
    calculate(stat = &quot;F&quot;)</code></pre>
+<div class="layout-chunk" data-layout="l-body-outset">
+
+</div>
 <p>Visualizando a diferença observada com a distribuição nula:</p>
 <pre><code>visualize(null_dist) +
   shade_p_value(obs_stat = F_hat, direction = &quot;greater&quot;)</code></pre>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="teste-de-hipoteses-e-p-valor_files/figure-html5/unnamed-chunk-19-1.png" width="624" data-distill-preview=1 /></p>
+</div>
 <p>Falaremos ainda mais sobre isso em outros posts quando usaremos todo
 esse conhecimento aplicado a um projeto! Até mais!</p>
-<div class="sourceCode" id="cb26"><pre
+<div class="sourceCode" id="cb31"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

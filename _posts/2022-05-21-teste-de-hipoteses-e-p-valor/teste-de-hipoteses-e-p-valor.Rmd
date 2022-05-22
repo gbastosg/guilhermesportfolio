@@ -375,17 +375,11 @@ Analisando a diferença observada em relação a esse data set, usando a cor ama
 ```
 hist(null_dose, freq=TRUE)
 
-abline(v=diferenca_observavel1, col="yellow", lwd=2)
-
-abline(v=diferenca_observavel2, col="red", lwd=2)
 ```
 
 ```{r, layout="l-body-outset", preview=TRUE}
 hist(null_dose, freq=TRUE)
 
-abline(v=diferenca_observavel1, col="yellow", lwd=2)
-
-abline(v=diferenca_observavel2, col="red", lwd=2)
 ```
 
 # Usando o pacote infer()
