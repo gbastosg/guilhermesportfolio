@@ -64,7 +64,7 @@ library(rmarkdown)
 paged_table(ToothGrowth)
 ```
 
-This data was obtained via research, I've explained this data with more details in [this post](), but generally it demonstrates the effect of applied vitamin C in odontoblasts growing (cells responsible for teeth growing) in guinea pigs, with different doses.
+This data was obtained via research, I've explained this data with more details in [this post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-08-eda-with-r-boxplots-and-violinplots/), but generally it demonstrates the effect of applied vitamin C in odontoblasts growing (cells responsible for teeth growing) in guinea pigs, with different doses.
 
 ```
 ggplot(ToothGrowth) +

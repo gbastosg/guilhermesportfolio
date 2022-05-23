@@ -420,6 +420,7 @@ null_dist <- ToothGrowth %>%
    generate(reps = 1000, type = "permute") %>%
    calculate(stat = "F")
 ```
+
 Visualizando a diferença observada com a distribuição nula:
 
 ```
