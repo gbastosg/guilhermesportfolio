@@ -64,7 +64,7 @@ library(rmarkdown)
 paged_table(ToothGrowth)
 ```
 
-This data was obtained via research, I've explained this data with more details in [this post](), but generally it demonstrates the effect of applied vitamin C in odontoblasts growing (cells responsible for teeth growing) in rats, with different doses.
+This data was obtained via research, I've explained this data with more details in [this post](), but generally it demonstrates the effect of applied vitamin C in odontoblasts growing (cells responsible for teeth growing) in guinea pigs, with different doses.
 
 ```
 ggplot(ToothGrowth) +
@@ -83,7 +83,7 @@ ggplot(ToothGrowth) +
   theme_economist()
 ```
 
-It seems like there is a clear influence of the vitamin dose appliedin the rats and their odontoblasts sizes, but we need to be skepticals and obtain some evidences over what are we claiming before taking this hypothesis under consideration.
+It seems like there is a clear influence of the vitamin dose applied in the guinea pigs and their odontoblasts sizes, but we need to be skepticals and obtain some evidences over what are we claiming before taking this hypothesis under consideration.
 
 # At first we look at the means
 
@@ -138,7 +138,7 @@ mean(dose_1$len) - mean(dose_05$len) == observable_diff1
 mean(dose_1$len) - mean(dose_05$len) == observable_diff1
 ```
 
-- Which are the biggest odontoblasts of each groups? And the smallest?
+- Which are the largest odontoblasts of each groups? And the smallest?
 
 ```
 ToothGrowth %>%

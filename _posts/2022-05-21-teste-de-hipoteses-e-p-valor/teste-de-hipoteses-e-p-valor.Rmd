@@ -64,7 +64,7 @@ library(rmarkdown)
 paged_table(ToothGrowth)
 ```
 
-Esses dados foram obtidos a partir de uma pesquisa, bem melhor explicada [neste post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-07-analise-exploratoria-dos-dados-boxplots/), mas que no geral demonstra o efeito da vitamina C no crescimento de odontoblastos (células responsáveis pelo crescimento dentário) em diversos camundongos, com diferentes doses.
+Esses dados foram obtidos a partir de uma pesquisa, bem melhor explicada [neste post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-07-analise-exploratoria-dos-dados-boxplots/), mas que no geral demonstra o efeito da vitamina C no crescimento de odontoblastos (células responsáveis pelo crescimento dentário) em diversos porquinhos-da-índia, com diferentes doses.
 
 ```
 ggplot(ToothGrowth) +
@@ -83,7 +83,7 @@ ggplot(ToothGrowth) +
   theme_economist()
 ```
 
-Parece que existe uma clara influência da dose de vitamina aplicada nos camundongos no crescimento de seus odontoblastos, porém precisamos ser céticos e obter algumas evidências a respeito do que estamos clamando.
+Parece que existe uma clara influência da dose de vitamina aplicada nos porquinhos-da-índia no crescimento de seus odontoblastos, porém precisamos ser céticos e obter algumas evidências a respeito do que estamos clamando.
 
 # Primeiro observamos as médias
 
@@ -111,7 +111,7 @@ diferenca_observavel3 <- 26.100	- 10.605
 
 Chegando até aqui já respondemos algumas perguntas:
 
-- Seriam os dentes dos camundongos que receberam uma dose maior de vitamina C, geralmente maiores?
+- Seriam os dentes dos porquinhos-da-índia que receberam uma dose maior de vitamina C, geralmente maiores?
 
 ```
 #uma outra forma de se obter a variação por dose
@@ -152,7 +152,7 @@ ToothGrowth %>%
   summarise(minimo = min(len), maximo = max(len))
 ```
 
-Então é isso, parece que a dose da vitamina C tem efeito direto sobre o crescimento do dente dos ratos, na verdade não... o que realmente acontece é que se repetíssemos o experimento com diferentes grupos de ratos, provavelmente obteríamos uma resposta diferente daquela que observamos previamente.
+Então é isso, parece que a dose da vitamina C tem efeito direto sobre o crescimento do dente dos porquinhos-da-índia, na verdade não... o que realmente acontece é que se repetíssemos o experimento com diferentes grupos de porquinhos-da-índia, provavelmente obteríamos uma resposta diferente daquela que observamos previamente.
 
 Por essa razão, essas variáveis são conhecidas como `variáveis aleatórias`, elas podem conter diversos valores diferentes.
 
@@ -207,7 +207,7 @@ Para obter evidências e minimizar essa incerteza, usamos a `hipótese nula`.
 Vamos voltar a analisar as diferenças observáveis de antes. Como precisamos ser céticos temos de nos perguntar: 
 
 - Como podemos afirmar que as diferenças observáveis acontecem por causa da dose aplicada? 
-- O que aconteceria se dessemos a todos os ratos a mesma dose? 
+- O que aconteceria se dessemos a todos os porquinhos-da-índia a mesma dose? 
 - Veríamos diferenças tão grandes quanto essas? 
 
 Neste momento estamos trabalhando com a `Hipótese Nula`, cujo nome vem para nos lembrar de que estamos agindo como céticos: damos crédito a possibilidade de que pode não existir nenhuma diferença verdadeira em nossas observações, e que elas podem ter acontecido ao acaso.
@@ -216,7 +216,7 @@ Nula, pois nos perguntamos o que aconteceria com a diferença observável caso n
 
 ## Construindo um grupo controle para testar a hipótese nula
 
-Podemos observar, quantas vezes quisermos, as diferenças entre os tamanhos quando não estamos comparando as doses. Podemos fazer isso ao amostrar um número aleatório de ratos, com nenhuma dose aplicada, a partir de uma população aleatória que contenha quaisquer 12 ratos da população original, e dai gravar o valor da diferença entre a média de dois grupos aleatoriamente. O processo escrito em R, aprendi com o prof. Rafa, no livro "Data analysis for the life sciences":
+Podemos observar, quantas vezes quisermos, as diferenças entre os tamanhos quando não estamos comparando as doses. Podemos fazer isso ao amostrar um número aleatório de porquinhos-da-índia, com nenhuma dose aplicada, a partir de uma população aleatória que contenha quaisquer 12 porquinhos-da-índia da população original, e dai gravar o valor da diferença entre a média de dois grupos aleatoriamente. O processo escrito em R, aprendi com o prof. Rafa, no livro "Data analysis for the life sciences":
 
 ```
 media_controle <- ToothGrowth$len %>% sample(12) %>% mean()
