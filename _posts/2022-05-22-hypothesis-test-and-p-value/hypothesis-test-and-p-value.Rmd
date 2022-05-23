@@ -156,13 +156,13 @@ So this is it, it really seems like the dose of Vitamin C has the direct effect 
 
 FOr this reason, this variables are known by `random variables`, they can take several different values.
 
-That means, everytime we repeat the experiment, we will have different means to the groups we have access to (dose), and by being so the variable `len` is considered `random`.
+That means, every time we repeat the experiment, we will have different means to the groups we have access to (dose), and by being so the variable `len` is considered `random`.
 
-Let's have a better understandment of `random variables`.
+Let's have a better comprehension about `random variables`.
 
 # Random Variables
 
-Let's comprehend how the means change when we get other samples of our data set:
+Let's uderstand how the means change when we get samples of our data set:
 
 ```
 control <- ToothGrowth$len %>% sample(12)
@@ -172,9 +172,9 @@ control <- ToothGrowth$len %>% sample(12)
 control <- ToothGrowth$len %>% sample(12)
 ```
 
-We can do this repeatedly to build a completely random distribution based on our main data (mainly because we don't have the means to repeat the experiment, so we model what would be the population without doses of vitamin C being applied to them)
+We can do this repeatedly to build a completely random distribution based on our main data (mainly because we don't have the means to repeat the real experiment, so we model what would be the population without doses of vitamin C being applied to them).
 
-Please notice how the mean changes in each sample, repeat the command of sampling in your R using the function `sample()`.
+Please notice how the `mean` change in each sample, repeat the command of sampling in your R using `sample()`.
 
 ```
 mean_control <- ToothGrowth$len %>% sample(12) %>% mean()
@@ -196,9 +196,9 @@ mean_control <- ToothGrowth$len %>% sample(12) %>% mean()
 print(mean_control)
 ```
 
-Notice how the mean varies in each measument, we can do this many times to learn even more about the distribution of this random variable.
+Notice how the mean varies in each measurement, we can do this many times to learn even more about the distribution of this random variable.
 
-As previously said we have to be skepticals, for that we will assume that randomly the observed difference could not mean much, that is it could be something that happened by chance.
+As previously said we have to be skeptical, for that we will assume that randomly the observed difference could not mean much, that is it could be something that happened by chance.
 
 To obtain evidences and minimise this uncertainty, we will use the `Null hypothesis`.
 
@@ -208,9 +208,9 @@ Let's analyse again the observed differences of before. As we need to be skeptic
 
 - How can we affirm that the observed differences are happenning because of the applied doses?
 - What would happen if we gave all the rats the same dose?
-- Would we obsserve differences as large as these ones?
+- Would we observe differences as large as these ones?
 
-In this moment we are working with the `Null hypothesis`, which name comes to remind us that we are acting as skepticals: we give credit to the possibility that our observations could just have happened by chance.
+In this moment we are working with the `Null hypothesis`, which name comes to remind us that we are acting as skeptical: we give credit to the possibility that our observations could just have happened by chance.
 
 Null, because we are questioning what would happen to the observable difference in case there were no application in the experiment, that is in case nothing have happened, what would happen?
 
@@ -272,11 +272,11 @@ mean(null >= observable_diff3)
 
 ### Interpreting results
 
-Parece que apenas uma pequena porcentagem dentre as nossas 10.000 simulações é igual ou maior as diferenças observadas na hipótese nula. Como céticos o que concluimos? Quando não existe efeito de doses, podemos observar uma diferença tão grande quanto observamos antes apenas 0,0001% das vezes (no máximo com a `diferenca_observavel1`). Esse valor é conhecido como p-value ou p-valor.
+Only a minority percentage within our 10.000 simulations are equal or higher than the observed differences in the null hypothesis. As skepticals what do we conclude? That when there's no dose effect, we can observe a difference as big as the one observed before only 0,0001% of the times (in maximum, as could see in `observable_diff1`). This value is known as p-value.
 
-# P-value ou P-valor
+# P-value
 
-Fizemos uma simulação para contruir o data set `null`, vamos observar as diferenças observaveis caso não houvessem doses aplicadas:
+We performed a simulation to build the `null` data set, let's now observe the the null distribution:
 
 ```
 hist(null, freq=TRUE)
@@ -286,38 +286,38 @@ hist(null, freq=TRUE)
 hist(null, freq=TRUE)
 ```
 
-Podemos observar também quais valores são tão maiores quanto as nossas diferenças observadas:
-
+We can also see where are the values as high as our observations:
 
 ```
 hist(null, freq=TRUE)
 
-abline(v=diferenca_observavel1, col="red", lwd=2)
+abline(v=observable_diff1, col="red", lwd=2)
 
-abline(v=diferenca_observavel2, col="blue", lwd=2)
+abline(v=observable_diff2, col="blue", lwd=2)
 
-abline(v=diferenca_observavel3, col="yellow", lwd=2)
+abline(v=observable_diff3, col="yellow", lwd=2)
 ```
 
 ```{r, layout="l-body-outset", preview=TRUE}
 hist(null, freq=TRUE)
 
-abline(v=diferenca_observavel1, col="red", lwd=2)
+abline(v=observable_diff1, col="red", lwd=2)
 
-abline(v=diferenca_observavel2, col="blue", lwd=2)
+abline(v=observable_diff2, col="blue", lwd=2)
 
-abline(v=diferenca_observavel3, col="yellow", lwd=2)
+abline(v=observable_diff3, col="yellow", lwd=2)
 ```
 
-Os valores maiores ou iguais as diferenças observáveis são relativamente raros. O que nos garante maior evidência a respeito da nossa hipótese de que a quantidade de vitamina C afeta o crescimento dos odontoblastos.
+Values higher than those ones we have observed are relatively rare. This gives us evidence to support our hypothesis, that the amount of dose of vitamin c applied in guinea pigs affects the size of odontoblasts.
 
-Foi possível perceber que a maior diferença, entre as doses 0.5 e 2, nem aparecem em nossa distribuição nula, mostrando que essa diferença observável não ocorreu ao acaso e que a hipótese nula pode ser refutada.
+It was possible to notice that the top difference, between the doses 0.5 and 2,
+ didn't even appeared in our plot of the null distribution, showing us that the observable difference couldn't have happened entirely randomly, and that the null hypothesis can be overthrown.
+ 
+But even though, we should always be carefull!
 
-Mas ainda assim devemos tomar cuidado!
+# Creating a control group using a filter
 
-# Grupo controle a partir de outras doses
-
-Para criar um grupo controle com apenas uma dose, podemos filtrar o data set original
+To create a control group with only one dose, we can filter the data set:
 
 ```
 ToothGrowth_dot5 <- ToothGrowth %>%
@@ -329,7 +329,7 @@ ToothGrowth_dot5 <- ToothGrowth %>%
   filter(dose == 0.5)
 ```
 
-Agora podemos criar nossos data sets para construir a hipótese nula:
+Now we can create our data sets to build the null hypothesis:
 
 ```
 controle_ToothGrowth_dot5 <- ToothGrowth_dot5$len %>% sample(12) %>% mean()
@@ -347,12 +347,12 @@ tratamento_ToothGrowth_dot5 <- ToothGrowth_dot5$len %>% sample(12) %>% mean()
 print(tratamento_ToothGrowth_dot5 - controle_ToothGrowth_dot5)
 ```
 
-Aqui repetimos 10.000 vezes a diferença entre as médias para criar uma distribuição nula:
+Here we have repeated 10.000 times the differences between means to create a null distribution:
 
 ```
 n <- 10000 
-null_dose <- vector("numeric",n) #primeiro criamos um vetor com 10000 espaços
-for (i in 1:n) { #looping para criar um vetor nulo
+null_dose <- vector("numeric",n)
+for (i in 1:n) { 
 controle_ToothGrowth_dot5 <- ToothGrowth_dot5$len %>% sample(12) %>% mean()
 tratamento_ToothGrowth_dot5 <- ToothGrowth_dot5$len %>% sample(12) %>% mean()
 null_dose[i] <- mean(tratamento_ToothGrowth_dot5) - mean(controle_ToothGrowth_dot5)
@@ -360,6 +360,7 @@ null_dose[i] <- mean(tratamento_ToothGrowth_dot5) - mean(controle_ToothGrowth_do
 
 print(null)
 ```
+
 ```{r, layout="l-body-outset", preview=TRUE}
 n <- 10000 
 null_dose <- vector("numeric",n) #primeiro criamos um vetor com 10000 espaços
@@ -370,8 +371,6 @@ null_dose[i] <- mean(tratamento_ToothGrowth_dot5) - mean(controle_ToothGrowth_do
 }
 ```
 
-Analisando a diferença observada em relação a esse data set, usando a cor amarela para marcar a primeira diferença observável, entre as médias das dose 0.5 e 1, e vermelho para usar a segunda, entre as médias de 1 e 2:
-
 ```
 hist(null_dose, freq=TRUE)
 
@@ -382,10 +381,9 @@ hist(null_dose, freq=TRUE)
 
 ```
 
-# Usando o pacote infer()
+# Using the infer() package
 
-O pacote infer nos ajuda a testar hipóteses de uma forma bem fácil e direta
-Instale e carregue o pacote:
+The `infer` package helps us to test hypothesis in a pretty straight-forward way, install the package and load it:
 
 ```
 install.packages("infer")
@@ -393,7 +391,7 @@ install.packages("infer")
 library(infer)
 ```
 
-Para calcular a estatística da diferença observada:
+To calculate the observed statistic in our data set:
 
 ```
 F_hat <- ToothGrowth %>% 
@@ -406,7 +404,8 @@ F_hat <- ToothGrowth %>%
   specify(len ~ dose) %>%
   calculate(stat = "F")
 ```
-Gerando a distribuição nula:
+
+Generating a null distribution:
 
 ```
 null_dist <- ToothGrowth %>% 
@@ -422,7 +421,8 @@ null_dist <- ToothGrowth %>%
    generate(reps = 1000, type = "permute") %>%
    calculate(stat = "F")
 ```
-Visualizando a diferença observada com a distribuição nula:
+
+Visualising the observable difference with the calculated null distribution:
 
 ```
 visualize(null_dist) +
@@ -433,4 +433,4 @@ visualize(null_dist) +
   shade_p_value(obs_stat = F_hat, direction = "greater")
 ```
 
-Falaremos ainda mais sobre isso em outros posts quando usaremos todo esse conhecimento aplicado a um projeto! Até mais!
+We will talk even more about this in other posts, when I will use all of this knowledge applied in a project! See you!

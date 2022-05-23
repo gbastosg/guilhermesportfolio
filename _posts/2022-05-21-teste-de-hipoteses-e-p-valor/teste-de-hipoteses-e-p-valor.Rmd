@@ -370,8 +370,6 @@ null_dose[i] <- mean(tratamento_ToothGrowth_dot5) - mean(controle_ToothGrowth_do
 }
 ```
 
-Analisando a diferença observada em relação a esse data set, usando a cor amarela para marcar a primeira diferença observável, entre as médias das dose 0.5 e 1, e vermelho para usar a segunda, entre as médias de 1 e 2:
-
 ```
 hist(null_dose, freq=TRUE)
 
