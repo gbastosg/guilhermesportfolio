@@ -1,0 +1,433 @@
+---
+title: "Análise e exploração de dados: parte 1"
+description: |
+  Navegando na plataforma data.world encontrei um conjunto de dados sobre smartphones na Índia. Nesse data set é possível encontrar diversos modelos, seus preços e o número de avaliações que cada um recebeu. Nesse post, uso as ferramentas que desenvolvemos até o momento para explorar e análisar esses dados.
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-06-05
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, layout="body-outset", preview=TRUE}
+library(tidyverse)
+library(janitor)
+
+apple_sold_in_india <-     read_csv("../../../../../apple_analysis/apple_products.csv")
+
+smartphones_sold <- 
+  read_csv("../../../../../apple_analysis/smartphone_category (1).csv")
+
+clean_apple_sold_in_india <- apple_sold_in_india %>%
+  clean_names()
+
+clean_apple_sold_in_india <- clean_apple_sold_in_india %>%
+  mutate(american_dolar = sale_price * 0.013, australian_dolar = sale_price * 0.018)
+
+clean_apple_sold_in_india %>%
+  group_by(sale_price) %>%
+  slice(1) -> sale_price_first
+
+sale_price_first %>%
+  mutate(iphone = fct_reorder(product_name, australian_dolar)) %>%
+  ggplot(aes(x = iphone, y = australian_dolar)) +
+  geom_segment( aes(xend=iphone, yend=0)) +
+  geom_point( size=4, color="0088cc") +
+  coord_flip() +
+  theme_bw() +
+  labs(
+    #title = "",
+    subtitle = "por: Guilherme Bastos",
+    caption = "Source: data.world",
+    x = "",
+    y = "Preço em dólar australiano")
+```
+
+# Olá!
+
+[Navegando pela internet](data.world) encontrei 2 data sets sobre smartphones, com smartphones vendidos na Índia.
+
+Vou usar todo o conteúdo desenvolvido até agora para compreender esses dados obter ideias sobre eles.
+
+Carregando o `tidyverse`:
+
+```
+library(tidyverse)
+```
+
+Lendo os dados
+
+
+```
+# Dados da apple na Índia
+apple_sold_in_india <- read_csv("apple_products.csv")
+
+# Dados sobre smartphones no mundo
+smartphones_sold <- read_csv("smartphone_category (1).csv")
+```
+
+# Pacote Janitor para limpar os dados
+
+Preparando os dados para análise de forma simples: o pacote `janitor`
+
+```
+install.packages("janitor")
+
+library(janitor)
+
+clean_apple_sold_in_india <- apple_sold_in_india %>%
+  clean_names()
+```
+```{r, layout="body-outset", preview=TRUE}
+library(janitor)
+```
+
+# Compreendendo os dados
+
+Primeiro, podemos conhecer a variação dos preços entre os iPhones:
+
+```
+  ggplot(clean_apple_sold_in_india) +
+    geom_histogram(aes(x = sale_price))
+```
+```{r, layout="body-outset", preview=TRUE}
+ggplot(clean_apple_sold_in_india) +
+    geom_histogram(aes(x = sale_price))
+```
+
+
+Os valores estão em Rupias, vamos transformar as colunas para construir uma nova coluna com os valores em dolar americano e dolar australiano:
+
+```
+  clean_apple_sold_in_india <- clean_apple_sold_in_india %>%
+  mutate(american_dolar = sale_price * 0.013, australian_dolar = sale_price * 0.018)
+```
+
+Primeiro temos que trabalhar nesse data set de modo a retirar a redundância dos dados, assim receberemos respostas menos enviesadas e que podem nos levar a caminhos complicados.
+
+# Removendo a redundância
+
+Nosso dado possui certa redundância, principalmente por causa das diferentes cores de iPhones.
+
+Podemos agrupar os dados pelos preços de vendas e escolher apenas o primeiro do nosso data set:
+
+```
+  clean_apple_sold_in_india %>%
+  group_by(sale_price) %>%
+  slice(1) -> sale_price_first
+```
+
+Agora podemos plotar os valores dos iPhones para entender a variação, vamos ver quais são os mais caros:
+
+```
+  sale_price_first %>%
+  mutate(iphone = fct_reorder(product_name, australian_dolar)) %>%
+  ggplot(aes(x = iphone, y = australian_dolar)) +
+  geom_bar(stat = "identity", fill="#f68060", alpha=.6, width=.4) +
+  coord_flip() +
+  labs(
+    #title = "",
+    #subtitle = "por: Guilherme Bastos Gomes",
+    caption = "Source: data.world",
+    x = "",
+    y = "Preço em dólar australiano") +
+  theme_bw()
+```
+
+```{r, layout="body-outset", preview=TRUE}
+sale_price_first %>%
+  mutate(iphone = fct_reorder(product_name, australian_dolar)) %>%
+  ggplot(aes(x = iphone, y = australian_dolar)) +
+  geom_bar(stat = "identity", fill="#f68060", alpha=.6, width=.4) +
+  coord_flip() +
+  labs(
+    #title = "",
+    #subtitle = "por: Guilherme Bastos Gomes",
+    caption = "Source: data.world",
+    x = "",
+    y = "Preço em dólar australiano") +
+  theme_bw()
+```
+
+Podemos também analisar com um gráfico de pirulito (Lollipop chart):
+
+```
+  sale_price_first %>%
+  mutate(iphone = fct_reorder(product_name, australian_dolar)) %>%
+  ggplot(aes(x = iphone, y = australian_dolar)) +
+  geom_segment( aes(xend=iphone, yend=0)) +
+  geom_point( size=4, color="0088cc") +
+  coord_flip() +
+  theme_bw() +
+  labs(
+    #title = "",
+    #subtitle = "por: Guilherme Bastos Gomes",
+    caption = "Source: data.world",
+    x = "",
+    y = "Preço em dólar australiano")
+```
+
+```{r, layout="body-outset", preview=TRUE}
+sale_price_first %>%
+  mutate(iphone = fct_reorder(product_name, australian_dolar)) %>%
+  ggplot(aes(x = iphone, y = australian_dolar)) +
+  geom_segment( aes(xend=iphone, yend=0)) +
+  geom_point( size=4, color="0088cc") +
+  coord_flip() +
+  theme_bw() +
+  labs(
+    #title = "",
+    #subtitle = "por: Guilherme Bastos Gomes",
+    caption = "Source: data.world",
+    x = "",
+    y = "Preço em dólar australiano")
+```
+
+Vemos então que o iPhone mais caro (em dólares australianos na Índia) é o iPhone 12 Pro (Silver, 512 GB) custando mais que 2500\$, enquanto o mais barato é iPhone SE (White, 64 GB) ao custo de pouco mais de 500\$.
+
+Podemos perceber com esse gráfico quais são os grupos de iPhones mais caros e quais são os mais baratos.
+
+Será que existe uma relação entre o preço e número de avaliações entre os iphones?
+
+```
+  sale_price_first %>%
+  ggplot(aes(x = australian_dolar, y = number_of_ratings)) +
+  geom_point( size = 3, color = "Firebrick") +
+  geom_smooth(method = "lm") +
+  theme_classic()
+```
+
+```{r, layout="body-outset", preview=TRUE}
+sale_price_first %>%
+  ggplot(aes(x = australian_dolar, y = number_of_ratings)) +
+  geom_point( size = 3, color = "Firebrick") +
+  geom_smooth(method = "lm") +
+  theme_classic()
+```
+
+Interessante, parece que quanto menor o valor do produto, maior o número de avaliações (claro, mais pessoas
+tem acesso), porém nosso gráfico ainda não parece mostrar uma correlação forte
+
+Transformando dados para compreender a relação entre as variáveis
+
+```
+sale_price_first %>%
+  ggplot(aes(x = australian_dolar, y = number_of_ratings)) +
+  geom_point( size = 3) +
+  scale_y_log10() +
+  geom_smooth(method = "lm") +
+  theme_classic()
+```
+
+```{r, layout="body-outset", preview=TRUE}
+sale_price_first %>%
+  ggplot(aes(x = australian_dolar, y = number_of_ratings)) +
+  geom_point( size = 3) +
+  scale_y_log10() +
+  geom_smooth(method = "lm") +
+  theme_classic()
+```
+
+Sem usar um modelo linear:
+
+```
+sale_price_first %>%
+  ggplot(aes(x = australian_dolar, y = number_of_ratings)) +
+  geom_point( size = 3) +
+  scale_y_log10() +
+  geom_smooth(aes(x = australian_dolar, y = number_of_ratings)) +
+  theme_classic()
+```
+
+```{r, layout="body-outset", preview=TRUE}
+sale_price_first %>%
+  ggplot(aes(x = australian_dolar, y = number_of_ratings)) +
+  geom_point( size = 3) +
+  scale_y_log10() +
+  geom_smooth(aes(x = australian_dolar, y = number_of_ratings)) +
+  theme_classic()
+```
+
+Veja que interessante se torna nosso gráfico quando trocamos a escala do eixo y para incluir o logaritmo na base 10 dos números que analisamos.
+
+### Logaritmos!!!
+
+
+
+
+
+O que estamos tentando dizer aqui é que  quanto maior o valor do iPhone, menos avaliações o produto recebe do publico geral. Não é uma hipótese brilhante, mas vai garantir que comecemos a analisar os dados de uma forma mais profunda.
+
+Antes de prosseguir, você deve estar se perguntando se o mesmo é verdade para outras marcas também, vamos checar!
+
+```
+smartphones_sold %>%
+  clean_names() -> clean_smartphones_sold
+```
+
+```{r, layout="body-outset", preview=TRUE}
+smartphones_sold %>%
+  clean_names() -> clean_smartphones_sold
+```
+
+Perceba como da mesma forma que podemos usar `<-` para definir um objeto, o mesmo é verdade quando usamos `->` porém pelo sentido contrário!
+
+Muito útil quando estamos usando `pipes` ou `%>%`
+
+## Removendo a redundância:
+
+```
+clean_smartphones_sold %>%
+  group_by(sale_price) %>%
+  slice(1) -> red_out_clean_smartphones_sold
+```
+
+```{r, layout="body-outset", preview=TRUE}
+clean_smartphones_sold %>%
+  group_by(sale_price) %>%
+  slice(1) -> red_out_clean_smartphones_sold
+```
+
+Vamos analisar os preços em dólar australiano, então para isso precisamos construir uma coluna com os valores desejados:
+
+```
+  red_out_clean_smartphones_sold <-  red_out_clean_smartphones_sold %>%
+  mutate(american_dolar = sale_price * 0.013, australian_dolar = sale_price * 0.018)
+```
+```{r, layout="body-outset", preview=TRUE}
+red_out_clean_smartphones_sold <-  red_out_clean_smartphones_sold %>%
+  mutate(american_dolar = sale_price * 0.013, australian_dolar = sale_price * 0.018)
+```
+
+Selecionando algumas marcas mais relevantes em números no data set:
+
+```
+  red_out_clean_smartphones_sold %>%
+  group_by(brand) %>%
+  summarise(media_relevantes = mean(number_of_ratings)) %>%
+  arrange(desc(media_relevantes)) %>%
+  mutate(brand = fct_reorder(brand, media_relevantes)) %>%
+  ggplot(aes(x = brand, y = media_relevantes)) +
+  geom_segment( aes(xend=brand, yend=0)) +
+  geom_point( size=4, color="0088cc") +
+  coord_flip() +
+  theme_bw() +
+  labs(
+    #title = "",
+    #subtitle = "por: Guilherme Bastos Gomes",
+    caption = "Source: data.world",
+    x = "",
+    y = "")
+```
+```{r, layout="body-outset", preview=TRUE}
+red_out_clean_smartphones_sold %>%
+  group_by(brand) %>%
+  summarise(media_relevantes = mean(number_of_ratings)) %>%
+  arrange(desc(media_relevantes)) %>%
+  mutate(brand = fct_reorder(brand, media_relevantes)) %>%
+  ggplot(aes(x = brand, y = media_relevantes)) +
+  geom_segment( aes(xend=brand, yend=0)) +
+  geom_point( size=4, color="0088cc") +
+  coord_flip() +
+  theme_bw() +
+  labs(
+    #title = "",
+    #subtitle = "por: Guilherme Bastos Gomes",
+    caption = "Source: data.world",
+    x = "",
+    y = "")
+```
+
+Esse gráfico é interessante para observar a distribuição das médias, mas agora vamos analisar as distribuições
+gerais dos números:
+
+```
+  red_out_clean_smartphones_sold %>%
+  ggplot(aes(x = reorder(brand, number_of_ratings, na.rm = TRUE), y = number_of_ratings, fill = brand)) +
+  geom_boxplot() +
+  labs(
+    #title = "",
+    #subtitle = "por: Guilherme Bastos Gomes",
+    #caption = "Source: ToothGrowth data set",
+    x = "",
+    y = ""
+  ) +
+  coord_flip()
+```
+
+```{r, layout="body-outset", preview=TRUE}
+red_out_clean_smartphones_sold %>%
+  ggplot(aes(x = reorder(brand, number_of_ratings, na.rm = TRUE), y = number_of_ratings, fill = brand)) +
+  geom_boxplot() +
+  labs(
+    #title = "",
+    #subtitle = "por: Guilherme Bastos Gomes",
+    #caption = "Source: ToothGrowth data set",
+    x = "",
+    y = ""
+  ) +
+  coord_flip()
+```
+
+Vamos selecionar algumas marcas relevantes para compreender se o mesmo se aplica a elas:
+
+```
+  red_out_clean_smartphones_sold %>%
+  filter(brand == "SAMSUNG" | brand == "Apple" | brand == "Lenovo" | brand == "Redmi" |brand == "Motorola" | brand == "ASUS") %>%
+  ggplot(aes(x = australian_dolar, y = number_of_ratings, color = brand)) +
+  geom_jitter(size = 2) +
+  scale_y_log10() +
+  #geom_smooth(method = "lm") +
+  theme_classic() +
+  facet_wrap(~brand)
+```
+```{r, layout="body-outset", preview=TRUE}
+red_out_clean_smartphones_sold %>%
+  filter(brand == "SAMSUNG" | brand == "Apple" | brand == "Lenovo" | brand == "Redmi" |brand == "Motorola" | brand == "ASUS") %>%
+  ggplot(aes(x = australian_dolar, y = number_of_ratings, color = brand)) +
+  geom_jitter(size = 2) +
+  scale_y_log10() +
+  #geom_smooth(method = "lm") +
+  theme_classic() +
+  facet_wrap(~brand)
+```
+
+Parece que o mesmo fenomeno acontece com a SAMSUNG e com a Motorola, interessante não?
+
+Enquanto isso parece que a Redmi, a Lenovo e a ASUS, mantém preços parecidos, mas que também podem revelar algum tipo de correlação.
+
+Vamos usar um geom_smooth para aplicar um modelo de regressão linear simples em nosso gráfico, se o modelo formar uma linha apontando para baixo então significa que existe correlação entre as variáveis, e que essa correlação é negativa.
+
+```
+red_out_clean_smartphones_sold %>%
+  filter(brand == "SAMSUNG" | brand == "Apple" | brand == "Lenovo" | brand == "Redmi" |brand == "Motorola" | brand == "ASUS") %>%
+  ggplot(aes(x = australian_dolar, y = number_of_ratings, color = brand)) +
+  geom_jitter(size = 2) +
+  scale_y_log10() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~brand) +
+  theme_fivethirtyeight()
+```
+```{r, layout="body-outset", preview=TRUE}
+red_out_clean_smartphones_sold %>%
+  filter(brand == "SAMSUNG" | brand == "Apple" | brand == "Lenovo" | brand == "Redmi" |brand == "Motorola" | brand == "ASUS") %>%
+  ggplot(aes(x = australian_dolar, y = number_of_ratings, color = brand)) +
+  geom_jitter(size = 2) +
+  scale_y_log10() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~brand) +
+  theme_fivethirtyeight()
+```
+
+Parece que o mesmo é real até para as outras marcas de dispositivos.
+
+Como será que o preço de um produto afeta suas avaliações? E qual preço seria ótimo para obter um valor ótimo de avaliações?
+
+No próximo post, vou escrever sobre como avaliar e usar os modelos a nosso favor.
