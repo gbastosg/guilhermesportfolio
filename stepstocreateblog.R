@@ -14,6 +14,7 @@ library(usethis)
 library(distill)
 library(ggthemes)
 library(infer)
+library(janitor)
 library(here)
 
 #blog e github
