@@ -19,6 +19,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r, layout="body-outset", preview=TRUE}
 library(tidyverse)
 library(janitor)
+library(ggthemes)
 
 apple_sold_in_india <-     read_csv("../../../../../apple_analysis/apple_products.csv")
 
@@ -257,10 +258,34 @@ sale_price_first %>%
 
 Veja que interessante se torna nosso gráfico quando trocamos a escala do eixo y para incluir o logaritmo na base 10 dos números que analisamos.
 
-### Logaritmos!!!
+Distribuição da variável sem e com transformaçao logaritmica:
 
+```
+library(patchwork)
 
+h1 <- ggplot(sale_price_first) +
+  geom_histogram(aes(x = number_of_ratings))
+  
+h2 <- ggplot(sale_price_first) +
+  geom_histogram(aes(log10(sale_price_first$number_of_ratings)))
 
+h1 + h2
+```
+
+```{r, layout="body-outset", preview=TRUE}
+
+library(patchwork)
+
+h1 <- ggplot(sale_price_first) +
+  geom_histogram(aes(x = number_of_ratings))
+  
+h2 <- ggplot(sale_price_first) +
+  geom_histogram(aes(log10(sale_price_first$number_of_ratings)))
+
+h1 + h2
+```
+
+Perceba como mais caixas são preenchidas após a transformação logaritmica na base 10, o que aumenta nossa compreensão dos dados no plot.
 
 
 O que estamos tentando dizer aqui é que  quanto maior o valor do iPhone, menos avaliações o produto recebe do publico geral. Não é uma hipótese brilhante, mas vai garantir que comecemos a analisar os dados de uma forma mais profunda.
