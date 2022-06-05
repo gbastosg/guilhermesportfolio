@@ -48,7 +48,7 @@ sale_price_first %>%
     subtitle = "por: Guilherme Bastos",
     caption = "Source: data.world",
     x = "",
-    y = "Preço em dólar australiano")
+    y = "Preços em dólar australiano")
 ```
 
 # Olá!
