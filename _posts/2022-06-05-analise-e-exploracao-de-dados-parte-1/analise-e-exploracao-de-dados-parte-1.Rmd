@@ -53,17 +53,21 @@ sale_price_first %>%
 
 # Olá!
 
-[Navegando pela internet](data.world) encontrei 2 data sets sobre smartphones, com smartphones vendidos na Índia.
+[Navegando pela internet](data.world) encontrei 2 data sets contendo informações sobre smartphones vendidos na Índia.
 
-Vou usar todo o conteúdo desenvolvido até agora para compreender esses dados obter ideias sobre eles.
+Vou usar todo o conteúdo desenvolvido até agora para compreender esses dados e obter ideias sobre eles.
+
+
+# Bibliotecas
 
 Carregando o `tidyverse`:
 
 ```
 library(tidyverse)
+#Também usaremos outras bibliotecas em seu tempo elas serão carregadas
 ```
 
-Lendo os dados
+Lendo os dados:
 
 
 ```
@@ -76,19 +80,37 @@ smartphones_sold <- read_csv("smartphone_category (1).csv")
 
 # Pacote Janitor para limpar os dados
 
-Preparando os dados para análise de forma simples: o pacote `janitor`
+Preparando os dados para a análise de forma simples: o pacote `janitor`
 
 ```
 install.packages("janitor")
 
 library(janitor)
 
+#Observe as colunas do data set antes e depois de usar a função clean_names()
+```
+
+```{r, layout="body-outset", preview=TRUE}
+library(janitor)
+library(rmarkdown)
+```
+
+Nomes das colunas do data set antes da função `clean_names()`:
+
+```{r, layout="body-outset", preview=TRUE}
+colnames(apple_sold_in_india)
+```
+
+```
 clean_apple_sold_in_india <- apple_sold_in_india %>%
   clean_names()
 ```
 ```{r, layout="body-outset", preview=TRUE}
-library(janitor)
+colnames(clean_apple_sold_in_india)
 ```
+Agora seguindo um padrão de palavras em caixa baixa e separadas por um "_" sublinhado.
+
+Ótimo!
 
 # Compreendendo os dados
 
@@ -104,20 +126,38 @@ ggplot(clean_apple_sold_in_india) +
 ```
 
 
-Os valores estão em Rupias, vamos transformar as colunas para construir uma nova coluna com os valores em dolar americano e dolar australiano:
+Os valores estão em Rupias, então vamos transformar nossos dados para construir uma nova coluna com os valores em dólar americano e dólar australiano:
 
 ```
   clean_apple_sold_in_india <- clean_apple_sold_in_india %>%
   mutate(american_dolar = sale_price * 0.013, australian_dolar = sale_price * 0.018)
 ```
 
-Primeiro temos que trabalhar nesse data set de modo a retirar a redundância dos dados, assim receberemos respostas menos enviesadas que poderiam nos levar a caminhos complicados.
+Parece que está tudo ótimo para começar, mas não! Esse dado possui redundância, notável por um agrupamento das avaliações de cada marca:
+
+```
+clean_apple_sold_in_india %>%
+group_by(number_of_ratings) %>%
+count() %>% arrange(desc(n)) -> redundancia_ratings
+```
+
+```{r, layout="body-outset", preview=TRUE}
+clean_apple_sold_in_india %>%
+group_by(number_of_ratings) %>%
+count() %>% arrange(desc(n)) -> redundancia_ratings
+
+paged_table(redundancia_ratings)
+```
+
+Ou seja, o número de avaliações (number_of_ratings) é repetido em diferentes modelos do mesmo produto.
+
+Primeiro temos que trabalhar nesse data set de modo a retirar essa redundância dos dados, assim receberemos respostas menos enviesadas, que não poderiam nos levar a caminhos muito complicados.
 
 # Removendo a redundância
 
-Nosso dado possui certa redundância, principalmente por causa das diferentes cores entre os mesmos modelos de iPhones.
+Nosso dado possui redundância, principalmente por causa dos diferentes modelos de iPhones.
 
-Podemos agrupar os dados pelos preços de vendas (que não se repetem) e escolher apenas o primeiro do nosso data set:
+Podemos agrupar os dados pelos preços de vendas (que não se repetem) e escolher apenas o primeiro do nosso data set com a função `slice()`:
 
 ```
   clean_apple_sold_in_india %>%
@@ -125,7 +165,7 @@ Podemos agrupar os dados pelos preços de vendas (que não se repetem) e escolhe
   slice(1) -> sale_price_first
 ```
 
-Agora podemos plotar os valores dos iPhones para entender a variação, vamos ver quais são os mais caros:
+Agora podemos plotar os valores dos iPhones para entender sua variação, vamos ver quais são os mais caros:
 
 ```
   sale_price_first %>%
@@ -138,7 +178,7 @@ Agora podemos plotar os valores dos iPhones para entender a variação, vamos ve
     #subtitle = "por: Guilherme Bastos Gomes",
     caption = "Source: data.world",
     x = "",
-    y = "Preço em dólar australiano") +
+    y = "Preços em dólar australiano") +
   theme_bw()
 ```
 
@@ -153,9 +193,11 @@ sale_price_first %>%
     #subtitle = "por: Guilherme Bastos Gomes",
     caption = "Source: data.world",
     x = "",
-    y = "Preço em dólar australiano") +
+    y = "Preços em dólar australiano") +
   theme_bw()
 ```
+
+# Gráfico de pirulito
 
 Podemos também analisar com um gráfico de pirulito (Lollipop chart):
 
@@ -172,7 +214,7 @@ Podemos também analisar com um gráfico de pirulito (Lollipop chart):
     #subtitle = "por: Guilherme Bastos Gomes",
     caption = "Source: data.world",
     x = "",
-    y = "Preço em dólar australiano")
+    y = "Preços em dólar australiano")
 ```
 
 ```{r, layout="body-outset", preview=TRUE}
@@ -188,14 +230,17 @@ sale_price_first %>%
     #subtitle = "por: Guilherme Bastos Gomes",
     caption = "Source: data.world",
     x = "",
-    y = "Preço em dólar australiano")
+    y = "Preços em dólar australiano")
 ```
 
-Vemos então que o iPhone mais caro (em dólares australianos na Índia) é o iPhone 12 Pro (Silver, 512 GB) custando mais que 2500\$, enquanto o mais barato é iPhone SE (White, 64 GB) ao custo de pouco mais de 500\$.
+O que aprendemos com esse plot?
 
-Podemos perceber com esse gráfico quais são os grupos de iPhones mais caros e quais são os mais baratos.
+* O iPhone mais caro (em dólares australianos na Índia) é o iPhone 12 Pro (Silver, 512 GB) custando mais que 2500\$.
+* O mais barato é iPhone SE (White, 64 GB) ao custo de pouco mais de 500\$.
+* A variação de preço segue padrões esperados para os modelos observados.
+* Quais são os grupos de iPhones mais caros, e quais são os mais baratos.
 
-Será que existe uma relação entre o preço e número de avaliações entre os iphones?
+Será que existe uma relação entre o preço e número de avaliações entre os iPhones?
 
 ```
   sale_price_first %>%
@@ -213,10 +258,9 @@ sale_price_first %>%
   theme_classic()
 ```
 
-Interessante, parece que quanto menor o valor do produto, maior o número de avaliações (claro, mais pessoas
-tem acesso), porém nosso gráfico ainda não parece mostrar uma correlação forte
+Interessante, parece que quanto menor o valor do produto, maior o número de avaliações (imagino que porque mais pessoas tem acesso), porém nosso gráfico ainda não parece mostrar uma correlação forte entre nossas variáveis.
 
-Transformando dados para compreender a relação entre as variáveis
+# Transformando os dados para observar a relação entre as variáveis
 
 ```
 sale_price_first %>%
@@ -236,7 +280,7 @@ sale_price_first %>%
   theme_classic()
 ```
 
-Sem usar um modelo linear:
+Sem usar um modelo linear na função `geom_smooth`:
 
 ```
 sale_price_first %>%
@@ -370,8 +414,7 @@ red_out_clean_smartphones_sold %>%
     y = "")
 ```
 
-Esse gráfico é interessante para observar a distribuição das médias, mas agora vamos analisar as distribuições
-gerais dos números:
+Esse gráfico é interessante para observar a distribuição das médias (valor médio de avaliações por marca), mas agora vamos analisar as distribuições dos números de avaliações totais de cada marca:
 
 ```
   red_out_clean_smartphones_sold %>%
@@ -386,6 +429,7 @@ gerais dos números:
   ) +
   coord_flip()
 ```
+> Deixei o eixo X, Y e o título do gráfico para que você possa usar os exemplos
 
 ```{r, layout="l-page", preview=TRUE, fig.width=6, fig.height=8}
 red_out_clean_smartphones_sold %>%
@@ -401,7 +445,7 @@ red_out_clean_smartphones_sold %>%
   coord_flip()
 ```
 
-Vamos selecionar algumas marcas relevantes para compreender se o mesmo se aplica a elas:
+Vamos selecionar algumas marcas relevantes para procurar se o mesmo fenômeno se aplica a elas, ou seja, esperamos que quanto maior o valor do produto, menos avaliações ele recebeu do público:
 
 ```
   red_out_clean_smartphones_sold %>%
@@ -413,6 +457,7 @@ Vamos selecionar algumas marcas relevantes para compreender se o mesmo se aplica
   theme_classic() +
   facet_wrap(~brand)
 ```
+
 ```{r, layout="body-outset", preview=TRUE}
 red_out_clean_smartphones_sold %>%
   filter(brand == "SAMSUNG" | brand == "Apple" | brand == "Lenovo" | brand == "Redmi" |brand == "Motorola" | brand == "ASUS") %>%
@@ -424,11 +469,11 @@ red_out_clean_smartphones_sold %>%
   facet_wrap(~brand)
 ```
 
-Parece que o mesmo fenomeno acontece com a SAMSUNG e com a Motorola, interessante não?
+Em primeiro momento parece que o mesmo fenomeno acontece com a SAMSUNG e também com a Motorola, interessante não?
 
-Enquanto isso parece que a Redmi, a Lenovo e a ASUS, mantém preços parecidos, mas que também podem revelar algum tipo de correlação.
+Enquanto isso parece que a Redmi, a Lenovo e a ASUS, mantém preços parecidos e altas avaliações, mas isso não significa que também não podem revelar algum tipo de correlação.
 
-Vamos usar um geom_smooth para aplicar um modelo de regressão linear simples em nosso gráfico, se o modelo formar uma linha apontando para baixo então significa que existe correlação entre as variáveis, e que essa correlação é negativa.
+Vamos usar a função `geom_smooth` para aplicar um modelo de regressão linear simples em nosso gráfico, se o modelo formar uma linha apontando para baixo, então significa que existe correlação entre as variáveis, e que essa correlação é negativa.
 
 ```
 red_out_clean_smartphones_sold %>%
@@ -440,6 +485,7 @@ red_out_clean_smartphones_sold %>%
   facet_wrap(~brand) +
   theme_fivethirtyeight()
 ```
+
 ```{r, layout="body-outset", preview=TRUE}
 red_out_clean_smartphones_sold %>%
   filter(brand == "SAMSUNG" | brand == "Apple" | brand == "Lenovo" | brand == "Redmi" |brand == "Motorola" | brand == "ASUS") %>%
@@ -451,8 +497,35 @@ red_out_clean_smartphones_sold %>%
   theme_fivethirtyeight()
 ```
 
+Vamos checar o quão forte está nossa correlação:
+
 Parece que o mesmo é real até para as outras marcas de dispositivos.
 
 Como será que o preço de um produto afeta suas avaliações? E qual preço seria ótimo para obter um valor ótimo de avaliações?
 
 No próximo post, vou escrever sobre como avaliar e usar os modelos a nosso favor.
+
+### Correlação entre valor do produto e número de avaliações
+
+Vamos voltar ao nosso dataset com os apples:
+
+```
+cor(clean_apple_sold_in_india$australian_dolar, clean_apple_sold_in_india$number_of_ratings, method = c("pearson"))
+
+cor(clean_apple_sold_in_india$australian_dolar, clean_apple_sold_in_india$number_of_ratings, method = c("spearman"))
+
+cor(clean_apple_sold_in_india$australian_dolar, clean_apple_sold_in_india$number_of_ratings, method = c("kendal"))
+```
+
+```{r, layout="body-outset", preview=TRUE}
+cor(clean_apple_sold_in_india$australian_dolar, clean_apple_sold_in_india$number_of_ratings, method = c("pearson"))
+
+cor(clean_apple_sold_in_india$australian_dolar, clean_apple_sold_in_india$number_of_ratings, method = c("spearman"))
+
+cor(clean_apple_sold_in_india$australian_dolar, clean_apple_sold_in_india$number_of_ratings, method = c("kendal"))
+```
+
+Observamos então que existe correlação negativa forte (-0.7 no coeficiente de correlação de Pearson) entre ambas as variáveis.
+
+
+Até a próxima!
