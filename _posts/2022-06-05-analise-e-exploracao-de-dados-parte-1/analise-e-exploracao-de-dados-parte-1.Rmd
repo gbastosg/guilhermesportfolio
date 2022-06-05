@@ -111,13 +111,13 @@ Os valores estão em Rupias, vamos transformar as colunas para construir uma nov
   mutate(american_dolar = sale_price * 0.013, australian_dolar = sale_price * 0.018)
 ```
 
-Primeiro temos que trabalhar nesse data set de modo a retirar a redundância dos dados, assim receberemos respostas menos enviesadas e que podem nos levar a caminhos complicados.
+Primeiro temos que trabalhar nesse data set de modo a retirar a redundância dos dados, assim receberemos respostas menos enviesadas que poderiam nos levar a caminhos complicados.
 
 # Removendo a redundância
 
-Nosso dado possui certa redundância, principalmente por causa das diferentes cores de iPhones.
+Nosso dado possui certa redundância, principalmente por causa das diferentes cores entre os mesmos modelos de iPhones.
 
-Podemos agrupar os dados pelos preços de vendas e escolher apenas o primeiro do nosso data set:
+Podemos agrupar os dados pelos preços de vendas (que não se repetem) e escolher apenas o primeiro do nosso data set:
 
 ```
   clean_apple_sold_in_india %>%
@@ -363,9 +363,9 @@ red_out_clean_smartphones_sold %>%
   coord_flip() +
   theme_bw() +
   labs(
-    #title = "",
-    #subtitle = "por: Guilherme Bastos Gomes",
-    #caption = "Source: data.world",
+    title = "Média de avaliações por marca de smartphones na Índia",
+    subtitle = "por: Guilherme Bastos Gomes",
+    caption = "Source: data.world",
     x = "",
     y = "")
 ```
@@ -379,8 +379,8 @@ gerais dos números:
   geom_boxplot() +
   labs(
     #title = "",
-    #subtitle = "por: Guilherme Bastos Gomes",
-    #caption = "Source: ToothGrowth data set",
+    subtitle = "por: Guilherme Bastos Gomes",
+    caption = "Source: data.world",
     x = "",
     y = ""
   ) +
@@ -393,8 +393,8 @@ red_out_clean_smartphones_sold %>%
   geom_boxplot() +
   labs(
     #title = "",
-    #subtitle = "por: Guilherme Bastos Gomes",
-    #caption = "Source: ToothGrowth data set",
+    subtitle = "por: Guilherme Bastos Gomes",
+    caption = "Source: data.world",
     x = "",
     y = ""
   ) +
