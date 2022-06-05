@@ -351,7 +351,7 @@ Selecionando algumas marcas mais relevantes em números no data set:
     x = "",
     y = "")
 ```
-```{r, layout="body-outset", preview=TRUE}
+```{r, layout="l-page", preview=TRUE,fig.width=6, fig.height=8}
 red_out_clean_smartphones_sold %>%
   group_by(brand) %>%
   summarise(media_relevantes = mean(number_of_ratings)) %>%
@@ -365,7 +365,7 @@ red_out_clean_smartphones_sold %>%
   labs(
     #title = "",
     #subtitle = "por: Guilherme Bastos Gomes",
-    caption = "Source: data.world",
+    #caption = "Source: data.world",
     x = "",
     y = "")
 ```
@@ -387,7 +387,7 @@ gerais dos números:
   coord_flip()
 ```
 
-```{r, layout="body-outset", preview=TRUE}
+```{r, layout="l-page", preview=TRUE, fig.width=6, fig.height=8}
 red_out_clean_smartphones_sold %>%
   ggplot(aes(x = reorder(brand, number_of_ratings, na.rm = TRUE), y = number_of_ratings, fill = brand)) +
   geom_boxplot() +
