@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["the-power-of-the-tidyverse-manipulating-data_files/anchor-4.2.2/anchor.min.js","the-power-of-the-tidyverse-manipulating-data_files/bowser-1.9.3/bowser.min.js","the-power-of-the-tidyverse-manipulating-data_files/distill-2.2.21/template.v2.js","the-power-of-the-tidyverse-manipulating-data_files/header-attrs-2.11/header-attrs.js","the-power-of-the-tidyverse-manipulating-data_files/jquery-3.6.0/jquery-3.6.0.js","the-power-of-the-tidyverse-manipulating-data_files/jquery-3.6.0/jquery-3.6.0.min.js","the-power-of-the-tidyverse-manipulating-data_files/jquery-3.6.0/jquery-3.6.0.min.map","the-power-of-the-tidyverse-manipulating-data_files/popper-2.6.0/popper.min.js","the-power-of-the-tidyverse-manipulating-data_files/tippy-6.2.7/tippy-bundle.umd.min.js","the-power-of-the-tidyverse-manipulating-data_files/tippy-6.2.7/tippy-light-border.css","the-power-of-the-tidyverse-manipulating-data_files/tippy-6.2.7/tippy.css","the-power-of-the-tidyverse-manipulating-data_files/tippy-6.2.7/tippy.umd.min.js","the-power-of-the-tidyverse-manipulating-data_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["the-power-of-the-tidyverse-manipulating-data_files/anchor-4.2.2/anchor.min.js","the-power-of-the-tidyverse-manipulating-data_files/bowser-1.9.3/bowser.min.js","the-power-of-the-tidyverse-manipulating-data_files/distill-2.2.21/template.v2.js","the-power-of-the-tidyverse-manipulating-data_files/figure-html5/unnamed-chunk-1-1.png","the-power-of-the-tidyverse-manipulating-data_files/header-attrs-2.11/header-attrs.js","the-power-of-the-tidyverse-manipulating-data_files/header-attrs-2.14/header-attrs.js","the-power-of-the-tidyverse-manipulating-data_files/jquery-3.6.0/jquery-3.6.0.js","the-power-of-the-tidyverse-manipulating-data_files/jquery-3.6.0/jquery-3.6.0.min.js","the-power-of-the-tidyverse-manipulating-data_files/jquery-3.6.0/jquery-3.6.0.min.map","the-power-of-the-tidyverse-manipulating-data_files/popper-2.6.0/popper.min.js","the-power-of-the-tidyverse-manipulating-data_files/tippy-6.2.7/tippy-bundle.umd.min.js","the-power-of-the-tidyverse-manipulating-data_files/tippy-6.2.7/tippy-light-border.css","the-power-of-the-tidyverse-manipulating-data_files/tippy-6.2.7/tippy.css","the-power-of-the-tidyverse-manipulating-data_files/tippy-6.2.7/tippy.umd.min.js","the-power-of-the-tidyverse-manipulating-data_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1459,7 +1459,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"The power of the tidyverse: manipulating data","description":"In this post I will show you how to use the basic tools from tidyverse. This tools are useful to deal with a whole sort of data.","authors":[{"author":"Guilherme Bastos Gomes","authorURL":"https://gbastosg.github.io/guilhermesportfolio/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-04-13T00:00:00.000-03:00","citationText":"Gomes, 2022"}
+{"title":"The power of the tidyverse: manipulating data","description":"In this post I will show you how to use the basic tools from tidyverse. This tools are useful to deal with a whole sort of data.","authors":[{"author":"Guilherme Bastos Gomes","authorURL":"https://gbastosg.github.io/guilhermesportfolio/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-04-13T00:00:00.000+10:00","citationText":"Gomes, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1486,6 +1486,9 @@ class="uri">https://gbastosg.github.io/guilhermesportfolio/</a>
 </div>
 
 <div class="d-article">
+<div class="layout-chunk" data-layout="body-outset">
+<p><img src="the-power-of-the-tidyverse-manipulating-data_files/figure-html5/unnamed-chunk-1-1.png" width="624" data-distill-preview=1 /></p>
+</div>
 <h1
 id="hello-in-this-post-i-will-show-you-how-to-use-the-basic-verbs-of-the-tidyverse">Hello!
 In this post I will show you how to use the basic verbs of the
@@ -1747,7 +1750,7 @@ combined with ifelse()</h3>
   mutate(size  = #calling mutate and creating the column &quot;size&quot;
   ifelse(ratio_petal_sepal &lt; 0.5, #if this statement is `TRUE` and the number inside of ratio_petal_sepal is lesser than 0.5
   &quot;small&quot;, #then the column &quot;size&quot; will receive that tag &quot;small&quot;
-  &quot;large&quot; #else or otherwise it will receive &quot;large&quot;))</code></pre>
+  &quot;large&quot;)) #else or otherwise it will receive &quot;large&quot;</code></pre>
 <p>You will have a complete sorted data set, on the next post I will
 show you how to count() and to gather some stats from data. Hope you
 liked.</p>

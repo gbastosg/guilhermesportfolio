@@ -16,6 +16,30 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r, layout="body-outset", preview=TRUE}
+library(tidyverse)
+
+
+ggplot(data = iris, 
+                       aes(x = Sepal.Length,
+                           y = Petal.Length)) +
+  geom_point(aes(color = Species, 
+                 shape = Species),
+             size = 3,
+             alpha = 0.8) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(title = "Sepal Length x Petal Length from different species of Iris",
+       subtitle = "Sepal length and Petal Length for Iris setosa, Iris virginica and Iris versicolor species of flower plants",
+       x = "Sepal length (mm)",
+       y = "Petal length (mm)",
+       color = "Plant species",
+       shape = "Plant species") +
+  theme(legend.position = c(0.2, 0.7),
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot")
+```
+
 # Hello! In this post I will show you how to use the basic verbs of the tidyverse:
 
 * select()
