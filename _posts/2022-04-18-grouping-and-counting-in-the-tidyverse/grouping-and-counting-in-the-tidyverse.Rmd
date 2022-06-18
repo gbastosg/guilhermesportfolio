@@ -17,6 +17,20 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r, layout="body-outset", preview=TRUE}
+library(tidyverse)
+
+
+ggplot(data = iris, aes(x = Sepal.Length)) +
+  geom_histogram(aes(fill = Species), 
+                 alpha = 0.5, 
+                 position = "identity") +
+  scale_fill_manual(values = c("firebrick1","darkolivegreen3","dodgerblue")) +
+  labs(x = "Sepal length (mm)",
+       y = "Frequency",
+       title = "Sepal length of different Iris species")
+```
+
 # Hello! A pretty important concept to analise data it's the EDA
 
 > EDA stands for Exploratory Data Analysis
