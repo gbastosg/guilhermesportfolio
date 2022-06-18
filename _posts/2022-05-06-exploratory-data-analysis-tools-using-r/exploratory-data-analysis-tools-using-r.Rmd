@@ -16,9 +16,27 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r, layout="l-body-outset", preview=TRUE}
+library(tidyverse)
+library(ggthemes)
+
+ggplot(data = mpg, aes(x = fct_rev(fct_infreq(manufacturer)), fill = "firebrick4")) +
+  geom_bar(show.legend = FALSE) +
+  coord_flip() +
+  labs( #função para ajustar os títulos
+      title = "Distribution of manufacturers", #título do gráfico
+      subtitle = "by: Guilherme Bastos Gomes", #subtítulo
+      caption = "Source: mpg data set", #descrição
+      x = "Manufacturer", #O que vai escrito no eixo X
+      y = "Frequency"
+    ) +
+    theme_classic()
+
+```
+
 # Hello! 
 
-In the last post we talked about histograms and the importance of understanding frequency in our data. Today we are going to perform some exploratory data analysis of a data set from `tidyverse`, therefore we should load the package:
+In the last post I wrote about histograms and the importance of understanding frequency in our data. Today we are going to perform some exploratory data analysis in a data set from `tidyverse`, therefore we should load the package:
 
 ```
 library(tidyverse)
@@ -26,21 +44,21 @@ library(tidyverse)
 
 # Exploratory Data Analysis (EDA)
 
-During this phase of exploratory analysis, we should acquire a better understandment of our data.
+During this phase of exploratory analysis, we should acquire a better understand of our data.
 The best way to understand data, is to question what is in it.
-Questions are tools that helps us a lot, they guide our exploration. Since we are always improving out tools, we are also always improving our questions. During exploration we will be mutating our questions to make them more precise and to help us develop a wide understandment of our data. This part is really about curiosity and creativity
+Questions are tools that helps us a lot, they guide our exploration. Since we are always improving out tools, we are also always improving our questions. During exploration we will be mutating our questions to make them more precise and to help us develop a wide comprehension of our data. This part is really all about curiosity and creativity.
 
-Although there are no right way of exploring data, [Hadley Wickham puts it in this way](https://r4ds.had.co.nz/exploratory-data-analysis.html):
+Although there is no right way of exploring data, [Hadley Wickham puts it in this way](https://r4ds.had.co.nz/exploratory-data-analysis.html):
 
 >"There are two types of questions that will certainly help you find out more about your data:
 >1. What type of variation exists within my variables?
 >2. What type of covariation occurs between my variables?
 
-Understanding this concepts could be a little complicated in the beggining, but in the bottom of it our main goal here is to ask lots of questions and improving them with time.
+Understanding this concepts could be a little complicated in the start, but in the bottom of it our main goal here is to ask lots of questions and to improve them along.
 
 # Variation
 
-Allow me rephrasing the book ["R for data science"](https://r4ds.had.co.nz/) here, to explain what is variation or covariation in this post.
+Allow me to rephrase the book ["R for data science"](https://r4ds.had.co.nz/) here, to explain what is variation or co variation in this post.
 
 >Variation is the tendency of the values of a variable to change from measurement to measurement. You can see variation easily in real life; if you measure any continuous variable twice, you will get two different results.
 
@@ -48,7 +66,7 @@ One of the best ways of analising this variations is by using graphic tools!
 
 # Visualizing distributions
 
-A good visualization of a distribution of categorical values is by using the bar chart:
+A good visualization of a distribution with categorical values is by using the classical bar chart:
 
 ## Bar chart
 
@@ -150,9 +168,9 @@ geom_bar(mapping = aes(x = fct_infreq(manufacturer))) +
 coord_flip()
 ```
 
-It seems that in this car sample there are many more dodges than lincolns, what could have happened to these companies during time? Well, this is a question for another time. For now, let's continue to analyse variations!
+It seems that in this car sample there are many more dodges than lincolns, what could have happened to these companies during time? Well, this is a question for another moment. For now, let's continue to analyse variations!
 
-[In the last post we've done some histograms](https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-26-another-test/) to analyse continuous variables, that is variables that possess numbers, dates or times.
+[In the last post we've done histograms](https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-26-another-test/) to analyse continuous variables, that is variables that possess numbers, dates or times.
 
 Another extremely useful function is to analyse this types of variation is `geom_freqpoly()`
 
@@ -170,17 +188,17 @@ Notice how this function compared two histograms at the same time, showing us wh
 
 Here is the calculation for it:
 
-> Este tipo de gráfico divide o eixo x em `bins` ou caixas igualmente espaçadas, e então usa a altura da barra (ou o pico da linha) para mostrar o número de observações que estão em cada uma das `bins` ou caixas.
+> This type of chart divides the x axis into equally spaced `bins`, then it uses the bar height (peak of the line) to show the number of observations that are in each of the `bins`.
 
 This graph is even more useful when we have more than one category in our data set.
 
-From this moment on we can go to many sides of our analysis:
+From this moment on, we could go to many sides of our analysis:
 
 - What called your attention? 
 - What else would you like to investigate? 
 - What are the most common values? Why? 
-- which are rare? What could explain this?
+- Which are rare? What could explain this?
 
-There are many option! I shall continue to develop this ideas in the next post!!!
+There are many options! We shall continue to develop these ideas in the next post!!!
 
 #### Thank you!
