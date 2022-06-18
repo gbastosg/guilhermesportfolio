@@ -20,8 +20,8 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(ggthemes)
 
-ggplot(data = mpg, aes(x = fct_rev(fct_infreq(manufacturer)), fill = "green")) +
-  geom_bar(show.legend = FALSE) +
+ggplot(data = mpg, aes(x = fct_rev(fct_infreq(manufacturer)))) +
+  geom_bar(show.legend = FALSE, fill = "forestgreen") +
   coord_flip() +
   labs( #função para ajustar os títulos
       title = "Distribuicao de montadoras", #título do gráfico

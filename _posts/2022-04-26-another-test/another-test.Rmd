@@ -44,7 +44,7 @@ We will remain using the data from `mpg` data set included in the `ggplot` packa
 library(tidyverse)
 ```
 
-To a better understandment of the data, click on the link to read about it in the previous post.
+To better understand the data, click on the link to read about it in the previous post.
 
 # "How motors improved during these years?" 
 
