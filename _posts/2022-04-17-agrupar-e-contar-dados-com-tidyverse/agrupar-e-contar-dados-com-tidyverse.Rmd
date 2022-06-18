@@ -16,6 +16,20 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r, layout="body-outset", preview=TRUE}
+library(tidyverse)
+
+
+ggplot(data = iris, aes(x = Sepal.Length)) +
+  geom_histogram(aes(fill = Species), 
+                 alpha = 0.5, 
+                 position = "identity") +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Comprimento da sepala (mm)",
+       y = "Frequencia",
+       title = "Comprimento da sepala de diferentes Iris")
+```
+
 # Olá! Um conceito bastante importante para analisar dados é o de EDA
 
 > EDA significa Exploratory Data Analysis, ou análise de dados exploratória
