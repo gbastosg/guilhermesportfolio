@@ -1,7 +1,7 @@
 ---
-title: "Análise exploratória dos dados: Boxplots"
+title: "Análise exploratória dos dados: Boxplots e ViolinPlots"
 description: |
-  Neste post vou descrever e mostrar como fazer Boxplots ou gráficos de caixa usando o pacote tidyverse da linguagem de programação R.
+  Neste post vou descrever e mostrar como fazer Boxplots ou gráficos de caixa usando o pacote tidyverse da linguagem de programação R, também falo sobre ViolinPlots.
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
@@ -34,17 +34,19 @@ library(ggthemes)
 
 ToothGrowth$dose <- as.factor(ToothGrowth$dose)
 
-ToothGrowth %>% #lendo o data set
-  ggplot(aes(x = supp, y = len, fill = supp)) + #criando a estética do plot 
-    geom_boxplot() + #plote um gráfico de caixa, por favor
-    labs( #função para ajustar os títulos
-      title = "O efeito da Vitamina C no crescimento dos dentes de Porquinhos da Índia", #título do gráfico
+ggplot(data = ToothGrowth, aes(x = supp, y = len)) +
+  geom_boxplot(aes(color = supp), width = 0.3, show.legend = FALSE) +
+  geom_jitter(aes(color = supp), alpha = 0.5, show.legend = FALSE, position = position_jitter(width = 0.2, seed = 0)) +
+  scale_color_manual(values = c("firebrick4","magenta4")) +
+  labs( #função para ajustar os títulos
+      title = "O efeito da Vitamina C no crescimento dos dentes de Porquinhos da India", #título do gráfico
       subtitle = "por: Guilherme Bastos Gomes", #subtítulo
       caption = "Source: ToothGrowth data set", #descrição
       x = "Tipo de suplemento", #O que vai escrito no eixo X
       y = "Tamanho dos odontoblastos" #O que vai escrito no eixo Y
     ) +
-    theme_classic() #escolhendo um tema do pacote ggthemes
+    theme_classic()
+
 ```
 O código: 
 
