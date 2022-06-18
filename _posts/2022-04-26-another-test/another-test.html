@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["another-test_files/anchor-4.2.2/anchor.min.js","another-test_files/bowser-1.9.3/bowser.min.js","another-test_files/distill-2.2.21/template.v2.js","another-test_files/figure-html5/unnamed-chunk-1-1.png","another-test_files/figure-html5/unnamed-chunk-2-1.png","another-test_files/figure-html5/unnamed-chunk-3-1.png","another-test_files/figure-html5/unnamed-chunk-4-1.png","another-test_files/figure-html5/unnamed-chunk-5-1.png","another-test_files/figure-html5/unnamed-chunk-6-1.png","another-test_files/figure-html5/unnamed-chunk-7-1.png","another-test_files/figure-html5/unnamed-chunk-8-1.png","another-test_files/header-attrs-2.11/header-attrs.js","another-test_files/header-attrs-2.14/header-attrs.js","another-test_files/jquery-3.6.0/jquery-3.6.0.js","another-test_files/jquery-3.6.0/jquery-3.6.0.min.js","another-test_files/jquery-3.6.0/jquery-3.6.0.min.map","another-test_files/popper-2.6.0/popper.min.js","another-test_files/tippy-6.2.7/tippy-bundle.umd.min.js","another-test_files/tippy-6.2.7/tippy-light-border.css","another-test_files/tippy-6.2.7/tippy.css","another-test_files/tippy-6.2.7/tippy.umd.min.js","another-test_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["another-test_files/anchor-4.2.2/anchor.min.js","another-test_files/bowser-1.9.3/bowser.min.js","another-test_files/distill-2.2.21/template.v2.js","another-test_files/figure-html5/unnamed-chunk-1-1.png","another-test_files/figure-html5/unnamed-chunk-2-1.png","another-test_files/figure-html5/unnamed-chunk-3-1.png","another-test_files/figure-html5/unnamed-chunk-4-1.png","another-test_files/figure-html5/unnamed-chunk-5-1.png","another-test_files/figure-html5/unnamed-chunk-6-1.png","another-test_files/figure-html5/unnamed-chunk-7-1.png","another-test_files/figure-html5/unnamed-chunk-8-1.png","another-test_files/figure-html5/unnamed-chunk-9-1.png","another-test_files/header-attrs-2.11/header-attrs.js","another-test_files/header-attrs-2.14/header-attrs.js","another-test_files/jquery-3.6.0/jquery-3.6.0.js","another-test_files/jquery-3.6.0/jquery-3.6.0.min.js","another-test_files/jquery-3.6.0/jquery-3.6.0.min.map","another-test_files/popper-2.6.0/popper.min.js","another-test_files/tippy-6.2.7/tippy-bundle.umd.min.js","another-test_files/tippy-6.2.7/tippy-light-border.css","another-test_files/tippy-6.2.7/tippy.css","another-test_files/tippy-6.2.7/tippy.umd.min.js","another-test_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1459,7 +1459,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Plotting with ggplot2","description":"In this post we will use histograms to find groups in our data.","authors":[{"author":"Guilherme Bastos Gomes","authorURL":"https://gbastosg.github.io/guilhermesportfolio/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-04-26T00:00:00.000-03:00","citationText":"Gomes, 2022"}
+{"title":"Plotting with ggplot2","description":"In this post we will use histograms to find groups in our data.","authors":[{"author":"Guilherme Bastos Gomes","authorURL":"https://gbastosg.github.io/guilhermesportfolio/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-04-26T00:00:00.000+10:00","citationText":"Gomes, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1485,6 +1485,9 @@ class="uri">https://gbastosg.github.io/guilhermesportfolio/</a>
 </div>
 
 <div class="d-article">
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="another-test_files/figure-html5/unnamed-chunk-1-1.png" width="624" data-distill-preview=1 /></p>
+</div>
 <h1 id="hello-now-we-are-going-to-analyse-some-data-using-plots">Hello!
 Now we are going to analyse some data using plots</h1>
 <p><a
@@ -1510,28 +1513,28 @@ many times a value appears in our data set:</p>
   ggplot(aes(x = cty)) +
   geom_histogram(binwidth = 1)</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
-<p><img src="another-test_files/figure-html5/unnamed-chunk-1-1.png" width="624" data-distill-preview=1 /></p>
+<p><img src="another-test_files/figure-html5/unnamed-chunk-2-1.png" width="624" data-distill-preview=1 /></p>
 </div>
 <p>Notice that in the Y axis is the count of how many times that value
 appears, while in the X axis we can check the values of <code>cty</code>
 (city miles per gallons)</p>
 <p>We can built more histogram and also compare them:</p>
 <div class="layout-chunk" data-layout="l-body-outset">
-<p><img src="another-test_files/figure-html5/unnamed-chunk-2-1.png" width="624" data-distill-preview=1 /></p>
+<p><img src="another-test_files/figure-html5/unnamed-chunk-3-1.png" width="624" data-distill-preview=1 /></p>
 </div>
 <pre><code>mpg %&gt;%
   filter(year == 1999) %&gt;%
   ggplot(aes(x = cty)) +
   geom_histogram()</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
-<p><img src="another-test_files/figure-html5/unnamed-chunk-3-1.png" width="624" data-distill-preview=1 /></p>
+<p><img src="another-test_files/figure-html5/unnamed-chunk-4-1.png" width="624" data-distill-preview=1 /></p>
 </div>
 <pre><code>mpg %&gt;%
   filter(year == 2008) %&gt;%
   ggplot(aes(x = cty)) +
   geom_histogram()</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
-<p><img src="another-test_files/figure-html5/unnamed-chunk-4-1.png" width="624" data-distill-preview=1 /></p>
+<p><img src="another-test_files/figure-html5/unnamed-chunk-5-1.png" width="624" data-distill-preview=1 /></p>
 </div>
 <p>Now we can use the <code>Patchwork</code> package to combine the
 visualisation of both plots:</p>
@@ -1551,7 +1554,7 @@ hist2008 &lt;- mpg %&gt;%
   
 hist1999  + hist2008</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
-<p><img src="another-test_files/figure-html5/unnamed-chunk-5-1.png" width="624" data-distill-preview=1 /></p>
+<p><img src="another-test_files/figure-html5/unnamed-chunk-6-1.png" width="624" data-distill-preview=1 /></p>
 </div>
 <p>Interesting, right?</p>
 <p>We can also change the colour of our plots to improve comparison:</p>
@@ -1570,7 +1573,7 @@ hist2008 &lt;- mpg %&gt;%
   
 hist1999  + hist2008</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
-<p><img src="another-test_files/figure-html5/unnamed-chunk-6-1.png" width="624" data-distill-preview=1 /></p>
+<p><img src="another-test_files/figure-html5/unnamed-chunk-7-1.png" width="624" data-distill-preview=1 /></p>
 </div>
 <p>Watching it like this makes it easier to conclude that cars have
 become more efficient during years.</p>
@@ -1590,7 +1593,7 @@ colour_hist2008 &lt;- mpg %&gt;%
   
 color_hist1999  + color_hist2008</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
-<p><img src="another-test_files/figure-html5/unnamed-chunk-7-1.png" width="624" data-distill-preview=1 /></p>
+<p><img src="another-test_files/figure-html5/unnamed-chunk-8-1.png" width="624" data-distill-preview=1 /></p>
 </div>
 <p>A similar type of plot that also has plenty of information about
 groups is the density plot.</p>
@@ -1598,7 +1601,7 @@ groups is the density plot.</p>
 <p>With <code>ggplot</code> we can plot density of out data in a simple
 way:</p>
 <div class="layout-chunk" data-layout="l-body-outset">
-<p><img src="another-test_files/figure-html5/unnamed-chunk-8-1.png" width="624" data-distill-preview=1 /></p>
+<p><img src="another-test_files/figure-html5/unnamed-chunk-9-1.png" width="624" data-distill-preview=1 /></p>
 </div>
 <pre><code>library(tidyverse)
 mpg %&gt;%

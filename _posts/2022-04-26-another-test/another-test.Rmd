@@ -11,9 +11,27 @@ output:
     self_contained: false
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, layout="l-body-outset", preview=TRUE}
+library(tidyverse)
+library(ggthemes)
+
+mpg %>%
+  ggplot(aes(x = cty, )) +
+  geom_histogram(binwidth = 1,
+                 color="gold2", 
+                 fill="gold2") +
+  labs(
+    title = "Variation of fuel efficiency",
+    subtitle = "by: Guilherme Bastos",
+    caption = "mpg data set",
+    x = "City miles per gallon",
+    y = "Frequency") +
+  theme_minimal()
+
 ```
 
 # Hello! Now we are going to analyse some data using plots
