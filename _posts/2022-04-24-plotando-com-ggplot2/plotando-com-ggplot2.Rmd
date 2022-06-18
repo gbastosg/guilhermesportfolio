@@ -16,6 +16,25 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r, layout="l-body-outset", preview=TRUE}
+library(tidyverse)
+library(ggthemes)
+
+mpg %>%
+  ggplot(aes(x = cty, )) +
+  geom_histogram(binwidth = 1,
+                 color="chartreuse3", 
+                 fill="chartreuse3") +
+  labs(
+    title = "Variação do gasto de combustível",
+    subtitle = "by: Guilherme Bastos",
+    caption = "mpg data set",
+    x = "Milhas por galao gastas na cidade",
+    y = "Frequencia") +
+  theme_minimal()
+
+```
+
 # Olá! Agora vamos trabalhar com alguns gráficos para análisar nossos dados
 
 [Neste post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-20-combinando-as-ferramentas-do-tidyverse/) fizemos algumas manipulações para formar grupos e entender os dados. Hoje faremos alguns gráficos para ajudar na interpretação.
