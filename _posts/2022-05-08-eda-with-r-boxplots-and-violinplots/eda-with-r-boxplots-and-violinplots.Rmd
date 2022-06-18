@@ -35,17 +35,19 @@ library(ggthemes)
 
 ToothGrowth$dose <- as.factor(ToothGrowth$dose)
 
-ToothGrowth %>% 
-  ggplot(aes(x = supp, y = len, fill = supp)) +  
-    geom_boxplot() + 
-    labs( 
-      title = "The effect of vitamin C in tooth growth of Guinea pigs",
-      subtitle = "by: Guilherme Bastos Gomes", 
-      caption = "Source: ToothGrowth data set", 
-      x = "Supplement",
-      y = "Length" 
+ggplot(data = ToothGrowth, aes(x = supp, y = len)) +
+  geom_boxplot(aes(color = supp), width = 0.3, show.legend = FALSE) +
+  geom_jitter(aes(color = supp), alpha = 0.5, show.legend = FALSE, position = position_jitter(width = 0.2, seed = 0)) +
+  scale_color_manual(values = c("orangered","purple4")) +
+  labs( #função para ajustar os títulos
+      title = "Vitamin C effect on tooth growth of Guinea pigs", #título do gráfico
+      subtitle = "by: Guilherme Bastos Gomes", #subtítulo
+      caption = "Source: ToothGrowth data set", #descrição
+      x = "Supplement", #O que vai escrito no eixo X
+      y = "Odontoblast size" #O que vai escrito no eixo Y
     ) +
     theme_classic()
+
 ```
 
 The code: 
