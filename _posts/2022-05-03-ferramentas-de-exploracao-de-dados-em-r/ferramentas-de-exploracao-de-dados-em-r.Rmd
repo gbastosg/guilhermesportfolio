@@ -16,10 +16,27 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r, layout="l-body-outset", preview=TRUE}
+library(tidyverse)
+library(ggthemes)
+
+ggplot(data = mpg, aes(x = fct_rev(fct_infreq(manufacturer)), fill = "green")) +
+  geom_bar(show.legend = FALSE) +
+  coord_flip() +
+  labs( #função para ajustar os títulos
+      title = "Distribuicao de montadoras", #título do gráfico
+      subtitle = "por: Guilherme Bastos Gomes", #subtítulo
+      caption = "Source: mpg data set", #descrição
+      x = "Montadora", #O que vai escrito no eixo X
+      y = "Frequencia"
+    ) +
+    theme_classic()
+
+```
 
 # Olá! 
 
-No último post, falamos sobre histogramas e da importância de compreender a frequência nos seus dados. Hoje vamos fazer mais algumas análises exploratórias dos dados de um data set do `tidyverse`, portanto devemos carregar o pacote:
+No último post falamos sobre histogramas e a importância de compreender a frequência nos dados. Hoje, vamos fazer mais algumas análises exploratórias dos dados de um data set do `tidyverse`, portanto devemos carregar o pacote:
 
 ```
 library(tidyverse)
@@ -29,9 +46,9 @@ library(tidyverse)
 
 Durante a etapa de análise exploratória, devemos desenvolver um melhor entendimento dos nossos dados.
 
-A melhor forma de entender um dado é questionar o que existe nele.
+A melhor forma de entender um dado, é questionar o que existe nele.
 
-As perguntas são ferramentas que te ajudam muito, pois guiam a exploração. E como temos  sempre melhorar nossas ferramentas, ao longo da exploração vamos transformando nossas perguntas para que elas sejam mais precisas e nos ajudem a desenvolver maior entendimento dos dados. Essa parte é realmente sobre curiosidade e criatividade.
+As perguntas são ferramentas que nos ajudam muito, pois guiam a exploração. E como temos  sempre que melhorar nossas ferramentas, ao longo da exploração, transformamos nossas perguntas para que elas sejam mais precisas e para que nos ajudem a desenvolver maior entendimento dos dados. Essa parte é realmente sobre curiosidade e criatividade.
 
 Embora não exista forma certa para se explorar os dados, [Hadley Wickham coloca desta forma](https://r4ds.had.co.nz/exploratory-data-analysis.html):
 
