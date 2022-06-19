@@ -16,6 +16,47 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r, layout="l-body-outset", preview=TRUE}
+library(tidyverse)
+library(ggthemes)
+library(patchwork)
+
+
+mpg_2008 <- mpg %>%
+  select(tipo_de_motor = displ,
+  ano = year, 
+  galao_milhas_cidade = cty, 
+  galao_milhas_estrada = hwy) %>%
+  group_by(tipo_de_motor, ano) %>%
+  summarise(media_milhas_por_galao_cidade = mean(galao_milhas_cidade), 
+  media_milhas_por_galao_estrada = mean(galao_milhas_estrada)) %>%
+  arrange((ano)) %>%
+  filter(ano == 2008)
+
+plot1 <- ggplot(data = mpg_2008, aes(x = tipo_de_motor, y = media_milhas_por_galao_cidade)) +
+  geom_point(size = 2, shape = 9) +
+  labs(
+      title = "Motores na cidade",
+      subtitle = "por: Guilherme Bastos Gomes",
+      caption = "Source: mpg data set",
+      x = "Tipo de motor",
+      y = "Média de milhas por galão gastos na cidade"
+    ) +
+    theme_bw()
+
+plot2 <- ggplot(data = mpg_2008, aes(x = tipo_de_motor, y = media_milhas_por_galao_estrada)) +
+  geom_point(size = 2, shape = 3) +
+  labs(
+      title = "Motores na estrada",
+      caption = "Source: mpg data set",
+      x = "Tipo de motor",
+      y = "Média de milhas por galão gastos na estrada"
+    ) +
+    theme_bw()
+
+plot1 + plot2
+```
+
 # Olá! Neste post usarei diversas funções do tidyverse para manipular dados que já estão presentes no R
 
 Lembrando que [neste post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-16-o-poder-do-tidyverse-manipulao-de-dados/) expliquei sobre cada uma dessas funções!
