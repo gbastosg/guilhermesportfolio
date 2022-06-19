@@ -16,18 +16,59 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r, layout="l-body-outset", preview=TRUE}
+library(tidyverse)
+library(ggthemes)
+library(patchwork)
+
+
+mpg_2008 <- mpg %>%
+  select(tipo_de_motor = displ,
+  ano = year, 
+  galao_milhas_cidade = cty, 
+  galao_milhas_estrada = hwy) %>%
+  group_by(tipo_de_motor, ano) %>%
+  summarise(media_milhas_por_galao_cidade = mean(galao_milhas_cidade), 
+  media_milhas_por_galao_estrada = mean(galao_milhas_estrada)) %>%
+  arrange((ano)) %>%
+  filter(ano == 2008)
+
+plot1 <- ggplot(data = mpg_2008, aes(x = tipo_de_motor, y = media_milhas_por_galao_cidade)) +
+  geom_point(size = 2, shape = 14) +
+  labs(
+      title = "City motor efficiency",
+      subtitle = "by: Guilherme Bastos Gomes",
+      caption = "Source: mpg data set",
+      x = "Motor type",
+      y = "Mean of city miles per gallon"
+    ) +
+    theme_bw()
+
+plot2 <- ggplot(data = mpg_2008, aes(x = tipo_de_motor, y = media_milhas_por_galao_estrada)) +
+  geom_point(size = 2, shape = 6) +
+  labs(
+      title = "Road motor efficiency",
+      caption = "Source: mpg data set",
+      x = "Motor type",
+      y = "Mean of road miles per gallon"
+    ) +
+    theme_bw()
+
+plot1 + plot2
+```
+
 # Hello! In this post I will use some of the functions from tidyverse to wrangle built-in R data
 
 Remembering that [in this post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-13-the-power-of-the-tidyverse-manipulating-data/) I've explained about each of these functions!
 
 
-Today we will use the dataset `mpg` from tidyverse, so let's start loading the package:
+Today we will use the `mpg` data set from the `tidyverse`, so let's start by loading the package:
 
 ```
 library(tidyverse)
 ```
 
-Let's check what exists in the `data.frame`, or have a `glimpse()` on it:
+Let's check what the `data.frame` contains, or have a `glimpse()` on it:
 
 ```
 glimpse(mpg)
@@ -47,7 +88,7 @@ $ fl           <chr> "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p",
 $ class        <chr> "compact", "compact", "compact", "compact", "compact", "compact", "com~
 ```
 
-Interesting, huh? It's possible to see that in this `data.frame` we can find 11 columns and 234 rows. To understand even more about this data you can type `?mpg` in the console, but here is a brief explanation:
+Interesting, right? It's possible to check that in that `data.frame` we can find 11 columns and 234 rows. To understand even more about this data you can type `?mpg` in the console, but here is a brief explanation:
 
 # mpg
 

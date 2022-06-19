@@ -118,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["using-the-tidyverse-functions_files/anchor-4.2.2/anchor.min.js","using-the-tidyverse-functions_files/bowser-1.9.3/bowser.min.js","using-the-tidyverse-functions_files/distill-2.2.21/template.v2.js","using-the-tidyverse-functions_files/header-attrs-2.11/header-attrs.js","using-the-tidyverse-functions_files/jquery-3.6.0/jquery-3.6.0.js","using-the-tidyverse-functions_files/jquery-3.6.0/jquery-3.6.0.min.js","using-the-tidyverse-functions_files/jquery-3.6.0/jquery-3.6.0.min.map","using-the-tidyverse-functions_files/popper-2.6.0/popper.min.js","using-the-tidyverse-functions_files/tippy-6.2.7/tippy-bundle.umd.min.js","using-the-tidyverse-functions_files/tippy-6.2.7/tippy-light-border.css","using-the-tidyverse-functions_files/tippy-6.2.7/tippy.css","using-the-tidyverse-functions_files/tippy-6.2.7/tippy.umd.min.js","using-the-tidyverse-functions_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["using-the-tidyverse-functions_files/anchor-4.2.2/anchor.min.js","using-the-tidyverse-functions_files/bowser-1.9.3/bowser.min.js","using-the-tidyverse-functions_files/distill-2.2.21/template.v2.js","using-the-tidyverse-functions_files/figure-html5/unnamed-chunk-1-1.png","using-the-tidyverse-functions_files/header-attrs-2.11/header-attrs.js","using-the-tidyverse-functions_files/header-attrs-2.14/header-attrs.js","using-the-tidyverse-functions_files/jquery-3.6.0/jquery-3.6.0.js","using-the-tidyverse-functions_files/jquery-3.6.0/jquery-3.6.0.min.js","using-the-tidyverse-functions_files/jquery-3.6.0/jquery-3.6.0.min.map","using-the-tidyverse-functions_files/popper-2.6.0/popper.min.js","using-the-tidyverse-functions_files/tippy-6.2.7/tippy-bundle.umd.min.js","using-the-tidyverse-functions_files/tippy-6.2.7/tippy-light-border.css","using-the-tidyverse-functions_files/tippy-6.2.7/tippy.css","using-the-tidyverse-functions_files/tippy-6.2.7/tippy.umd.min.js","using-the-tidyverse-functions_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2108,6 +2108,9 @@ class="uri">https://gbastosg.github.io/guilhermesportfolio/</a>
 </div>
 
 <div class="d-article">
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="using-the-tidyverse-functions_files/figure-html5/unnamed-chunk-1-1.png" width="624" data-distill-preview=1 /></p>
+</div>
 <h1
 id="hello-in-this-post-i-will-use-some-of-the-functions-from-tidyverse-to-wrangle-built-in-r-data">Hello!
 In this post I will use some of the functions from tidyverse to wrangle
@@ -2115,10 +2118,10 @@ built-in R data</h1>
 <p>Remembering that <a
 href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-04-13-the-power-of-the-tidyverse-manipulating-data/">in
 this post</a> I’ve explained about each of these functions!</p>
-<p>Today we will use the dataset <code>mpg</code> from tidyverse, so
-let’s start loading the package:</p>
+<p>Today we will use the <code>mpg</code> data set from the
+<code>tidyverse</code>, so let’s start by loading the package:</p>
 <pre><code>library(tidyverse)</code></pre>
-<p>Let’s check what exists in the <code>data.frame</code>, or have a
+<p>Let’s check what the <code>data.frame</code> contains, or have a
 <code>glimpse()</code> on it:</p>
 <pre><code>glimpse(mpg)
 
@@ -2135,7 +2138,7 @@ $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 1
 $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 25, 24, 25, 23~
 $ fl           &lt;chr&gt; &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, ~
 $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;com~</code></pre>
-<p>Interesting, huh? It’s possible to see that in this
+<p>Interesting, right? It’s possible to check that in that
 <code>data.frame</code> we can find 11 columns and 234 rows. To
 understand even more about this data you can type <code>?mpg</code> in
 the console, but here is a brief explanation:</p>
