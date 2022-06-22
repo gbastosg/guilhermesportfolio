@@ -16,6 +16,29 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r, layout="l-page", preview=TRUE,fig.width=6, fig.height=5}
+library(tidyverse)
+library(ggthemes)
+
+mpg %>%
+  ggplot(aes(x = displ, y = cty, color = as.factor(displ))) +
+  geom_point() +
+  facet_grid(vars(year)) +
+  theme_dark() +
+  labs(
+    title = "Eficiencia de diferentes tipos de motores",
+    subtitle = "por: Guilherme Bastos",
+    caption = "Source: mpg data set",
+    x = "Tipo de motor",
+    y = "Gasto de milhas por galao na cidade") +
+  theme(
+        legend.title = element_blank(),
+        )
+  
+  
+
+```
+
 # Olá! Neste post irei brevemente escrever sobre a estrutura de variáveis
 
 >variável é uma quantidade, qualidade, ou propriedade que podemos medir.
@@ -29,7 +52,7 @@ De fato, é bom lembrar que:
 > $\color{blue}{\text{"Tudo o que existe em R é um objeto."}}$
 ~John M. Chambers
 
-Então praticamente estaremos lidando com variáveis o tempo inteiro!
+Então lidaremos com variáveis o tempo inteiro!
 
 Para entender os 4 principais tipos de variáveis crie os seguintes objetos no seu workspace:
 
