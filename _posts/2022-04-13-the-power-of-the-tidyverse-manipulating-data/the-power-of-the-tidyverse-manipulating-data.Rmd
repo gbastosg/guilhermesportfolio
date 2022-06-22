@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```{r, layout="body-outset", preview=TRUE}
 library(tidyverse)
-
+library(ggthemes)
 
 ggplot(data = iris, 
                        aes(x = Sepal.Length,
@@ -37,7 +37,8 @@ ggplot(data = iris,
   theme(legend.position = c(0.2, 0.7),
         plot.title.position = "plot",
         plot.caption = element_text(hjust = 0, face= "italic"),
-        plot.caption.position = "plot")
+        plot.caption.position = "plot") +
+  theme_classic()
 ```
 
 # Hello! In this post I will show you how to use the basic verbs of the tidyverse:
