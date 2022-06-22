@@ -1,7 +1,7 @@
 ---
 title: "An exploratory data analysis: part 1"
 description: |
-  Wondering around data.world platform I've found a data set with data regarding data from India. In this data set it's possible to find several models, their prices and ratings. In this post, I will use the tools we've developed so far to explore and analise these data.
+  In the data.world platform I have found a data set with data from smartphones in India where it's possible to find several models, their prices and ratings. In this post, I will use the tools and skills have developed so far to explore and analise these data.
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
@@ -54,9 +54,9 @@ sale_price_first %>%
 # Hello!
 
 
-[In the data.world website](data.world) I've found 2 data sets containing the information on smartphones sold in India.
+[In the data.world website](data.world) I have found 2 data sets containing the information on smartphones sold in India.
 
-I will use all the knowledge that has been developed so far to understand these data and obtain ideas on them.
+I will use all the knowledge that has been developed so far to understand these data and obtain ideas from it.
 
 
 ## Libraries
@@ -65,7 +65,6 @@ Loading `tidyverse`:
 
 ```
 library(tidyverse)
-#We will also use other libraries, they will be loaded at their time
 ```
 
 Loading data:

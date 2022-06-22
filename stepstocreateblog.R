@@ -10,6 +10,7 @@ packages2download <- c("tidyverse", "usethis", "distill", "ggthemes", "here", "i
 
 #Loading libraries
 library(tidyverse)
+library(patchwork)
 library(usethis)
 library(distill)
 library(ggthemes)
