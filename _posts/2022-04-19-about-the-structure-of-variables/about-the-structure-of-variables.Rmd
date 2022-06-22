@@ -16,7 +16,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-```{r, layout="body-outset", preview=TRUE}
+```{r, layout="l-page", preview=TRUE,fig.width=6, fig.height=5}
 library(tidyverse)
 library(ggthemes)
 
