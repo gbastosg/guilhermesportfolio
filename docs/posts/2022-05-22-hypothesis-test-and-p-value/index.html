@@ -89,7 +89,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
 <title>Guilherme's Portfolio: Hypothesis test and P-value</title>
 
-<meta property="description" itemprop="description" content="In this post we are going to test our hypothesis by observing the differences between different stats and the impact of a variable on another."/>
+<meta property="description" itemprop="description" content="In this post I am going to show you how to test your hypothesis by using the null hypothesis in R, that is how scientists can act like skeptics when analising data."/>
 
 
 <!--  https://schema.org/Article -->
@@ -100,20 +100,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
 <meta property="og:title" content="Guilherme&#39;s Portfolio: Hypothesis test and P-value"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="In this post we are going to test our hypothesis by observing the differences between different stats and the impact of a variable on another."/>
+<meta property="og:description" content="In this post I am going to show you how to test your hypothesis by using the null hypothesis in R, that is how scientists can act like skeptics when analising data."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Guilherme&#39;s Portfolio"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
 <meta property="twitter:title" content="Guilherme&#39;s Portfolio: Hypothesis test and P-value"/>
-<meta property="twitter:description" content="In this post we are going to test our hypothesis by observing the differences between different stats and the impact of a variable on another."/>
+<meta property="twitter:description" content="In this post I am going to show you how to test your hypothesis by using the null hypothesis in R, that is how scientists can act like skeptics when analising data."/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Hypothesis test and P-value"]},{"type":"character","attributes":{},"value":["In this post we are going to test our hypothesis by observing the differences between different stats and the impact of a variable on another."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Guilherme Bastos Gomes"]},{"type":"character","attributes":{},"value":["https://gbastosg.github.io/guilhermesportfolio/"]}]}]},{"type":"character","attributes":{},"value":["2022-05-22"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Hypothesis test and P-value"]},{"type":"character","attributes":{},"value":["In this post I am going to show you how to test your hypothesis by using the null hypothesis in R, that is how scientists can act like skeptics when analising data."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Guilherme Bastos Gomes"]},{"type":"character","attributes":{},"value":["https://gbastosg.github.io/guilhermesportfolio/"]}]}]},{"type":"character","attributes":{},"value":["2022-05-22"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2068,7 +2068,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Hypothesis test and P-value","description":"In this post we are going to test our hypothesis by observing the differences between different stats and the impact of a variable on another.","authors":[{"author":"Guilherme Bastos Gomes","authorURL":"https://gbastosg.github.io/guilhermesportfolio/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-05-22T00:00:00.000+10:00","citationText":"Gomes, 2022"}
+{"title":"Hypothesis test and P-value","description":"In this post I am going to show you how to test your hypothesis by using the null hypothesis in R, that is how scientists can act like skeptics when analising data.","authors":[{"author":"Guilherme Bastos Gomes","authorURL":"https://gbastosg.github.io/guilhermesportfolio/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-05-22T00:00:00.000+10:00","citationText":"Gomes, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2094,9 +2094,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <h1>Hypothesis test and P-value</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>In this post we are going to test our hypothesis by observing the
-differences between different stats and the impact of a variable on
-another.</p></p>
+<p><p>In this post I am going to show you how to test your hypothesis by
+using the null hypothesis in R, that is how scientists can act like
+skeptics when analising data.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2113,10 +2113,9 @@ class="uri">https://gbastosg.github.io/guilhermesportfolio/</a>
 </div>
 <h1 id="hello">Hello!</h1>
 <p>In this post I am explaining how to perform a hypothesis test using
-R, and we also going to talk about what is a p-value that is always
-appearing on scientifical writing.</p>
+R, and we are also going to talk about what a <em>p-value</em> is.</p>
 <h1 id="toothgrowth-data-set">ToothGrowth Data set</h1>
-<p>In this in-built data set (remember to call <code>tidiverse</code>)
+<p>In this built in R data set (remember to call <code>tidiverse</code>)
 called <code>ToothGrowth</code> we can find a total of 60 observations
 divided into 3 variables:</p>
 <ul>
@@ -2131,12 +2130,12 @@ divided into 3 variables:</p>
   </script>
 </div>
 </div>
-<p>This data was obtained via research, I’ve explained this data with
-more details in <a
+<p>This data was obtained via a research, which I’ve explained about
+with more details in <a
 href="https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-08-eda-with-r-boxplots-and-violinplots/">this
-post</a>, but generally it demonstrates the effect of applied vitamin C
-in odontoblasts growing (cells responsible for teeth growing) in guinea
-pigs, with different doses.</p>
+post</a>.</p>
+<p>Generally it demonstrates the effect of applied vitamin C in
+odontoblasts (cells responsible for teeth growing) from guinea pigs.</p>
 <pre><code>ggplot(ToothGrowth) +
   geom_freqpoly(aes(x = len, color = dose), binwidth = 1) +
   theme_classic()</code></pre>
@@ -2149,11 +2148,10 @@ binwidth = 1) + theme_classic()</p>
 in the guinea pigs and their odontoblasts sizes, but we need to be
 skepticals and obtain some evidences over what are we claiming before
 taking this hypothesis under consideration.</p>
-<h1 id="at-first-we-look-at-the-means">At first we look at the
-means</h1>
-<p>To start understanding the relation of the vitamin doses with tooth
-growth, we can observe and compare the means of the groups using the
-<code>summarise()</code> function of the <code>dplyr</code> package.</p>
+<h1 id="first-we-look-at-the-means">First we look at the means</h1>
+<p>To start understanding the relation of the vitamin doses and tooth
+growth, we can observe and compare the means of the groups using
+<code>summarise()</code> from <code>dplyr</code> package.</p>
 <pre><code>ToothGrowth %&gt;%
   group_by(dose) %&gt;%
   summarise(mean = mean(len))</code></pre>
@@ -2165,16 +2163,15 @@ growth, we can observe and compare the means of the groups using the
 2 1      19.7
 3 2      26.1</code></pre>
 </div>
-<p>It seems like there is also a difference between the mean of each
-dose of vitamin applied, let’s also analyse the difference between
-means:</p>
+<p>It seems like there is a difference between the mean of each dose of
+vitamin applied, let’s also analyse the difference between means:</p>
 <pre><code>observable_diff1 &lt;- 19.735 - 10.605
 observable_diff2 &lt;- 26.100  - 19.735
 observable_diff3 &lt;- 26.100  - 10.605</code></pre>
 <p>Until here we have already answered some questions:</p>
 <ul>
-<li>Would the teeth of rats that received a bigger dose of vitamin C,
-frequently larger?</li>
+<li>Would the teeth of rats, that received a higher dose of vitamin C,
+be frequently larger?</li>
 </ul>
 <pre><code>#Another form of obtaining variation per dose
 
@@ -2186,8 +2183,8 @@ dose_1 &lt;- ToothGrowth %&gt;%
               
 dose_2 &lt;- ToothGrowth %&gt;%
               filter(dose == 2)</code></pre>
-<p>We can check if this is <code>TRUE</code> with the following
-code:</p>
+<p>We can check if this information is <code>TRUE or</code>FALSE` with
+the following code:</p>
 <pre><code>#Inside of observable_diff1 we have the difference between the 0.5 and 1 doses
 
 mean(dose_1$len) - mean(dose_05$len) == observable_diff1</code></pre>
@@ -2195,7 +2192,7 @@ mean(dose_1$len) - mean(dose_05$len) == observable_diff1</code></pre>
 <pre><code>[1] TRUE</code></pre>
 </div>
 <ul>
-<li>Which are the largest odontoblasts of each groups? And the
+<li>Which are the largest odontoblasts from each group? And the
 smallest?</li>
 </ul>
 <pre><code>ToothGrowth %&gt;%
@@ -2209,22 +2206,23 @@ smallest?</li>
 2 1      13.6  27.3
 3 2      18.5  33.9</code></pre>
 </div>
-<p>So this is it, it really seems like the dose of Vitamin C has the
-direct effect over teeth growth, well actually not… what really happens
-is that if we repeat the experiment with different rat groups, we
-probably would have obtained a different answer from the one we obtained
-previously.</p>
-<p>FOr this reason, this variables are known by
-<code>random variables</code>, they can take several different
+<p>So this is it, it really seems we could think that the dose of
+Vitamin C has the direct effect over teeth growth, well actually not…
+what really happens is that if we repeat the experiment with different
+rat groups, we would probably have obtained a different answer from the
+one we obtained previously.</p>
+<p>For this reason this variables are known as
+<code>random variables</code>, because they can take several different
 values.</p>
-<p>That means, every time we repeat the experiment, we will have
-different means to the groups we have access to (dose), and by being so
-the variable <code>len</code> is considered <code>random</code>.</p>
+<p><em>That means</em>, every time we repeat the experiment, we will
+have different means to the groups we have access to (dose), and by
+being so the variable <code>len</code> is considered
+<code>random</code>.</p>
 <p>Let’s have a better comprehension about
 <code>random variables</code>.</p>
 <h1 id="random-variables">Random Variables</h1>
-<p>Let’s uderstand how the means change when we get samples of our data
-set:</p>
+<p>Let’s understand how the means change when we collect different
+samples from our data set:</p>
 <pre><code>control &lt;- ToothGrowth$len %&gt;% sample(12)</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
 
@@ -2243,47 +2241,46 @@ mean_control &lt;- ToothGrowth$len %&gt;% sample(12) %&gt;% mean()
 
 print(mean_control)</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
-<pre><code>[1] 21.36667</code></pre>
-<pre><code>[1] 18.06667</code></pre>
+<pre><code>[1] 21.625</code></pre>
+<pre><code>[1] 20.09167</code></pre>
 </div>
 <p>Notice how the mean varies in each measurement, we can do this many
 times to learn even more about the distribution of this random
 variable.</p>
 <p>As previously said we have to be skeptical, for that we will assume
-that randomly the observed difference could not mean much, that is it
-could be something that happened by chance.</p>
-<p>To obtain evidences and minimise this uncertainty, we will use the
-<code>Null hypothesis</code>.</p>
+that randomly the observed difference could not mean much, it could be
+something that happened by chance.</p>
+<p>To obtain evidences and minimise this uncertainty, we will use what’s
+called the <code>Null hypothesis</code>.</p>
 <h1 id="null-hypothesis">Null hypothesis</h1>
-<p>Let’s analyse again the observed differences of before. As we need to
-be skepticals we have to question ourselves:</p>
+<p>Let’s analyse again the observed differences from before. Since we
+need to be skeptical, we have to question ourselves:</p>
 <ul>
-<li>How can we affirm that the observed differences are happenning
-because of the applied doses?</li>
+<li>How can we affirm that the observed differences are happening
+<em>because</em> of the applied doses?</li>
 <li>What would happen if we gave all the rats the same dose?</li>
 <li>Would we observe differences as large as these ones?</li>
 </ul>
-<p>In this moment we are working with the <code>Null hypothesis</code>,
-which name comes to remind us that we are acting as skeptical: we give
-credit to the possibility that our observations could just have happened
-by chance.</p>
+<p>In this moment we are working with what is called the skeptic
+mindset, or the <code>Null hypothesis</code>, which name comes to remind
+us that we are acting as skeptical: we give credit to the possibility
+that our observations could just have happened by chance.</p>
 <p>Null, because we are questioning what would happen to the observable
 difference in case there were no application in the experiment, that is
-in case nothing have happened, what would happen?</p>
+in case nothing have happened, what would have happened?</p>
 <h2 id="building-a-control-group-to-test-the-null-hypothesis">Building a
 control group to test the Null hypothesis</h2>
-<p>We can check, how many times we like, the differences between the
-sizes of the teeth without comparing doses. We can do that by sampling a
-random number of rats from our original data set, and then we can record
-the value of the differences between means of two random groups, the
-script for that I learned with prof. Rafa, in the book “Data analysis
-for the life sciences”:</p>
+<p>We can check, as many times as we would like, the differences between
+teeth sizes without comparing doses. We can do that by sampling a random
+number of rats from our original data set, then we can record the value
+of the differences between means of two random groups, this script comes
+from prof. Rafa, in the book “Data analysis for the life sciences”:</p>
 <pre><code>mean_control &lt;- ToothGrowth$len %&gt;% sample(12) %&gt;% mean()
 
 mean_treatment &lt;- ToothGrowth$len %&gt;% sample(12) %&gt;% mean()
 
 print(mean_treatment - mean_control)</code></pre>
-<p>It’s also possible to do this may times using loops in R:</p>
+<p>It’s also possible to do this many times using loops in R:</p>
 <pre><code>n &lt;- 10000 
 null &lt;- vector(&quot;numeric&quot;,n) #first we create a vector with 10000 spaces
 for (i in 1:n) { #looping to generate a null vector
@@ -2306,8 +2303,8 @@ mean(null &gt;= observable_diff2)
 
 mean(null &gt;= observable_diff3)</code></pre>
 <div class="layout-chunk" data-layout="body-outset">
-<pre><code>[1] 6e-04</code></pre>
-<pre><code>[1] 0.0115</code></pre>
+<pre><code>[1] 5e-04</code></pre>
+<pre><code>[1] 0.0109</code></pre>
 <pre><code>[1] 0</code></pre>
 </div>
 <h3 id="interpreting-results">Interpreting results</h3>
@@ -2340,10 +2337,10 @@ This gives us evidence to support our hypothesis, that the amount of
 dose of vitamin c applied in guinea pigs affects the size of
 odontoblasts.</p>
 <p>It was possible to notice that the top difference, between the doses
-0.5 and 2, didn’t even appeared in our plot of the null distribution,
-showing us that the observable difference couldn’t have happened
-entirely randomly, and that the null hypothesis can be overthrown.</p>
-<p>But even though, we should always be carefull!</p>
+0.5 and 2, didn’t even appeared in our null distribution plot, showing
+us that the observable difference couldn’t have happened entirely
+randomly, and that the null hypothesis can be overthrown.</p>
+<p>But even though, we should always be careful!</p>
 <h1 id="creating-a-control-group-using-a-filter">Creating a control
 group using a filter</h1>
 <p>To create a control group with only one dose, we can filter the data
@@ -2354,13 +2351,13 @@ set:</p>
 
 </div>
 <p>Now we can create our data sets to build the null hypothesis:</p>
-<pre><code>controle_ToothGrowth_dot5 &lt;- ToothGrowth_dot5$len %&gt;% sample(12) %&gt;% mean()
+<pre><code>control_ToothGrowth_dot5 &lt;- ToothGrowth_dot5$len %&gt;% sample(12) %&gt;% mean()
 
-tratamento_ToothGrowth_dot5 &lt;- ToothGrowth_dot5$len %&gt;% sample(12) %&gt;% mean()
+treatment_ToothGrowth_dot5 &lt;- ToothGrowth_dot5$len %&gt;% sample(12) %&gt;% mean()
 
-print(tratamento_ToothGrowth_dot5 - controle_ToothGrowth_dot5)</code></pre>
+print(treatment_ToothGrowth_dot5 - control_ToothGrowth_dot5)</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
-<pre><code>[1] 1.3</code></pre>
+<pre><code>[1] 0.9666667</code></pre>
 </div>
 <p>Here we have repeated 10.000 times the differences between means to
 create a null distribution:</p>
@@ -2381,9 +2378,11 @@ print(null)</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
 <p><img src="hypothesis-test-and-p-value_files/figure-html5/unnamed-chunk-16-1.png" width="624" data-distill-preview=1 /></p>
 </div>
+<p>Another very interesting way to compare our observed difference with
+the null hypothesis is by using the <code>infer</code> package.</p>
 <h1 id="using-the-infer-package">Using the infer() package</h1>
 <p>The <code>infer</code> package helps us to test hypothesis in a
-pretty straight-forward way, install the package and load it:</p>
+pretty fast way, install the package and load it:</p>
 <pre><code>install.packages(&quot;infer&quot;)
 
 library(infer)</code></pre>

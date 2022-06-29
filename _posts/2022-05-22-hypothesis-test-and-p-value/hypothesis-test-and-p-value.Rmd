@@ -1,7 +1,7 @@
 ---
 title: "Hypothesis test and P-value"
 description: |
-  In this post we are going to test our hypothesis by observing the differences between different stats and the impact of a variable on another. 
+  In this post I am going to show you how to test your hypothesis by using the null hypothesis in R, that is how scientists can act like skeptics when analising data. 
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
@@ -49,11 +49,11 @@ abline(v=observable_diff2, col="blue", lwd=2)
 
 # Hello!
 
-In this post I am explaining how to perform a hypothesis test using R, and we also going to talk about what is a p-value that is always appearing on scientifical writing.
+In this post I am explaining how to perform a hypothesis test using R, and we are also going to talk about what a *p-value* is.
 
 # ToothGrowth Data set
 
-In this in-built data set (remember to call `tidiverse`) called `ToothGrowth` we can find a total of 60 observations divided into 3 variables:
+In this built in R data set (remember to call `tidiverse`) called `ToothGrowth` we can find a total of 60 observations divided into 3 variables:
 
 - len
 - supp
@@ -64,7 +64,9 @@ library(rmarkdown)
 paged_table(ToothGrowth)
 ```
 
-This data was obtained via research, I've explained this data with more details in [this post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-08-eda-with-r-boxplots-and-violinplots/), but generally it demonstrates the effect of applied vitamin C in odontoblasts growing (cells responsible for teeth growing) in guinea pigs, with different doses.
+This data was obtained via a research, which I've explained about with more details in [this post](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-08-eda-with-r-boxplots-and-violinplots/). 
+
+Generally it demonstrates the effect of applied vitamin C in odontoblasts (cells responsible for teeth growing) from guinea pigs.
 
 ```
 ggplot(ToothGrowth) +
@@ -85,9 +87,9 @@ ggplot(ToothGrowth) +
 
 It seems like there is a clear influence of the vitamin dose applied in the guinea pigs and their odontoblasts sizes, but we need to be skepticals and obtain some evidences over what are we claiming before taking this hypothesis under consideration.
 
-# At first we look at the means
+# First we look at the means
 
-To start understanding the relation of the vitamin doses with tooth growth, we can observe and compare the means of the groups using the `summarise()` function of the `dplyr` package.
+To start understanding the relation of the vitamin doses and tooth growth, we can observe and compare the means of the groups using `summarise()` from `dplyr` package.
 
 ```
 ToothGrowth %>%
@@ -101,7 +103,7 @@ ToothGrowth %>%
   summarise(mean = mean(len))
 ```
 
-It seems like there is also a difference between the mean of each dose of vitamin applied, let's also analyse the difference between means:
+It seems like there is a difference between the mean of each dose of vitamin applied, let's also analyse the difference between means:
 
 ```
 observable_diff1 <- 19.735 - 10.605
@@ -111,7 +113,7 @@ observable_diff3 <- 26.100	- 10.605
 
 Until here we have already answered some questions:
 
-- Would the teeth of rats that received a bigger dose of vitamin C, frequently larger?
+- Would the teeth of rats, that received a higher dose of vitamin C, be frequently larger?
 
 ```
 #Another form of obtaining variation per dose
@@ -126,7 +128,7 @@ dose_2 <- ToothGrowth %>%
               filter(dose == 2)
 ```
 
-We can check if this is `TRUE` with the following code:
+We can check if this information is `TRUE or `FALSE` with the following code:
 
 ```
 #Inside of observable_diff1 we have the difference between the 0.5 and 1 doses
@@ -138,7 +140,7 @@ mean(dose_1$len) - mean(dose_05$len) == observable_diff1
 mean(dose_1$len) - mean(dose_05$len) == observable_diff1
 ```
 
-- Which are the largest odontoblasts of each groups? And the smallest?
+- Which are the largest odontoblasts from each group? And the smallest?
 
 ```
 ToothGrowth %>%
@@ -152,17 +154,17 @@ ToothGrowth %>%
   summarise(min = min(len), max = max(len))
 ```
 
-So this is it, it really seems like the dose of Vitamin C has the direct effect over teeth growth, well actually not... what really happens is that if we repeat the experiment with different rat groups, we probably would have obtained a different answer from the one we obtained previously.
+So this is it, it really seems we could think that the dose of Vitamin C has the direct effect over teeth growth, well actually not... what really happens is that if we repeat the experiment with different rat groups, we would probably have obtained a different answer from the one we obtained previously.
 
-FOr this reason, this variables are known by `random variables`, they can take several different values.
+For this reason this variables are known as `random variables`, because they can take several different values.
 
-That means, every time we repeat the experiment, we will have different means to the groups we have access to (dose), and by being so the variable `len` is considered `random`.
+*That means*, every time we repeat the experiment, we will have different means to the groups we have access to (dose), and by being so the variable `len` is considered `random`.
 
 Let's have a better comprehension about `random variables`.
 
 # Random Variables
 
-Let's uderstand how the means change when we get samples of our data set:
+Let's understand how the means change when we collect different samples from our data set:
 
 ```
 control <- ToothGrowth$len %>% sample(12)
@@ -198,25 +200,25 @@ print(mean_control)
 
 Notice how the mean varies in each measurement, we can do this many times to learn even more about the distribution of this random variable.
 
-As previously said we have to be skeptical, for that we will assume that randomly the observed difference could not mean much, that is it could be something that happened by chance.
+As previously said we have to be skeptical, for that we will assume that randomly the observed difference could not mean much, it could be something that happened by chance.
 
-To obtain evidences and minimise this uncertainty, we will use the `Null hypothesis`.
+To obtain evidences and minimise this uncertainty, we will use what's called the `Null hypothesis`.
 
 # Null hypothesis
 
-Let's analyse again the observed differences of before. As we need to be skepticals we have to question ourselves:
+Let's analyse again the observed differences from before. Since we need to be skeptical, we have to question ourselves:
 
-- How can we affirm that the observed differences are happenning because of the applied doses?
+- How can we affirm that the observed differences are happening *because* of the applied doses?
 - What would happen if we gave all the rats the same dose?
 - Would we observe differences as large as these ones?
 
-In this moment we are working with the `Null hypothesis`, which name comes to remind us that we are acting as skeptical: we give credit to the possibility that our observations could just have happened by chance.
+In this moment we are working with what is called the skeptic mindset, or the `Null hypothesis`, which name comes to remind us that we are acting as skeptical: we give credit to the possibility that our observations could just have happened by chance.
 
-Null, because we are questioning what would happen to the observable difference in case there were no application in the experiment, that is in case nothing have happened, what would happen?
+Null, because we are questioning what would happen to the observable difference in case there were no application in the experiment, that is in case nothing have happened, what would have happened?
 
 ## Building a control group to test the Null hypothesis
 
-We can check, how many times we like, the differences between the sizes of the teeth without comparing doses. We can do that by sampling a random number of rats from our original data set, and then we can record the value of the differences between means of two random groups, the script for that I learned with prof. Rafa, in the book "Data analysis for the life sciences":
+We can check, as many times as we would like, the differences between teeth sizes without comparing doses. We can do that by sampling a random number of rats from our original data set, then we can record the value of the differences between means of two random groups, this script comes from prof. Rafa, in the book "Data analysis for the life sciences":
 
 ```
 mean_control <- ToothGrowth$len %>% sample(12) %>% mean()
@@ -226,7 +228,7 @@ mean_treatment <- ToothGrowth$len %>% sample(12) %>% mean()
 print(mean_treatment - mean_control)
 ```
 
-It's also possible to do this may times using loops in R:
+It's also possible to do this many times using loops in R:
 
 ```
 n <- 10000 
@@ -310,10 +312,9 @@ abline(v=observable_diff3, col="yellow", lwd=2)
 
 Values higher than those ones we have observed are relatively rare. This gives us evidence to support our hypothesis, that the amount of dose of vitamin c applied in guinea pigs affects the size of odontoblasts.
 
-It was possible to notice that the top difference, between the doses 0.5 and 2,
- didn't even appeared in our plot of the null distribution, showing us that the observable difference couldn't have happened entirely randomly, and that the null hypothesis can be overthrown.
+It was possible to notice that the top difference, between the doses 0.5 and 2, didn't even appeared in our null distribution plot, showing us that the observable difference couldn't have happened entirely randomly, and that the null hypothesis can be overthrown.
  
-But even though, we should always be carefull!
+But even though, we should always be careful!
 
 # Creating a control group using a filter
 
@@ -332,11 +333,11 @@ ToothGrowth_dot5 <- ToothGrowth %>%
 Now we can create our data sets to build the null hypothesis:
 
 ```
-controle_ToothGrowth_dot5 <- ToothGrowth_dot5$len %>% sample(12) %>% mean()
+control_ToothGrowth_dot5 <- ToothGrowth_dot5$len %>% sample(12) %>% mean()
 
-tratamento_ToothGrowth_dot5 <- ToothGrowth_dot5$len %>% sample(12) %>% mean()
+treatment_ToothGrowth_dot5 <- ToothGrowth_dot5$len %>% sample(12) %>% mean()
 
-print(tratamento_ToothGrowth_dot5 - controle_ToothGrowth_dot5)
+print(treatment_ToothGrowth_dot5 - control_ToothGrowth_dot5)
 ```
 
 ```{r, layout="l-body-outset", preview=TRUE}
@@ -381,9 +382,11 @@ hist(null_dose, freq=TRUE)
 
 ```
 
+Another very interesting way to compare our observed difference with the null hypothesis is by using the `infer` package.
+
 # Using the infer() package
 
-The `infer` package helps us to test hypothesis in a pretty straight-forward way, install the package and load it:
+The `infer` package helps us to test hypothesis in a pretty fast way, install the package and load it:
 
 ```
 install.packages("infer")
