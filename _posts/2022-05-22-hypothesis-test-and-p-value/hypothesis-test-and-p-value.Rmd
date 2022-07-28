@@ -53,11 +53,11 @@ In this post I am explaining how to perform a hypothesis test using R, and we ar
 
 # ToothGrowth Data set
 
-In this built in R data set (remember to call `tidiverse`) called `ToothGrowth` we can find a total of 60 observations divided into 3 variables:
+In this built in R data set (remember to call `tidyverse`) called `ToothGrowth` we can find a total of 60 observations (rows) divided into 3 variables (columns):
 
-- len
-- supp
-- dose
+- len (Odontoblast length)
+- supp (Supplement applied)
+- dose 
 
 ```{r, layout="l-body-outset"}
 library(rmarkdown)
