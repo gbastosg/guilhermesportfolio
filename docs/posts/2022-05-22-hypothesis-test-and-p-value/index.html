@@ -2113,14 +2113,14 @@ class="uri">https://gbastosg.github.io/guilhermesportfolio/</a>
 </div>
 <h1 id="hello">Hello!</h1>
 <p>In this post I am explaining how to perform a hypothesis test using
-R, and we are also going to talk about what a <em>p-value</em> is.</p>
+R, and we are also going to understand what a <em>p-value</em> is.</p>
 <h1 id="toothgrowth-data-set">ToothGrowth Data set</h1>
-<p>In this built in R data set (remember to call <code>tidiverse</code>)
+<p>In this built in R data set (remember to call <code>tidyverse</code>)
 called <code>ToothGrowth</code> we can find a total of 60 observations
-divided into 3 variables:</p>
+(rows) divided into 3 variables (columns):</p>
 <ul>
-<li>len</li>
-<li>supp</li>
+<li>len (Odontoblast length)</li>
+<li>supp (Supplement applied)</li>
 <li>dose</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body-outset">
@@ -2168,7 +2168,7 @@ vitamin applied, let’s also analyse the difference between means:</p>
 <pre><code>observable_diff1 &lt;- 19.735 - 10.605
 observable_diff2 &lt;- 26.100  - 19.735
 observable_diff3 &lt;- 26.100  - 10.605</code></pre>
-<p>Until here we have already answered some questions:</p>
+<p>Until this point we have already answered some questions, like:</p>
 <ul>
 <li>Would the teeth of rats, that received a higher dose of vitamin C,
 be frequently larger?</li>
@@ -2241,8 +2241,8 @@ mean_control &lt;- ToothGrowth$len %&gt;% sample(12) %&gt;% mean()
 
 print(mean_control)</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
-<pre><code>[1] 21.625</code></pre>
-<pre><code>[1] 20.09167</code></pre>
+<pre><code>[1] 15.40833</code></pre>
+<pre><code>[1] 16.31667</code></pre>
 </div>
 <p>Notice how the mean varies in each measurement, we can do this many
 times to learn even more about the distribution of this random
@@ -2250,7 +2250,7 @@ variable.</p>
 <p>As previously said we have to be skeptical, for that we will assume
 that randomly the observed difference could not mean much, it could be
 something that happened by chance.</p>
-<p>To obtain evidences and minimise this uncertainty, we will use what’s
+<p>To obtain evidences and minimize this uncertainty, we will use what’s
 called the <code>Null hypothesis</code>.</p>
 <h1 id="null-hypothesis">Null hypothesis</h1>
 <p>Let’s analyse again the observed differences from before. Since we
@@ -2303,17 +2303,17 @@ mean(null &gt;= observable_diff2)
 
 mean(null &gt;= observable_diff3)</code></pre>
 <div class="layout-chunk" data-layout="body-outset">
-<pre><code>[1] 5e-04</code></pre>
+<pre><code>[1] 2e-04</code></pre>
 <pre><code>[1] 0.0109</code></pre>
 <pre><code>[1] 0</code></pre>
 </div>
 <h3 id="interpreting-results">Interpreting results</h3>
 <p>Only a minority percentage within our 10.000 simulations are equal or
-higher than the observed differences in the null hypothesis. As
-skepticals what do we conclude? That when there’s no dose effect, we can
-observe a difference as big as the one observed before only 0,0001% of
-the times (in maximum, as could see in <code>observable_diff1</code>).
-This value is known as p-value.</p>
+higher than the observed differences in the null hypothesis. As skeptics
+what do we conclude? That when there’s no dose effect, we can observe a
+difference as big as the one observed before only 0,0001% of the times
+(in maximum, as could see in <code>observable_diff1</code>). This value
+is known as <em>p-value</em>.</p>
 <h1 id="p-value">P-value</h1>
 <p>We performed a simulation to build the <code>null</code> data set,
 let’s now observe the the null distribution:</p>
@@ -2336,11 +2336,11 @@ abline(v=observable_diff3, col=&quot;yellow&quot;, lwd=2)</code></pre>
 This gives us evidence to support our hypothesis, that the amount of
 dose of vitamin c applied in guinea pigs affects the size of
 odontoblasts.</p>
-<p>It was possible to notice that the top difference, between the doses
+<p>It was possible to observe that the top difference, between the doses
 0.5 and 2, didn’t even appeared in our null distribution plot, showing
 us that the observable difference couldn’t have happened entirely
 randomly, and that the null hypothesis can be overthrown.</p>
-<p>But even though, we should always be careful!</p>
+<p>But even so we should always be careful!</p>
 <h1 id="creating-a-control-group-using-a-filter">Creating a control
 group using a filter</h1>
 <p>To create a control group with only one dose, we can filter the data
@@ -2357,7 +2357,7 @@ treatment_ToothGrowth_dot5 &lt;- ToothGrowth_dot5$len %&gt;% sample(12) %&gt;% m
 
 print(treatment_ToothGrowth_dot5 - control_ToothGrowth_dot5)</code></pre>
 <div class="layout-chunk" data-layout="l-body-outset">
-<pre><code>[1] 0.9666667</code></pre>
+<pre><code>[1] 0.9333333</code></pre>
 </div>
 <p>Here we have repeated 10.000 times the differences between means to
 create a null distribution:</p>
@@ -2409,8 +2409,8 @@ distribution:</p>
 <div class="layout-chunk" data-layout="l-body-outset">
 <p><img src="hypothesis-test-and-p-value_files/figure-html5/unnamed-chunk-19-1.png" width="624" data-distill-preview=1 /></p>
 </div>
-<p>We will talk even more about this in other posts, when I will use all
-of this knowledge applied in a project! See you!</p>
+<p>We are going to further analyse a data set with SmartPhones from
+India in the next post, see you!</p>
 <div class="sourceCode" id="cb31"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

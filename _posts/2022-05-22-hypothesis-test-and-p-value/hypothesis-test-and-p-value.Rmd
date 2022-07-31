@@ -49,7 +49,7 @@ abline(v=observable_diff2, col="blue", lwd=2)
 
 # Hello!
 
-In this post I am explaining how to perform a hypothesis test using R, and we are also going to talk about what a *p-value* is.
+In this post I am explaining how to perform a hypothesis test using R, and we are also going to understand what a *p-value* is.
 
 # ToothGrowth Data set
 
@@ -57,7 +57,7 @@ In this built in R data set (remember to call `tidyverse`) called `ToothGrowth` 
 
 - len (Odontoblast length)
 - supp (Supplement applied)
-- dose 
+- dose
 
 ```{r, layout="l-body-outset"}
 library(rmarkdown)
@@ -111,7 +111,7 @@ observable_diff2 <- 26.100	- 19.735
 observable_diff3 <- 26.100	- 10.605
 ```
 
-Until here we have already answered some questions:
+Until this point we have already answered some questions, like:
 
 - Would the teeth of rats, that received a higher dose of vitamin C, be frequently larger?
 
@@ -191,7 +191,7 @@ print(mean_control)
 ```{r, layout="l-body-outset", preview=TRUE}
 mean_control <- ToothGrowth$len %>% sample(12) %>% mean()
 
-print(media_controle)
+print(mean_control)
 
 mean_control <- ToothGrowth$len %>% sample(12) %>% mean()
 
@@ -202,7 +202,7 @@ Notice how the mean varies in each measurement, we can do this many times to lea
 
 As previously said we have to be skeptical, for that we will assume that randomly the observed difference could not mean much, it could be something that happened by chance.
 
-To obtain evidences and minimise this uncertainty, we will use what's called the `Null hypothesis`.
+To obtain evidences and minimize this uncertainty, we will use what's called the `Null hypothesis`.
 
 # Null hypothesis
 
@@ -274,7 +274,7 @@ mean(null >= observable_diff3)
 
 ### Interpreting results
 
-Only a minority percentage within our 10.000 simulations are equal or higher than the observed differences in the null hypothesis. As skepticals what do we conclude? That when there's no dose effect, we can observe a difference as big as the one observed before only 0,0001% of the times (in maximum, as could see in `observable_diff1`). This value is known as p-value.
+Only a minority percentage within our 10.000 simulations are equal or higher than the observed differences in the null hypothesis. As skeptics what do we conclude? That when there's no dose effect, we can observe a difference as big as the one observed before only 0,0001% of the times (in maximum, as could see in `observable_diff1`). This value is known as *p-value*.
 
 # P-value
 
@@ -312,9 +312,9 @@ abline(v=observable_diff3, col="yellow", lwd=2)
 
 Values higher than those ones we have observed are relatively rare. This gives us evidence to support our hypothesis, that the amount of dose of vitamin c applied in guinea pigs affects the size of odontoblasts.
 
-It was possible to notice that the top difference, between the doses 0.5 and 2, didn't even appeared in our null distribution plot, showing us that the observable difference couldn't have happened entirely randomly, and that the null hypothesis can be overthrown.
+It was possible to observe that the top difference, between the doses 0.5 and 2, didn't even appeared in our null distribution plot, showing us that the observable difference couldn't have happened entirely randomly, and that the null hypothesis can be overthrown.
  
-But even though, we should always be careful!
+But even so we should always be careful!
 
 # Creating a control group using a filter
 
@@ -436,4 +436,4 @@ visualize(null_dist) +
   shade_p_value(obs_stat = F_hat, direction = "greater")
 ```
 
-We will talk even more about this in other posts, when I will use all of this knowledge applied in a project! See you!
+We are going to further analyse a data set with SmartPhones from India in the next post, see you!
