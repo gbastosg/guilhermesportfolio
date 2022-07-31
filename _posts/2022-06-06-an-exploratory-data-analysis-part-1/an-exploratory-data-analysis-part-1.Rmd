@@ -1,5 +1,5 @@
 ---
-title: "An exploratory data analysis: part 1"
+title: "Analyzing the relationship between variables"
 description: |
   In the data.world platform I have found a data set with data from smartphones in India where it's possible to find several models, their prices and ratings. In this post, I will use the tools and skills have developed so far to explore and analise these data.
 author:
