@@ -1,5 +1,5 @@
 ---
-title: "Análise e exploração de dados: parte 1"
+title: "Gráficos de pirulito e o pacote Janitor"
 description: |
   Navegando na plataforma data.world encontrei um conjunto de dados sobre smartphones na Índia. Nesse data set é possível encontrar diversos modelos, seus preços e o número de avaliações que cada um recebeu. Nesse post, uso as ferramentas que desenvolvemos até o momento para explorar e análisar esses dados.
 author:
