@@ -7,7 +7,7 @@
 
 #To start you should have installed Git and the packages:
 packages2download <- c("tidyverse", "usethis", "distill", "ggthemes", "here",
-                       "infer", "janitor", "ggthemes", "patchwork")
+                       "infer", "janitor", "ggthemes", "patchwork", "waffle")
 
 #Loading libraries
 library(tidyverse)
@@ -17,6 +17,7 @@ library(distill)
 library(ggthemes)
 library(infer)
 library(janitor)
+library(waffle)
 library(here)
 
 #blog e github
