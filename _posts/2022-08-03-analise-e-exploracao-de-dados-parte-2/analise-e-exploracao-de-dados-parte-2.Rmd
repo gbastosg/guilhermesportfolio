@@ -1,7 +1,7 @@
 ---
-title: "Waffle Plot"
+title: "Waffle Plot (PT-BR)"
 description: |
-  Continuando a análise prévia sobre os dados de smartphones na Índia. Neste post continuarei explorando os dados em busca de perguntas e respostas que podem nos levar a resultados interessantes. 
+  Retomando a análise prévia sobre os dados de smartphones na Índia. Neste post continuarei explorando os dados em busca de perguntas e respostas que podem nos levar a resultados interessantes. 
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
@@ -73,7 +73,7 @@ Neste post continuaremos explorando os dados sobre smartphones vendidos na Índi
 
 # EDA
 
-O data set foi construído durante a última análise, onde usei o pacote `janitor` para limpar os dados e organizar as colunas. [Saiba mais sobre isso neste post aqui!]()
+O data set foi construído durante a última análise, onde usei o pacote `janitor` para limpar os dados e organizar as colunas. [Saiba mais sobre isso neste post aqui!](https://gbastosg.github.io/guilhermesportfolio/posts/2022-06-05-analise-e-exploracao-de-dados-parte-1/)
 
 
 Uma olhada no data set:
@@ -110,7 +110,7 @@ library(janitor)
 
 Agora que temos tudo arrumado, podemos começar a analisar alguns gráficos para responder nossas perguntas.
 
-Antes, vamos responder a nossa pergunta usando o simples comandos em R:
+Antes, vamos responder a nossa primeira pergunta usando o simples comandos em R:
 
 ```
  max(smartphones_sold$number_of_ratings)
@@ -189,7 +189,7 @@ geom_point() +
 
 ```
 
-E claro, se quisermos saber quem são os Top 10 podemos simplesmente usar a função `head()`:
+E claro, se quisermos saber quem são os Top 10 podemos simplesmente usar a função `head()` combinada com `arrange(desc())`:
 
 ```
 
@@ -211,7 +211,7 @@ red_out_smartphones_sold %>%
 
 Agora sabemos quem foram as 10 empresas mais influentes do mercado de 2017 de smartphones na Índia. E quais foram os modelos de smartphones mais avaliados (lembrando que eles podem ter sido avaliados para pior aqui, pois estamos medindo influência para bem ou para mal :O)
 
-Uma forma interessante de mostrar esse tipo de dado é usar o waffle plot, a.k.a `squared pie chart`.
+Uma forma interessante de mostrar esse tipo de dado é usar o `waffle plot`, a.k.a `squared pie chart`.
 
 ## Waffle Plot
 
@@ -275,7 +275,7 @@ waffle(norm_vec_most_10, rows = 4,
 
 ```
 
-Info-gráficos são bastante úteis para mostrar informações rápidas com clareza. Aqui por exemplo vemos o quão influente foi a Redmi no mercado Indiano daquele ano.
+Info-gráficos são bastante úteis para mostrar informações rápidas com clareza. Aqui por exemplo vemos o quão influente foi a Redmi no mercado Indiano daquele ano em relação aos outros competidores.
 
 Espero que tenha gostado, até a próxima!
 
