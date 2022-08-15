@@ -1,0 +1,283 @@
+---
+title: "Waffle Plot (EN-AU)"
+description: |
+  Returning to the previous analysis about smartphones in India, we will se who was the most important player from that time using waffle plots. 
+author:
+  - name: Guilherme Bastos Gomes
+    url: https://gbastosg.github.io/guilhermesportfolio/
+date: 2022-08-15
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r, layout="body-outset", preview=TRUE}
+
+library(waffle)
+library(tidyverse)
+library(janitor)
+library(ggthemes)
+
+apple_sold_in_india <-     read_csv("../../../../../apple_analysis/apple_products.csv")
+
+smartphones_sold <- 
+  read_csv("../../../../../apple_analysis/smartphone_category (1).csv")
+
+clean_apple_sold_in_india <- apple_sold_in_india %>%
+  clean_names()
+
+clean_apple_sold_in_india <- clean_apple_sold_in_india %>%
+  mutate(american_dolar = sale_price * 0.013, australian_dolar = sale_price * 0.018)
+
+clean_apple_sold_in_india %>%
+  group_by(sale_price) %>%
+  slice(1) -> sale_price_first
+
+smartphones_sold <- clean_names(smartphones_sold)
+
+red_out_smartphones_sold <- smartphones_sold %>%
+  group_by(brand) %>%
+  arrange(desc(number_of_ratings)) %>%
+  slice(1)
+
+
+most_evaluated_10 <- red_out_smartphones_sold %>%
+  select(product_name, brand, number_of_ratings) %>%
+  arrange(desc(number_of_ratings)) %>%
+  head(10)
+
+vec_most_10_brand <- c(as.vector(most_evaluated_10$brand))
+vec_most_10_ratings <- c(most_evaluated_10$number_of_ratings)
+
+
+vec_most_10 <- c(Redmi = 1340123, realme = 901941, Honor = 475790, Mi = 471046, Motorola = 365212, POCO = 348171, Lenovo = 307215, ASUS = 262956, SAMSUNG = 249339,  ViVO = 158909)
+
+norm_vec_most_10 <- vec_most_10 / 4880702 * 100
+
+waffle(norm_vec_most_10, rows = 4,
+       colors = c("deeppink3", "hotpink4", "firebrick1", "goldenrod2", "firebrick", "gold", "chartreuse2", "gray1", "darkorchid", "deepskyblue"),
+       legend_pos = "bottom",
+       xlab = "Total Ratings for smartphones in India - 2017")
+
+```
+
+# Hello!
+
+In this post we will continue to explore the data about smartphones sold in India, what else could be interesting about this data set?
+
+# EDA
+
+This data set that we will use was created during last analysis, where I used the `janitor` package to clean and organise the columns. [Know more about that in this post here!](https://gbastosg.github.io/guilhermesportfolio/posts/2022-06-05-analise-e-exploracao-de-dados-parte-1/)
+
+
+To start let's take a glimpse in the data set:
+
+```
+glimpse(smartphones_sold)
+```
+
+```{r, layout="body-outset", preview=TRUE}
+glimpse(smartphones_sold)
+```
+
+# Some questions to understand the data set
+
+* Which is the most evaluated smartphone between all of them? And the least?
+* What is the highest "rating" between devices?
+* Which company has dominated the indian market of influence of smartphones in that year?
+
+## Answering the questions
+
+To respond to these questions we can use `dplyr`'s tools, so remember to call the `library(tidyverse)` to activate the library.
+
+As our data set is kind of untidy, we will use the  `janitor` package again to tidy things up
+
+```
+library(janitor)
+smartphones_sold <- clean_names(smartphones_sold)
+```
+
+```{r, layout="body-outset", preview=TRUE}
+library(janitor)
+
+```
+
+Now that everything is set, we can start to analyse some plots to answer our questions.
+
+But first, let's tackle our first question by using simple commands in R:
+
+```
+ max(smartphones_sold$number_of_ratings)
+ min(smartphones_sold$number_of_ratings)
+ 
+#Which was the most rated one?
+
+smartphones_sold %>%
+  filter(number_of_ratings == 1340123)
+```
+
+```{r, layout="body-outset", preview=TRUE}
+ max(smartphones_sold$number_of_ratings)
+ min(smartphones_sold$number_of_ratings)
+ 
+#Which was the most rated one?
+smartphones_sold %>%
+  filter(number_of_ratings == 1340123)
+```
+
+What is there so interesting about Redmi Note 4 in india?
+
+It seems like the smartphone overcome the expectancies and became quite common around there, interesting huh? What we can learn from the design or stategies related to this product? Would it be possible to use these same techniques again?
+
+Probably yes, it would be interesting to comprehend the business strategy around the device and learn something from it.
+
+For now, let's continue our analysis to understand who are the main Redmi competitors in the influency market of smartphones from india.
+
+In this plot we can perceive something, there are many more ratings so that we can visualize the discrepancy between those that are most rated.
+
+```{r, layout="body-outset", preview=TRUE}
+library(ggthemes)
+
+red_out_smartphones_sold <- smartphones_sold %>%
+  group_by(brand) %>%
+  arrange(desc(number_of_ratings)) %>%
+  slice(1)
+ 
+ggplot(data = red_out_smartphones_sold, 
+                                   aes(x = fct_reorder(brand, number_of_ratings), 
+                                       y = number_of_ratings, 
+                                       size = number_of_ratings,
+                                       color = factor(ram))
+                                   ) +
+geom_point() +
+  theme_classic() +
+  theme(legend.position= "bottom", 
+      panel.grid = element_blank(),
+      axis.text = element_blank()
+) +
+  geom_point(colour = "pink", size = 1)
+
+```
+
+```
+library(ggthemes)
+
+red_out_smartphones_sold <- smartphones_sold %>%
+  group_by(brand) %>%
+  arrange(desc(number_of_ratings)) %>%
+  slice(1)
+ 
+ggplot(data = red_out_smartphones_sold, 
+                                   aes(x = fct_reorder(brand, number_of_ratings), 
+                                       y = number_of_ratings, 
+                                       size = number_of_ratings,
+                                       color = factor(ram))
+                                   ) +
+geom_point() +
+  theme_classic() +
+  theme(legend.position= "bottom", 
+      panel.grid = element_blank(),
+      axis.text = element_blank()
+) +
+  geom_point(colour = "pink", size = 1)
+
+```
+
+And of course, if we would like to know which are the Top 10 we can simply use the function `head()` combined with `arrange(desc())`:
+
+```
+
+red_out_smartphones_sold %>%
+  select(product_name, brand, number_of_ratings) %>%
+  arrange(desc(number_of_ratings)) %>%
+  head(10)
+
+```
+
+```{r, layout="body-outset", preview=TRUE}
+
+red_out_smartphones_sold %>%
+  select(product_name, brand, number_of_ratings) %>%
+  arrange(desc(number_of_ratings)) %>%
+  head(10)
+
+```
+
+Now we know which were the 10 most influential companies in the market from 2017 in India.
+
+An interesting way of showing these info graphs is by using the `waffle plot`, a.k.a `squared pie chart`.
+
+## Waffle Plot
+
+To start, let's install the `waffle` package:
+
+```
+install.packages("waffle")
+library(waffle)
+```
+
+We will need a vector so that `waffle()` function works:
+
+```{r, layout="body-outset", preview=TRUE}
+
+library("waffle")
+
+most_evaluated_10 <- red_out_smartphones_sold %>%
+  select(product_name, brand, number_of_ratings) %>%
+  arrange(desc(number_of_ratings)) %>%
+  head(10)
+
+vec_most_10_brand <- c(as.vector(most_evaluated_10$brand))
+vec_most_10_ratings <- c(most_evaluated_10$number_of_ratings)
+
+
+vec_most_10 <- c(Redmi = 1340123, realme = 901941, Honor = 475790, Mi = 471046, Motorola = 365212, POCO = 348171, Lenovo = 307215, ASUS = 262956, SAMSUNG = 249339,  ViVO = 158909)
+
+norm_vec_most_10 <- vec_most_10 / 4880702 * 100
+
+waffle(norm_vec_most_10, rows = 4,
+       colors = c("firebrick1", "deepskyblue", "darkorchid", "gray1", "chartreuse2",
+                  "gold", "firebrick", "goldenrod2", "hotpink4", "deeppink3"),
+       legend_pos = "bottom",
+       xlab = "Total de avaliações de smartphones em 2008 na Índia")
+
+```
+
+To draw this info graph we can use the following commands:
+
+```
+
+library("waffle")
+
+most_evaluated_10 <- red_out_smartphones_sold %>%
+  select(product_name, brand, number_of_ratings) %>%
+  arrange(desc(number_of_ratings)) %>%
+  head(10)
+
+#Creating a vector with the values
+vec_most_10 <- c(Redmi = 1340123, realme = 901941, Honor = 475790, Mi = 471046, Motorola = 365212, POCO = 348171, Lenovo = 307215, ASUS = 262956, SAMSUNG = 249339,  ViVO = 158909)
+
+#Normalising the vector so we can obtain related values
+norm_vec_most_10 <- vec_most_10 / 4880702 * 100
+
+#Drawing the plot
+waffle(norm_vec_most_10, rows = 4,
+       colors = c("firebrick1", "deepskyblue", "darkorchid", "gray1", "chartreuse2",
+                  "gold", "firebrick", "goldenrod2", "hotpink4", "deeppink3"),
+       legend_pos = "bottom",
+       xlab = "Total Ratings for smartphones in India - 2017")
+
+```
+
+Info graphs are really useful to show fast information with clarity. Here for example we can understand how influent was Redmi in comparison to other companies in the indian market.
+
+Hope you liked it, see you on the next one!
+
+#### Follow me on Twitter: @gimbgomes
+
+
