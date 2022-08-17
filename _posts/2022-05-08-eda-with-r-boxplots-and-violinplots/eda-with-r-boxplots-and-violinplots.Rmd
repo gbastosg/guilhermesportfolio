@@ -1,7 +1,7 @@
 ---
-title: "EDA with R: Boxplots and ViolinPlots"
+title: "Learning how to build Boxplots and ViolinPlots using R"
 description: |
-  In this post I will describe and show how to do a Boxplot using the ggplot2 package of the R programming language.
+  In this post I am describing and showing how to analyse Boxplots and Violin Plots using the ggplot2 package in the R programming language.
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
@@ -18,15 +18,15 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Hello!
 
-The main idea here is to tackle boxplots, what are they, how to built one in R and how to interpret them.
+The main idea here is to understand box plots, what they are, how to built one in R and how to interpret them.
 
 # Box plots
 
-A pretty popular manner (between statisticians) of analising data is by using box plots
+A pretty popular manner of analising data (between statisticians) is by using box plots
 
-A box plot shows a *continuous variable*, divided into groups by a *categorical variable*.  [For more information about thos types of variables, please visit this link](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-06-exploratory-data-analysis-tools-using-r/)
+A box plot shows a *continuous variable*, divided into groups by a *categorical variable*.  [For more information about variables types, please visit this link.](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-06-exploratory-data-analysis-tools-using-r/)
 
-The following is a Boxplot made out of the `ToothGrowth` data set, that compares the effect of vitamin C over the growth of tooth cells in Guinea pigs, in the x axis we put the categorical variable `supp`, or supplement type which could be OJ for orange juice and VC for ascorbic acid) and in the Y axis is the continuous variable `len` or the size of odontoblasts (the cells) of each animal:
+The following pictures shows a Box plot made using the `ToothGrowth` data set which compares the effect of vitamin C over the growth of tooth cells in Guinea pigs, in the x axis we put the categorical variable `supp`, or supplement type which could be OJ for orange juice and VC for ascorbic acid, and in the Y axis is the continuous variable `len` or the size of odontoblasts (the cells) of each animal:
 
 ```{r, layout="l-body-outset", preview=TRUE}
 
@@ -72,20 +72,22 @@ Boxplot has two main parts: the box and the whiskers (two lines that extends out
 
 * First, we divide our distribution into 4 parts, each part is known as a `quartile`
 
-* The box holds the data between the 25 and 75 quartiles, distance known as IQR or interquartile range. In the middle of the box it's possible to see a line that represents the median, a.k.a. 50 quartile of our distribution. These three lines gives us information about the distribution of numbers and also tell us if these distributions could be considered symmetric or skimmed.
+* The box holds the data between the 25 and 75 quartiles, distance known as IQR or interquartile range. 
+
+* In the middle of the box it is possible to see a line that represents the median, a.k.a. 50 quartile of our distribution. These three lines gives us information about the distribution of numbers and also tell us if these distributions could be considered symmetric or skimmed.
 
 * There are two whiskers, a line towards the top, and another one towards the bottom. These lines extends until the point 1.5 times away of each edge of the box.
 
-* Dots that are far away are called `outliers`, the famous dots out of the curve, those that doen't appear very often in our data set.
+* Dots that are far away are called `outliers`, the famous points out of a curve, those that does not appear very often in our data set.
 
 ## ToothGrowth
 
 
 > The response is the length of odontoblasts (cells responsible for tooth growth) in 60 guinea pigs. Each animal received one of three dose levels of vitamin C (0.5, 1, and 2 mg/day) by one of two delivery methods, orange juice or ascorbic acid (a form of vitamin C and coded as VC).
 
-we should have two categorical variables, then: `supp` e `dose`
+we should have two categorical variables then: `supp` and `dose`
 
-Although, the variable `dose` isn't yet considered a categorical by R.
+Although you may notice that the variable `dose` it is not yet considered a categorical by R.
 
 ```
 str(ToothGrowth$dose)
@@ -93,13 +95,13 @@ str(ToothGrowth$dose)
 
 `num [1:60] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...`
 
-Let's transform this variable from numeric into factors to plot a boxplot even more informative:
+Let's transform this variable from `numeric` into `factors` to plot a box plot with even more information on it:
 
 ```
 ToothGrowth$dose <- as.factor(ToothGrowth$dose)
 ```
 
-Now we can call a box plot with both variable:
+Now we can call the `geom_boxplot()` function using both variables:
 
 ```{r, layout="l-body-outset", preview=TRUE}
 ToothGrowth %>% 
@@ -129,11 +131,11 @@ ToothGrowth %>%
     theme_classic()
 ```
 
-This graph is even more interesting, we can compare 3 variables at the same time.
+This graph is even more interesting, we can even compare 3 variables at the same time.
 
 ## Boxplot comprehension with Dotplot
 
-Let's do a Boxplot with a Dotplot within, that is a graph of points that represents where the data accumulates in our variable:
+Let's do a Boxplot with a Dotplot within it, also known as a graph of points that represents where data is accumulated in our data set:
 
 ```{r, layout="l-body-outset", preview=TRUE}
 ToothGrowth %>% 
@@ -154,9 +156,9 @@ Easier to pick up, right?
 
 Now we can visualise how an aplication of dose of each supplements has something to do in the measure of cell length.
 
-Another pretty interesting graph to show this information is the ViolinPlot
+Another pretty interesting graph to show this information are the Violin Plots
 
-# ViolinPlot
+# Violin Plots
 
 ```{r, layout="l-body-outset", preview=TRUE}
 
@@ -172,6 +174,7 @@ ToothGrowth %>%
     ) +
     theme_classic()
 ```
+
 The code: 
 
 ```
@@ -188,16 +191,15 @@ ToothGrowth %>%
     theme_classic()
 ```
 
-The most interesting part of the violin plot is that it also shows us the probability of kernel density of all the values from our data, a concept to explore in future analyses.
+The most interesting part of the Violin plot is that it also shows us the probability of kernel density of all the values from our data, a concept to explore in future analyses.
 
-Generally ViolinPlots includes a mark with the median information, and also a box that indicates the IQR, just like boxplots.
+Generally Violin Plots includes a mark with the median information, and also a box that indicates the IQR, just like box plots do.
 
-To build a ViolinPlot, instead of `geom_boxplot()` we use `geom_violin()`
+To build a Violin Plot, instead of `geom_boxplot()` we use the `geom_violin()` function.
 
 ## Mean and Median inside the Violin
 
 This time, let's mark the mean of our data in our `geom_violin`:
-
 
 ```
 ToothGrowth %>% 
@@ -229,8 +231,7 @@ ToothGrowth %>%
     theme_classic()
 ```
 
-Median:
-
+And using the median:
 
 ```
 ToothGrowth %>% 
@@ -281,7 +282,7 @@ ToothGrowth %>%
     theme_classic()
 
 ```
-To wrap up, let's add some colours:
+To wrap up, let's add some colours, using the `ggthemes` package:
 
 ```{r,layout="l-body-outset", preview=TRUE}
 ToothGrowth %>% 
@@ -300,8 +301,8 @@ ToothGrowth %>%
     geom_boxplot(width=0.1) +
     theme_wsj()
 ```
-Realise the power with this kind of visualisation to comprehend the distribution of our data!
+I hope you can use the power of this kind of visualisation in your own analysis, to comprehend the distribution of your data!
 
 What would explain the great concentration of data in each part of the graph? Let's explore even more of these ideas in future posts!
 
-Thank you! See you soon!!!
+#### Thank you! See you soon!!!
