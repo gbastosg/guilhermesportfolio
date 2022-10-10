@@ -1,7 +1,7 @@
 ---
-title: "The power of the tidyverse: manipulating data"
+title: "The power of the tidyverse: manipulating data (EN)"
 description: |
-  In this post I will show you how to use the basic tools from tidyverse. This tools are useful to deal with a whole sort of data.
+  In this post I am showing you how to use the basic tools from the R package tidyverse to analyse data. These tools are useful to deal with a whole sort of data!
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
@@ -48,37 +48,40 @@ ggplot(data = iris,
 * filter()
 * mutate()
 
-All these verbs are also great *functions* to deal with data from the real world, but since gathering this data can be very time useful we will use a built in data set from R.
+All these verbs are also great *functions* to deal with data from the real world!
 
-Let's have a look in the Iris data set which gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are *Iris setosa*, *Iris versicolor*, and *Iris virginica*.
+Let's have a look in the `Iris` data set which gives us the measurements in centimeters from three species of plants, the variables are: sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of the `Iris` gender. The species are *Iris setosa*, *Iris versicolor*, and *Iris virginica*.
 
-And of course since we are dealing with the tidyverse we have to load it:
+And since we are dealing with the `tidyverse package` we have to load it:
 
 `library(tidyverse)`
 
 we can call it and have a look:  
 `iris`  
+
 or just a part of it:  
 `head(iris)`  
-or just a glimpse for those who love stats:  
+
+or just a `glimpse`:  
+
 `glimpse(iris)`  
 
 # Pipe '%>%' and select()
 
-First of all let's start with select and since we are using a tidyverse way of thinking, we are going to start using *pipes* also known as *%>%* or *|>*, depending on which you prefer to write.
+First of all let's start with `select` and since we are using a tidyverse way of thinking, we are going to start using *pipes* from now on, these are also known as *%>%* or *|>*, depending on which you prefer to write.
 
-So, to select a sort of columns you wish you can:
+To select a sort of columns you wish you can:
 
 ```
 iris %>% #here we are calling the dataframe iris and piping to the next function
 select(Sepal.Length, Species) #here we are calling the function and  choosing two columns `Sepal.Length` and `Species`
 ```
 
-Note the pipe "%>%", that means that the output of one function will be the input of the next one, and the first pipe just includes the iris data set into the next function `select(Sepal.Length, Species)`
+Note the pipe "%>%" which means the output of one function will be the input of the next one, and the first pipe just includes the iris data set into the next function `select(Sepal.Length, Species)`
 
 Pretty easy, right?
 
-Now you should have a smaller data set, only the selected columns from iris to work with, if you want to check it, just call the same script again, but using the `head()` function to see only the first 10 lines:
+Now you should have a smaller data set (a sample), only the selected columns from `Iris` to work with, if you want to check it, just call the same script again, but using the `head()` function to see only the first 10 lines:
 
 ```
 iris %>%
@@ -86,7 +89,7 @@ iris %>%
   head()
 ```
 
-Just a tip, this would also work (but it's harder to read):
+Just a tip, this would also work (but some may consider harder to read):
 
 ```
 head(select(iris, Sepal.Length, Species))
@@ -117,7 +120,7 @@ selected_iris <- iris %>%
 
 # arrange()
 
-Suppose you want now to quick check the ordered distribution of Sepal Lengths, we can either call the `view()` function inside RStudio, or use the `arrange()` function, like this:
+Suppose you want now to quick check the ordered distribution of Sepal Lengths, we can either call the `view()` function inside RStudio or use the `arrange()` function, like this:
 
 ```
 arrange(selected_iris) %>%
@@ -137,7 +140,7 @@ You should have something like this:
 
 ## arrange(desc())
 
-You will notice that the `dataframe` is now ordered from the lowest to the highest values of Sepal.Length. But what if we wanted to arrange in a descending order? Then we should just use the function `desc()` inside of our `arrange()` calling:
+You are going to notice that `dataframe` is now ordered from the lowest to highest values of `Sepal.Length`. But what if we wanted to `arrange` them in a descending order? Then we should just use the function `desc()` inside of our `arrange()` calling:
 
 
 ```
@@ -145,7 +148,7 @@ arrange(desc(selected_iris)) %>%
   head()
 ```
 
-Now you will have:
+Now you have:
 
 | Sepal.Length | Species    |
 |--------------|------------|
@@ -158,7 +161,7 @@ Now you will have:
 
 # filter()
 
-Alright, so now that we already know how to `select()` and `arrange()`, let's learn another two verbs that are great for data manipulation and analysis:
+Now that we already know how to `select()` and `arrange()`, let's learn another two verbs that are great for data manipulation and analysis:
 
 ## First of all, let's use the `filter()` function to gather only *Iris virginica* species from our dataset:
 
@@ -167,7 +170,7 @@ iris %>%
   filter(Species == "virginica")
 ```
 
-Note that we are using the `==` operator, meaning we want to filter everything from the Species column that is equal to our text "virginica".
+Note that we are using the `==` operator, meaning we want to filter everything from the `Species` column that is equal to our text `"virginica"`.
 
 ## Suppose you want to filter only those that are not *Iris virginica*:
 
@@ -176,7 +179,7 @@ iris %>%
   filter(Species != "virginica")
 ```
 
-Now we have used the `!=` which stands for different or not equal, then we will have received a data set with *Iris setosa* and *Iris versicolor* species, and to check if this is true, let's create objects that receives our filtered data sets:
+Now we have used the `!=` which stands for different or not equal, then we will have received a data set with *Iris setosa* and *Iris versicolor* species and to check if this is true let's create objects receiving our filtered data sets:
 
 ```
 iris_virginica <- 
@@ -215,7 +218,7 @@ Now I am going to continue with another tidyverb ;)
 
 # mutate()
 
-The last and, maybe most important, function we are going to learn is `mutate()`
+The last and, perhaps most important, function we are going to learn is `mutate()`
 
 This is a great function to manipulate data and to transform or create new columns in our data set
 
@@ -264,7 +267,11 @@ ratio_iris %>% #putting the data set through our pipe
   "large")) #else or otherwise it will receive "large"
 ```
 
-You will have a complete sorted data set, on the next post I will show you how to count() and to gather some stats from data. Hope you liked. 
+You are going to have a complete sorted data set. 
+
+Next post I am going to show you how to `count()` and to gather some stats from data. 
+
+Hope you liked this one! 
 
 Now you can manipulate data and start a data analysis project using the `tidyverse`
 
