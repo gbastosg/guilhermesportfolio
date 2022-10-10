@@ -1,7 +1,7 @@
 ---
-title: "Learning how to build Boxplots and ViolinPlots using R"
+title: "Learning how to build Boxplots and ViolinPlots using R (EN-AU)"
 description: |
-  In this post I am describing and showing how to analyse Boxplots and Violin Plots using the ggplot2 package in the R programming language.
+  In this post I am  showing how to analyse Boxplots and Violin Plots using the ggplot2 package in the R programming language.
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
@@ -26,7 +26,7 @@ A pretty popular manner of analising data (between statisticians) is by using bo
 
 A box plot shows a *continuous variable*, divided into groups by a *categorical variable*.  [For more information about variables types, please visit this link.](https://gbastosg.github.io/guilhermesportfolio/posts/2022-05-06-exploratory-data-analysis-tools-using-r/)
 
-The following pictures shows a Box plot made using the `ToothGrowth` data set which compares the effect of vitamin C over the growth of tooth cells in Guinea pigs, in the x axis we put the categorical variable `supp`, or supplement type which could be OJ for orange juice and VC for ascorbic acid, and in the Y axis is the continuous variable `len` or the size of odontoblasts (the cells) of each animal:
+The following pictures shows a Box plot created using the `ToothGrowth` data set which compares the effect of vitamin C over the growth of tooth cells in Guinea pigs, in the x axis we put the categorical variable `supp`, or supplement type which could be OJ for orange juice and VC for ascorbic acid, and in the Y axis is the continuous variable `len` or the size of odontoblasts (the cells) of each animal:
 
 ```{r, layout="l-body-outset", preview=TRUE}
 
