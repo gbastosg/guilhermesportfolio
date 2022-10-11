@@ -1,7 +1,7 @@
 ---
-title: "O poder do tidyverse: manipulação de dados"
+title: "O poder do tidyverse: manipulação de dados (PT-BR)"
 description: |
-  Vou traduzir alguns posts meus aqui, para poder ajudar outros falantes de português a entenderem e usarem R para manipular dados. O Tidyverse é um pacote bastante importante para manipulação de dados, pois é fácil de usar e aprender.
+  Vou traduzir meus posts aqui para ocasionalmente ajudar outros falantes de português a entenderem e usarem R para manipular dados. O Tidyverse é um pacote bastante importante para manipulação de dados, é extremamente fácil de usar e aprender.
 author:
   - name: Guilherme Bastos Gomes
     url: https://gbastosg.github.io/guilhermesportfolio/
@@ -50,22 +50,24 @@ ggplot(data = iris,
 
 Todos esses verbos também são *funções* para lidar com dados do mundo real, mas como coletar esses dados pode ser bem complicado vamos usar um conjunto de dados (data set) do R.
 
-Vamos dar uma olhada no data set `iris` que nos da medidas em centimetros do tamanho de sepalas e petalas de tres espécies de angiospermas: *Iris setosa*, *Iris versicolor*, e *Iris virginica*.
+Vamos dar uma olhada no data set `iris` que nos da medidas em centimetros do tamanho de sepalas e petalas de tres espécies de angiospermas (plantas com flores e frutos): *Iris setosa*, *Iris versicolor*, e *Iris virginica*.
 
-E claro, já que estamos lidando com o tidyverse, temos que carregar o pacote:
+E claro, já que estamos lidando com o tidyverse, temos que carregar o pacote, portanto escreva o seguinte (para fazer o download do pacote basta escrever `install.packages("tidyverse")`:
 
 `library(tidyverse)`
 
-Vamos ver o data set:  
+Vamos ver o data set:
 `iris`  
 ou só uma parte dele:  
 `head(iris)`  
-ou apenas dar uma olhadinha para aqueles que curtem stats:  
+ou apenas dar uma olhadinha:  
 `glimpse(iris)`  
 
 # Pipe '%>%' e select()
 
-Antes de tudo, vamos começar com o selecionar e já que estamos usando o tidyverse, também começaremos a usar os *pipes* também conhecido como *%>%* ou *|>*, tudo depende do que você mais gosta de escrever.
+Antes de tudo, vamos começar com a função `selecionar` e já que estamos usando o tidyverse, também começaremos a usar os *pipes*, também conhecido como *%>%* ou *|>*, tudo depende do que você mais gosta de escrever.
+
+Pipes são muito úteis para montar linhas de script conectadas, onde a saída de uma função serve de entrada para outra e assim por diante.
 
 Então para selecionar um conjunto de colunas que você queira, você pode escrever:
 
@@ -74,7 +76,7 @@ iris %>% #aqui incluimos o dataframe iris no pipe para a proxima função
 select(Sepal.Length, Species) #selecionando duas colunas do dataframe `Sepal.Length` e `Species`
 ```
 
-Note o pipe "%>%", isso significa que a saída de uma função será usada como entrada para a próxima, e o primeiro pipe apenas inclui o data set iris dentro da função `select(Sepal.Length, Species)`
+Note o pipe "%>%", isso significa que a saída de uma função será usada como entrada para a próxima, e o primeiro pipe apenas inclui o data set `iris` dentro da função `select(Sepal.Length, Species)`
 
 Tranquilo, certo?
 
@@ -155,7 +157,7 @@ Agora temos:
 
 # filter()
 
-Beleza, agora que sabemos `select()` e `arrange()`, bora aprender mais dois outros verbos  que também são ótimos para manipulação e análise de dados:
+Agora que sabemos `select()` e `arrange()`, vamos aprender mais dois outros verbos  que também são ótimos para manipulação e análise de dados:
 
 ## Primeiro, vamos usar o filtro ou `filter()` para filtrar apenas a espécie *Iris virginica* do nosso dataset:
 
@@ -265,7 +267,7 @@ No fim, teremos um data set completamente marcado com a nossa condição, num pr
 
 Sabendo que o conteúdo é escasso, vou tentar sempre traduzir alguns posts meus.
 
-Tente usar essas quatro funções em outros data sets do R, como no `mpg`!
+Tente usar essas quatro funções em outros data sets do R, como no data set `mpg`!
 
 
 #### Obrigado por ter chegado até aqui :)
